@@ -1,0 +1,33 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                add = id; 
+                duplicate = id; 
+                exportFile = id; 
+                importFile = id; 
+                quizAutoPick = id; 
+                quizReview = id; 
+                quizSelection = id; 
+                resetScore = id; 
+                setItemImportance = id; 
+                showInfo = id; 
+                showNotes = id; 
+                toggleABScoreColumn = id; 
+                toggleBAScoreColumn = id; 
+                toggleGroupColumn = id; 
+                toggleTypeColumn = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {showAboutPanel = id; showHelpWindow = id; showTipJar = id; }; 
+            CLASS = GeniusAppDelegate; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,54 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {add = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = GeniusArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {geniusDocument = id; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
+            ACTIONS = {
+                add = id; 
+                duplicate = id; 
+                exportFile = id; 
+                learnReviewSliderChanged = id; 
+                quizAutoPick = id; 
+                quizReview = id; 
+                quizSelection = id; 
+                resetScore = id; 
+                search = id; 
+                toggleStatusText = id; 
+            }; 
+            CLASS = GeniusDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                arrayController = id; 
+                infoDrawer = id; 
+                initialWatermarkView = id; 
+                learnReviewSlider = id; 
+                levelField = id; 
+                levelIndicator = id; 
+                notesDrawer = id; 
+                statusField = id; 
+                tableView = id; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = GeniusItem; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = LevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = MyTableView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {documentController = id; }; 
+            SUPERCLASS = NSTableView; 
+        }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,14 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {continue = id; goBack = id; }; 
+            CLASS = GeniusWelcomePanel; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {dontRemindSwitch = id; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = "java.lang.Object"; LANGUAGE = Java; }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>answer</key>
+			<string>Victoria</string>
+			<key>question</key>
+			<string>British Columbia</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Edmonton</string>
+			<key>question</key>
+			<string>Alberta</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Regina</string>
+			<key>question</key>
+			<string>Saskatchewan</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Winnipeg</string>
+			<key>question</key>
+			<string>Manitoba</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Toronto</string>
+			<key>question</key>
+			<string>Ontario</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Québec</string>
+			<key>question</key>
+			<string>Québec</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Fredericton</string>
+			<key>question</key>
+			<string>New Brunswick</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Halifax</string>
+			<key>question</key>
+			<string>Nova Scotia</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Charlottetown</string>
+			<key>question</key>
+			<string>Prince Edward Island</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>St. John’s</string>
+			<key>question</key>
+			<string>Newfoundland and Labrador</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Whitehorse</string>
+			<key>question</key>
+			<string>Yukon</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Yellowknife</string>
+			<key>question</key>
+			<string>Northwest Territories</string>
+		</dict>
+		<dict>
+			<key>answer</key>
+			<string>Iqaluit</string>
+			<key>question</key>
+			<string>Nunavut</string>
+		</dict>
+	</array>
+</dict>
+</plist>

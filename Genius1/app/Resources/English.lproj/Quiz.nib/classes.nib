@@ -1,0 +1,32 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = GeniusRelevanceIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {
+                getRightNo = id; 
+                getRightSkip = id; 
+                getRightYes = id; 
+                handleEntry = id; 
+                myAction = id; 
+            }; 
+            CLASS = MyQuizController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                answerTextView = id; 
+                associationController = id; 
+                cueTextView = id; 
+                entryField = id; 
+                getRightView = id; 
+                newAssociationView = id; 
+                noButton = id; 
+                progressIndicator = id; 
+                studyTimeField = id; 
+                yesButton = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = SimpleProgressIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}

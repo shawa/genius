@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Vocab-O-Matic' target in the 'Vocab-O-Matic' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
