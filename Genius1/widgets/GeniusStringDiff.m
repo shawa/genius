@@ -9,20 +9,52 @@
 #import "GeniusStringDiff.h"
 
 
+@interface NSString (GeniusStringDiff)
+- (BOOL) _isEqualToStringIgnoringPunctuationAndCase:(NSString *)string;
+@end
+
+@implementation NSString (GeniusStringDiff)
+- (BOOL) _isEqualToStringIgnoringPunctuationAndCase:(NSString *)string
+{
+	if ([self caseInsensitiveCompare:string] == NSOrderedSame)
+		return YES;
+
+	NSMutableString * string1 = [self mutableCopy];
+	NSMutableString * string2 = [string mutableCopy];
+
+	// Remove punctuation
+	NSCharacterSet * punctuationCharacterSet = [NSCharacterSet punctuationCharacterSet];
+	while (1)
+	{
+		NSRange range = [string1 rangeOfCharacterFromSet:punctuationCharacterSet];
+		if (range.location == NSNotFound)
+			break;
+		[string1 deleteCharactersInRange:range];
+	}
+	while (1)
+	{
+		NSRange range = [string2 rangeOfCharacterFromSet:punctuationCharacterSet];
+		if (range.location == NSNotFound)
+			break;
+		[string2 deleteCharactersInRange:range];
+	}
+
+	BOOL outResult = ([string1 caseInsensitiveCompare:string2] == NSOrderedSame);
+	[string1 release];
+	[string2 release];
+	return outResult;
+}
+@end
+
+
+
 @implementation GeniusStringDiff
 
-+ (NSAttributedString *) attributedStringHighlightingDifferencesFromString:(NSString *)origString toString:(NSString *)newString
++ (NSString *) _runDiffFromString:(NSString *)string1 toString:(NSString *)string2
 {
-	if ([newString isEqualToString:origString])
-		return [[[NSAttributedString alloc] initWithString:origString] autorelease];
-
-	if ([newString isEqualToString:@""])
-		return [[[NSAttributedString alloc] initWithString:@""] autorelease];
-
 	// Create temp files
-	NSMutableString * text1 = [origString mutableCopy];
-	NSMutableString * text2 = [newString mutableCopy];
-	
+	NSMutableString * text1 = [string1 mutableCopy];
+	NSMutableString * text2 = [string2 mutableCopy];
 	[text1 replaceOccurrencesOfString:@" " withString:@"\n" options:NULL range:NSMakeRange(0, [text1 length])];
 	[text2 replaceOccurrencesOfString:@" " withString:@"\n" options:NULL range:NSMakeRange(0, [text2 length])];
 	NSData * data1 = [text1 dataUsingEncoding:NSUTF8StringEncoding];
@@ -34,7 +66,7 @@
 	[text1 release];
 	[text2 release];
 
-	// Launch diff
+	// Run diff
 	NSTask *diffTask = [[NSTask alloc] init];
 	NSPipe *newPipe = [NSPipe pipe];
 	NSFileHandle *readHandle = [newPipe fileHandleForReading];
@@ -42,27 +74,51 @@
 	[diffTask setStandardOutput:newPipe]; 
 	[diffTask setLaunchPath:@"/usr/bin/diff"];
 	[diffTask setArguments:[NSArray arrayWithObjects:@"-b", @"-i", @"--side-by-side", path1, path2, nil]];
-	[diffTask launch];
+
+	BOOL succeed = YES;
+	NS_DURING
+		[diffTask launch];
+	NS_HANDLER
+		succeed = NO;
+	NS_ENDHANDLER
+	if (succeed == NO)
+		return nil;
 
 	NSMutableData * diffData = [NSMutableData data];
 	NSData *inData = nil;
 	while ((inData = [readHandle availableData]) && [inData length])
 		[diffData appendData:inData];
-	NSString * diffString = [[NSString alloc] initWithData:diffData encoding:NSUTF8StringEncoding];
+	NSString * diffOutput = [[NSString alloc] initWithData:diffData encoding:NSUTF8StringEncoding];
 
 	[diffTask release];
 
+	// Delete temp files
 	NSFileManager * fm = [NSFileManager defaultManager];
 	[fm removeFileAtPath:path1 handler:nil];
 	[fm removeFileAtPath:path2 handler:nil];
 	
-	//NSLog(diffString);
-	
+	return [diffOutput autorelease];
+}
+
++ (NSAttributedString *) attributedStringHighlightingDifferencesFromString:(NSString *)origString toString:(NSString *)newString
+{
+	if ([newString isEqualToString:@""])
+		return [[[NSAttributedString alloc] initWithString:@""] autorelease];
+
+	if ([newString isEqualToString:origString])
+		return [[[NSAttributedString alloc] initWithString:origString] autorelease];
+
+	// Run diff
+	NSString * diffOutput = [self _runDiffFromString:origString toString:newString];
+	if (diffOutput == nil)
+		return [[[NSAttributedString alloc] initWithString:origString] autorelease];
+
+	NSArray * diffLines = [diffOutput componentsSeparatedByString:@"\n"];
+	//NSLog([diffLines description]);	// DEBUG
+
 	// Parse results
-	NSMutableIndexSet * diffIndexSet = [NSMutableIndexSet indexSet];
-	NSMutableArray * outWords = [NSMutableArray array];
-	
-	NSArray * diffLines = [diffString componentsSeparatedByString:@"\n"];
+	NSMutableArray * mergedWords = [NSMutableArray array];
+	NSMutableIndexSet * highlightIndexSet = [NSMutableIndexSet indexSet];
 	int i, count = [diffLines count];
 	for (i=0; i<count; i++)
 	{
@@ -71,51 +127,70 @@
 		unsigned int columnCount = [columns count];
 		if (columnCount < 2)
 			continue;
-		NSString * marker = [columns objectAtIndex:columnCount-2];
+		
 		NSString * origWord = [columns objectAtIndex:0];
+		NSString * newWord = [columns lastObject];
 
+		// Modified
+		NSString * marker = [columns objectAtIndex:columnCount-2];
 		NSRange range = [marker rangeOfString:@"|"];
 		if (range.location == NSNotFound)
 			range = [marker rangeOfString:@"/"];
-		if (range.location == NSNotFound)
-			range = [[columns lastObject] rangeOfString:@"<"];
-
 		if (range.location != NSNotFound)
 		{
-			[outWords addObject:origWord];
-			[diffIndexSet addIndex:i];
+			[mergedWords addObject:origWord];
+
+			if ([origWord _isEqualToStringIgnoringPunctuationAndCase:newWord] == NO)
+				[highlightIndexSet addIndex:i];
+			/*else
+				NSLog(@"%@ and %@ are the same", origWord, newWord);*/
 			continue;
 		}
-
+		
+		// Removed
 		range = [marker rangeOfString:@">"];
 		if (range.location != NSNotFound)
 		{
 			const unichar kMiddleDotUnichar = 0x00B7;
 			NSString * sMiddleDotString = [NSString stringWithCharacters:&kMiddleDotUnichar length:1];
 			NSString * threeDots = [NSString stringWithFormat:@"%@%@%@", sMiddleDotString, sMiddleDotString, sMiddleDotString];
-			[outWords addObject:threeDots];
 
-			[diffIndexSet addIndex:i];
+			if ([highlightIndexSet containsIndex:i-1] == NO)
+				[mergedWords addObject:threeDots];
+
+			[highlightIndexSet addIndex:i];
 			continue;
 		}
 
-		[outWords addObject:origWord];
+		// Added
+		if (range.location == NSNotFound)
+			range = [newWord rangeOfString:@"<"];
+		if (range.location != NSNotFound)
+		{
+			[mergedWords addObject:origWord];
+			
+			[highlightIndexSet addIndex:i];
+			continue;
+		}
+
+		// Original
+		[mergedWords addObject:origWord];
 	}
 
 	NSMutableAttributedString * outAttrString = [NSMutableAttributedString new];
-	i = 0, count = [outWords count];
+	i = 0, count = [mergedWords count];
 	while (i<count)
 	{
 		NSMutableString * chunk = [NSMutableString string];
 		
-		BOOL isHighlighted = [diffIndexSet containsIndex:i];
+		BOOL isHighlighted = [highlightIndexSet containsIndex:i];
 		for (; i<count; i++)
 		{
-			BOOL shouldHighlight = [diffIndexSet containsIndex:i];
+			BOOL shouldHighlight = [highlightIndexSet containsIndex:i];
 			if (isHighlighted != shouldHighlight)
 				break;
 
-			NSString * word = [outWords objectAtIndex:i];
+			NSString * word = [mergedWords objectAtIndex:i];
 			[chunk appendFormat:@"%@ ", word];
 		}
 		[chunk deleteCharactersInRange:NSMakeRange([chunk length]-1, 1)];
