@@ -529,6 +529,8 @@
 				23227CC80725BD2600D09B7F,
 				23227CCB0725BD2600D09B7F,
 				23227CCC0725BD2600D09B7F,
+				23516AB6075EE2CE0020D17E,
+				23516AB7075EE2CE0020D17E,
 			);
 			isa = PBXGroup;
 			path = widgets;
@@ -1099,6 +1101,34 @@
 			settings = {
 			};
 		};
+		23516AB6075EE2CE0020D17E = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = GeniusStringDiff.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		23516AB7075EE2CE0020D17E = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = GeniusStringDiff.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		23516AB8075EE2CE0020D17E = {
+			fileRef = 23516AB6075EE2CE0020D17E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		23516AB9075EE2CE0020D17E = {
+			fileRef = 23516AB7075EE2CE0020D17E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		237DA3DC07395DC4006B7D4B = {
 			fileEncoding = 10;
 			isa = PBXFileReference;
@@ -1417,6 +1447,7 @@
 				23227CE10725BD2600D09B7F,
 				23227CE90725BD6100D09B7F,
 				2318E4110725C16D00726F95,
+				23516AB8075EE2CE0020D17E,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1480,6 +1511,7 @@
 				23227CE20725BD2600D09B7F,
 				23227CEA0725BD6100D09B7F,
 				2318E4100725C16D00726F95,
+				23516AB9075EE2CE0020D17E,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

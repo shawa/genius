@@ -2,6 +2,7 @@
 #include <unistd.h> // getpid
 #import "GeniusWelcomePanel.h"
 #import "GeniusStringAnalysis.h"
+#import "GeniusStringDiff.h"
 
 
 @implementation MyQuizController
@@ -176,7 +177,11 @@
             [entryField setEnabled:NO];
             [getRightView setHidden:NO];
 
-            float similarity = [[entryField stringValue] isSimilarToString:[answerItem stringValue]];
+
+			NSString * origString = [answerItem stringValue];
+			NSString * userString = [entryField stringValue];
+			
+            float similarity = [origString isSimilarToString:userString];
             #if DEBUG
                 NSLog(@"similarity = %f", similarity);
             #endif
@@ -187,7 +192,21 @@
 				
 				goto skip_review;
 			}
-            else if (similarity > 0.5)
+
+			// Get annotated diff string
+			NSAttributedString * attrString = [GeniusStringDiff attributedStringHighlightingDifferencesFromString:userString toString:origString];
+
+			NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
+			NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+			[parStyle setAlignment:NSCenterTextAlignment];
+			[mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
+			[parStyle release];
+
+			[entryField setAttributedStringValue:mutAttrString];
+			[mutAttrString release];
+
+
+            if (similarity > 0.5)
             {
                 // correct
                 [yesButton setKeyEquivalent:@"\r"];

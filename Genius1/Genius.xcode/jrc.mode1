@@ -240,12 +240,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>2A37F4AAFDCFA73011CA2CEA</string>
+								<string>23227CB50725BD2600D09B7F</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -348,9 +349,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>23FE373707494CAA0029DD61</string>
+				<string>23516AC0075EE3B60020D17E</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>23FE373807494CAA0029DD61</string>
+				<string>23516AC1075EE3B60020D17E</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -472,7 +473,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>23B2AED20722554A00255542</string>
-				<string>23FE373B07494CB50029DD61</string>
+				<string>23516ABF075EE3AF0020D17E</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -777,8 +778,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {365, 167}}</string>
-											<string>{{0, 176}, {365, 267}}</string>
+											<string>{{0, 0}, {363, 167}}</string>
+											<string>{{0, 176}, {363, 267}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -827,9 +828,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>23FE373907494CAA0029DD61</string>
+				<string>23516AC2075EE3B60020D17E</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>23FE373A07494CAA0029DD61</string>
+				<string>23516AC3075EE3B60020D17E</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -838,7 +839,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
