@@ -86,7 +86,6 @@
             return NO;
 
         [doc reloadInterfaceFromModel];
-        
         return YES;
     }
     else
@@ -98,11 +97,12 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
+	NSLog(@"applicationWillTerminate:");
+	
 	// Get all document paths
 	NSMutableArray * documentPaths = [NSMutableArray array];
-	NSDocumentController * dc = [NSDocumentController sharedDocumentController];
-	NSArray * documents = [dc documents];
-	NSEnumerator * documentEnumerator = [documents objectEnumerator];
+	NSArray * documents = [NSApp orderedDocuments];
+	NSEnumerator * documentEnumerator = [documents reverseObjectEnumerator];
 	NSDocument * document;
 	while ((document = [documentEnumerator nextObject]))
 	{

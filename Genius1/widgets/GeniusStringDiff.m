@@ -153,10 +153,10 @@
 		{
 			const unichar kMiddleDotUnichar = 0x00B7;
 			NSString * sMiddleDotString = [NSString stringWithCharacters:&kMiddleDotUnichar length:1];
-			NSString * threeDots = [NSString stringWithFormat:@"%@%@%@", sMiddleDotString, sMiddleDotString, sMiddleDotString];
+			NSString * threeDotsString = [NSString stringWithFormat:@"%@%@%@", sMiddleDotString, sMiddleDotString, sMiddleDotString];
 
-			if ([highlightIndexSet containsIndex:i-1] == NO)
-				[mergedWords addObject:threeDots];
+			if ([[mergedWords lastObject] isEqual:threeDotsString] == NO)
+				[mergedWords addObject:threeDotsString];
 
 			[highlightIndexSet addIndex:i];
 			continue;
@@ -177,6 +177,9 @@
 		[mergedWords addObject:origWord];
 	}
 
+	//NSLog(@"mergedWords=%@", [mergedWords description]);	// DEBUG
+	//NSLog(@"highlightIndexSet=%@", [highlightIndexSet description]);	// DEBUG
+
 	NSMutableAttributedString * outAttrString = [NSMutableAttributedString new];
 	i = 0, count = [mergedWords count];
 	while (i<count)
@@ -195,7 +198,7 @@
 		}
 		[chunk deleteCharactersInRange:NSMakeRange([chunk length]-1, 1)];
 
-		//NSLog(@"%d/%d %d \"%@\"", i, count, isHighlighted, chunk);
+		NSLog(@"%d/%d %d \"%@\"", i, count, isHighlighted, chunk);
 		
 		NSDictionary * attrs = nil;
 		if (isHighlighted)
