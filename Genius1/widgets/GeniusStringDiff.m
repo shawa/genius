@@ -82,16 +82,20 @@
 
 		if (range.location != NSNotFound)
 		{
-			[diffIndexSet addIndex:i];
 			[outWords addObject:origWord];
+			[diffIndexSet addIndex:i];
 			continue;
 		}
 
 		range = [marker rangeOfString:@">"];
 		if (range.location != NSNotFound)
 		{
+			const unichar kMiddleDotUnichar = 0x00B7;
+			NSString * sMiddleDotString = [NSString stringWithCharacters:&kMiddleDotUnichar length:1];
+			NSString * threeDots = [NSString stringWithFormat:@"%@%@%@", sMiddleDotString, sMiddleDotString, sMiddleDotString];
+			[outWords addObject:threeDots];
+
 			[diffIndexSet addIndex:i];
-			[outWords addObject:@"_"];
 			continue;
 		}
 

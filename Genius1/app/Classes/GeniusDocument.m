@@ -1083,7 +1083,7 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 
 // Handle delete:
 - (void)keyDown:(NSEvent *)theEvent
-{
+{	
     if ([theEvent keyCode] == 51)       // Delete
     {
         id delegate = [self delegate];
