@@ -114,7 +114,7 @@
 		return [[[NSAttributedString alloc] initWithString:origString] autorelease];
 
 	NSArray * diffLines = [diffOutput componentsSeparatedByString:@"\n"];
-	//NSLog([diffLines description]);	// DEBUG
+	NSLog([diffLines description]);	// DEBUG
 
 	// Parse results
 	NSMutableArray * mergedWords = [NSMutableArray array];

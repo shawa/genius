@@ -135,6 +135,11 @@
         [answerTextView setNeedsDisplay:YES];
 
 
+		NSString * origString = [answerItem stringValue];
+		NSString * userString = [entryField stringValue];
+		if (origString == nil || userString == nil)
+			continue;
+
         // Prepare window for questioning
         BOOL isFirstTime = ([_currentAssociation scoreNumber] == nil);
         if (isFirstTime)
@@ -146,7 +151,7 @@
             [newAssociationView setHidden:NO];
 
             [entryField setEnabled:YES];
-            [entryField setStringValue:[answerItem stringValue]];
+            [entryField setStringValue:origString];
             [entryField selectText:self];
             
             [_newSound stop];
@@ -178,9 +183,6 @@
             [getRightView setHidden:NO];
 
 
-			NSString * origString = [answerItem stringValue];
-			NSString * userString = [entryField stringValue];
-			
             float similarity = [origString isSimilarToString:userString];
             #if DEBUG
                 NSLog(@"similarity = %f", similarity);

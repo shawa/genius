@@ -1,0 +1,18 @@
+TO DO Ñ FUTURE VERSIONS
+FEATURE: multimedia resources
+ER: use fuzzy matching per-document setting
+ER: "Importance" column in document window
+ER: having scores reflect number correct AND incorrect (e.g., 5/10)
+ER: undo support
+FEATURE: the ability to pull and track questions from multiple Genius files
+ER: Swap menu item
+
+FEATURE: highlight errors
+FEATURE: timer, fixed time quiz (requested by Jeremy B.)
+BUG: Shouldn't be able to reorder items if columns are sorted
+FEATURE: during quiz item swapping, back and forth, etc. (requested by Jeremy B.)
+ER: weight the (a->b / b->a) quizzing (requested by Jeremy B.)
+ER: copy and paste as text
+FEATURE: document statistics / grade
+FEATURE: hands-off interaction mode (Erika M.)
+ER: Dim screen during quiz mode (requested by Peter R.)

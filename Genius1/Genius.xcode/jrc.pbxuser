@@ -1,15 +1,5 @@
 // !$*UTF8*$!
 {
-	230D199C075FABE2000CAD26 = {
-		fRef = 23227C870725BD1300D09B7F;
-		isa = PBXTextBookmark;
-		name = "GeniusAppDelegate.m: 59";
-		rLen = 0;
-		rLoc = 1520;
-		rType = 0;
-		vrLen = 569;
-		vrLoc = 1102;
-	};
 	2318E40E0725C16D00726F95 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {650, 265}}";
@@ -28,10 +18,10 @@
 	};
 	2318E4210725C29F00726F95 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 1395}}";
-			sepNavSelRange = "{734, 10}";
-			sepNavVisRect = "{{0, 368}, {711, 443}}";
-			sepNavWindowFrame = "{{419, 277}, {750, 502}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 1183}}";
+			sepNavSelRange = "{47, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 443}}";
+			sepNavWindowFrame = "{{15, 325}, {750, 502}}";
 		};
 	};
 	23227C870725BD1300D09B7F = {
@@ -45,8 +35,8 @@
 	23227C890725BD1300D09B7F = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1250, 17121}}";
-			sepNavSelRange = "{448, 26}";
-			sepNavVisRect = "{{0, 0}, {711, 428}}";
+			sepNavSelRange = "{23345, 0}";
+			sepNavVisRect = "{{0, 9437}, {653, 184}}";
 			sepNavWindowFrame = "{{435, 269}, {750, 502}}";
 		};
 	};
@@ -68,9 +58,17 @@
 	23227C920725BD1300D09B7F = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {920, 4577}}";
-			sepNavSelRange = "{6244, 11}";
-			sepNavVisRect = "{{0, 2671}, {863, 412}}";
-			sepNavWindowFrame = "{{479, 140}, {750, 502}}";
+			sepNavSelRange = "{3566, 0}";
+			sepNavVisRect = "{{0, 1665}, {653, 184}}";
+			sepNavWindowFrame = "{{86, 27}, {741, 790}}";
+		};
+	};
+	23227CA60725BD2000D09B7F = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 4647}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 3679}, {720, 744}}";
+			sepNavWindowFrame = "{{245, 0}, {759, 818}}";
 		};
 	};
 	23227CA90725BD2000D09B7F = {
@@ -79,6 +77,14 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 24}, {688, 747}}";
 			sepNavWindowFrame = "{{76, 0}, {727, 821}}";
+		};
+	};
+	23227CF00725BD7600D09B7F = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {711, 443}}";
+			sepNavSelRange = "{667, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 443}}";
+			sepNavWindowFrame = "{{15, 325}, {750, 502}}";
 		};
 	};
 	23516AB6075EE2CE0020D17E = {
@@ -96,16 +102,6 @@
 			sepNavVisRect = "{{0, 1154}, {709, 550}}";
 			sepNavWindowFrame = "{{539, 29}, {748, 624}}";
 		};
-	};
-	23966958075FBA7900E8F25F = {
-		fRef = 23227C870725BD1300D09B7F;
-		isa = PBXTextBookmark;
-		name = "GeniusAppDelegate.m: 58";
-		rLen = 0;
-		rLoc = 1452;
-		rType = 0;
-		vrLen = 569;
-		vrLoc = 1102;
 	};
 	239BB2E107224EB000EB1E69 = {
 		activeArgIndex = 2147483647;
@@ -127,6 +123,8 @@
 		isa = PBXExecutable;
 		libgmallocEnabled = 0;
 		name = Genius;
+		savedGlobals = {
+		};
 		shlibInfoDictList = (
 		);
 		sourceDirectories = (
@@ -169,11 +167,27 @@
 		addToTargets = (
 			8D15AC270486D014006FF6A4,
 		);
+		breakpoints = (
+		);
 		codeSenseManager = 239BB2F607224EB300EB1E69;
 		executables = (
 			239BB2E107224EB000EB1E69,
 		);
 		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					279.7974,
+					150.5835,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -230,7 +244,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 123714185;
+			PBXPerProjectTemplateStateSaveDate = 124140767;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -407,11 +421,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 123714185;
-		};
-		perUserProjectItems = {
-			230D199C075FABE2000CAD26 = 230D199C075FABE2000CAD26;
-			23966958075FBA7900E8F25F = 23966958075FBA7900E8F25F;
+			PBXWorkspaceStateSaveDate = 124140767;
 		};
 		sourceControlManager = 239BB2F507224EB300EB1E69;
 		userBuildSettings = {
