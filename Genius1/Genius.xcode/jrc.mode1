@@ -246,12 +246,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>20</integer>
+									<integer>22</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 275}, {186, 337}}</string>
+							<string>{{0, 203}, {186, 337}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -349,9 +349,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>23890E4B0766578E00662912</string>
+				<string>23172A4807677B870010446E</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>23890E4C0766578E00662912</string>
+				<string>23172A4907677B870010446E</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -379,8 +379,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>23B2AED20722554A00255542</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Volumes/Users/jrc/Projects/Genius1/Genius.xcode</string>
 	</array>
 	<key>WindowString</key>
@@ -413,7 +411,7 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>GeniusStringDiff.m</string>
 										<key>bookmark</key>
-										<string>23890E5907665AD300662912</string>
+										<string>23890E5B07665AF200662912</string>
 										<key>history</key>
 										<array>
 											<string>23890E5507665AB600662912</string>

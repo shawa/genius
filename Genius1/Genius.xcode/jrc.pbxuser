@@ -18,10 +18,10 @@
 	};
 	2318E4210725C29F00726F95 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 1183}}";
-			sepNavSelRange = "{47, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 443}}";
-			sepNavWindowFrame = "{{15, 325}, {750, 502}}";
+			sepNavIntBoundsRect = "{{0, 0}, {617, 1196}}";
+			sepNavSelRange = "{788, 0}";
+			sepNavVisRect = "{{0, 0}, {617, 663}}";
+			sepNavWindowFrame = "{{15, 105}, {656, 722}}";
 		};
 	};
 	23227C870725BD1300D09B7F = {
@@ -82,7 +82,7 @@
 	23227CF00725BD7600D09B7F = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {711, 443}}";
-			sepNavSelRange = "{667, 0}";
+			sepNavSelRange = "{62, 0}";
 			sepNavVisRect = "{{0, 0}, {711, 443}}";
 			sepNavWindowFrame = "{{15, 325}, {750, 502}}";
 		};
@@ -102,43 +102,6 @@
 			sepNavVisRect = "{{0, 1274}, {459, 183}}";
 			sepNavWindowFrame = "{{84, 262}, {750, 502}}";
 		};
-	};
-	23890E5507665AB600662912 = {
-		fRef = 23516AB7075EE2CE0020D17E;
-		isa = PBXTextBookmark;
-		rLen = 1;
-		rLoc = 97;
-		rType = 1;
-	};
-	23890E5607665AB600662912 = {
-		fRef = 23516AB7075EE2CE0020D17E;
-		isa = PBXTextBookmark;
-		name = "\tNSFileManager * fm = [NSFileManager defaultManager];\n";
-		rLen = 54;
-		rLoc = 2947;
-		rType = 0;
-		vrLen = 480;
-		vrLoc = 2773;
-	};
-	23890E5707665AB900662912 = {
-		fRef = 23516AB7075EE2CE0020D17E;
-		isa = PBXTextBookmark;
-		name = "\tNSFileManager * fm = [NSFileManager defaultManager];\n";
-		rLen = 54;
-		rLoc = 2947;
-		rType = 0;
-		vrLen = 480;
-		vrLoc = 2773;
-	};
-	23890E5907665AD300662912 = {
-		fRef = 23516AB7075EE2CE0020D17E;
-		isa = PBXTextBookmark;
-		name = "\tNSFileManager * fm = [NSFileManager defaultManager];\n";
-		rLen = 54;
-		rLoc = 2947;
-		rType = 0;
-		vrLen = 480;
-		vrLoc = 2773;
 	};
 	239BB2E107224EB000EB1E69 = {
 		activeArgIndex = 2147483647;
@@ -281,7 +244,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 124147563;
+			PBXPerProjectTemplateStateSaveDate = 124222325;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -458,13 +421,7 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 124147563;
-		};
-		perUserProjectItems = {
-			23890E5507665AB600662912 = 23890E5507665AB600662912;
-			23890E5607665AB600662912 = 23890E5607665AB600662912;
-			23890E5707665AB900662912 = 23890E5707665AB900662912;
-			23890E5907665AD300662912 = 23890E5907665AD300662912;
+			PBXWorkspaceStateSaveDate = 124222325;
 		};
 		sourceControlManager = 239BB2F507224EB300EB1E69;
 		userBuildSettings = {
