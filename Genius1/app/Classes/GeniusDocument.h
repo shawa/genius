@@ -53,6 +53,7 @@
 
 - (IBAction)add:(id)sender;
 - (IBAction)duplicate:(id)sender;
+//- (IBAction)swapItems:(id)sender;
 - (IBAction)resetScore:(id)sender;
 - (IBAction)setItemImportance:(id)sender;
 

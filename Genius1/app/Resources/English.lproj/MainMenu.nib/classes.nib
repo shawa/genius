@@ -13,6 +13,7 @@
                 setItemImportance = id; 
                 showInfo = id; 
                 showNotes = id; 
+                swapFields = id; 
                 toggleABScoreColumn = id; 
                 toggleBAScoreColumn = id; 
                 toggleGroupColumn = id; 

@@ -21,7 +21,6 @@
                 newAssociationView = id; 
                 noButton = id; 
                 progressIndicator = id; 
-                studyTimeField = id; 
                 yesButton = id; 
             }; 
             SUPERCLASS = NSWindowController; 

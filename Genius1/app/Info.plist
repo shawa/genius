@@ -31,6 +31,8 @@
 	<string>Einstein</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mac.jrc.Genius</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.5.4 Loc 1</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -38,7 +40,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>20041019</string>
+	<string>20041105</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.3</string>
 	<key>NSMainNibFile</key>

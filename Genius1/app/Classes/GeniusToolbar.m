@@ -67,8 +67,9 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
             //NSString * label = NSLocalizedString(@"Auto-Pick", nil);
             //[toolbarItem setLabel:label];
 
-            [toolbarItem setView:[learnReviewSlider superview]];
-            [toolbarItem setMinSize:NSMakeSize(80.0, 32.0)];
+			NSView * itemView = [learnReviewSlider superview];
+            [toolbarItem setView:itemView];
+            [toolbarItem setMinSize:NSMakeSize([itemView frame].size.width, 32.0)];
         }
         else if ([itemIdentifier isEqual:GeniusToolbarInfoItemIdentifier])
         {

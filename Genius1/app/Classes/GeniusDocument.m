@@ -278,20 +278,29 @@
         return;
     }
     
-	NSString * itemsWord = (rowCount == 1 ? @"item" : @"items");
-
 	NSString * queryString = [arrayController filterString];
 	if ([queryString isEqualToString:@""])
 	{
 		int numberOfSelectedRows = [tableView numberOfSelectedRows];
 		if (numberOfSelectedRows > 0)
-			status = [NSString stringWithFormat:@"%d of %d selected", numberOfSelectedRows, rowCount];
+		{
+			NSString * format = NSLocalizedString(@"n of m selected", nil);
+			status = [NSString stringWithFormat:format, numberOfSelectedRows, rowCount];
+		}
+		else if (rowCount == 1)
+		{
+			status = NSLocalizedString(@"1 item", nil);
+		}
 		else
-			status = [NSString stringWithFormat:@"%d %@", rowCount, itemsWord];
+		{
+			NSString * format = NSLocalizedString(@"n items", nil);
+			status = [NSString stringWithFormat:format, rowCount];
+		}
 	}
 	else
 	{
-		status = [NSString stringWithFormat:@"%d of %d shown", [[arrayController arrangedObjects] count], rowCount];
+		NSString * format = NSLocalizedString(@"n of m shown", nil);
+		status = [NSString stringWithFormat:format, [[arrayController arrangedObjects] count], rowCount];
 	}
 
     [statusField setStringValue:status];
@@ -451,7 +460,12 @@
 {
     if (_shouldShowImportWarningOnSave)
     {
-        NSAlert * alert = [NSAlert alertWithMessageText:@"This document needs to be saved in a newer format." defaultButton:@"Cancel" alternateButton:@"Save" otherButton:nil informativeTextWithFormat:@"Once you save, the file will no longer be readable by previous versions of Genius."];
+		NSString * title = NSLocalizedString(@"This document needs to be saved in a newer format.", nil);
+		NSString * message = NSLocalizedString(@"Once you save, the file will no longer be readable by previous versions of Genius.", nil);
+		NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
+		NSString * saveTitle = NSLocalizedString(@"Save", nil); 
+
+        NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:cancelTitle alternateButton:saveTitle otherButton:nil informativeTextWithFormat:message];
         int result = [alert runModal];
         if (result != NSAlertAlternateReturn) // not NSAlertSecondButtonReturn?
             return;
@@ -564,16 +578,23 @@
 - (IBAction)delete:(id)sender
 {
     NSArray * selectedObjects = [arrayController selectedObjects];
+	if ([selectedObjects count] == 0)
+		return;
 
-    NSAlert * alert = [NSAlert alertWithMessageText:@"Are you sure you want to delete the selected items?" defaultButton:@"Cancel" alternateButton:@"Delete" otherButton:nil informativeTextWithFormat:@"You cannot undo this operation."];
-    //NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
-    //[defaultButton setKeyEquivalent:@"\r"];
+	NSString * title = NSLocalizedString(@"Are you sure you want to delete the selected items?", nil);
+	NSString * message = NSLocalizedString(@"You cannot undo this operation.", nil);
+	NSString * deleteTitle = NSLocalizedString(@"Delete", nil); 
+	NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
+
+    NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:deleteTitle alternateButton:cancelTitle otherButton:nil informativeTextWithFormat:message];
+    NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
+    [defaultButton setKeyEquivalent:@"\r"];
 
     [alert beginSheetModalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:@selector(_deleteAlertDidEnd:returnCode:contextInfo:) contextInfo:selectedObjects];
 }
 - (void)_deleteAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    if (returnCode == 1)
+    if (returnCode == 0)
         return;
     
     [arrayController removeObjects:contextInfo];
@@ -581,19 +602,30 @@
 }
 
 
+- (IBAction)swapItems:(id)sender
+{
+}
+
 - (IBAction)resetScore:(id)sender
 {
     NSArray * selectedObjects = [arrayController selectedObjects];
+	if ([selectedObjects count] == 0)
+		return;
 
-    NSAlert * alert = [NSAlert alertWithMessageText:@"Are you sure you want to reset the items?" defaultButton:@"Cancel" alternateButton:@"Reset" otherButton:nil informativeTextWithFormat:@"Your performance history will be cleared for the selected items."];
-    //NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
-    //[defaultButton setKeyEquivalent:@"\r"];
+	NSString * title = NSLocalizedString(@"Are you sure you want to reset the items?", nil);
+	NSString * message = NSLocalizedString(@"Your performance history will be cleared for the selected items.", nil);
+	NSString * resetTitle = NSLocalizedString(@"Reset", nil); 
+	NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
+
+    NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:resetTitle alternateButton:cancelTitle otherButton:nil informativeTextWithFormat:message];
+    NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
+    [defaultButton setKeyEquivalent:@"\r"];
     
     [alert beginSheetModalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:@selector(_resetAlertDidEnd:returnCode:contextInfo:) contextInfo:selectedObjects];
 }
 - (void)_resetAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    if (returnCode == 1)
+    if (returnCode == 0)
         return;
         
     NSArray * associations = [GeniusPair associationsForPairs:(NSArray *)contextInfo useAB:YES useBA:YES];
@@ -623,7 +655,11 @@
 {
     if ([enumerator remainingCount] == 0)
     {
-        NSAlert * alert = [NSAlert alertWithMessageText:@"There is nothing to study." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Make sure the items you want to study are enabled, or add more items."];
+		NSString * title = NSLocalizedString(@"There is nothing to study.", nil);
+		NSString * message = NSLocalizedString(@"Make sure the items you want to study are enabled, or add more items.", nil);
+		NSString * okTitle = NSLocalizedString(@"OK", nil);
+
+        NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:okTitle alternateButton:nil otherButton:nil informativeTextWithFormat:message];
         NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
         [defaultButton setKeyEquivalent:@"\r"];
         
@@ -704,21 +740,21 @@
     
     if (action == @selector(toggleABScoreColumn:) || action == @selector(toggleBAScoreColumn:))
     {
-        const unichar kRightwardsArrowUnichar = 0x2192;
-        const unichar kLeftwardsArrowUnichar = 0x2190;
-        NSString * rightArrowString = [NSString stringWithCharacters:&kRightwardsArrowUnichar length:1];
-        NSString * leftArrowString = [NSString stringWithCharacters:&kLeftwardsArrowUnichar length:1];
         NSString * titleA = [self _titleForTableColumnWithIdentifier:@"columnA"];
         NSString * titleB = [self _titleForTableColumnWithIdentifier:@"columnB"];
 
         if (action == @selector(toggleABScoreColumn:))
         {
-            NSString * title = [NSString stringWithFormat:@"Score (%@%@%@)", titleA, rightArrowString, titleB];
+			NSString * format = NSLocalizedString(@"Score (A->B)", nil);
+            NSString * title = [NSString stringWithFormat:format, titleA, titleB];
+			title = [@"    " stringByAppendingString:title];
             [menuItem setTitle:title];
         }
         else if (action == @selector(toggleBAScoreColumn:))
         {
-            NSString * title = [NSString stringWithFormat:@"Score (%@%@%@)", titleA, leftArrowString, titleB];
+			NSString * format = NSLocalizedString(@"Score (A<-B)", nil);
+            NSString * title = [NSString stringWithFormat:format, titleA, titleB];
+			title = [@"    " stringByAppendingString:title];
             [menuItem setTitle:title];
         }
     }
@@ -748,12 +784,27 @@
     }
     
 
+	if (action == @selector(quizAutoPick:) || action == @selector(quizReview:))
+	{
+		if ([[arrayController arrangedObjects] count] == 0)
+			return NO;
+	}
+
+	NSArray * selectedObjects = [arrayController selectedObjects];
+	int selectedCount = [selectedObjects count];
+
+	if (action == @selector(duplicate:) || action == @selector(resetScore:) || action == @selector(setItemImportance:)
+		|| action == @selector(quizSelection:))
+	{
+		if (selectedCount == 0)
+			return NO;
+	}
+		
     if (action == @selector(setItemImportance:))
     {
         int expectedImportance = [menuItem tag];
-        NSArray * selectedObjects = [arrayController selectedObjects];
-        int i, count = [selectedObjects count], actualCount = 0;
-        for (i=0; i<count; i++)
+        int i, actualCount = 0;
+        for (i=0; i<selectedCount; i++)
         {
             GeniusPair * pair = [selectedObjects objectAtIndex:i];
             if ([pair importance] == expectedImportance)
@@ -761,7 +812,7 @@
         }
         if (actualCount == 0)
             [menuItem setState:NSOffState];
-        else if (actualCount == count)
+        else if (actualCount == selectedCount)
             [menuItem setState:NSOnState];
         else
             [menuItem setState:NSMixedState];

@@ -9,7 +9,7 @@ static NSString * GeniusWelcomePanelDontShowKey = @"dontShowQuizWelcome";
 {
     static GeniusWelcomePanel * sController = nil;
     if (sController == nil)
-        sController = [[GeniusWelcomePanel alloc] initWithWindowNibName:@"WelcomePanel"];
+        sController = [[GeniusWelcomePanel alloc] initWithWindowNibName:@"PreQuiz"];
     return sController;
 }
 

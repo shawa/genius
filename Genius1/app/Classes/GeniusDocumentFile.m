@@ -52,7 +52,11 @@
         int formatVersion = [unarchiver decodeIntForKey:@"formatVersion"];
         if (formatVersion > 1)
         {
-            NSAlert * alert = [NSAlert alertWithMessageText:@"This document was saved by a newer version of Genius." defaultButton:@"Cancel" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Please upgrade Genius to a newer version."];
+			NSString * title = NSLocalizedString(@"This document was saved by a newer version of Genius.", nil);
+			NSString * message = NSLocalizedString(@"Please upgrade Genius to a newer version.", nil);
+			NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
+		
+            NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:cancelTitle alternateButton:nil otherButton:nil informativeTextWithFormat:message];
             [alert runModal];
             return NO;
         }
@@ -126,8 +130,8 @@
 {
     NSSavePanel * savePanel = [NSSavePanel savePanel];
     [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"txt"]];
-    [savePanel setNameFieldLabel:@"Export As:"];
-    [savePanel setPrompt:@"Export"];
+    [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
+    [savePanel setPrompt:NSLocalizedString(@"Export", nil)];
     
     NSWindowController * windowController = [[self windowControllers] lastObject];
     [savePanel beginSheetForDirectory:nil file:nil modalForWindow:[windowController window] modalDelegate:self didEndSelector:@selector(_exportFileDidEnd:returnCode:contextInfo:) contextInfo:nil];
@@ -161,8 +165,8 @@
 {
     NSDocumentController * documentController = [NSDocumentController sharedDocumentController];
     NSOpenPanel * openPanel = [NSOpenPanel openPanel];
-    [openPanel setTitle:@"Import Text File"];
-    [openPanel setPrompt:@"Import"];
+    [openPanel setTitle:NSLocalizedString(@"Import Text File", nil)];
+    [openPanel setPrompt:NSLocalizedString(@"Import", nil)];
 
     [documentController runModalOpenPanel:openPanel forTypes:[NSArray arrayWithObject:@"txt"]];
 
