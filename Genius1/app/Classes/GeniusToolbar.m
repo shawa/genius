@@ -87,7 +87,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
             NSString * label = NSLocalizedString(@"Notes", nil);
             [toolbarItem setLabel:label];
             
-            NSImage * image = [NSImage imageNamed:@"txt"];
+            NSImage * image = [NSImage imageNamed:@"Information"];
 //            NSImage * image = [NSImage imageNamed:@"notes"];
             [toolbarItem setImage:image];
     

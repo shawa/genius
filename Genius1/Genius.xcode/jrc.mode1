@@ -245,6 +245,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -347,9 +348,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>23E9CF0C074948F900E9F003</string>
+				<string>23FE373707494CAA0029DD61</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>23E9CF0D074948F900E9F003</string>
+				<string>23FE373807494CAA0029DD61</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -377,6 +378,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>23B2AED20722554A00255542</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Volumes/Users/jrc/Projects/Genius1/Genius.xcode</string>
 	</array>
@@ -409,17 +411,6 @@
 										<string>1CD052900623707200166675</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>GeniusHelpWindowController.m</string>
-										<key>bookmark</key>
-										<string>2318E4490725C40500726F95</string>
-										<key>history</key>
-										<array>
-											<string>2318E4300725C2AD00726F95</string>
-											<string>2318E4310725C2AD00726F95</string>
-										</array>
-										<key>prevStack</key>
-										<array>
-											<string>2318E4320725C2AD00726F95</string>
-										</array>
 									</dict>
 									<key>SplitCount</key>
 									<string>1</string>
@@ -481,7 +472,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>23B2AED20722554A00255542</string>
-				<string>2318E4180725C28400726F95</string>
+				<string>23FE373B07494CB50029DD61</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -492,7 +483,7 @@
 			<key>WindowToolGUID</key>
 			<string>23B2AED20722554A00255542</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -836,9 +827,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>23E9CF0E074948F900E9F003</string>
+				<string>23FE373907494CAA0029DD61</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>23E9CF0F074948F900E9F003</string>
+				<string>23FE373A07494CAA0029DD61</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -847,7 +838,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
