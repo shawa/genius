@@ -97,11 +97,48 @@
 	};
 	23516AB7075EE2CE0020D17E = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {818, 3107}}";
-			sepNavSelRange = "{3706, 0}";
-			sepNavVisRect = "{{0, 1154}, {709, 550}}";
-			sepNavWindowFrame = "{{539, 29}, {748, 624}}";
+			sepNavIntBoundsRect = "{{0, 0}, {818, 3135}}";
+			sepNavSelRange = "{2947, 54}";
+			sepNavVisRect = "{{0, 1274}, {459, 183}}";
+			sepNavWindowFrame = "{{84, 262}, {750, 502}}";
 		};
+	};
+	23890E5507665AB600662912 = {
+		fRef = 23516AB7075EE2CE0020D17E;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 97;
+		rType = 1;
+	};
+	23890E5607665AB600662912 = {
+		fRef = 23516AB7075EE2CE0020D17E;
+		isa = PBXTextBookmark;
+		name = "\tNSFileManager * fm = [NSFileManager defaultManager];\n";
+		rLen = 54;
+		rLoc = 2947;
+		rType = 0;
+		vrLen = 480;
+		vrLoc = 2773;
+	};
+	23890E5707665AB900662912 = {
+		fRef = 23516AB7075EE2CE0020D17E;
+		isa = PBXTextBookmark;
+		name = "\tNSFileManager * fm = [NSFileManager defaultManager];\n";
+		rLen = 54;
+		rLoc = 2947;
+		rType = 0;
+		vrLen = 480;
+		vrLoc = 2773;
+	};
+	23890E5907665AD300662912 = {
+		fRef = 23516AB7075EE2CE0020D17E;
+		isa = PBXTextBookmark;
+		name = "\tNSFileManager * fm = [NSFileManager defaultManager];\n";
+		rLen = 54;
+		rLoc = 2947;
+		rType = 0;
+		vrLen = 480;
+		vrLoc = 2773;
 	};
 	239BB2E107224EB000EB1E69 = {
 		activeArgIndex = 2147483647;
@@ -244,7 +281,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 124140767;
+			PBXPerProjectTemplateStateSaveDate = 124147563;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -421,7 +458,13 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 124140767;
+			PBXWorkspaceStateSaveDate = 124147563;
+		};
+		perUserProjectItems = {
+			23890E5507665AB600662912 = 23890E5507665AB600662912;
+			23890E5607665AB600662912 = 23890E5607665AB600662912;
+			23890E5707665AB900662912 = 23890E5707665AB900662912;
+			23890E5907665AD300662912 = 23890E5907665AD300662912;
 		};
 		sourceControlManager = 239BB2F507224EB300EB1E69;
 		userBuildSettings = {

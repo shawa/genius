@@ -136,8 +136,7 @@
 
 
 		NSString * origString = [answerItem stringValue];
-		NSString * userString = [entryField stringValue];
-		if (origString == nil || userString == nil)
+		if (origString == nil)
 			continue;
 
         // Prepare window for questioning
@@ -183,6 +182,8 @@
             [getRightView setHidden:NO];
 
 
+			NSString * userString = [entryField stringValue];
+			
             float similarity = [origString isSimilarToString:userString];
             #if DEBUG
                 NSLog(@"similarity = %f", similarity);

@@ -57,6 +57,8 @@
 	NSMutableString * text2 = [string2 mutableCopy];
 	[text1 replaceOccurrencesOfString:@" " withString:@"\n" options:NULL range:NSMakeRange(0, [text1 length])];
 	[text2 replaceOccurrencesOfString:@" " withString:@"\n" options:NULL range:NSMakeRange(0, [text2 length])];
+	[text1 appendString:@"\n"];
+	[text2 appendString:@"\n"];
 	NSData * data1 = [text1 dataUsingEncoding:NSUTF8StringEncoding];
 	NSData * data2 = [text2 dataUsingEncoding:NSUTF8StringEncoding];
 	NSString * path1 = [NSTemporaryDirectory() stringByAppendingPathComponent:@"Genius1.tmp"];
@@ -114,7 +116,7 @@
 		return [[[NSAttributedString alloc] initWithString:origString] autorelease];
 
 	NSArray * diffLines = [diffOutput componentsSeparatedByString:@"\n"];
-	NSLog([diffLines description]);	// DEBUG
+	//NSLog([diffLines description]);	// DEBUG
 
 	// Parse results
 	NSMutableArray * mergedWords = [NSMutableArray array];
@@ -138,12 +140,12 @@
 			range = [marker rangeOfString:@"/"];
 		if (range.location != NSNotFound)
 		{
-			[mergedWords addObject:origWord];
-
 			if ([origWord _isEqualToStringIgnoringPunctuationAndCase:newWord] == NO)
-				[highlightIndexSet addIndex:i];
+				[highlightIndexSet addIndex:[mergedWords count]];
 			/*else
 				NSLog(@"%@ and %@ are the same", origWord, newWord);*/
+
+			[mergedWords addObject:origWord];
 			continue;
 		}
 		
@@ -154,11 +156,11 @@
 			const unichar kMiddleDotUnichar = 0x00B7;
 			NSString * sMiddleDotString = [NSString stringWithCharacters:&kMiddleDotUnichar length:1];
 			NSString * threeDotsString = [NSString stringWithFormat:@"%@%@%@", sMiddleDotString, sMiddleDotString, sMiddleDotString];
-
 			if ([[mergedWords lastObject] isEqual:threeDotsString] == NO)
+			{
+				[highlightIndexSet addIndex:[mergedWords count]];
 				[mergedWords addObject:threeDotsString];
-
-			[highlightIndexSet addIndex:i];
+			}
 			continue;
 		}
 
@@ -167,9 +169,9 @@
 			range = [newWord rangeOfString:@"<"];
 		if (range.location != NSNotFound)
 		{
-			[mergedWords addObject:origWord];
-			
-			[highlightIndexSet addIndex:i];
+			[highlightIndexSet addIndex:[mergedWords count]];
+
+			[mergedWords addObject:origWord];			
 			continue;
 		}
 
@@ -198,7 +200,7 @@
 		}
 		[chunk deleteCharactersInRange:NSMakeRange([chunk length]-1, 1)];
 
-		NSLog(@"%d/%d %d \"%@\"", i, count, isHighlighted, chunk);
+		//NSLog(@"%d/%d %d \"%@\"", i, count, isHighlighted, chunk);
 		
 		NSDictionary * attrs = nil;
 		if (isHighlighted)
