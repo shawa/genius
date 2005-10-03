@@ -1,0 +1,927 @@
+// !$*UTF8*$!
+{
+	089C1660FE840EACC02AAC07 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {807, 454}}";
+			sepNavSelRange = "{117, 0}";
+			sepNavVisRect = "{{0, 0}, {807, 454}}";
+			sepNavWindowFrame = "{{84, 237}, {846, 527}}";
+		};
+	};
+	23380CB708E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{328, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{202, 39}, {784, 734}}";
+		};
+	};
+	23380CB808E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1118, 3528}}";
+			sepNavSelRange = "{1327, 70}";
+			sepNavVisRect = "{{0, 589}, {740, 180}}";
+			sepNavWindowFrame = "{{202, 39}, {784, 734}}";
+		};
+	};
+	23380CBB08E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1610}}";
+			sepNavSelRange = "{921, 0}";
+			sepNavVisRect = "{{0, 516}, {459, 186}}";
+			sepNavWindowFrame = "{{15, 93}, {784, 734}}";
+		};
+	};
+	23380CBC08E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1070, 7700}}";
+			sepNavSelRange = "{2968, 2}";
+			sepNavVisRect = "{{0, 1413}, {745, 661}}";
+			sepNavWindowFrame = "{{15, 93}, {784, 734}}";
+		};
+	};
+	23380CBD08E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{278, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{652, 65}, {784, 734}}";
+		};
+	};
+	23380CBE08E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {764, 2436}}";
+			sepNavSelRange = "{1761, 72}";
+			sepNavVisRect = "{{0, 1043}, {745, 661}}";
+			sepNavWindowFrame = "{{392, 72}, {784, 734}}";
+		};
+	};
+	23380CBF08E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{388, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{393, 71}, {784, 734}}";
+		};
+	};
+	23380CC008E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {686, 1540}}";
+			sepNavSelRange = "{820, 0}";
+			sepNavVisRect = "{{0, 418}, {459, 186}}";
+			sepNavWindowFrame = "{{156, 70}, {784, 734}}";
+		};
+	};
+	23380CC108E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{372, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{461, 51}, {784, 734}}";
+		};
+	};
+	23380CC208E58CE200862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {848, 4060}}";
+			sepNavSelRange = "{298, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{445, 77}, {784, 734}}";
+		};
+	};
+	23380CD608E58DFF00862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{264, 8}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{15, 93}, {784, 734}}";
+		};
+	};
+	23380CD708E58DFF00862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {950, 1498}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+		};
+	};
+	2338115C08E60C2500862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{38, 72}, {784, 734}}";
+		};
+	};
+	2338115D08E60C2500862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{487, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{105, 56}, {784, 734}}";
+		};
+	};
+	2338115F08E60C2500862CBC = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {920, 1792}}";
+			sepNavSelRange = "{1786, 17}";
+			sepNavVisRect = "{{0, 461}, {745, 661}}";
+			sepNavWindowFrame = "{{231, 31}, {784, 734}}";
+		};
+	};
+	234969AA08F026090004234D = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1166, 2380}}";
+			sepNavSelRange = "{1821, 0}";
+			sepNavVisRect = "{{0, 496}, {761, 675}}";
+			sepNavWindowFrame = "{{410, 67}, {800, 748}}";
+		};
+	};
+	234969AB08F026090004234D = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {761, 675}}";
+			sepNavSelRange = "{313, 0}";
+			sepNavVisRect = "{{0, 0}, {761, 675}}";
+			sepNavWindowFrame = "{{430, 56}, {800, 748}}";
+		};
+	};
+	2349703B08F0B0850004234D = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1280, 675}}";
+			sepNavSelRange = "{445, 0}";
+			sepNavVisRect = "{{0, 0}, {761, 675}}";
+			sepNavWindowFrame = "{{693, -50}, {800, 748}}";
+		};
+	};
+	2349721908F0C06D0004234D = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {761, 675}}";
+			sepNavSelRange = "{186, 18}";
+			sepNavVisRect = "{{0, 0}, {761, 675}}";
+			sepNavWindowFrame = "{{160, 74}, {800, 748}}";
+		};
+	};
+	2349721A08F0C06D0004234D = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {788, 1344}}";
+			sepNavSelRange = "{633, 0}";
+			sepNavVisRect = "{{135, 205}, {653, 164}}";
+			sepNavWindowFrame = "{{314, 64}, {800, 748}}";
+		};
+	};
+	23A3E60D08E765C5000BB38C = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{248, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{369, 80}, {784, 734}}";
+		};
+	};
+	23A3E60E08E765C5000BB38C = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 661}}";
+			sepNavSelRange = "{505, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 661}}";
+			sepNavWindowFrame = "{{38, 72}, {784, 734}}";
+		};
+	};
+	23A3E61F08E766F4000BB38C = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {761, 675}}";
+			sepNavSelRange = "{95, 126}";
+			sepNavVisRect = "{{0, 0}, {761, 675}}";
+		};
+	};
+	23A3E62008E766F4000BB38C = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {761, 675}}";
+			sepNavSelRange = "{1029, 0}";
+			sepNavVisRect = "{{0, 0}, {761, 675}}";
+			sepNavWindowFrame = "{{15, 79}, {800, 748}}";
+		};
+	};
+	23D76E3D08F0D14B0072EE07 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {761, 675}}";
+			sepNavSelRange = "{109, 0}";
+			sepNavVisRect = "{{0, 0}, {761, 675}}";
+			sepNavWindowFrame = "{{15, 79}, {800, 748}}";
+		};
+	};
+	23FD30C00876DAEB00B75A2F = {
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		configStateDict = {
+		};
+		cppStopOnCatchEnabled = 0;
+		cppStopOnThrowEnabled = 0;
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		isa = PBXExecutable;
+		libgmallocEnabled = 0;
+		name = Genius;
+		savedGlobals = {
+		};
+		shlibInfoDictList_v2 = (
+			{
+				level = 0;
+				path = /usr/lib/system/libmathCommon.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libSystem.B.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libicucore.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libauto.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libobjc.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libz.1.2.3.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Security.framework/Versions/A/Security;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CFNetwork.framework/Versions/A/CFNetwork;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/WebServicesCore.framework/Versions/A/WebServicesCore;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libbsm.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libcrypto.0.9.7.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreText.framework/Versions/A/CoreText;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libcups.2.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/FindByContent.framework/Versions/A/FindByContent;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libRaw.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libmx.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/ImageIO;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CarbonSound.framework/Versions/A/CarbonSound;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libiconv.2.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libxml2.2.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SpeechRecognition.framework/Versions/A/SpeechRecognition;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /usr/lib/libsqlite3.0.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/CoreData.framework/Versions/A/CoreData;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /Volumes/Users/jrc/Build/Genius.app/Contents/MacOS/Genius;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCGATS.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCSync.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libRIP.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/ImageCapture.framework/Versions/A/ImageCapture;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SecurityHI.framework/Versions/A/SecurityHI;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Ink.framework/Versions/A/Ink;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Help.framework/Versions/A/Help;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/OpenScripting.framework/Versions/A/OpenScripting;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Print.framework/Versions/A/Print;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HTMLRendering.framework/Versions/A/HTMLRendering;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/NavigationServices.framework/Versions/A/NavigationServices;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CommonPanels.framework/Versions/A/CommonPanels;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Frameworks/Carbon.framework/Versions/A/Carbon;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/Components/DictionaryService.component/Contents/MacOS/DictionaryService;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /Developer/Applications/Xcode.app/Contents/PlugIns/GDBMIDebugging.xcplugin/Contents/Resources/PBGDBIntrospectionSupport.A.dylib;
+				whenToLoad = 0;
+			},
+			{
+				level = 0;
+				path = /System/Library/CoreServices/Encodings/libJapaneseConverter.dylib;
+				whenToLoad = 0;
+			},
+		);
+		sourceDirectories = (
+		);
+	};
+	23FD30D00876DAEE00B75A2F = {
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		isa = PBXSourceControlManager;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	23FD30D10876DAEE00B75A2F = {
+		indexTemplatePath = "";
+		isa = PBXCodeSenseManager;
+	};
+	23FD30EE0876DB9000B75A2F = {
+		uiCtxt = {
+			"Xdesign Model Editor Bookmark Key" = {
+				UIContextForDetailArea = {
+					_indexOfSelectedPane = 0;
+					_indexOfSelectedView = 0;
+				};
+				UIContextForEntityArea = {
+					_indexOfSelectedView = 0;
+					chosenTableColumnns = (
+						"ET Entity",
+						"ET Abstract",
+						"ET Class",
+					);
+					chosenTableColumnns_sortDirections = (
+					);
+					chosenTableColumnns_sortKeys = (
+					);
+					chosenTableColumnns_sortSelectors = (
+					);
+					chosenTableWidths = (
+						103.000000,
+						22.000000,
+						84.080078,
+					);
+				};
+				UIContextForLayoutManager = {
+					detailSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {528, 220}}",
+							"{{533, 0}, {282, 220}}",
+						);
+					};
+					diagramSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {815, 220}}",
+							"{{0, 225}, {815, 401}}",
+						);
+					};
+					tableSplitGeometry = {
+						_collapsingFrameDimension = 0;
+						_indexOfCollapsedView = 0;
+						_percentageOfCollapsedView = 0;
+						isCollapsed = yes;
+						sizes = (
+							"{{0, 0}, {233, 220}}",
+							"{{238, 0}, {290, 220}}",
+						);
+					};
+				};
+				UIContextForPropertyArea = {
+					_indexOfSelectedView = 0;
+					chosenTableColumnnFRTs = (
+						"FT Fetch Request",
+						"FT Predicate",
+					);
+					chosenTableColumnnFRTs_sortDirections = (
+					);
+					chosenTableColumnnFRTs_sortKeys = (
+					);
+					chosenTableColumnnFRTs_sortSelectors = (
+					);
+					chosenTableColumnnsAT = (
+						"AT Attribute",
+						"AT Type",
+					);
+					chosenTableColumnnsAT_sortDirections = (
+					);
+					chosenTableColumnnsAT_sortKeys = (
+					);
+					chosenTableColumnnsAT_sortSelectors = (
+					);
+					chosenTableColumnnsFPT = (
+						"FP FetchedProperty",
+						"FP Destination",
+						"FP Predicate",
+					);
+					chosenTableColumnnsFPT_sortDirections = (
+					);
+					chosenTableColumnnsFPT_sortKeys = (
+					);
+					chosenTableColumnnsFPT_sortSelectors = (
+					);
+					chosenTableColumnnsPT = (
+						"PT Property",
+						"PT Kind",
+						"PT SharedKeyOne",
+					);
+					chosenTableColumnnsPT_sortDirections = (
+						YES,
+					);
+					chosenTableColumnnsPT_sortKeys = (
+						name,
+					);
+					chosenTableColumnnsPT_sortSelectors = (
+						"compare:",
+					);
+					chosenTableColumnnsRT = (
+						"RT Relationship",
+						"RT Destination",
+					);
+					chosenTableColumnnsRT_sortDirections = (
+					);
+					chosenTableColumnnsRT_sortKeys = (
+					);
+					chosenTableColumnnsRT_sortSelectors = (
+					);
+					chosenTableWidthsAT = (
+						128.000000,
+						64.000000,
+					);
+					chosenTableWidthsFPT = (
+						128.000000,
+						64.000000,
+						144.764160,
+					);
+					chosenTableWidthsFRT = (
+						128.000000,
+						249.764160,
+					);
+					chosenTableWidthsPT = (
+						128.000000,
+						108.110840,
+						96.570801,
+					);
+					chosenTableWidthsRT = (
+						128.000000,
+						64.000000,
+					);
+				};
+				"xdesign model browser state key - shown/hidden" = 1;
+				"xdesign model diagram view visible rect key" = "{{-76, 0}, {800, 386}}";
+			};
+			sepNavWindowFrame = "{{379, 98}, {815, 684}}";
+		};
+	};
+	2A37F4A9FDCFA73011CA2CEA = {
+		activeBuildStyle = 4A9504D0FFE6A4CB11CA0CBA;
+		activeExecutable = 23FD30C00876DAEB00B75A2F;
+		activeTarget = 8D15AC270486D014006FF6A4;
+		addToTargets = (
+			8D15AC270486D014006FF6A4,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = 23FD30D10876DAEE00B75A2F;
+		executables = (
+			23FD30C00876DAEB00B75A2F,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					242,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					200,
+					62,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 150073125;
+			PBXWorkspaceStateSaveDate = 150073125;
+		};
+		sourceControlManager = 23FD30D00876DAEE00B75A2F;
+		userBuildSettings = {
+		};
+	};
+	2A37F4ACFDCFA73011CA2CEA = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1016, 5558}}";
+			sepNavSelRange = "{1685, 0}";
+			sepNavVisRect = "{{0, 570}, {776, 667}}";
+			sepNavWindowFrame = "{{369, 71}, {815, 740}}";
+		};
+	};
+	2A37F4AEFDCFA73011CA2CEA = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {459, 658}}";
+			sepNavSelRange = "{411, 0}";
+			sepNavVisRect = "{{0, 138}, {459, 186}}";
+			sepNavWindowFrame = "{{288, 73}, {815, 740}}";
+		};
+	};
+	2A37F4BAFDCFA73011CA2CEA = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {745, 676}}";
+			sepNavSelRange = "{156, 0}";
+			sepNavVisRect = "{{0, 0}, {745, 676}}";
+			sepNavWindowFrame = "{{38, 72}, {784, 734}}";
+		};
+	};
+	8D15AC270486D014006FF6A4 = {
+		activeExec = 0;
+		executables = (
+			23FD30C00876DAEB00B75A2F,
+		);
+	};
+	8D15AC360486D014006FF6A4 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {807, 1624}}";
+			sepNavSelRange = "{2944, 0}";
+			sepNavVisRect = "{{0, 1170}, {807, 454}}";
+			sepNavWindowFrame = "{{107, 216}, {846, 527}}";
+		};
+	};
+}

@@ -1,0 +1,29 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {newItem = id; resetItemScore = id; toggleTableColumnShown = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = GeniusAtomTextFieldCell; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSTextFieldCell; 
+        }, 
+        {
+            CLASS = GeniusDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                itemArrayController = id; 
+                searchField = id; 
+                tableColumnMenu = id; 
+                tableView = id; 
+            }; 
+            SUPERCLASS = NSPersistentDocument; 
+        }, 
+        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = NSPersistentDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }
+    ); 
+    IBVersion = 1; 
+}

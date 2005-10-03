@@ -1,0 +1,30 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                newItem = id; 
+                openFileSharingSite = id; 
+                openSupportSite = id; 
+                openTipJarSite = id; 
+                resetItemScore = id; 
+                runQuiz = id; 
+                selectSearchField = id; 
+                setItemRating = id; 
+                setQuizDirectionModeAction = id; 
+                toggleColumnRichText = id; 
+                toggleInspector = id; 
+                toggleSoundEffects = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = GeniusAppDelegate; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = GeniusDocumentController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSDocumentController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

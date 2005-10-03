@@ -1,0 +1,27 @@
+fix crashers - mallocdebug etc
+hook up quizzing
+preferences:
+	case etc sensitivity
+	larger font
+swap command
+
+text import/export
+dirty bit with DocumentInfo
+hook up level indicator
+hook up Help
+
+
+polish column behavior
+drag and drop
+window and table position saving
+
+hook up relax panel
+full screen mode
+pref review slider
+
+
+// version 3.0
+tri-directional
+printing
+export to iPod
+sharing

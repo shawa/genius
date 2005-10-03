@@ -1,0 +1,23 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {resetItemScore = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = GeniusInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                atomAController = id; 
+                atomATextView = id; 
+                atomBController = id; 
+                atomBTextView = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }
+    ); 
+    IBVersion = 1; 
+}
