@@ -10,6 +10,8 @@
 	IBOutlet id atomBController;
 }
 
++ (id) sharedInspectorController;
+
 - (NSArrayController *) arrayController;				// used by GeniusInspector.nib
 
 @end

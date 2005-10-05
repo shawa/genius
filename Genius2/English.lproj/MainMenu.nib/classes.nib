@@ -2,6 +2,8 @@
     IBClasses = (
         {
             ACTIONS = {
+                exportFile = id; 
+                importFile = id; 
                 newItem = id; 
                 openFileSharingSite = id; 
                 openSupportSite = id; 
@@ -11,6 +13,8 @@
                 selectSearchField = id; 
                 setItemRating = id; 
                 setQuizDirectionModeAction = id; 
+                showPreferences = id; 
+                swapColumns = id; 
                 toggleColumnRichText = id; 
                 toggleInspector = id; 
                 toggleSoundEffects = id; 

@@ -6,8 +6,12 @@
 {
 }
 
+// Application menu
+- (IBAction) showPreferences:(id)sender;
 - (IBAction) openTipJarSite:(id)sender;
-- (IBAction) openSupportSite:(id)sender;
 - (IBAction) openFileSharingSite:(id)sender;
+
+// Help menu
+- (IBAction) openSupportSite:(id)sender;
 
 @end

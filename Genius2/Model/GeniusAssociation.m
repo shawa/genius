@@ -23,37 +23,57 @@
 
 @implementation GeniusAssociation 
 
+- (void) commonAwake
+{
+	_dataPoints = nil;
+	[self _recacheDataPointsArray];
+}
+
 - (void)awakeFromInsert
 {
 	[super awakeFromInsert];
-
-	_dataPoints = nil;
-	[self _recacheDataPointsArray];
-
-	// Set up observers
-	[self addObserver:self forKeyPath:@"dataPointsData" options:0L context:NULL];
+	[self commonAwake];
 }
 
 - (void)awakeFromFetch
 {
 	[super awakeFromFetch];
+	[self commonAwake];
+}
 
-	_dataPoints = nil;
-	[self _recacheDataPointsArray];
+- (void) didTurnIntoFault
+{
+	NSLog(@"-[GeniusAssociation didTurnIntoFault]");
+	// Remove observers	
+	[_dataPoints release];
 
-	// Set up observers
-	[self addObserver:self forKeyPath:@"dataPointsData" options:0L context:NULL];
+    [super didTurnIntoFault];
 }
 
 - (void) dealloc
 {
-	// Remove observers
-    [self removeObserver:self forKeyPath:@"dataPointsData"];
-	
-	[_dataPoints release];
-
+	NSLog(@"-[GeniusAssociation dealloc]");
 	[super dealloc];
 }
+
+
+
+- (void)didChangeValueForKey:(NSString *)key
+{
+	if ([key isEqualToString:@"dataPointsData"])
+	{
+		[self _recacheDataPointsArray];
+
+		[self _recalculatePredictedScore];
+		[self _recalculateLastDataPointDate];
+
+		GeniusItem * item = [self valueForKey:@"parentItem"];
+		[item touchLastTestedDate];
+	}
+	
+	[super didChangeValueForKey:key];
+}
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -64,14 +84,6 @@
 		[self _recalculatePredictedScore];
 		[self _recalculateLastDataPointDate];
 	}
-}
-
-
-- (NSString *) description
-{
-	return [NSString stringWithFormat:@"<GeniusAssociation %#X: %@->%@, %d data points>", self, 
-		[self valueForKey:@"sourceAtomKey"], [self valueForKey:@"targetAtomKey"],
-		[_dataPoints count]];
 }
 
 

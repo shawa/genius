@@ -199,7 +199,8 @@
 		GeniusV1Pair * v1Pair;
 		while ((v1Pair = [pairEnumerator nextObject]))
 		{
-			GeniusItem * item = [self _insertGeniusItemWithGeniusV1Pair:v1Pair];
+			//GeniusItem * item = 
+			[self _insertGeniusItemWithGeniusV1Pair:v1Pair];
 			//[[notebook valueForKey:@"items"] addObject:item];
 		}
 		

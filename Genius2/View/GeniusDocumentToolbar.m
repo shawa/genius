@@ -11,10 +11,15 @@
 
 NSString * GeniusToolbarIdentifier = @"GeniusToolbar";
 
-NSString * GeniusToolbarStudyItemIdentifier = @"Test";
-NSString * GeniusToolbarLearnReviewSliderItemIdentifier = @"LearnReviewSlider";
+NSString * GeniusToolbarQuizItemIdentifier = @"Quiz";
+//NSString * GeniusToolbarLearnReviewSliderItemIdentifier = @"LearnReviewSlider";
 //NSString * GeniusToolbarNotesItemIdentifier = @"Notes";
 NSString * GeniusToolbarInfoItemIdentifier = @"Info";
+NSString * GeniusToolbarColorsItemIdentifier = @"Colors";
+NSString * GeniusToolbarAddItemIdentifier = @"Add";
+NSString * GeniusToolbarPreferencesItemIdentifier = @"Preferences";
+NSString * GeniusToolbarFontsItemIdentifier = @"Fonts";
+NSString * GeniusToolbarLevelIndicatorItemIdentifier = @"LevelIndicator";
 NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
 
@@ -36,8 +41,13 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
 - (NSArray *) toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-    return [NSArray arrayWithObjects:GeniusToolbarStudyItemIdentifier, GeniusToolbarLearnReviewSliderItemIdentifier, NSToolbarSeparatorItemIdentifier,
-    GeniusToolbarInfoItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, GeniusToolbarSearchItemIdentifier, nil];
+    return [NSArray arrayWithObjects:
+	GeniusToolbarAddItemIdentifier, GeniusToolbarInfoItemIdentifier,
+	GeniusToolbarPreferencesItemIdentifier, 
+	NSToolbarFlexibleSpaceItemIdentifier,
+	GeniusToolbarLevelIndicatorItemIdentifier, GeniusToolbarQuizItemIdentifier, 
+	NSToolbarFlexibleSpaceItemIdentifier,
+	GeniusToolbarSearchItemIdentifier, nil];
 }
 
 - (NSArray *) toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
@@ -52,36 +62,80 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
     {
         NSToolbarItem * toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier] autorelease];
         
-        if ([itemIdentifier isEqual:GeniusToolbarStudyItemIdentifier])
+        if ([itemIdentifier isEqual:GeniusToolbarAddItemIdentifier])
+        {
+            NSString * label = NSLocalizedString(@"Add", nil);
+            [toolbarItem setLabel:label];
+
+            NSImage * image = [NSImage imageNamed:@"Plus"];
+            [toolbarItem setImage:image];
+            
+            [toolbarItem setTarget:self];
+            [toolbarItem setAction:@selector(newItem:)];
+        }
+        else if ([itemIdentifier isEqual:GeniusToolbarQuizItemIdentifier])
         {
             NSString * label = NSLocalizedString(@"Quiz", nil);
             [toolbarItem setLabel:label];
 
-            NSImage * image = [NSImage imageNamed:@"launch-32"];
+            NSImage * image = [NSImage imageNamed:@"play"];
             [toolbarItem setImage:image];
             
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(runQuiz:)];
         }
-        else if ([itemIdentifier isEqual:GeniusToolbarLearnReviewSliderItemIdentifier])
+/*        else if ([itemIdentifier isEqual:GeniusToolbarLearnReviewSliderItemIdentifier])
         {
             //NSString * label = NSLocalizedString(@"Auto-Pick", nil);
             //[toolbarItem setLabel:label];
 
-/*			NSView * itemView = [learnReviewSlider superview];
+			NSView * itemView = [learnReviewSlider superview];
             [toolbarItem setView:itemView];
-            [toolbarItem setMinSize:NSMakeSize([itemView frame].size.width, 32.0)];*/
-        }
+            [toolbarItem setMinSize:NSMakeSize([itemView frame].size.width, 32.0)];
+        }*/
         else if ([itemIdentifier isEqual:GeniusToolbarInfoItemIdentifier])
         {
-            NSString * label = NSLocalizedString(@"Info", nil);
+            NSString * label = NSLocalizedString(@"Inspector", nil);
             [toolbarItem setLabel:label];
 
-            NSImage * image = [NSImage imageNamed:@"get-info-32"];
+            NSImage * image = [NSImage imageNamed:@"info"];
             [toolbarItem setImage:image];
             
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(toggleInspector:)];
+        }
+        else if ([itemIdentifier isEqual:GeniusToolbarColorsItemIdentifier])
+        {
+            NSString * label = NSLocalizedString(@"Colors", nil);
+            [toolbarItem setLabel:label];
+
+            NSImage * image = [NSImage imageNamed:@"colors"];
+            [toolbarItem setImage:image];
+            
+            [toolbarItem setTarget:NSApp];
+            [toolbarItem setAction:@selector(orderFrontColorPanel:)];
+        }
+        else if ([itemIdentifier isEqual:GeniusToolbarFontsItemIdentifier])
+        {
+            NSString * label = NSLocalizedString(@"Fonts", nil);
+            [toolbarItem setLabel:label];
+
+            NSImage * image = [NSImage imageNamed:@"fonts"];
+            [toolbarItem setImage:image];
+            
+            [toolbarItem setTarget:NSApp];
+            [toolbarItem setAction:@selector(orderFrontFontPanel:)];
+        }
+		else if ([itemIdentifier isEqual:GeniusToolbarPreferencesItemIdentifier])
+        {
+            NSString * label = NSLocalizedString(@"Preferences", nil);
+            [toolbarItem setLabel:label];
+
+            NSImage * image = [NSImage imageNamed:@"preferences"];
+            [toolbarItem setImage:image];
+            
+            [toolbarItem setTarget:[NSApp delegate]];
+            [toolbarItem setAction:@selector(showPreferences:)];
         }
 /*        else if ([itemIdentifier isEqual:GeniusToolbarNotesItemIdentifier])
         {
@@ -95,6 +149,14 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(showNotes:)];
         }*/
+        else if ([itemIdentifier isEqual:GeniusToolbarLevelIndicatorItemIdentifier])
+        {
+            NSString * label = NSLocalizedString(@"Progress", nil);
+            [toolbarItem setLabel:label];
+            
+            [toolbarItem setMinSize:NSMakeSize(64.0, 16.0)];
+            [toolbarItem setView:[levelIndicator superview]];
+        }
         else if ([itemIdentifier isEqual:GeniusToolbarSearchItemIdentifier])
         {
             NSString * label = NSLocalizedString(@"Search", nil);

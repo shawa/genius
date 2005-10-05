@@ -15,6 +15,11 @@
 #import "GeniusInspectorController.h"
 
 
+@interface GeniusDocument (Private)
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
+@end
+
+
 @implementation GeniusDocument
 
 - (id)init 
@@ -23,18 +28,9 @@
     if (self != nil) {
         // initialization code
 		_tableColumnDictionary = nil;
-		_inspectorController = nil;
     }
 	
     return self;
-}
-
-- (void) dealloc
-{
-	[_inspectorController release];
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[_tableColumnDictionary release];
-	[super dealloc];
 }
 
 - (NSString *)windowNibName 
@@ -79,7 +75,8 @@
 	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
 
 	// Set up handler to automatically make new item if user presses Return in last row
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
 	
     // Set up icon text field cells for colored grade indication
     tableColumn = [tableView tableColumnWithIdentifier:@"grade"];
@@ -89,9 +86,36 @@
     //[cell setFormatter:numberFormatter];
 	
 	// Set up contextual menu on the table column headers
-	[[tableView headerView] setMenu:tableColumnMenu];
+	[[tableView headerView] setMenu:tableColumnMenu];	
+
+	// Configure table view size
+	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
+	[self _handleUserDefaultsDidChange:nil];
+
+	// -documentInfo may have created a new managed object, which sets the dirty bit
+	[[self undoManager] removeAllActions];
 }
 
+- (void)dealloc
+{
+	NSLog(@"-[GeniusDocument dealloc]");
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[_tableColumnDictionary release];
+	[super dealloc];
+}
+
+
+/*- (void)windowWillClose:(NSNotification *)aNotification
+{
+	// "Re: Retain cycle problem with bindings & NSWindowController"
+	// http://lists.apple.com/archives/cocoa-dev/2004/Jun/msg00602.html
+	NSWindow * window = [aNotification object];
+	[[window contentView] removeFromSuperviewWithoutNeedingDisplay];
+	[tableView release];
+	
+	[[[self windowControllers] objectAtIndex:0] setWindow:nil];
+	NSLog(@"windowWillClose: %@", [window description]);
+}*/
 
 - (void) _handleTextDidEndEditing:(NSNotification *)aNotification
 {
@@ -109,6 +133,43 @@
 		}
 	}
 }
+
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
+{
+	// Take away field editor
+	NSArray * windowControllers = [self windowControllers];
+	if ([windowControllers count] == 0)
+		return;
+
+	NSWindow * window = [[windowControllers objectAtIndex:0] window];
+	if ([window makeFirstResponder:window] == NO)
+		[window endEditingFor:nil];
+
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	int index = [ud integerForKey:@"ListTextSizeMode"];
+
+	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
+	NSControlSize controlSize = NSMiniControlSize;
+	float fontSize = [NSFont smallSystemFontSize];
+	float rowHeight = fontSize + 4.0;
+	if (index == 1)
+	{
+		controlSize = NSRegularControlSize;
+		fontSize = [NSFont systemFontSize];
+		rowHeight = fontSize + 5.0;
+	}
+	
+	[tableView setRowHeight:rowHeight];
+
+	NSEnumerator * tableColumnEnumerator = [_tableColumnDictionary objectEnumerator];
+	NSTableColumn * tableColumn;
+	while ((tableColumn = [tableColumnEnumerator nextObject]))
+	{
+		//[[tableColumn dataCell] setControlSize:controlSize];
+		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
+	}
+}
+
 
 #if 1
 - (NSError *)willPresentError:(NSError *)inError {
@@ -209,6 +270,19 @@
     }
 }
 
+
+- (IBAction)delete:(id)sender
+{
+    NSArray * selectedObjects = [itemArrayController selectedObjects];
+	if ([selectedObjects count] == 0)
+	{
+		NSBeep();
+		return;
+	}
+	
+    [itemArrayController removeObjects:selectedObjects];
+}
+
 @end
 
 
@@ -216,7 +290,13 @@
 
 - (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
 {
-	if ([menuItem action] == @selector(toggleColumnRichText:))
+	// Edit menu
+	if ([menuItem action] == @selector(delete:))
+	{
+		return [itemArrayController selectionIndex] != NSNotFound;
+	}
+	// Format menu
+	else if ([menuItem action] == @selector(toggleColumnRichText:))
 	{
 		int tag = [menuItem tag];
 		if (tag == 0)
@@ -224,6 +304,7 @@
 		else if (tag == 1)
 			[menuItem setState:([[self documentInfo] isColumnBRichText] ? NSOnState : NSOffState)];
 	}
+	// Study menu
 	else if ([menuItem action] == @selector(setQuizDirectionModeAction:))
 	{
 		int tag = [menuItem tag];
@@ -238,6 +319,15 @@
 
 
 @implementation GeniusDocument (Actions)
+
+// File menu
+
+- (IBAction) exportFile:(id)sender
+{
+#warning -exportFile: not implemented
+	// TO DO
+}
+
 
 // Edit menu
 
@@ -260,16 +350,11 @@
 
 - (IBAction) toggleInspector:(id)sender
 {
-	if (_inspectorController == nil)
-	{
-		_inspectorController = [[GeniusInspectorController alloc] initWithWindowNibName:@"GeniusInspector"];
-		[(GeniusInspectorController *)_inspectorController setDocument:self];
-	}
-	
-	if ([[_inspectorController window] isVisible])
-		[_inspectorController close];
+	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
+	if ([[ic window] isVisible])
+		[[ic window] performClose:sender];
 	else
-		[_inspectorController showWindow:sender];
+		[ic showWindow:sender];
 }
 
 - (IBAction) setItemRating:(NSMenuItem *)sender
@@ -282,6 +367,12 @@
 	GeniusItem * item;
 	while ((item = [objectEnumerator nextObject]))
 		[item setValue:newRatingValue forKey:@"myRating"];
+}
+
+- (IBAction) swapColumns:(id)sender
+{
+#warning -swapColumns: not implemented
+	// TO DO
 }
 
 - (IBAction) resetItemScore:(id)sender
@@ -312,7 +403,7 @@
 		NSString * messageText = NSLocalizedString(@"Convert this column to plain text?", nil);
 		NSString * informativeText = NSLocalizedString(@"If you convert this column, you will lose all text styles (such as fonts and colors) and attachments.", nil);
 		NSString * defaultButton = NSLocalizedString(@"Convert", nil);
-		NSString * alternateButton = NSLocalizedString(@"Don't Convert", nil);
+		NSString * alternateButton = NSLocalizedString(@"Cancel", nil);
 
 		NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButton
 			alternateButton:alternateButton otherButton:nil informativeTextWithFormat:informativeText];
@@ -353,13 +444,14 @@
 
 - (IBAction) runQuiz:(id)sender
 {
-	NSBeep();
+#warning -runQuiz: not implemented
 	// TO DO
 }
 
 - (IBAction) toggleSoundEffects:(id)sender
 {
 	// do nothing - NSUserDefaultsController handles this in the nib
+	// This is defined for autmoatic menu item enabling
 }
 
 

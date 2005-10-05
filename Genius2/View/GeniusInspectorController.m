@@ -6,9 +6,24 @@
 
 @implementation GeniusInspectorController
 
+// file:///Developer/ADC%20Reference%20Library/documentation/Cocoa/Conceptual/Documents/Tasks/FAQ.html#//apple_ref/doc/uid/20000954-1081485
++ (id) sharedInspectorController
+{
+	static GeniusInspectorController * sController = nil;
+	if (sController == nil)
+		sController = [[GeniusInspectorController alloc] initWithWindowNibName:@"GeniusInspector"];
+	return sController;
+}
+
+- (NSDocument *) _currentDocument
+{
+	return [[NSDocumentController sharedDocumentController] currentDocument];
+}
+
+
 - (NSArrayController *) arrayController
 {
-	return [(GeniusDocument *)[self document] itemArrayController];
+	return [(GeniusDocument *)[self _currentDocument] itemArrayController];
 }
 
 
@@ -54,9 +69,10 @@
 
 - (void)windowDidLoad
 {
+	NSLog(@"-[GeniusInspectorController windowDidLoad]");
 	[super windowDidLoad];
 	
-	GeniusDocumentInfo * documentInfo = [(GeniusDocument *)[self document] documentInfo];
+	GeniusDocumentInfo * documentInfo = [(GeniusDocument *)[self _currentDocument] documentInfo];
 	[self _setRichTextEnabled:[documentInfo isColumnARichText] forTextView:atomATextView objectController:atomAController];
 	[self _setRichTextEnabled:[documentInfo isColumnBRichText] forTextView:atomBTextView objectController:atomBController];
 

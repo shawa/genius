@@ -24,18 +24,6 @@ NSString * GeniusV1PairNotesStringKey = @"notesString";
 
 @implementation GeniusV1Association
 
-+ (void)initialize
-{
-    [super initialize];
-    [self setKeys:[NSArray arrayWithObjects:@"scoreNumber", @"dueDate", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
-}
-
-/*+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
-{
-    return NO;
-}*/
-
-
 - (id) _initWithCueItem:(GeniusV1Item *)cueItem answerItem:(GeniusV1Item *)answerItem parentPair:(GeniusV1Pair *)parentPair performanceDict:(NSDictionary *)performanceDict
 {
     self = [super init];
@@ -204,24 +192,6 @@ const int kGeniusV1PairMaximumImportance = 10;
 
 @implementation GeniusV1Pair
 
-+ (void)initialize
-{
-    [super initialize];
-    [self setKeys:[NSArray arrayWithObjects:@"disabled", nil] triggerChangeNotificationsForDependentKey:@"importance"];
-    [self setKeys:[NSArray arrayWithObjects:@"importance", @"customGroupString", @"customTypeString", @"notesString", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
-}
-
-/*+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
-{
-    return NO;
-    if ([theKey isEqualToString:@"itemA"])
-        return NO;
-    else if ([theKey isEqualToString:@"itemB"])
-        return NO;
-    else
-        return [super automaticallyNotifiesObserversForKey:theKey];
-}*/
-
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA
 {
     NSMutableArray * allPairs = [NSMutableArray array];
@@ -253,11 +223,6 @@ const int kGeniusV1PairMaximumImportance = 10;
     [itemB release];
     _userDict = [NSMutableDictionary new];
 
-    [itemA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [itemB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationAB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationBA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-
     return self;
 }
 
@@ -266,11 +231,6 @@ const int kGeniusV1PairMaximumImportance = 10;
     [_associationAB release];
     [_associationBA release];
     [_userDict release];
-
-    [[self itemA] removeObserver:self forKeyPath:@"dirty"];
-    [[self itemB] removeObserver:self forKeyPath:@"dirty"];
-    [_associationAB removeObserver:self forKeyPath:@"dirty"];
-    [_associationBA removeObserver:self forKeyPath:@"dirty"];
 
     [super dealloc];
 }
@@ -287,11 +247,6 @@ const int kGeniusV1PairMaximumImportance = 10;
     _associationAB = [[GeniusV1Association alloc] _initWithCueItem:itemA answerItem:itemB parentPair:self performanceDict:performanceDictAB];
     _associationBA = [[GeniusV1Association alloc] _initWithCueItem:itemB answerItem:itemA parentPair:self performanceDict:performanceDictBA];
     _userDict = [[coder decodeObjectForKey:@"userDict"] retain];
-
-    [itemA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [itemB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationAB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationBA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
     return self;
 }
@@ -314,11 +269,6 @@ const int kGeniusV1PairMaximumImportance = 10;
     _associationBA = [[GeniusV1Association alloc] _initWithCueItem:itemB answerItem:itemA parentPair:self performanceDict:nil];
     _userDict = [userDict retain];
 
-    [itemA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [itemB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationAB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationBA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-
     return self;
 }
 - (id)copyWithZone:(NSZone *)zone
@@ -329,12 +279,6 @@ const int kGeniusV1PairMaximumImportance = 10;
     return [[[self class] allocWithZone:zone] _initWithItemA:newItemA itemB:newItemB userDict:newUserDict];
 }
 
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    //NSLog(@"GeniusV1Pair observeValueForKeyPath:%@", keyPath);
-    [self setValue:[NSNumber numberWithBool:YES] forKey:@"dirty"];
-}
 
 - (NSString *) description
 {

@@ -7,18 +7,19 @@
 //
 
 #import "GeniusAtom.h"
+#import "GeniusItem.h"
 
 
 @implementation GeniusAtom 
 
-+ (void)initialize {
-	NSArray *keys = [NSArray arrayWithObjects:@"string", @"rtfData", @"resourceType", @"resourceURL", nil];
-	[self setKeys:keys triggerChangeNotificationsForDependentKey:@"dirty"];
-}
-
-- (NSString *) description
+- (void)didChangeValueForKey:(NSString *)key
 {
-	return [self valueForKey:@"string"];
+	if ([key isEqualToString:@"parentItem"] == NO)
+	{
+		GeniusItem * item = [self valueForKey:@"parentItem"];
+		[item touchLastModifiedDate];
+	}
+	[super didChangeValueForKey:key];
 }
 
 
@@ -46,12 +47,6 @@
 	{
 		[self setPrimitiveValue:nil forKey:@"rtfData"];
 	}
-}
-
-- (BOOL) usesRTFData
-{
-	NSData * rtfData = [self primitiveValueForKey:@"rtfData"];
-	return (rtfData == nil);	
 }
 
 

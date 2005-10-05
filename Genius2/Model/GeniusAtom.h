@@ -12,10 +12,7 @@
 {
 }
 
-- (NSString *) description;
-
 - (void) setUsesRTFData:(BOOL)flag;	// converts string <-> rtfData
-- (BOOL) usesRTFData;
 
 - (void) setString:(NSString *)string;	// also sets rtfData to nil
 - (void) setRtfData:(NSData *)rtfData;	// also sets string to plain text form

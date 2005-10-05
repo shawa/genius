@@ -7,12 +7,12 @@
 @interface GeniusDocument : NSPersistentDocument
 {
     IBOutlet id itemArrayController;
+    IBOutlet id levelIndicator;
     IBOutlet id searchField;
     IBOutlet id tableView;
     IBOutlet id tableColumnMenu;
 
 	NSDictionary * _tableColumnDictionary;
-    NSWindowController * _inspectorController;
 }
 
 - (NSArrayController *) itemArrayController;
@@ -23,6 +23,9 @@
 
 @interface GeniusDocument (Actions)
 
+// File menu
+- (IBAction) exportFile:(id)sender;
+
 // Edit menu
 - (IBAction) selectSearchField:(id)sender;
 
@@ -30,6 +33,7 @@
 - (IBAction) newItem:(id)sender;
 - (IBAction) toggleInspector:(id)sender;
 - (IBAction) setItemRating:(NSMenuItem *)sender;
+- (IBAction) swapColumns:(id)sender;
 - (IBAction) resetItemScore:(id)sender;
 
 // Format menu

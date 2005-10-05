@@ -21,8 +21,6 @@
 
 @interface GeniusItem (Private)
 
-- (void) _recalculateLastModifiedDate;
-- (void) _recalculateLastTestedDate;
 - (void) _recalculateGrade;
 
 @end
@@ -30,12 +28,12 @@
 
 @implementation GeniusItem 
 
-+ (void) initialize {
+/*+ (void) initialize {
 	NSArray * atomKeys = [GeniusItem allAtomKeys];
 	NSArray * keys = [atomKeys arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"isEnabled",
 		@"myRating", @"myGroup", @"myType", @"myNotes", nil]];
 	[self setKeys:keys triggerChangeNotificationsForDependentKey:@"lastModifiedDate"];
-}
+}*/
 
 + (NSArray *) allAtomKeys
 {
@@ -43,11 +41,14 @@
 }
 
 
+- (void) commonAwake
+{
+	[self flushCache];
+}
+
 - (void)awakeFromInsert
 {
 	[super awakeFromInsert];
-
-	[self flushCache];
 
 	NSManagedObjectContext * context = [self managedObjectContext];
 
@@ -85,15 +86,8 @@
 	[associationSet addObject:assocAB];
 	[associationSet addObject:assocBA];
 
-	// Set up observers
+	// Initialize lastModifiedDate
 	[self setPrimitiveValue:[NSDate date] forKey:@"lastModifiedDate"];
-	[atomA addObserver:self forKeyPath:@"dirty" options:0L context:NULL];
-	[atomB addObserver:self forKeyPath:@"dirty" options:0L context:NULL];
-
-	[assocAB addObserver:self forKeyPath:@"lastDataPointDate" options:0L context:NULL];
-	[assocBA addObserver:self forKeyPath:@"lastDataPointDate" options:0L context:NULL];
-
-	[self addObserver:self forKeyPath:@"lastModifiedDate" options:0L context:NULL];
 }
 
 - (void)awakeFromFetch
@@ -112,7 +106,6 @@
 		if (key)
 		{
 			[self setPrimitiveValue:atom forKey:key];
-			[atom addObserver:self forKeyPath:@"dirty" options:0L context:NULL];
 		}
 	}
 
@@ -128,54 +121,27 @@
 		{
 			NSString * key = [NSString stringWithFormat:@"association_%@_%@", sourceAtomKey, targetAtomKey];
 			[self setPrimitiveValue:association forKey:key];
-
-			[association addObserver:self forKeyPath:@"lastDataPointDate" options:0L context:NULL];
 		}
 	}
+}
 
-	// Set up observers
-	[self addObserver:self forKeyPath:@"lastModifiedDate" options:0L context:NULL];
+- (void) didTurnIntoFault
+{
+	NSLog(@"-[GeniusItem didTurnIntoFault]");
+
+    [super didTurnIntoFault];
 }
 
 - (void) dealloc
 {
-	// Remove observers
-	NSSet * atomSet = [self valueForKey:@"atoms"];
-	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
-	NSManagedObject * atom;
-	while ((atom = [atomSetEnumerator nextObject]))
-		[atom removeObserver:self forKeyPath:@"dirty"];
-
-	NSSet * associationSet = [self valueForKey:@"associations"];
-	NSEnumerator * associationSetEnumerator = [associationSet objectEnumerator];
-	NSManagedObject * association;
-	while ((association = [associationSetEnumerator nextObject]))
-		[association removeObserver:self forKeyPath:@"lastDataPointDate"];
-	
-    [self removeObserver:self forKeyPath:@"lastModifiedDate"];
-	
+	NSLog(@"-[GeniusItem dealloc]");
 	[super dealloc];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)didChangeValueForKey:(NSString *)key
 {
-    if ([keyPath isEqual:@"lastModifiedDate"] || [keyPath isEqual:@"dirty"])	// item or atom info changed
-	{
-		[self _recalculateLastModifiedDate];
-	}
-	else if ([keyPath isEqual:@"lastDataPointDate"])	// association changed
-	{
-		[self _recalculateLastTestedDate];
-		[self _recalculateGrade];
-		[self flushCache];
-	}
-}
-
-
-- (NSString *) description
-{
-	return [NSString stringWithFormat:@"<GeniusItem %#X: (\"%@\", \"%@\")>", self,
-		[[self valueForKey:@"atomA"] description], [[self valueForKey:@"atomB"] description]];
+	NSLog(@"didChangeValueForKey", key);
+	[super didChangeValueForKey:key];
 }
 
 
@@ -193,12 +159,12 @@
 }
 
 
-- (void) _recalculateLastModifiedDate
+- (void) touchLastModifiedDate
 {
 	[self setPrimitiveValue:[NSDate date] forKey:@"lastModifiedDate"];
 }
 
-- (void) _recalculateLastTestedDate
+- (void) touchLastTestedDate
 {
 	NSDate * lastTestedDate = nil;
 	
@@ -212,7 +178,11 @@
 	}
 
 	[self setPrimitiveValue:lastTestedDate forKey:@"lastTestedDate"];
+
+		[self _recalculateGrade];
+		[self flushCache];
 }
+
 
 - (void) _recalculateGrade
 {

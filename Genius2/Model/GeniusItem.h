@@ -16,6 +16,9 @@
 
 + (NSArray *) allAtomKeys;
 
+- (void) touchLastModifiedDate;
+- (void) touchLastTestedDate;
+
 - (NSString *) displayGrade;
 
 - (void) setUsesRichText:(BOOL)flag forAtomAtIndex:(int)atomIndex;

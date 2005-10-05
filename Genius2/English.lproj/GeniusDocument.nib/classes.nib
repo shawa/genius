@@ -16,12 +16,14 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 itemArrayController = id; 
+                levelIndicator = id; 
                 searchField = id; 
                 tableColumnMenu = id; 
                 tableView = id; 
             }; 
             SUPERCLASS = NSPersistentDocument; 
         }, 
+        {CLASS = GeniusTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSPersistentDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }
     ); 
