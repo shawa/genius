@@ -15,6 +15,7 @@
             CLASS = GeniusDocument; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                documentInfoController = id; 
                 itemArrayController = id; 
                 levelIndicator = id; 
                 searchField = id; 

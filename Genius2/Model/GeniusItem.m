@@ -125,25 +125,6 @@
 	}
 }
 
-- (void) didTurnIntoFault
-{
-	NSLog(@"-[GeniusItem didTurnIntoFault]");
-
-    [super didTurnIntoFault];
-}
-
-- (void) dealloc
-{
-	NSLog(@"-[GeniusItem dealloc]");
-	[super dealloc];
-}
-
-- (void)didChangeValueForKey:(NSString *)key
-{
-	NSLog(@"didChangeValueForKey", key);
-	[super didChangeValueForKey:key];
-}
-
 
 - (NSArray *) _activeAssociations
 {	

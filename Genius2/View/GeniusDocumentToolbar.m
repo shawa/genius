@@ -95,10 +95,10 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         }*/
         else if ([itemIdentifier isEqual:GeniusToolbarInfoItemIdentifier])
         {
-            NSString * label = NSLocalizedString(@"Inspector", nil);
+            NSString * label = NSLocalizedString(@"Inspect", nil);
             [toolbarItem setLabel:label];
 
-            NSImage * image = [NSImage imageNamed:@"info"];
+            NSImage * image = [NSImage imageNamed:@"Inspector"];
             [toolbarItem setImage:image];
             
             [toolbarItem setTarget:self];

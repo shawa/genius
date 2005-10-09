@@ -38,14 +38,24 @@
     return @"GeniusDocument";
 }
 
+/*
+	Warning: "If you have a nib in which File's Owner is a subclass of
+	NSWindowController or NSDocument, do not bind anything through file's owner."
+	http://theobroma.treehouseideas.com/document.page/18
+*/
+
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController 
 {	
     [super windowControllerDidLoadNib:windowController];
     // user interface preparation code
+
+	// Set up object controllers
+	[itemArrayController setManagedObjectContext:[self managedObjectContext]];
+	[documentInfoController setContent:[self documentInfo]];
 	
 	// Set up window toolbar
 	[self setupToolbarForWindow:[windowController window]];
-	
+		
 	// Retain table columns
 	_tableColumnDictionary = [NSMutableDictionary new];
 	NSArray * tableColumns = [tableView tableColumns];
@@ -98,24 +108,32 @@
 
 - (void)dealloc
 {
-	NSLog(@"-[GeniusDocument dealloc]");
+	//NSLog(@"-[GeniusDocument dealloc]");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_tableColumnDictionary release];
 	[super dealloc];
 }
-
 
 /*- (void)windowWillClose:(NSNotification *)aNotification
 {
 	// "Re: Retain cycle problem with bindings & NSWindowController"
 	// http://lists.apple.com/archives/cocoa-dev/2004/Jun/msg00602.html
 	NSWindow * window = [aNotification object];
-	[[window contentView] removeFromSuperviewWithoutNeedingDisplay];
-	[tableView release];
-	
-	[[[self windowControllers] objectAtIndex:0] setWindow:nil];
 	NSLog(@"windowWillClose: %@", [window description]);
+	[itemArrayController setContent:nil];
 }*/
+
+
+- (void) _dismissFieldEditor
+{
+	NSArray * windowControllers = [self windowControllers];
+	if ([windowControllers count] == 0)
+		return;
+
+	NSWindow * window = [[windowControllers objectAtIndex:0] window];
+	if ([window makeFirstResponder:window] == NO)
+		[window endEditingFor:nil];
+}
 
 - (void) _handleTextDidEndEditing:(NSNotification *)aNotification
 {
@@ -136,15 +154,9 @@
 
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
 {
-	// Take away field editor
-	NSArray * windowControllers = [self windowControllers];
-	if ([windowControllers count] == 0)
-		return;
-
-	NSWindow * window = [[windowControllers objectAtIndex:0] window];
-	if ([window makeFirstResponder:window] == NO)
-		[window endEditingFor:nil];
-
+	// Dismiss field editor
+	[self _dismissFieldEditor];
+	
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
 	int index = [ud integerForKey:@"ListTextSizeMode"];
 
@@ -350,6 +362,9 @@
 
 - (IBAction) toggleInspector:(id)sender
 {
+	// Dismiss field editor
+	[self _dismissFieldEditor];
+
 	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
 	if ([[ic window] isVisible])
 		[[ic window] performClose:sender];

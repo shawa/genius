@@ -6,6 +6,10 @@
 	<string>143 246 356 240 0 0 1280 832 </string>
 	<key>IBFramework Version</key>
 	<string>437.0</string>
+	<key>IBLockedTabItems</key>
+	<array>
+		<integer>25</integer>
+	</array>
 	<key>IBOpenObjects</key>
 	<array>
 		<integer>5</integer>

@@ -1,19 +1,17 @@
-fix crasher on close - mallocdebug etc
+hook up quizzing
+hook up swap command
+hook up level indicator
 
 hook up preferences:
 	case sensitivity
 	learn review slider
-hook up quizzing
 hook up text import/export
-hook up swap command
-hook up level indicator
 hook up Help
-
+hook up relax panel
 polish column behavior
 drag and drop
 window and table position saving
 
-hook up relax panel
 full screen mode
 pref review slider
 
@@ -22,4 +20,4 @@ pref review slider
 tri-directional
 printing
 export to iPod
-sharing
+file sharing

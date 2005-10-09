@@ -43,19 +43,11 @@
 
 - (void) didTurnIntoFault
 {
-	NSLog(@"-[GeniusAssociation didTurnIntoFault]");
 	// Remove observers	
 	[_dataPoints release];
 
     [super didTurnIntoFault];
 }
-
-- (void) dealloc
-{
-	NSLog(@"-[GeniusAssociation dealloc]");
-	[super dealloc];
-}
-
 
 
 - (void)didChangeValueForKey:(NSString *)key

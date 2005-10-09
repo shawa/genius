@@ -69,7 +69,6 @@
 
 - (void)windowDidLoad
 {
-	NSLog(@"-[GeniusInspectorController windowDidLoad]");
 	[super windowDidLoad];
 	
 	GeniusDocumentInfo * documentInfo = [(GeniusDocument *)[self _currentDocument] documentInfo];
