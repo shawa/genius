@@ -1,19 +1,16 @@
 hook up quizzing
+hook up preferences:
+	case sensitivity
 hook up swap command
 hook up level indicator
 
-hook up preferences:
-	case sensitivity
-	learn review slider
 hook up text import/export
-hook up Help
-hook up relax panel
-polish column behavior
 drag and drop
+polish column behavior
 window and table position saving
 
+hook up relax panel
 full screen mode
-pref review slider
 
 
 // version 3.0

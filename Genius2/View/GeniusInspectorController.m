@@ -11,7 +11,7 @@
 {
 	static GeniusInspectorController * sController = nil;
 	if (sController == nil)
-		sController = [[GeniusInspectorController alloc] initWithWindowNibName:@"GeniusInspector"];
+		sController = [[GeniusInspectorController alloc] initWithWindowNibName:@"Inspector"];
 	return sController;
 }
 

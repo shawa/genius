@@ -132,14 +132,13 @@ static float PoissonValue(int x, float m)
 
 - (NSArray *) _chooseAssociationsByWeightedCurve:(NSArray *)associations
 {
-	// Calculate minimum and maximum scores        
-	float minScore = [[associations valueForKeyPath:@"@min.predictedScore"] floatValue];
-	float maxScore = [[associations valueForKeyPath:@"@max.predictedScore"] floatValue];
-		
     #if DEBUG
-        NSLog(@"[associations count]=%d, minScore=%f, maxScore=%f", [associations count], minScore, maxScore);
-        NSLog(@"_requestedCount=%d", _requestedCount);
+		// Calculate minimum and maximum scores        
+		float minScore = [[associations valueForKeyPath:@"@min.predictedScore"] floatValue];
+		float maxScore = [[associations valueForKeyPath:@"@max.predictedScore"] floatValue];		
+        NSLog(@"minScore=%f, maxScore=%f", minScore, maxScore);
     #endif
+	NSLog(@"[associations count]=%d, _requestedCount=%d", [associations count], _requestedCount);
 
     if ([associations count] <= _requestedCount)
         return associations;

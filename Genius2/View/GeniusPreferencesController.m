@@ -16,7 +16,7 @@
 {
 	static GeniusPreferencesController * sController = nil;
 	if (sController == nil)
-		sController = [[GeniusPreferencesController alloc] initWithWindowNibName:@"GeniusPreferences"];
+		sController = [[GeniusPreferencesController alloc] initWithWindowNibName:@"Preferences"];
 	return sController;
 }
 

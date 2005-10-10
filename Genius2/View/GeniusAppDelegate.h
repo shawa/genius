@@ -12,6 +12,7 @@
 - (IBAction) openFileSharingSite:(id)sender;
 
 // Help menu
+- (IBAction) showHelpWindow:(id)sender;
 - (IBAction) openSupportSite:(id)sender;
 
 @end

@@ -1,7 +1,9 @@
 #import "GeniusAppDelegate.h"
 
 #import "GeniusValueTransformers.h"
+
 #import "GeniusPreferencesController.h"
+#import "GeniusHelpController.h"
 
 
 @implementation GeniusAppDelegate
@@ -41,6 +43,11 @@
 
 
 // Help menu
+
+- (IBAction) showHelpWindow:(id)sender
+{
+    [GeniusHelpController showWindow];
+}
 
 - (IBAction) openSupportSite:(id)sender
 {
