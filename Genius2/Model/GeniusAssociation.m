@@ -78,6 +78,18 @@
 	}
 }
 
+- (void) _setDataPointsArray:(NSArray *)dataPoints
+{
+	[_dataPoints release];
+    _dataPoints = [dataPoints retain];
+
+    NSData * data = nil;
+	if (dataPoints)
+		data = [NSArchiver archivedDataWithRootObject:dataPoints];
+    [self willChangeValueForKey:@"dataPointsData"];
+    [self setPrimitiveValue:data forKey:@"dataPointsData"];
+    [self didChangeValueForKey:@"dataPointsData"];
+}
 
 - (void) _recacheDataPointsArray
 {
@@ -90,12 +102,6 @@
 		return;
     _dataPoints = [[NSUnarchiver unarchiveObjectWithData:data] retain];
 }
-
-/*- (void) addDataPoint:(NSDictionary *)dataPointDictionary
-{
-	NSArray * dataPoints = [self _dataPoints];
-	[self _setDataPointArray:[dataPoints arrayByAddingObject:dataPointDictionary]];
-}*/
 
 - (void) _recalculatePredictedScore
 {
@@ -164,6 +170,24 @@
 	[self setValue:lastDataPointDate forKey:@"lastDataPointDate"];
 }
 
+
+- (void) addBoolValue:(BOOL)value
+{
+	// update dataPointsData
+	NSDate * nowDate = [NSDate date];
+	NSDictionary * dataPoint = [NSDictionary dictionaryWithObjectsAndKeys:
+		nowDate, @"date", [NSNumber numberWithBool:value], @"didAnswerCorrect", NULL];
+	[self _setDataPointsArray:[_dataPoints arrayByAddingObject:dataPoint]];
+	
+	// update dueDate
+	// XXX: TO DO
+#warning need to recalculate dueDate
+
+	// update derived values
+	[self _recalculatePredictedScore];
+	[self setValue:nowDate forKey:@"lastDataPointDate"];
+
+}
 
 - (void) reset
 {

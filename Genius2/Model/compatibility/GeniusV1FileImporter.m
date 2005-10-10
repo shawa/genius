@@ -168,6 +168,7 @@
 
 		// Document Header
 		NSLog(@"Importing Genius 1.x data file");
+		// XXX: TO DO
 /*		NSManagedObjectModel * model = [self managedObjectModel];
 		NSEntityDescription * notebookEntity = [[model entitiesByName] objectForKey:@"GeniusNotebook"];
 		NSManagedObject * notebook = [[NSManagedObject alloc] initWithEntity:notebookEntity insertIntoManagedObjectContext:[self managedObjectContext]];

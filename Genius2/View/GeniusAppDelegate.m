@@ -10,7 +10,8 @@
 {
 //	NSUserDefaultsController * udc = [NSUserDefaultsController sharedUserDefaultsController];
 	NSDictionary * defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSNumber numberWithBool:YES], @"useSoundEffects", nil];
+		[NSNumber numberWithBool:YES], @"useSoundEffects",
+		[NSNumber numberWithFloat:50.0], @"QuizReviewLearnSliderValue", NULL];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 
 	GeniusFloatPercentTransformer * transformer = [[[GeniusFloatPercentTransformer alloc] init] autorelease];

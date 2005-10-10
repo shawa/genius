@@ -104,7 +104,7 @@
 	<key>CFBundleSignature</key>
 	<string>jrc </string>
 	<key>CFBundleVersion</key>
-	<string>20050925</string>
+	<string>20051009</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

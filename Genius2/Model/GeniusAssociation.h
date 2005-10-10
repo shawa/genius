@@ -10,6 +10,11 @@
 
 @class GeniusItem;
 
+/*
+	A directed association between two atoms, with score-keeping data.
+	Like an axon between two neurons.
+*/
+
 @interface GeniusAssociation :  NSManagedObject  
 {
 	NSArray * _dataPoints;

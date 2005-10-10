@@ -1,5 +1,5 @@
 //
-//  GeniusStringAnalysis.h
+//  NSStringSimiliarity.h
 //  Genius
 //
 //  Created by John R Chang on Thu Dec 25 2003.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSString (GeniusStringAnalysis)
+@interface NSString (Similiarity)
 
 /*
     Returns 0.0 <= x <= 1.0.  0.0 == not equal (or error), 1.0 == equal.

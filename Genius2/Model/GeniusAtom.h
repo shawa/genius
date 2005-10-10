@@ -8,6 +8,10 @@
 
 #import <CoreData/CoreData.h>
 
+/*
+	An atom models one or more representations of a memorizable unit of information
+*/
+
 @interface GeniusAtom :  NSManagedObject  
 {
 }

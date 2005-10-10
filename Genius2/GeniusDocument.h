@@ -17,7 +17,7 @@
 }
 
 - (NSArrayController *) itemArrayController;
-- (GeniusDocumentInfo *) documentInfo;	// used by GeniusDocument.nib
+- (GeniusDocumentInfo *) documentInfo;	// used by GeniusDocument.nib and QuizModel
 
 @end
 

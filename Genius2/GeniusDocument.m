@@ -7,12 +7,15 @@
 #import "GeniusDocument.h"
 #import "GeniusDocumentToolbar.h"
 #import "GeniusDocumentInfo.h"
-
 #import "IconTextFieldCell.h"
 
 #import "GeniusItem.h"	// actions
+#import "GeniusAtom.h"	// -toggleColumnRichText:
 
 #import "GeniusInspectorController.h"
+
+#import "QuizModel.h"
+#import "QuizController.h"
 
 
 @interface GeniusDocument (Private)
@@ -428,12 +431,28 @@
 	}
 	
 	currentValue = !currentValue;
-	NSArray * arrangedObjects = [itemArrayController arrangedObjects];
-	NSEnumerator * objectEnumerator = [arrangedObjects objectEnumerator];
-	GeniusItem * item;
-	while ((item = [objectEnumerator nextObject]))
-		[item setUsesRichText:currentValue forAtomAtIndex:columnIndex];
-	
+	NSString * atomKey = (columnIndex ? @"atomA" : @"atomB");	// XXX
+
+	// Fetch all atom objects for the specified column
+	NSManagedObjectContext * context = [self managedObjectContext];
+	NSFetchRequest * request = [[[NSFetchRequest alloc] init] autorelease];
+	NSEntityDescription * entity = [NSEntityDescription entityForName:@"GeniusAtom" inManagedObjectContext:context];
+	[request setEntity:entity];
+	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"key == \"%@\"", atomKey];
+	[request setPredicate:predicate];
+	NSError * error = nil;
+	NSArray * array = [context executeFetchRequest:request error:&error];
+	if (array == nil)
+	{
+		NSLog(@"%@", [error description]);
+		return;
+	}
+		
+	NSEnumerator * objectEnumerator = [array objectEnumerator];
+	GeniusAtom * atom;
+	while ((atom = [objectEnumerator nextObject]))
+		[atom setUsesRTFData:currentValue];
+		
 	if (columnIndex == 0)
 		[[self documentInfo] setIsColumnARichText:currentValue];
 	else if (columnIndex == 1)
@@ -459,14 +478,22 @@
 
 - (IBAction) runQuiz:(id)sender
 {
-#warning -runQuiz: not implemented
-	// TO DO
+	// number of items or time limit
+	// initial set of associations
+
+	QuizModel * model = [[QuizModel alloc] initWithDocument:self];
+	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
+	[model release];
+
+	QuizController * quiz = [[QuizController alloc] initWithAssociationEnumerator:associationEnumerator];
+	[quiz runQuiz];
+	[quiz release];
 }
 
 - (IBAction) toggleSoundEffects:(id)sender
 {
 	// do nothing - NSUserDefaultsController handles this in the nib
-	// This is defined for autmoatic menu item enabling
+	// This is defined for automatic menu item enabling
 }
 
 

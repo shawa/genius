@@ -9,6 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 
+enum
+{
+	GeniusQuizUnidirectionalMode = 1,
+	GeniusQuizBidirectionalMode,
+};
+
+
 @interface GeniusDocumentInfo : NSManagedObject {
 	
 }

@@ -211,14 +211,6 @@
 }
 
 
-- (void) setUsesRichText:(BOOL)flag forAtomAtIndex:(int)atomIndex
-{
-	NSString * atomKey = [[GeniusItem allAtomKeys] objectAtIndex:atomIndex];
-	GeniusAtom * atom = [self valueForKey:atomKey];
-	[atom setUsesRTFData:flag];
-}
-
-
 - (void) resetAssociations
 {
 	NSSet * associationSet = [self valueForKey:@"associations"];

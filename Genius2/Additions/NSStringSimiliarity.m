@@ -1,16 +1,16 @@
 //
-//  GeniusStringAnalysis.m
+//  NSStringSimiliarity.m
 //  Genius
 //
 //  Created by John R Chang on Thu Dec 25 2003.
 //  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
 //
 
-#import "GeniusStringAnalysis.h"
+#import "NSStringSimiliarity.h"
 #import <CoreServices/CoreServices.h>
 
 
-@implementation NSString (GeniusStringAnalysis)
+@implementation NSString (Similiarity)
 
 - (float)isSimilarToString:(NSString *)aString
 {

@@ -21,8 +21,6 @@
 
 - (NSString *) displayGrade;
 
-- (void) setUsesRichText:(BOOL)flag forAtomAtIndex:(int)atomIndex;
-
 - (void) resetAssociations;
 
 - (void) flushCache;
