@@ -11,11 +11,18 @@
 #import "GeniusAssociationEnumerator.h"
 
 
-@interface QuizController : NSObject {
+@interface QuizController : NSWindowController {
+	IBOutlet id stateController;
+	IBOutlet id sourceAtomController;
+	IBOutlet id targetAtomController;
+	IBOutlet id inputField;
+	IBOutlet id noButton;
+	IBOutlet id yesButton;
+
 	GeniusAssociationEnumerator * _associationEnumerator;
-
-	NSWindowController * _windowController;
-
+	NSMutableDictionary * _stateInfo;
+	unsigned int _maxCount;
+	
     NSSound * _newSound;
     NSSound * _rightSound;
     NSSound * _wrongSound;

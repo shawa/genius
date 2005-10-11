@@ -16,12 +16,16 @@
 	self = [super init];
 	_allAssociations = [associations retain];
 	_remainingAssociations = [[NSMutableArray alloc] initWithArray:_allAssociations];
+	_scheduledAssociations = [NSMutableArray new];
+	_currentAssociation = nil;
 	return self;
 }
 
 - (void) dealloc
 {
+	[_currentAssociation release];
 	[_remainingAssociations release];
+	[_scheduledAssociations release];
 	[_allAssociations release];
 	[super dealloc];
 }
@@ -29,6 +33,69 @@
 - (NSArray *)allObjects
 {
 	return _remainingAssociations;
+}
+
+- (id) nextObject
+{
+	[_currentAssociation release];
+	
+    if ([_scheduledAssociations count] > 0)
+    {
+        _currentAssociation = [_scheduledAssociations objectAtIndex:0];
+        if ([[_currentAssociation valueForKey:GeniusAssociationDueDateKey] compare:[NSDate date]] == NSOrderedAscending)
+        {
+			[_currentAssociation retain];
+            [_scheduledAssociations removeObjectAtIndex:0];
+            return _currentAssociation;
+        }
+    }
+    
+    if ([_remainingAssociations count] > 0)
+	{	
+		// pop first object
+		_currentAssociation = [_remainingAssociations objectAtIndex:0];		
+		[_currentAssociation retain];
+		[_remainingAssociations removeObjectAtIndex:0];
+		return _currentAssociation;
+	}
+	
+	return nil;
+}
+
+
+- (void) _rescheduleCurrentAssociation
+{
+    unsigned int deltaSec = 5;
+	if ([_currentAssociation lastResult] == YES)
+		deltaSec = pow(5, [_currentAssociation resultCount]);
+	
+    NSDate * dueDate = [[NSDate date] addTimeInterval:deltaSec];
+    [_currentAssociation setValue:dueDate forKey:GeniusAssociationDueDateKey];
+
+	// Insert _currentAssociation into _scheduledAssociations, preserving order
+	[_scheduledAssociations addObject:_currentAssociation];
+	NSSortDescriptor * sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:GeniusAssociationDueDateKey ascending:YES] autorelease];
+	NSArray * sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+	[_scheduledAssociations sortUsingDescriptors:sortDescriptors];
+}
+
+- (void) neutral
+{
+    [self _rescheduleCurrentAssociation];
+}
+
+- (void) right
+{
+	[_currentAssociation addResult:YES];
+
+    [self _rescheduleCurrentAssociation];
+}
+
+- (void) wrong
+{
+	[_currentAssociation addResult:NO];
+
+    [self _rescheduleCurrentAssociation];
 }
 
 @end

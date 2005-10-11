@@ -1,7 +1,14 @@
 #import "GeniusInspectorController.h"
 
 #import "GeniusDocument.h"
-#import "GeniusDocumentInfo.h"
+#import "GeniusDocumentInfo.h"	// -isColumnARichText, -isColumnBRichText
+
+#import "GeniusAtom.h"
+
+
+@interface GeniusInspectorController (Private)
+- (void) _setRichTextEnabled:(BOOL)flag forTextView:(NSTextView *)textView objectController:(NSObjectController *)controller;
+@end
 
 
 @implementation GeniusInspectorController
@@ -15,32 +22,106 @@
 	return sController;
 }
 
-- (NSDocument *) _currentDocument
++ (NSDocument *) _currentDocument
 {
 	return [[NSDocumentController sharedDocumentController] currentDocument];
 }
 
 
-- (NSArrayController *) arrayController
+- (void) dealloc
 {
-	return [(GeniusDocument *)[self _currentDocument] itemArrayController];
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+	[nc removeObserver:self];
+
+	[super dealloc];
 }
 
 
+// See /Developer/Examples/AppKit/Sketch/SKTInspectorController.m
+- (void)setMainWindow:(NSWindow *)mainWindow {
+	NSDocumentController * sdc = [NSDocumentController sharedDocumentController];
+
+	GeniusDocument * lastDocument = [documentController content];
+	if (lastDocument)
+	{
+		NSArray * windowControllers = [lastDocument windowControllers];
+		if ([windowControllers count] > 0)
+			NSLog(@"GeniusInspectorController: Resigned document %@", [[[windowControllers objectAtIndex:0] window] title]);
+		
+		GeniusDocumentInfo * documentInfo = [lastDocument documentInfo];
+		[documentInfo removeObserver:self forKeyPath:GeniusDocumentInfoIsColumnARichTextKey];
+		[documentInfo removeObserver:self forKeyPath:GeniusDocumentInfoIsColumnBRichTextKey];
+		
+		if ([[sdc documents] count] == 0)
+			[self close];
+	}
+
+	GeniusDocument * document = [sdc documentForWindow:mainWindow];
+	[documentController setContent:document];	
+	if (document)
+	{
+		NSLog(@"GeniusInspectorController: Target document %@", [mainWindow title]);
+
+		GeniusDocumentInfo * documentInfo = [document documentInfo];
+		[self _setRichTextEnabled:[documentInfo isColumnARichText] forTextView:atomATextView objectController:atomAController];
+		[self _setRichTextEnabled:[documentInfo isColumnBRichText] forTextView:atomBTextView objectController:atomBController];
+		[documentInfo addObserver:self forKeyPath:GeniusDocumentInfoIsColumnARichTextKey options:0L context:NULL];
+		[documentInfo addObserver:self forKeyPath:GeniusDocumentInfoIsColumnBRichTextKey options:0L context:NULL];
+	}
+}
+
+- (void)windowDidLoad
+{	
+    [super windowDidLoad];
+
+    [self setMainWindow:[NSApp mainWindow]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidBecomeMainNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowResigned:) name:NSWindowDidResignMainNotification object:nil];
+}
+
+- (void)mainWindowChanged:(NSNotification *)notification {
+    [self setMainWindow:[notification object]];
+}
+
+- (void)mainWindowResigned:(NSNotification *)notification {
+    [self setMainWindow:nil];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqualToString:GeniusDocumentInfoIsColumnARichTextKey])
+	{
+		BOOL flag = [(GeniusDocumentInfo *)object isColumnARichText];
+		[self _setRichTextEnabled:flag forTextView:atomATextView objectController:atomAController];
+	}
+	else if ([keyPath isEqualToString:GeniusDocumentInfoIsColumnBRichTextKey])
+	{
+		BOOL flag = [(GeniusDocumentInfo *)object isColumnBRichText];
+		[self _setRichTextEnabled:flag forTextView:atomBTextView objectController:atomBController];
+	}
+}
+
+@end
+
+
+@implementation GeniusInspectorController (Private)
+
 + (NSDictionary *) _defaultTextAttributes
 {
+	NSMutableParagraphStyle * paragraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
+	[paragraphStyle setAlignment:NSCenterTextAlignment];
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSFont userFontOfSize:12.0], NSFontAttributeName, [NSParagraphStyle defaultParagraphStyle], NSParagraphStyleAttributeName, nil];
+		[NSFont userFontOfSize:12.0], NSFontAttributeName, paragraphStyle, NSParagraphStyleAttributeName, nil];
 }
 
 - (void) _setRichTextEnabled:(BOOL)flag forTextView:(NSTextView *)textView objectController:(NSObjectController *)controller
 {
 	// Unbind
-	if (flag == YES)
-		[textView unbind:NSValueBinding];
-	else
-		[textView unbind:NSDataBinding];
+	[textView unbind:NSValueBinding];
+	[textView unbind:NSDataBinding];
 
+	// Change text view
 	[textView setRichText:flag];
 	[textView setImportsGraphics:flag];
 	[textView setUsesFontPanel:flag];
@@ -56,42 +137,16 @@
 
 		[textView setTypingAttributes:defaultTextAttributes];
 
-		[[controller content] setValue:nil forKey:@"rtfData"];	// clear out rtfData from atom too
+		[[controller content] setValue:nil forKey:GeniusAtomRTFDDataKey];	// clear out rtfdData from atom too
 	}
 	
 	// Rebind
 	if (flag == YES)
-		[textView bind:NSDataBinding toObject:controller withKeyPath:@"selection.rtfData" options:nil];
+		[textView bind:NSDataBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomRTFDDataKey] options:nil];
 	else
-		[textView bind:NSValueBinding toObject:controller withKeyPath:@"selection.string" options:nil];
+		[textView bind:NSValueBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomStringKey] options:nil];
 }
 
-
-- (void)windowDidLoad
-{
-	[super windowDidLoad];
-	
-	GeniusDocumentInfo * documentInfo = [(GeniusDocument *)[self _currentDocument] documentInfo];
-	[self _setRichTextEnabled:[documentInfo isColumnARichText] forTextView:atomATextView objectController:atomAController];
-	[self _setRichTextEnabled:[documentInfo isColumnBRichText] forTextView:atomBTextView objectController:atomBController];
-
-	[documentInfo addObserver:self forKeyPath:@"isColumnARichText" options:0L context:NULL];
-	[documentInfo addObserver:self forKeyPath:@"isColumnBRichText" options:0L context:NULL];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	if ([keyPath isEqualToString:@"isColumnARichText"])
-	{
-		BOOL flag = [(GeniusDocumentInfo *)object isColumnARichText];
-		[self _setRichTextEnabled:flag forTextView:atomATextView objectController:atomAController];
-	}
-	else if ([keyPath isEqualToString:@"isColumnBRichText"])
-	{
-		BOOL flag = [(GeniusDocumentInfo *)object isColumnBRichText];
-		[self _setRichTextEnabled:flag forTextView:atomBTextView objectController:atomBController];
-	}
-}
 
 
 #if 0

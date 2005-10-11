@@ -155,7 +155,7 @@ static float PoissonValue(int x, float m)
     GeniusAssociation * association;
     while ((association = [associationEnumerator nextObject]))
     {
-		float predictedScore = [[association valueForKey:@"predictedScore"] floatValue];
+		float predictedScore = [[association valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
         b = predictedScore * 10.0;
 		if (predictedScore == -1.0)
 			b = 0;

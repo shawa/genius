@@ -40,19 +40,19 @@
 				value = YES;
 			
 			NSMutableDictionary * newDataPoint = [NSMutableDictionary dictionary];
-			[newDataPoint setValue:date forKey:@"date"];
-			[newDataPoint setValue:[NSNumber numberWithBool:value] forKey:@"didAnswerCorrect"];
+			[newDataPoint setValue:date forKey:GeniusAssociationResultDictDateKey];
+			[newDataPoint setValue:[NSNumber numberWithBool:value] forKey:GeniusAssociationResultDictValueKey];
 
 			[dataPoints addObject:newDataPoint];
 		}
 
 		NSData * data = [NSArchiver archivedDataWithRootObject:dataPoints];
-		[association setValue:data forKey:@"dataPointsData"];
+		[association setValue:data forKey:GeniusAssociationResultDictsKey];
 	}
 
 	NSDate * dueDate = [oldV1Assoc dueDate];
 	if (dueDate)
-		[association setValue:dueDate forKey:@"dueDate"];
+		[association setValue:dueDate forKey:GeniusAssociationDueDateKey];
 }
 
 - (GeniusItem *) _insertGeniusItemWithGeniusV1Pair:(GeniusV1Pair *)v1Pair
@@ -65,29 +65,29 @@
 	NSString * stringA = [[v1Pair itemA] stringValue];
 	if (stringA)
 	{
-		GeniusAtom * atomA = [newItem valueForKey:@"atomA"];
-		[atomA setValue:stringA forKey:@"string"];
+		GeniusAtom * atomA = [newItem valueForKey:GeniusItemAtomAKey];
+		[atomA setValue:stringA forKey:GeniusAtomStringKey];
 	}
 	
 	NSString * stringB = [[v1Pair itemB] stringValue];
 	if (stringB)
 	{
-		GeniusAtom * atomB = [newItem valueForKey:@"atomB"];
-		[atomB setValue:stringB forKey:@"string"];
+		GeniusAtom * atomB = [newItem valueForKey:GeniusItemAtomBKey];
+		[atomB setValue:stringB forKey:GeniusAtomStringKey];
 	}
 
 	// Update associations
 	GeniusV1Association * v1AssocAB = [v1Pair associationAB];
 	if (v1AssocAB)
 	{
-		GeniusAssociation * assocAB = [newItem valueForKey:@"association_atomA_atomB"]; 
+		GeniusAssociation * assocAB = [newItem valueForKey:GeniusItemAssociationABKey];
 		[self _updateAssociation:assocAB withValuesFromV1Association:v1AssocAB];
 	}
 
 	GeniusV1Association * v1AssocBA = [v1Pair associationBA];
 	if (v1AssocBA)
 	{
-		GeniusAssociation * assocBA = [newItem valueForKey:@"association_atomB_atomA"]; 
+		GeniusAssociation * assocBA = [newItem valueForKey:GeniusItemAssociationBAKey]; 
 		[self _updateAssociation:assocBA withValuesFromV1Association:v1AssocBA];
 	}
 
@@ -96,22 +96,22 @@
 	switch (importance)
 	{
 		case -1:
-			[newItem setValue:[NSNumber numberWithBool:NO] forKey:@"isEnabled"];
+			[newItem setValue:[NSNumber numberWithBool:NO] forKey:GeniusItemIsEnabledKey];
 			break;
 		case 0:
-			[newItem setValue:[NSNumber numberWithInt:1] forKey:@"myRating"];
+			[newItem setValue:[NSNumber numberWithInt:1] forKey:GeniusItemMyRatingKey];
 			break;
 		case 3:
-			[newItem setValue:[NSNumber numberWithInt:2] forKey:@"myRating"];
+			[newItem setValue:[NSNumber numberWithInt:2] forKey:GeniusItemMyRatingKey];
 			break;
 		case 5:
-			[newItem setValue:[NSNumber numberWithInt:3] forKey:@"myRating"];
+			[newItem setValue:[NSNumber numberWithInt:3] forKey:GeniusItemMyRatingKey];
 			break;
 		case 8:
-			[newItem setValue:[NSNumber numberWithInt:4] forKey:@"myRating"];
+			[newItem setValue:[NSNumber numberWithInt:4] forKey:GeniusItemMyRatingKey];
 			break;
 		case 10:
-			[newItem setValue:[NSNumber numberWithInt:5] forKey:@"myRating"];
+			[newItem setValue:[NSNumber numberWithInt:5] forKey:GeniusItemMyRatingKey];
 			break;
 		default:
 			break;
@@ -119,15 +119,15 @@
 
 	NSString * myGroup = [v1Pair customGroupString];
 	if (myGroup)
-		[newItem setValue:myGroup forKey:@"myGroup"];
+		[newItem setValue:myGroup forKey:GeniusItemMyGroupKey];
 	
 	NSString * myType = [v1Pair customTypeString];
 	if (myType)
-		[newItem setValue:myType forKey:@"myType"];
+		[newItem setValue:myType forKey:GeniusItemMyTypeKey];
 	
 	NSString * myNotes = [v1Pair notesString];
 	if (myNotes)
-		[newItem setValue:myNotes forKey:@"myNotes"];
+		[newItem setValue:myNotes forKey:GeniusItemMyNotesKey];
 	
 	return newItem; //[newItem autorelease];
 }
@@ -169,22 +169,16 @@
 		// Document Header
 		NSLog(@"Importing Genius 1.x data file");
 		// XXX: TO DO
-/*		NSManagedObjectModel * model = [self managedObjectModel];
-		NSEntityDescription * notebookEntity = [[model entitiesByName] objectForKey:@"GeniusNotebook"];
-		NSManagedObject * notebook = [[NSManagedObject alloc] initWithEntity:notebookEntity insertIntoManagedObjectContext:[self managedObjectContext]];
-
-		NSString * name = [[[aURL path] lastPathComponent] stringByDeletingPathExtension];
-		[notebook setValue:name forKey:@"name"];
-
-        NSArray * visibleColumnIdentifiers = [unarchiver decodeObjectForKey:@"visibleColumnIdentifiers"];
+#warning Need to import Genius 1.x document metadata
+/*        NSArray * visibleColumnIdentifiers = [unarchiver decodeObjectForKey:@"visibleColumnIdentifiers"];
         if (visibleColumnIdentifiers)
 			; //
 
         NSDictionary * columnHeadersDict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
         if (columnHeadersDict)
-            ; //
+            ; //*/
 
-        NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
+/*        NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
         if (learnVsReviewNumber)
             [notebook setValue:learnVsReviewNumber forKey:@"learnVsReviewFloat"];*/
 

@@ -10,13 +10,19 @@
 #import "GeniusItem.h"
 
 
+static NSString * GeniusAtomParentItemKey = @"parentItem";
+
+NSString * GeniusAtomStringKey = @"string";
+NSString * GeniusAtomRTFDDataKey = @"rtfdData";
+
+
 @implementation GeniusAtom 
 
 - (void)didChangeValueForKey:(NSString *)key
 {
-	if ([key isEqualToString:@"parentItem"] == NO)
+	if ([key isEqualToString:GeniusAtomParentItemKey] == NO)
 	{
-		GeniusItem * item = [self valueForKey:@"parentItem"];
+		GeniusItem * item = [self valueForKey:GeniusAtomParentItemKey];
 		[item touchLastModifiedDate];
 	}
 	[super didChangeValueForKey:key];
@@ -27,76 +33,76 @@
 {
 	if (flag)
 	{
-		NSString * string = [self primitiveValueForKey:@"string"];
+		NSString * string = [self primitiveValueForKey:GeniusAtomStringKey];
 		if (string)
 		{
-			// string -> rtfData
+			// string -> rtfdData
 			NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:string] autorelease];
 			if (attrString)
 			{
 				NSRange range = NSMakeRange(0, [attrString length]);
-				NSData * rtfData = [attrString RTFDFromRange:range documentAttributes:nil];
+				NSData * rtfdData = [attrString RTFDFromRange:range documentAttributes:nil];
 
-				[self willChangeValueForKey:@"rtfData"];
-				[self setPrimitiveValue:rtfData forKey:@"rtfData"];
-				[self didChangeValueForKey:@"rtfData"];
+				[self willChangeValueForKey:GeniusAtomRTFDDataKey];
+				[self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];
+				[self didChangeValueForKey:GeniusAtomRTFDDataKey];
 			}
 		}
 	}
 	else
 	{
-		[self setPrimitiveValue:nil forKey:@"rtfData"];
+		[self setPrimitiveValue:nil forKey:GeniusAtomRTFDDataKey];
 	}
 }
 
 
 - (void) setString:(NSString *)string
 {
-	[self willChangeValueForKey:@"string"];
-    [self setPrimitiveValue:string forKey:@"string"];
-    [self didChangeValueForKey:@"string"];
+	[self willChangeValueForKey:GeniusAtomStringKey];
+    [self setPrimitiveValue:string forKey:GeniusAtomStringKey];
+    [self didChangeValueForKey:GeniusAtomStringKey];
 
-    [self setPrimitiveValue:nil forKey:@"rtfData"];
+    [self setPrimitiveValue:nil forKey:GeniusAtomRTFDDataKey];
 }
 
-/*- (NSData *) rtfData	// falls back to string
+/*- (NSData *) rtfdData	// falls back to string
 {
-	[self willAccessValueForKey:@"rtfData"];
-	NSData * rtfData = [self primitiveValueForKey:@"rtfData"];
-	[self didAccessValueForKey:@"rtfData"];
+	[self willAccessValueForKey:GeniusAtomRTFDDataKey];
+	NSData * rtfdData = [self primitiveValueForKey:GeniusAtomRTFDDataKey];
+	[self didAccessValueForKey:GeniusAtomRTFDDataKey];
 	
-	if (rtfData == nil)
+	if (rtfdData == nil)
 	{
-		NSString * string = [self primitiveValueForKey:@"string"];
+		NSString * string = [self primitiveValueForKey:GeniusAtomStringKey];
 		if (string)
 		{
-			// string -> rtfData
+			// string -> rtfdData
 			NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:string] autorelease];
 			if (attrString)
 			{
 				NSRange range = NSMakeRange(0, [attrString length]);
-				rtfData = [attrString RTFDFromRange:range documentAttributes:nil];
+				rtfdData = [attrString RTFDFromRange:range documentAttributes:nil];
 			}
 		}
 	}
 	
-	return rtfData;
+	return rtfdData;
 }*/
 
-- (void) setRtfData:(NSData *)rtfData
+- (void) setRtfData:(NSData *)rtfdData
 {
-	[self willChangeValueForKey:@"rtfData"];
-    [self setPrimitiveValue:rtfData forKey:@"rtfData"];
-    [self didChangeValueForKey:@"rtfData"];
+	[self willChangeValueForKey:GeniusAtomRTFDDataKey];
+    [self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];
+    [self didChangeValueForKey:GeniusAtomRTFDDataKey];
 
-	// rtfData -> string	
-	NSAttributedString * attrString = [[NSAttributedString alloc] initWithRTFD:rtfData documentAttributes:nil];
+	// rtfdData -> string	
+	NSAttributedString * attrString = [[NSAttributedString alloc] initWithRTFD:rtfdData documentAttributes:nil];
 	if (attrString)
 	{
 		NSString * string = [[attrString string] copy];
-		[self willChangeValueForKey:@"string"];
-		[self setPrimitiveValue:string forKey:@"string"];
-		[self didChangeValueForKey:@"string"];
+		[self willChangeValueForKey:GeniusAtomStringKey];
+		[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
+		[self didChangeValueForKey:GeniusAtomStringKey];
 		[string release];
 	}
 }

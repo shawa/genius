@@ -8,15 +8,28 @@
 
 #import "GeniusAssociation.h"
 
-#import "GeniusItem.h"
+#import "GeniusItem.h"	// -touchLastTestedDate
+
+
+static NSString * GeniusAssociationParentItemKey = @"parentItem";	// XXX should be exported?
+NSString * GeniusAssociationSourceAtomKeyKey = @"sourceAtomKey";
+NSString * GeniusAssociationTargetAtomKeyKey = @"targetAtomKey";
+
+NSString * GeniusAssociationLastResultDateKey = @"lastResultDate";
+NSString * GeniusAssociationDueDateKey = @"dueDate";
+NSString * GeniusAssociationPredictedScoreKey = @"predictedScore";
+NSString * GeniusAssociationResultDictsKey = @"resultDictArrayData";
+
+NSString * GeniusAssociationResultDictDateKey = @"date";
+NSString * GeniusAssociationResultDictValueKey = @"value";
 
 
 @interface GeniusAssociation (Private)
 
-- (void) _recacheDataPointsArray;
+- (void) _recacheResultsArray;
 
 - (void) _recalculatePredictedScore;
-- (void) _recalculateLastDataPointDate;
+- (void) _recalculateLastResultDate;
 
 @end
 
@@ -25,8 +38,8 @@
 
 - (void) commonAwake
 {
-	_dataPoints = nil;
-	[self _recacheDataPointsArray];
+	_resultDicts = nil;
+	[self _recacheResultsArray];
 }
 
 - (void)awakeFromInsert
@@ -44,7 +57,7 @@
 - (void) didTurnIntoFault
 {
 	// Remove observers	
-	[_dataPoints release];
+	[_resultDicts release];
 
     [super didTurnIntoFault];
 }
@@ -52,14 +65,14 @@
 
 - (void)didChangeValueForKey:(NSString *)key
 {
-	if ([key isEqualToString:@"dataPointsData"])
+	if ([key isEqualToString:GeniusAssociationResultDictsKey])
 	{
-		[self _recacheDataPointsArray];
+		[self _recacheResultsArray];
 
 		[self _recalculatePredictedScore];
-		[self _recalculateLastDataPointDate];
+		[self _recalculateLastResultDate];
 
-		GeniusItem * item = [self valueForKey:@"parentItem"];
+		GeniusItem * item = [self valueForKey:GeniusAssociationParentItemKey];
 		[item touchLastTestedDate];
 	}
 	
@@ -69,51 +82,52 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqual:@"dataPointsData"])
+    if ([keyPath isEqual:GeniusAssociationResultDictsKey])
 	{
-		[self _recacheDataPointsArray];
+		[self _recacheResultsArray];
 
 		[self _recalculatePredictedScore];
-		[self _recalculateLastDataPointDate];
+		[self _recalculateLastResultDate];
 	}
 }
 
+
 - (void) _setDataPointsArray:(NSArray *)dataPoints
 {
-	[_dataPoints release];
-    _dataPoints = [dataPoints retain];
+	[_resultDicts release];
+    _resultDicts = [dataPoints retain];
 
     NSData * data = nil;
 	if (dataPoints)
 		data = [NSArchiver archivedDataWithRootObject:dataPoints];
-    [self willChangeValueForKey:@"dataPointsData"];
-    [self setPrimitiveValue:data forKey:@"dataPointsData"];
-    [self didChangeValueForKey:@"dataPointsData"];
+    [self willChangeValueForKey:GeniusAssociationResultDictsKey];
+    [self setPrimitiveValue:data forKey:GeniusAssociationResultDictsKey];
+    [self didChangeValueForKey:GeniusAssociationResultDictsKey];
 }
 
-- (void) _recacheDataPointsArray
+- (void) _recacheResultsArray
 {
-	[_dataPoints release];
+	[_resultDicts release];
 
-    [self willAccessValueForKey:@"dataPointsData"];
-    NSData * data = [self primitiveValueForKey:@"dataPointsData"];	// persistent
-    [self didAccessValueForKey:@"dataPointsData"];
+    [self willAccessValueForKey:GeniusAssociationResultDictsKey];
+    NSData * data = [self primitiveValueForKey:GeniusAssociationResultDictsKey];	// persistent
+    [self didAccessValueForKey:GeniusAssociationResultDictsKey];
 	if (data == nil)
 		return;
-    _dataPoints = [[NSUnarchiver unarchiveObjectWithData:data] retain];
+    _resultDicts = [[NSUnarchiver unarchiveObjectWithData:data] retain];
 }
 
 - (void) _recalculatePredictedScore
 {
-	int n = [_dataPoints count];
+	int n = [_resultDicts count];
 	if (n == 0)
 	{
-		[self setPrimitiveValue:nil forKey:@"predictedScore"];	// persistent
+		[self setPrimitiveValue:nil forKey:GeniusAssociationPredictedScoreKey];	// persistent
 		return;
 	}
 	
-	id firstDataPoint = [_dataPoints objectAtIndex:0];
-	NSDate * firstDate = [firstDataPoint valueForKey:@"date"];
+	id firstDataPoint = [_resultDicts objectAtIndex:0];
+	NSDate * firstDate = [firstDataPoint valueForKey:GeniusAssociationResultDictDateKey];
 	
 	// Compute least squares fit
 	// http://people.hofstra.edu/faculty/Stefan_Waner/RealWorld/calctopic1/regression.html
@@ -122,13 +136,13 @@
 	int i;
 	for (i=0; i<n; i++)
 	{
-		id dataPoint = [_dataPoints objectAtIndex:i];
+		id resultDict = [_resultDicts objectAtIndex:i];
 		
-		NSDate * date = [dataPoint valueForKey:@"date"];
-		BOOL didAnswerCorrect = [[dataPoint valueForKey:@"didAnswerCorrect"] boolValue];		
+		NSDate * date = [resultDict valueForKey:GeniusAssociationResultDictDateKey];
+		BOOL result = [[resultDict valueForKey:GeniusAssociationResultDictValueKey] boolValue];		
 
 		NSTimeInterval t = [date timeIntervalSinceDate:firstDate];
-		int q = (int)didAnswerCorrect;
+		int q = (int)result;
 		
 		// Set x and y
 		double x = t;
@@ -144,11 +158,11 @@
 	double b = (sum_y - m * sum_x) / n;										// intercept
 	
 	// The t to be used for prediction
-	id lastDataPoint = [_dataPoints lastObject];
-	NSDate * lastDataPointDate = [lastDataPoint valueForKey:@"date"];
-	NSTimeInterval t_delta = [lastDataPointDate timeIntervalSinceDate:firstDate];
+	id lastDataPoint = [_resultDicts lastObject];
+	NSDate * lastResultDate = [lastDataPoint valueForKey:GeniusAssociationResultDictDateKey];
+	NSTimeInterval t_delta = [lastResultDate timeIntervalSinceDate:firstDate];
 	NSTimeInterval t_mean = t_delta / n;
-	NSTimeInterval t = [[lastDataPointDate addTimeInterval:t_mean] timeIntervalSinceDate:firstDate];
+	NSTimeInterval t = [[lastResultDate addTimeInterval:t_mean] timeIntervalSinceDate:firstDate];
 
 	// Logarithmic regression ("q = A * r^t")
 	/*float r = pow(10, m);
@@ -160,42 +174,69 @@
 	float y = m * t + b;
 
 	float predictedScore = MIN(y, 1.0);
-	[self setPrimitiveValue:[NSNumber numberWithFloat:predictedScore] forKey:@"predictedScore"];	// persistent
+	[self setPrimitiveValue:[NSNumber numberWithFloat:predictedScore] forKey:GeniusAssociationPredictedScoreKey];	// persistent
 }
 
-- (void) _recalculateLastDataPointDate
+- (void) _recalculateLastResultDate
 {
-	NSDictionary * dataPoint = [_dataPoints lastObject];	// persistent
-	NSDate * lastDataPointDate = [dataPoint valueForKey:@"date"];	
-	[self setValue:lastDataPointDate forKey:@"lastDataPointDate"];
+	NSDictionary * resultDict = [_resultDicts lastObject];	// persistent
+	NSDate * lastResultDate = [resultDict valueForKey:GeniusAssociationResultDictDateKey];	
+	[self setValue:lastResultDate forKey:GeniusAssociationLastResultDateKey];
 }
 
 
-- (void) addBoolValue:(BOOL)value
+- (GeniusAtom *) sourceAtom
 {
-	// update dataPointsData
+	GeniusItem * item = [self valueForKey:GeniusAssociationParentItemKey];
+	NSString * atomKey = [self valueForKey:GeniusAssociationSourceAtomKeyKey];
+	return [item valueForKey:atomKey];
+}
+
+- (GeniusAtom *) targetAtom
+{
+	GeniusItem * item = [self valueForKey:GeniusAssociationParentItemKey];
+	NSString * atomKey = [self valueForKey:GeniusAssociationTargetAtomKeyKey];
+	return [item valueForKey:atomKey];
+}
+
+
+- (BOOL) lastResult
+{
+	NSDictionary * resultDict = [_resultDicts lastObject];
+	if (resultDict == nil)
+		return NO;
+	return [[resultDict objectForKey:GeniusAssociationResultDictValueKey] boolValue];
+}
+
+- (unsigned int) resultCount
+{
+	return [_resultDicts count];
+}
+
+- (void) addResult:(BOOL)value
+{
+	// update resultDictArrayData
 	NSDate * nowDate = [NSDate date];
-	NSDictionary * dataPoint = [NSDictionary dictionaryWithObjectsAndKeys:
-		nowDate, @"date", [NSNumber numberWithBool:value], @"didAnswerCorrect", NULL];
-	[self _setDataPointsArray:[_dataPoints arrayByAddingObject:dataPoint]];
+	NSDictionary * resultDict = [NSDictionary dictionaryWithObjectsAndKeys:
+		nowDate, GeniusAssociationResultDictDateKey,
+		[NSNumber numberWithBool:value], GeniusAssociationResultDictValueKey, NULL];
+	[self _setDataPointsArray:[_resultDicts arrayByAddingObject:resultDict]];
 	
-	// update dueDate
-	// XXX: TO DO
-#warning need to recalculate dueDate
-
+	// dueDate is updated in -[GeniusAssociationEnumerator _rescheduleCurrentAssociation]
+	
 	// update derived values
 	[self _recalculatePredictedScore];
-	[self setValue:nowDate forKey:@"lastDataPointDate"];
+	[self setValue:nowDate forKey:GeniusAssociationLastResultDateKey];
 
 }
 
 - (void) reset
 {
-    [self setValue:nil forKey:@"dataPointsData"];	// persistent
-	[self setValue:nil forKey:@"dueDate"];			// persistent
+    [self setValue:nil forKey:GeniusAssociationResultDictsKey];	// persistent
+	[self setValue:nil forKey:GeniusAssociationDueDateKey];			// persistent
 
-	[self setPrimitiveValue:nil forKey:@"predictedScore"];	// persistent, derived
-    [self setValue:nil forKey:@"lastDataPointDate"];	// persistent, derived
+	[self setPrimitiveValue:nil forKey:GeniusAssociationPredictedScoreKey];	// persistent, derived
+    [self setValue:nil forKey:GeniusAssociationLastResultDateKey];	// persistent, derived
 }
 
 @end

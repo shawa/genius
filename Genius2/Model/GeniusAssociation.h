@@ -8,18 +8,41 @@
 
 #import <CoreData/CoreData.h>
 
-@class GeniusItem;
+#import "GeniusAtom.h"
+
+
+extern NSString * GeniusAssociationLastResultDateKey;
+extern NSString * GeniusAssociationDueDateKey;
+extern NSString * GeniusAssociationPredictedScoreKey;
+
 
 /*
 	A directed association between two atoms, with score-keeping data.
 	Like an axon between two neurons.
 */
-
 @interface GeniusAssociation :  NSManagedObject  
 {
-	NSArray * _dataPoints;
+	NSArray * _resultDicts;
 }
+
+- (GeniusAtom *) sourceAtom;
+- (GeniusAtom *) targetAtom;
+
+- (BOOL) lastResult;
+- (unsigned int) resultCount;
+
+- (void) addResult:(BOOL)value;
 
 - (void) reset;
 
 @end
+
+
+// exported only for GeniusItem
+extern NSString * GeniusAssociationSourceAtomKeyKey;
+extern NSString * GeniusAssociationTargetAtomKeyKey;
+
+// exported only for GeniusV1FileImporter
+extern NSString * GeniusAssociationResultDictsKey;
+extern NSString * GeniusAssociationResultDictDateKey;
+extern NSString * GeniusAssociationResultDictValueKey;

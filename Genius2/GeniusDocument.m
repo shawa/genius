@@ -117,15 +117,6 @@
 	[super dealloc];
 }
 
-/*- (void)windowWillClose:(NSNotification *)aNotification
-{
-	// "Re: Retain cycle problem with bindings & NSWindowController"
-	// http://lists.apple.com/archives/cocoa-dev/2004/Jun/msg00602.html
-	NSWindow * window = [aNotification object];
-	NSLog(@"windowWillClose: %@", [window description]);
-	[itemArrayController setContent:nil];
-}*/
-
 
 - (void) _dismissFieldEditor
 {
@@ -263,6 +254,20 @@
 @end
 
 
+@implementation GeniusDocument (NSWindowDelegate)
+
+/*- (void)windowWillClose:(NSNotification *)aNotification
+{
+	// "Re: Retain cycle problem with bindings & NSWindowController"
+	// http://lists.apple.com/archives/cocoa-dev/2004/Jun/msg00602.html
+	NSWindow * window = [aNotification object];
+	NSLog(@"windowWillClose: %@", [window description]);
+	[itemArrayController setContent:nil];
+}*/
+
+@end
+
+
 @implementation GeniusDocument (NSTableViewDelegate)
 
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
@@ -339,7 +344,6 @@
 
 - (IBAction) exportFile:(id)sender
 {
-#warning -exportFile: not implemented
 	// TO DO
 }
 
@@ -389,7 +393,6 @@
 
 - (IBAction) swapColumns:(id)sender
 {
-#warning -swapColumns: not implemented
 	// TO DO
 }
 

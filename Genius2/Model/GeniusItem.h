@@ -9,6 +9,15 @@
 #import <CoreData/CoreData.h>
 
 
+extern NSString * GeniusItemIsEnabledKey;
+extern NSString * GeniusItemMyGroupKey;
+extern NSString * GeniusItemMyTypeKey;
+extern NSString * GeniusItemMyNotesKey;
+extern NSString * GeniusItemMyRatingKey;
+extern NSString * GeniusItemLastTestedDateKey;
+extern NSString * GeniusItemLastModifiedDateKey;
+
+
 @interface GeniusItem :  NSManagedObject  
 {
 	NSString * _displayGrade;
@@ -26,3 +35,12 @@
 - (void) flushCache;
 
 @end
+
+
+// exported only for GeniusV1FileImporter
+extern NSString * GeniusItemAtomAKey;
+extern NSString * GeniusItemAtomBKey;
+
+extern NSString * GeniusItemAssociationsKey;
+extern NSString * GeniusItemAssociationABKey;
+extern NSString * GeniusItemAssociationBAKey;

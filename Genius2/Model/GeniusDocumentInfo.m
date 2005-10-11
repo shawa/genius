@@ -8,6 +8,11 @@
 
 #import "GeniusDocumentInfo.h"
 
+#import "GeniusItem.h"
+
+NSString * GeniusDocumentInfoIsColumnARichTextKey = @"isColumnARichText";
+NSString * GeniusDocumentInfoIsColumnBRichTextKey = @"isColumnBRichText";
+
 
 @implementation GeniusDocumentInfo
 
@@ -18,7 +23,7 @@
 	if (data)
 		hiddenColumnIdentifiers = [NSUnarchiver unarchiveObjectWithData:data];
 	if (hiddenColumnIdentifiers == nil)
-		hiddenColumnIdentifiers = [NSArray arrayWithObjects:@"myGroup", @"myType", @"lastTestedDate", @"lastModifiedDate", nil];
+		hiddenColumnIdentifiers = [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
 	return hiddenColumnIdentifiers;
 }
 

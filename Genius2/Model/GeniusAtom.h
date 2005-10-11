@@ -8,17 +8,21 @@
 
 #import <CoreData/CoreData.h>
 
+
+extern NSString * GeniusAtomStringKey;
+extern NSString * GeniusAtomRTFDDataKey;
+
+
 /*
 	An atom models one or more representations of a memorizable unit of information
 */
-
 @interface GeniusAtom :  NSManagedObject  
 {
 }
 
-- (void) setUsesRTFData:(BOOL)flag;	// converts string <-> rtfData
+- (void) setUsesRTFData:(BOOL)flag;	// converts string <-> rtfdData
 
-- (void) setString:(NSString *)string;	// also sets rtfData to nil
-- (void) setRtfData:(NSData *)rtfData;	// also sets string to plain text form
+- (void) setString:(NSString *)string;	// also sets rtfdData to nil
+- (void) setRtfData:(NSData *)rtfdData;	// also sets string to plain text form
 
 @end

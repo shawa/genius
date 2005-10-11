@@ -13,10 +13,27 @@
 
 // XXX
 #import "GeniusDocument.h"	// -documentInfo
-#import "GeniusDocumentInfo.h"	// -documentInfo
-@interface GeniusDocumentInfo (Private)
-- (int) quizDirectionMode;
-@end
+#import "GeniusDocumentInfo.h"	// -quizDirectionMode
+
+
+NSString * GeniusItemAssociationsKey = @"associations";
+NSString * GeniusItemAssociationABKey = @"association_atomA_atomB";
+NSString * GeniusItemAssociationBAKey = @"association_atomB_atomA";
+
+static NSString * GeniusItemAtomsKey = @"atoms";	// ???
+NSString * GeniusItemAtomAKey = @"atomA";
+NSString * GeniusItemAtomBKey = @"atomB";
+
+static NSString * GeniusAssociationAtomAKeyValue = @"atomA";
+static NSString * GeniusAssociationAtomBKeyValue = @"atomB";
+
+NSString * GeniusItemIsEnabledKey = @"isEnabled";
+NSString * GeniusItemMyGroupKey = @"myGroup";
+NSString * GeniusItemMyTypeKey = @"myType";
+NSString * GeniusItemMyNotesKey = @"myNotes";
+NSString * GeniusItemMyRatingKey = @"myRating";
+NSString * GeniusItemLastTestedDateKey = @"lastTestedDate";
+NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 
 @interface GeniusItem (Private)
@@ -28,16 +45,9 @@
 
 @implementation GeniusItem 
 
-/*+ (void) initialize {
-	NSArray * atomKeys = [GeniusItem allAtomKeys];
-	NSArray * keys = [atomKeys arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"isEnabled",
-		@"myRating", @"myGroup", @"myType", @"myNotes", nil]];
-	[self setKeys:keys triggerChangeNotificationsForDependentKey:@"lastModifiedDate"];
-}*/
-
 + (NSArray *) allAtomKeys
 {
-	return [NSArray arrayWithObjects:@"atomA", @"atomB", nil];
+	return [NSArray arrayWithObjects:GeniusItemAtomAKey, GeniusItemAtomBKey, nil];
 }
 
 
@@ -63,31 +73,31 @@
 	[atomC setValue:@"atomC" forKey:@"key"];
 	[self setPrimitiveValue:atomC forKey:@"atomC"];
 */
-	[self setPrimitiveValue:atomA forKey:@"atomA"];	// transient
-	[self setPrimitiveValue:atomB forKey:@"atomB"];	// transient
+	[self setPrimitiveValue:atomA forKey:GeniusItemAtomAKey];	// transient
+	[self setPrimitiveValue:atomB forKey:GeniusItemAtomBKey];	// transient
 
-	NSMutableSet * atomSet = [self mutableSetValueForKey:@"atoms"];	// persistent
+	NSMutableSet * atomSet = [self mutableSetValueForKey:GeniusItemAtomsKey];	// persistent
 	[atomSet addObject:atomA];
 	[atomSet addObject:atomB];
 
 	// Create associations
 	NSManagedObject * assocAB = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAssociation" inManagedObjectContext:context];
-	[assocAB setPrimitiveValue:@"atomA" forKey:@"sourceAtomKey"];
-	[assocAB setPrimitiveValue:@"atomB" forKey:@"targetAtomKey"];
+	[assocAB setPrimitiveValue:GeniusAssociationAtomAKeyValue forKey:GeniusAssociationSourceAtomKeyKey];
+	[assocAB setPrimitiveValue:GeniusAssociationAtomBKeyValue forKey:GeniusAssociationTargetAtomKeyKey];
 
 	NSManagedObject * assocBA = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAssociation" inManagedObjectContext:context];
-	[assocBA setPrimitiveValue:@"atomB" forKey:@"sourceAtomKey"];
-	[assocBA setPrimitiveValue:@"atomA" forKey:@"targetAtomKey"];
+	[assocBA setPrimitiveValue:GeniusAssociationAtomBKeyValue forKey:GeniusAssociationSourceAtomKeyKey];
+	[assocBA setPrimitiveValue:GeniusAssociationAtomAKeyValue forKey:GeniusAssociationTargetAtomKeyKey];
 
-	[self setPrimitiveValue:assocAB forKey:@"association_atomA_atomB"];	// transient
-	[self setPrimitiveValue:assocBA forKey:@"association_atomB_atomA"];	// transient
+	[self setPrimitiveValue:assocAB forKey:GeniusItemAssociationABKey];	// transient
+	[self setPrimitiveValue:assocBA forKey:GeniusItemAssociationBAKey];	// transient
 
-	NSMutableSet * associationSet = [self mutableSetValueForKey:@"associations"];	// persistent
+	NSMutableSet * associationSet = [self mutableSetValueForKey:GeniusItemAssociationsKey];	// persistent
 	[associationSet addObject:assocAB];
 	[associationSet addObject:assocBA];
 
 	// Initialize lastModifiedDate
-	[self setPrimitiveValue:[NSDate date] forKey:@"lastModifiedDate"];
+	[self setPrimitiveValue:[NSDate date] forKey:GeniusItemLastModifiedDateKey];
 }
 
 - (void)awakeFromFetch
@@ -97,7 +107,7 @@
 	[self flushCache];
 
 	// Set up transient atoms
-	NSSet * atomSet = [self valueForKey:@"atoms"];
+	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];
 	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
 	NSManagedObject * atom;
 	while ((atom = [atomSetEnumerator nextObject]))
@@ -110,13 +120,13 @@
 	}
 
 	// Set up transient associations
-	NSSet * associationSet = [self valueForKey:@"associations"];
+	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
 	NSEnumerator * associationSetEnumerator = [associationSet objectEnumerator];
 	NSManagedObject * association;
 	while ((association = [associationSetEnumerator nextObject]))
 	{
-		NSString * sourceAtomKey = [association valueForKey:@"sourceAtomKey"];
-		NSString * targetAtomKey = [association valueForKey:@"targetAtomKey"];
+		NSString * sourceAtomKey = [association valueForKey:GeniusAssociationSourceAtomKeyKey];
+		NSString * targetAtomKey = [association valueForKey:GeniusAssociationTargetAtomKeyKey];
 		if (sourceAtomKey && targetAtomKey)
 		{
 			NSString * key = [NSString stringWithFormat:@"association_%@_%@", sourceAtomKey, targetAtomKey];
@@ -133,16 +143,16 @@
 	int quizDirectionMode = [[document documentInfo] quizDirectionMode];
 	
 	if (quizDirectionMode == 1)
-		return [NSArray arrayWithObject:[self valueForKey:@"association_atomA_atomB"]];
+		return [NSArray arrayWithObject:[self valueForKey:GeniusItemAssociationABKey]];
 	else
 		return [NSArray arrayWithObjects:
-			[self valueForKey:@"association_atomA_atomB"], [self valueForKey:@"association_atomB_atomA"], NULL];
+			[self valueForKey:GeniusItemAssociationABKey], [self valueForKey:GeniusItemAssociationBAKey], NULL];
 }
 
 
 - (void) touchLastModifiedDate
 {
-	[self setPrimitiveValue:[NSDate date] forKey:@"lastModifiedDate"];
+	[self setPrimitiveValue:[NSDate date] forKey:GeniusItemLastModifiedDateKey];
 }
 
 - (void) touchLastTestedDate
@@ -154,11 +164,11 @@
 	GeniusAssociation * association;
 	while ((association = [associationEnumerator nextObject]))
 	{
-		NSDate * assocDate = [association valueForKey:@"lastDataPointDate"];
+		NSDate * assocDate = [association valueForKey:GeniusAssociationLastResultDateKey];
 		lastTestedDate = (lastTestedDate ? [lastTestedDate laterDate:assocDate] : assocDate);
 	}
 
-	[self setPrimitiveValue:lastTestedDate forKey:@"lastTestedDate"];
+	[self setPrimitiveValue:lastTestedDate forKey:GeniusItemLastTestedDateKey];
 
 		[self _recalculateGrade];
 		[self flushCache];
@@ -174,7 +184,7 @@
 	GeniusAssociation * association;
 	while ((association = [associationEnumerator nextObject]))
 	{
-		float predictedScore = [[association valueForKey:@"predictedScore"] floatValue];
+		float predictedScore = [[association valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
 		if (predictedScore != -1.0)
 			sum += predictedScore;
 	}
@@ -213,7 +223,7 @@
 
 - (void) resetAssociations
 {
-	NSSet * associationSet = [self valueForKey:@"associations"];
+	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
 	NSEnumerator * associationEnumerator = [associationSet objectEnumerator];
 	GeniusAssociation * association;
 	while ((association = [associationEnumerator nextObject]))

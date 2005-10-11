@@ -4,6 +4,7 @@
 
 @interface GeniusInspectorController : NSWindowController
 {
+	IBOutlet id documentController;
 	IBOutlet id atomATextView;
 	IBOutlet id atomAController;
 	IBOutlet id atomBTextView;
@@ -11,7 +12,5 @@
 }
 
 + (id) sharedInspectorController;
-
-- (NSArrayController *) arrayController;				// used by GeniusInspector.nib
 
 @end

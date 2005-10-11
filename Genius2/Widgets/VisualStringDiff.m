@@ -55,8 +55,8 @@
 	// Create temp files
 	NSMutableString * text1 = [string1 mutableCopy];
 	NSMutableString * text2 = [string2 mutableCopy];
-	[text1 replaceOccurrencesOfString:@" " withString:@"\n" options:NULL range:NSMakeRange(0, [text1 length])];
-	[text2 replaceOccurrencesOfString:@" " withString:@"\n" options:NULL range:NSMakeRange(0, [text2 length])];
+	[text1 replaceOccurrencesOfString:@" " withString:@"\n" options:0L range:NSMakeRange(0, [text1 length])];
+	[text2 replaceOccurrencesOfString:@" " withString:@"\n" options:0L range:NSMakeRange(0, [text2 length])];
 	[text1 appendString:@"\n"];
 	[text2 appendString:@"\n"];
 	NSData * data1 = [text1 dataUsingEncoding:NSUTF8StringEncoding];

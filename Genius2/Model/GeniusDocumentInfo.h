@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
+extern NSString * GeniusDocumentInfoIsColumnARichTextKey;
+extern NSString * GeniusDocumentInfoIsColumnBRichTextKey;
+
 enum
 {
 	GeniusQuizUnidirectionalMode = 1,
