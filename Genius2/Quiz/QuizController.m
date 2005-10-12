@@ -11,6 +11,10 @@
 #import "NSStringSimiliarity.h"
 #import "VisualStringDiff.h"
 
+#import "GeniusPreferences.h"
+
+#import "QuizFullScreenWindow.h"
+
 
 enum {
 	QuizNewAssociationState,
@@ -67,9 +71,12 @@ enum {
 }
 
 
-- (void)windowWillLoad
+- (void)windowDidLoad
 {
 	[stateController setContent:_stateInfo];
+	
+	[sourceTextView setAlignment:NSCenterTextAlignment];
+	[targetTextView setAlignment:NSCenterTextAlignment];
 }
 
 
@@ -85,8 +92,12 @@ enum {
 	[inputField setEnabled:YES];
 	[inputField selectText:self];
 	
-	[_newSound stop];
-	[_newSound play];	
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
+	{
+		[_newSound stop];
+		[_newSound play];
+	}
 }
 
 - (void) _showAssociationForAnswer:(GeniusAssociation *)association
@@ -106,13 +117,35 @@ enum {
 
 - (BOOL) _handleAssociationForPostAnswer:(GeniusAssociation *)association
 {
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
 	NSString * targetString = [[association targetAtom] valueForKey:GeniusAtomStringKey];
 	NSString * inputString = [inputField stringValue];			
-	float correctness = [targetString isSimilarToString:inputString];
 
+	float correctness;
+	int matchingMode = [ud integerForKey:GeniusPreferencesQuizMatchingModeKey];
+	switch (matchingMode)
+	{
+		case GeniusPreferencesQuizExactMatchingMode:
+			correctness = (float)[targetString isEqualToString:inputString];
+			break;
+		case GeniusPreferencesQuizCaseInsensitiveMatchingMode:
+			correctness = (float)([targetString localizedCaseInsensitiveCompare:inputString] == NSOrderedSame);
+			break;
+		case GeniusPreferencesQuizSimilarMatchingMode:
+			correctness = [targetString isSimilarToString:inputString];
+			break;
+		default:
+			NSAssert(NO, @"matchingMode");
+	}
+	//NSLog(@"%d -> %f", matchingMode, correctness);
+	
 	if (correctness == 1.0)
 	{
-		[_rightSound play];    
+		NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+		if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
+			[_rightSound play];
+			
 		[_associationEnumerator right];
 		return YES;
 	}
@@ -124,29 +157,36 @@ enum {
 
 		[inputField setEnabled:NO];
 
-		// Get annotated diff string
-		NSAttributedString * attrString = [VisualStringDiff attributedStringHighlightingDifferencesFromString:inputString toString:targetString];
+		if ([ud boolForKey:GeniusPreferencesQuizUseVisualErrorsKey])
+		{
+			// Get annotated diff string
+			NSAttributedString * attrString = [VisualStringDiff attributedStringHighlightingDifferencesFromString:inputString toString:targetString];
 
-		NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
-		NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-		[parStyle setAlignment:NSCenterTextAlignment];
-		[mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
-		[parStyle release];
+			NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
+			NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+			[parStyle setAlignment:NSCenterTextAlignment];
+			[mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
+			[parStyle release];
 
-		[inputField setAttributedStringValue:mutAttrString];
-		[mutAttrString release];
-
+			[inputField setAttributedStringValue:mutAttrString];
+			[mutAttrString release];
+		}
+		
 		if (correctness > 0.5)
 		{
 			// correct
 			[yesButton setKeyEquivalent:@"\r"];
-			[_rightSound play];    
+		
+			if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
+				[_rightSound play];    
 		}
 		else if (correctness == 0.0)
 		{
 			// incorrect
 			[noButton setKeyEquivalent:@"\r"];
-			[_wrongSound play];
+
+			if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
+				[_wrongSound play];
 		}
 			
 		// Wait for user to acknowledge answer
@@ -161,6 +201,14 @@ enum {
 
 - (void) runQuiz
 {
+	QuizFullScreenWindow * screenWindow = nil;
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	if ([ud boolForKey:GeniusPreferencesUseFullScreenKey])
+	{
+		[QuizFullScreenWindow new];
+		[screenWindow orderFront:self];
+	}
+
     [[self window] center];
 
 	GeniusAssociation * association;
@@ -168,8 +216,7 @@ enum {
 	{
 		[sourceAtomController setContent:[association sourceAtom]];
 		
-		BOOL isNewAssociation = ([association valueForKey:GeniusAssociationLastResultDateKey] == nil);
-		if (isNewAssociation)
+		if ([association isReset])
 		{
 			[self _showAssociationForNewAssociation:association];
 
@@ -196,6 +243,8 @@ enum {
 	}
 
     [self close];
+	
+	[screenWindow close];
 }
 
 

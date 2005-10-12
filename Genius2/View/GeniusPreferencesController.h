@@ -15,4 +15,6 @@
 
 + (id) sharedPreferencesController;
 
+- (void) runModal;
+
 @end

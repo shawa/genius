@@ -20,4 +20,19 @@
 	return sController;
 }
 
+- (void) runModal
+{
+	[NSApp runModalForWindow:[self window]];
+}
+
+@end
+
+
+@implementation GeniusPreferencesController (NSWindowDelegate)
+
+- (void)windowWillClose:(NSNotification *)aNotification
+{
+	[NSApp stopModal];
+}
+
 @end

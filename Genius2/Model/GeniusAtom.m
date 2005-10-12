@@ -29,7 +29,7 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 }
 
 
-- (void) setUsesRTFData:(BOOL)flag
+- (void) setUsesRTFDData:(BOOL)flag
 {
 	if (flag)
 	{
@@ -89,7 +89,7 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 	return rtfdData;
 }*/
 
-- (void) setRtfData:(NSData *)rtfdData
+- (void) setRtfdData:(NSData *)rtfdData
 {
 	[self willChangeValueForKey:GeniusAtomRTFDDataKey];
     [self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];

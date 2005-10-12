@@ -5,6 +5,7 @@
 @interface GeniusInspectorController : NSWindowController
 {
 	IBOutlet id documentController;
+	IBOutlet id tabView;
 	IBOutlet id atomATextView;
 	IBOutlet id atomAController;
 	IBOutlet id atomBTextView;
@@ -12,5 +13,7 @@
 }
 
 + (id) sharedInspectorController;
+
+- (NSTabView *) tabView;	// used by -[GeniusDocument _tableViewDoubleAction:]
 
 @end

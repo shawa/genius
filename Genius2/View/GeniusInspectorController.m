@@ -22,10 +22,10 @@
 	return sController;
 }
 
-+ (NSDocument *) _currentDocument
+/*+ (NSDocument *) _currentDocument
 {
 	return [[NSDocumentController sharedDocumentController] currentDocument];
-}
+}*/
 
 
 - (void) dealloc
@@ -44,10 +44,10 @@
 	GeniusDocument * lastDocument = [documentController content];
 	if (lastDocument)
 	{
-		NSArray * windowControllers = [lastDocument windowControllers];
+		/*NSArray * windowControllers = [lastDocument windowControllers];
 		if ([windowControllers count] > 0)
 			NSLog(@"GeniusInspectorController: Resigned document %@", [[[windowControllers objectAtIndex:0] window] title]);
-		
+		*/
 		GeniusDocumentInfo * documentInfo = [lastDocument documentInfo];
 		[documentInfo removeObserver:self forKeyPath:GeniusDocumentInfoIsColumnARichTextKey];
 		[documentInfo removeObserver:self forKeyPath:GeniusDocumentInfoIsColumnBRichTextKey];
@@ -60,7 +60,7 @@
 	[documentController setContent:document];	
 	if (document)
 	{
-		NSLog(@"GeniusInspectorController: Target document %@", [mainWindow title]);
+		//NSLog(@"GeniusInspectorController: Target document %@ (%@)", [mainWindow title], [document description]);
 
 		GeniusDocumentInfo * documentInfo = [document documentInfo];
 		[self _setRichTextEnabled:[documentInfo isColumnARichText] forTextView:atomATextView objectController:atomAController];
@@ -102,6 +102,12 @@
 	}
 }
 
+
+- (NSTabView *) tabView
+{
+	return tabView;
+}
+
 @end
 
 
@@ -109,14 +115,13 @@
 
 + (NSDictionary *) _defaultTextAttributes
 {
-	NSMutableParagraphStyle * paragraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
-	[paragraphStyle setAlignment:NSCenterTextAlignment];
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSFont userFontOfSize:12.0], NSFontAttributeName, paragraphStyle, NSParagraphStyleAttributeName, nil];
+		[NSFont userFontOfSize:12.0], NSFontAttributeName,
+		[NSParagraphStyle defaultParagraphStyle], NSParagraphStyleAttributeName, NULL];
 }
 
 - (void) _setRichTextEnabled:(BOOL)flag forTextView:(NSTextView *)textView objectController:(NSObjectController *)controller
-{
+{	
 	// Unbind
 	[textView unbind:NSValueBinding];
 	[textView unbind:NSDataBinding];
@@ -125,115 +130,73 @@
 	[textView setRichText:flag];
 	[textView setImportsGraphics:flag];
 	[textView setUsesFontPanel:flag];
-	
+
 	// Clear rich text
 	if (flag == NO)
-	{
-		NSDictionary * defaultTextAttributes = [GeniusInspectorController _defaultTextAttributes];
-		
-		NSMutableAttributedString * attrString = [textView textStorage];
-		NSRange range = NSMakeRange(0, [attrString length]);		
-		[attrString setAttributes:defaultTextAttributes range:range];
-
-		[textView setTypingAttributes:defaultTextAttributes];
-
 		[[controller content] setValue:nil forKey:GeniusAtomRTFDDataKey];	// clear out rtfdData from atom too
-	}
 	
 	// Rebind
+	NSString * noSelectionString = NSLocalizedString(@"No selection", nil);
 	if (flag == YES)
-		[textView bind:NSDataBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomRTFDDataKey] options:nil];
-	else
-		[textView bind:NSValueBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomStringKey] options:nil];
-}
-
-
-
-#if 0
-/*
-+ (BOOL) _attributedStringHasDefaultAttributes:(NSAttributedString *)attrString
-{
-	// See /Developer/Examples/AppKit/TextEdit/Document.m -toggleRich:
-	int length = [attrString length];
-	if (length == 0)
-		return YES;
-		
-	NSRange range;
-	NSDictionary *attrs = [attrString attributesAtIndex:0 effectiveRange:&range];
-	if (attrs == nil)
-		return YES;
-	if (range.length < length)
-		return NO;
-
-	NSDictionary * defaultAttrs = [GeniusInspectorController _defaultTextAttributes];
-	if ([attrs count] > [defaultAttrs count])
-		return NO;
-
-	NSEnumerator * keyEnumerator = [defaultAttrs keyEnumerator];
-	NSString * key;
-	while ((key = [keyEnumerator nextObject]))
 	{
-		id attr = [attrs objectForKey:key];
-		id defaultAttr = [defaultAttrs objectForKey:key];
-		if (attr && [attr isEqual:defaultAttr] == NO)
-			return NO;
-	}
-
-	return YES;
-}
-
-
--(BOOL) _validateToggleRichText:(id *)value forTextView:(NSTextView *)textView
-{
-	if ([*value boolValue] == NO)
-	{
-		if ([GeniusInspectorController _attributedStringHasDefaultAttributes:[textView textStorage]] == NO)
-		{			
-			NSAlert * alert = [NSAlert alertWithMessageText:@"Convert this column to plain text?" defaultButton:@"Convert" alternateButton:@"Don’t Convert" otherButton:nil
-			informativeTextWithFormat:@"If you convert this column, you will lose all text styles (such as fonts and colors) and attachments."];
-			//[alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_toggleRichTextAlertDidEndSelector:returnCode:contextInfo:) contextInfo:contextInfo];*/
-			int returnCode = [alert runModal];
-			if (returnCode == 0)	// No	// XXX: ??? should be NSAlertSecondButtonReturn
-				*value = [NSNumber numberWithBool:YES];
+		NSDictionary * options = nil;
+		NSDictionary * attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSFont boldSystemFontOfSize:18.0], NSFontAttributeName,
+			NSForegroundColorAttributeName, [NSColor grayColor],
+			NULL];
+		NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:noSelectionString attributes:attributes] autorelease];
+		if (attrString)
+		{
+			NSRange range = NSMakeRange(0, [attrString length]);
+			NSData * noSelectionData = [attrString RTFDFromRange:range documentAttributes:nil];
+			options = [NSDictionary dictionaryWithObject:noSelectionData forKey:NSNoSelectionPlaceholderBindingOption];
 		}
+
+		[textView bind:NSDataBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomRTFDDataKey] options:options];
 	}
-	
-	return YES;
+	else
+	{
+		NSDictionary * options = [NSDictionary dictionaryWithObject:noSelectionString forKey:NSNoSelectionPlaceholderBindingOption];
+		[textView bind:NSValueBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomStringKey] options:options];
+	}
+
+	// Set default text attributes
+	NSDictionary * defaultTextAttributes = [GeniusInspectorController _defaultTextAttributes];
+	NSMutableAttributedString * attrString = [textView textStorage];
+	NSRange range = NSMakeRange(0, [attrString length]);		
+	[attrString setAttributes:defaultTextAttributes range:range];
+	[textView setTypingAttributes:defaultTextAttributes];
+	[textView setAlignment:NSCenterTextAlignment];
+	if ([textView isEditable])
+		[textView selectAll:nil];
 }
-
-
-- (BOOL) atomARichText
-{
-	return [atomATextView isRichText];
-}
-
-- (void) setAtomARichText:(BOOL)flag
-{
-	[self _setRichTextEnabled:flag forTextView:atomATextView objectController:atomAController];
-}
-
--(BOOL)validateAtomARichText:(id *)value error:(NSError **)outError
-{
-	return [self _validateToggleRichText:value forTextView:atomATextView];
-}
-
-
-- (BOOL) atomBRichText
-{
-	return [atomBTextView isRichText];
-}
-
-- (void) setAtomBRichText:(BOOL)flag
-{
-	[self _setRichTextEnabled:flag forTextView:atomBTextView objectController:atomBController];
-}
-
--(BOOL)validateAtomBRichText:(id *)value error:(NSError **)outError
-{
-	return [self _validateToggleRichText:value forTextView:atomBTextView];
-}
-*/
-#endif
 
 @end
 
+
+@implementation GeniusInspectorController (NSWindowDelegate)
+
+// Commit changes upon window deactivation
+
+- (void)windowDidResignKey:(NSNotification *)aNotification
+{
+	NSWindow * window = [self window];
+	if ([window makeFirstResponder:window] == NO)
+		[window endEditingFor:nil];	
+}
+
+@end
+
+
+@implementation GeniusInspectorController (NSTabViewDelegate)
+
+// Commit changes upon tab view item deactivation
+
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	NSWindow * window = [self window];
+	if ([window makeFirstResponder:window] == NO)
+		[window endEditingFor:nil];	
+}
+
+@end

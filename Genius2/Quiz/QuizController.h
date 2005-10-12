@@ -13,6 +13,8 @@
 
 @interface QuizController : NSWindowController {
 	IBOutlet id stateController;
+	IBOutlet id sourceTextView;
+	IBOutlet id targetTextView;
 	IBOutlet id sourceAtomController;
 	IBOutlet id targetAtomController;
 	IBOutlet id inputField;

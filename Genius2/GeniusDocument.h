@@ -38,12 +38,12 @@
 - (IBAction) resetItemScore:(id)sender;
 
 // Format menu
-- (IBAction) toggleColumnRichText:(NSMenuItem *)sender;
+- (IBAction) toggleColumnRichText:(id)sender;
 
 // Study menu
 - (IBAction) setQuizDirectionModeAction:(NSMenuItem *)sender;
 - (IBAction) runQuiz:(id)sender;
-- (IBAction) toggleSoundEffects:(id)sender;
+- (IBAction) toggleFullScreen:(id)sender;
 
 // table view pop-up menu
 - (IBAction) toggleTableColumnShown:(NSMenuItem *)sender;

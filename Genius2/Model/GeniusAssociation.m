@@ -200,7 +200,7 @@ NSString * GeniusAssociationResultDictValueKey = @"value";
 }
 
 
-- (BOOL) lastResult
+- (BOOL) lastResultValue
 {
 	NSDictionary * resultDict = [_resultDicts lastObject];
 	if (resultDict == nil)
@@ -237,6 +237,12 @@ NSString * GeniusAssociationResultDictValueKey = @"value";
 
 	[self setPrimitiveValue:nil forKey:GeniusAssociationPredictedScoreKey];	// persistent, derived
     [self setValue:nil forKey:GeniusAssociationLastResultDateKey];	// persistent, derived
+}
+
+- (BOOL) isReset
+{
+	return ([self valueForKey:GeniusAssociationLastResultDateKey] == nil
+		&& [self valueForKey:GeniusAssociationDueDateKey] == nil);
 }
 
 @end

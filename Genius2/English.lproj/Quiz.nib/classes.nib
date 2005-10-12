@@ -10,8 +10,10 @@
                 inputField = id; 
                 noButton = id; 
                 sourceAtomController = id; 
+                sourceTextView = id; 
                 stateController = id; 
                 targetAtomController = id; 
+                targetTextView = id; 
                 yesButton = id; 
             }; 
             SUPERCLASS = NSWindowController; 

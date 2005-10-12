@@ -1,12 +1,13 @@
 {
     IBClasses = (
         {
-            ACTIONS = {resetItemScore = id; }; 
+            ACTIONS = {resetItemScore = id; toggleColumnRichText = id; }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
         }, 
         {
+            ACTIONS = {}; 
             CLASS = GeniusInspectorController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
@@ -15,6 +16,7 @@
                 atomBController = id; 
                 atomBTextView = id; 
                 documentController = id; 
+                tabView = id; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 

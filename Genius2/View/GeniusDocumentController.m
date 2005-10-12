@@ -9,11 +9,11 @@
 - (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
 {
 	GeniusDocument * document = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
-	if (document)
+/*	if (document)
 	{
 		[document newItem:nil];
 		[[document undoManager] removeAllActions];
-	}
+	}*/
 	return document;
 }
 

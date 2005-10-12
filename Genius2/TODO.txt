@@ -1,7 +1,5 @@
-hook up quizzing
 window close dirty
-hook up preferences:
-	case sensitivity
+fix rich text/graphics
 
 hook up level indicator
 hook up text import/export
@@ -9,7 +7,6 @@ drag and drop
 hook up relax panel
 hook up swap command
 
-full screen mode
 polish column behavior
 window and table position saving
 

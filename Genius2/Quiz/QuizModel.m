@@ -11,6 +11,7 @@
 #import "GeniusAssociation.h"
 #import "GeniusItem.h"	// myRating
 
+#import "GeniusPreferences.h"
 #import "GeniusDocumentInfo.h"	// -quizDirectionMode
 #import "QuizArrayAdditions.h"
 
@@ -56,7 +57,7 @@
 	// 100% should be m=0.0 (learn only)
 
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    float reviewLearnValue = [ud floatForKey:@"QuizReviewLearnSliderValue"];
+    float reviewLearnValue = [ud floatForKey:GeniusPreferencesQuizReviewLearnSliderFloatKey];
 
 	if (reviewLearnValue == 0.0)
 		_requestedMinScore = 0.0;
@@ -67,7 +68,7 @@
 
 - (NSArray *) _activeAssociations
 {
-	NSMutableArray * fragments = [NSMutableArray arrayWithObject:@"(parentItem.isEnabled == YES)"];
+	NSMutableArray * fragments = [NSMutableArray arrayWithObject:@"(parentItem.isEnabled == YES) AND (parentItem.atomA.string != NIL) AND (parentItem.atomB.string != NIL)"];
 
 	int quizDirectionMode = [[_document documentInfo] quizDirectionMode];
 	if (quizDirectionMode == GeniusQuizUnidirectionalMode)
@@ -137,8 +138,8 @@ static float PoissonValue(int x, float m)
 		float minScore = [[associations valueForKeyPath:@"@min.predictedScore"] floatValue];
 		float maxScore = [[associations valueForKeyPath:@"@max.predictedScore"] floatValue];		
         NSLog(@"minScore=%f, maxScore=%f", minScore, maxScore);
-    #endif
 	NSLog(@"[associations count]=%d, _requestedCount=%d", [associations count], _requestedCount);
+    #endif
 
     if ([associations count] <= _requestedCount)
         return associations;

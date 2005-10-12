@@ -42,9 +42,11 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 - (NSArray *) toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
     return [NSArray arrayWithObjects:
-	GeniusToolbarAddItemIdentifier, GeniusToolbarInfoItemIdentifier,
+	GeniusToolbarAddItemIdentifier,
+	NSToolbarSpaceItemIdentifier,
+	GeniusToolbarInfoItemIdentifier,
 	NSToolbarFlexibleSpaceItemIdentifier,
-	GeniusToolbarPreferencesItemIdentifier, 
+/*	GeniusToolbarPreferencesItemIdentifier, */
 	GeniusToolbarLevelIndicatorItemIdentifier,
 	GeniusToolbarQuizItemIdentifier, 
 	NSToolbarFlexibleSpaceItemIdentifier,

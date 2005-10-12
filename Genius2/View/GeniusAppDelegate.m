@@ -5,19 +5,17 @@
 #import "GeniusPreferencesController.h"
 #import "GeniusHelpController.h"
 
+#import "GeniusPreferences.h"
+
 
 @implementation GeniusAppDelegate
 
 + (void) initialize
 {
-//	NSUserDefaultsController * udc = [NSUserDefaultsController sharedUserDefaultsController];
-	NSDictionary * defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSNumber numberWithBool:YES], @"useSoundEffects",
-		[NSNumber numberWithFloat:50.0], @"QuizReviewLearnSliderValue", NULL];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
-
 	GeniusFloatPercentTransformer * transformer = [[[GeniusFloatPercentTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusFloatPercentTransformer"];
+	
+	[GeniusPreferences registerDefaults];
 }
 
 
@@ -26,7 +24,7 @@
 - (IBAction) showPreferences:(id)sender
 {
 	GeniusPreferencesController * pc = [GeniusPreferencesController sharedPreferencesController];
-	[pc showWindow:sender];
+	[pc runModal];
 }
 
 - (IBAction) openTipJarSite:(id)sender
@@ -39,6 +37,15 @@
 {
     NSURL * url = [NSURL URLWithString:@"http://www.geniusfiles.info/"];
     [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+
+// Study menu
+
+- (IBAction) toggleSoundEffects:(id)sender
+{
+	// do nothing - NSUserDefaultsController handles this in the nib
+	// This is defined for automatic menu item enabling
 }
 
 

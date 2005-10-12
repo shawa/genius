@@ -11,6 +11,7 @@
 
 #import "GeniusItem.h"	// actions
 #import "GeniusAtom.h"	// -toggleColumnRichText:
+#import "GeniusPreferences.h"
 
 #import "GeniusInspectorController.h"
 
@@ -101,11 +102,14 @@
 	// Set up contextual menu on the table column headers
 	[[tableView headerView] setMenu:tableColumnMenu];	
 
+	// Set up double-click action to handle uneditable rich text cells
+	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];
+
 	// Configure table view size
 	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
 	[self _handleUserDefaultsDidChange:nil];
 
-	// -documentInfo may have created a new managed object, which sets the dirty bit
+	// -documentInfo created a new managed object, which sets the dirty bit
 	[[self undoManager] removeAllActions];
 }
 
@@ -118,13 +122,17 @@
 }
 
 
-- (void) _dismissFieldEditor
+- (NSWindow *) _mainWindow
 {
 	NSArray * windowControllers = [self windowControllers];
 	if ([windowControllers count] == 0)
-		return;
+		return nil;
+	return [[windowControllers objectAtIndex:0] window];
+}
 
-	NSWindow * window = [[windowControllers objectAtIndex:0] window];
+- (void) _dismissFieldEditor
+{
+	NSWindow * window = [self _mainWindow];
 	if ([window makeFirstResponder:window] == NO)
 		[window endEditingFor:nil];
 }
@@ -148,11 +156,10 @@
 
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
 {
-	// Dismiss field editor
 	[self _dismissFieldEditor];
 	
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-	int index = [ud integerForKey:@"ListTextSizeMode"];
+	int index = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
 
 	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
 	NSControlSize controlSize = NSMiniControlSize;
@@ -174,6 +181,24 @@
 		//[[tableColumn dataCell] setControlSize:controlSize];
 		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
 	}
+}
+
+- (void) _tableViewDoubleAction:(id)sender
+{
+	if ([sender clickedRow] == -1)
+		return;
+	int clickedColumn = [sender clickedColumn];
+	if ([sender clickedColumn] == -1)
+		return;
+
+	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
+	[ic window];	// load window
+
+	NSTableColumn * column = [[sender tableColumns] objectAtIndex:clickedColumn];
+	NSString * identifier = [column identifier];
+	[[ic tabView] selectTabViewItemWithIdentifier:identifier];
+
+	[ic showWindow:sender];
 }
 
 
@@ -251,6 +276,49 @@
 	return documentInfo;
 }
 
+
+- (BOOL) convertAllAtomsToRichText:(BOOL)value forAtomKey:(NSString *)atomKey
+{
+	// Fetch all atom objects for the specified column
+	NSManagedObjectContext * context = [self managedObjectContext];
+	NSFetchRequest * request = [[[NSFetchRequest alloc] init] autorelease];
+	NSEntityDescription * entity = [NSEntityDescription entityForName:@"GeniusAtom" inManagedObjectContext:context];
+	[request setEntity:entity];
+	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"key == %@", atomKey];
+	[request setPredicate:predicate];
+	NSError * error = nil;
+	NSArray * array = [context executeFetchRequest:request error:&error];
+	if (array == nil)
+	{
+		NSLog(@"%@", [error description]);
+		return NO;
+	}
+		
+	if ([array count] == 0)
+		return YES;
+	
+	if (value == NO)
+	{
+		NSString * messageText = NSLocalizedString(@"Convert this column to plain text?", nil);
+		NSString * informativeText = NSLocalizedString(@"If you convert this column, you will lose all text styles (such as fonts and colors) and attachments.", nil);
+		NSString * defaultButton = NSLocalizedString(@"Convert", nil);
+		NSString * alternateButton = NSLocalizedString(@"Cancel", nil);
+
+		NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButton
+			alternateButton:alternateButton otherButton:nil informativeTextWithFormat:informativeText];
+		int returnCode = [alert runModal];
+		if (returnCode == 0)	// No	// XXX: documentation says it's supposed to be NSAlertSecondButtonReturn
+			return NO;
+	}
+	
+	NSEnumerator * objectEnumerator = [array objectEnumerator];
+	GeniusAtom * atom;
+	while ((atom = [objectEnumerator nextObject]))
+		[atom setUsesRTFDData:value];
+	
+	return YES;
+}
+
 @end
 
 
@@ -264,6 +332,12 @@
 	NSLog(@"windowWillClose: %@", [window description]);
 	[itemArrayController setContent:nil];
 }*/
+
+- (void)windowDidResignKey:(NSNotification *)aNotification
+{
+	if ([[NSApp keyWindow] isKindOfClass:[NSPanel class]])
+		[self _dismissFieldEditor];
+}
 
 @end
 
@@ -316,14 +390,14 @@
 		return [itemArrayController selectionIndex] != NSNotFound;
 	}
 	// Format menu
-	else if ([menuItem action] == @selector(toggleColumnRichText:))
+/*	else if ([menuItem action] == @selector(toggleColumnRichText:))
 	{
 		int tag = [menuItem tag];
 		if (tag == 0)
 			[menuItem setState:([[self documentInfo] isColumnARichText] ? NSOnState : NSOffState)];
 		else if (tag == 1)
 			[menuItem setState:([[self documentInfo] isColumnBRichText] ? NSOnState : NSOffState)];
-	}
+	}*/
 	// Study menu
 	else if ([menuItem action] == @selector(setQuizDirectionModeAction:))
 	{
@@ -342,10 +416,10 @@
 
 // File menu
 
-- (IBAction) exportFile:(id)sender
+/*- (IBAction) exportFile:(id)sender
 {
 	// TO DO
-}
+}*/
 
 
 // Edit menu
@@ -363,14 +437,16 @@
 	id newObject = [itemArrayController newObject];
 	[itemArrayController addObject:newObject];
 
-	int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
-	[tableView editColumn:1 row:rowIndex withEvent:nil select:YES];
+	if ([[self _mainWindow] isKeyWindow] && [[self documentInfo] isColumnARichText] == NO)
+	{
+		int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
+		[tableView editColumn:1 row:rowIndex withEvent:nil select:YES];
+	}
 }
 
 - (IBAction) toggleInspector:(id)sender
 {
-	// Dismiss field editor
-	[self _dismissFieldEditor];
+//	[self _dismissFieldEditor];
 
 	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
 	if ([[ic window] isVisible])
@@ -391,10 +467,10 @@
 		[item setValue:newRatingValue forKey:@"myRating"];
 }
 
-- (IBAction) swapColumns:(id)sender
+/*- (IBAction) swapColumns:(id)sender
 {
 	// TO DO
-}
+}*/
 
 - (IBAction) resetItemScore:(id)sender
 {
@@ -410,56 +486,36 @@
 
 // Format menu
 
-- (IBAction) toggleColumnRichText:(NSMenuItem *)sender
+- (IBAction) toggleColumnRichText:(id)sender
 {
-	BOOL currentValue = NO;
+	[self _dismissFieldEditor];
+	
+	BOOL value = NO;
+	NSString * atomKey = nil;
 	int columnIndex = [sender tag];
 	if (columnIndex == 0)
-		currentValue = [[self documentInfo] isColumnARichText];
-	else if (columnIndex == 1)
-		currentValue = [[self documentInfo] isColumnBRichText];
-
-	if (currentValue == YES)
 	{
-		NSString * messageText = NSLocalizedString(@"Convert this column to plain text?", nil);
-		NSString * informativeText = NSLocalizedString(@"If you convert this column, you will lose all text styles (such as fonts and colors) and attachments.", nil);
-		NSString * defaultButton = NSLocalizedString(@"Convert", nil);
-		NSString * alternateButton = NSLocalizedString(@"Cancel", nil);
-
-		NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButton
-			alternateButton:alternateButton otherButton:nil informativeTextWithFormat:informativeText];
-		int returnCode = [alert runModal];
-		if (returnCode == 0)	// No	// XXX: documentation says it's supposed to be NSAlertSecondButtonReturn
-			return;
+		value = [[self documentInfo] isColumnARichText];
+		atomKey = @"atomA";	// XXX
 	}
-	
-	currentValue = !currentValue;
-	NSString * atomKey = (columnIndex ? @"atomA" : @"atomB");	// XXX
-
-	// Fetch all atom objects for the specified column
-	NSManagedObjectContext * context = [self managedObjectContext];
-	NSFetchRequest * request = [[[NSFetchRequest alloc] init] autorelease];
-	NSEntityDescription * entity = [NSEntityDescription entityForName:@"GeniusAtom" inManagedObjectContext:context];
-	[request setEntity:entity];
-	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"key == \"%@\"", atomKey];
-	[request setPredicate:predicate];
-	NSError * error = nil;
-	NSArray * array = [context executeFetchRequest:request error:&error];
-	if (array == nil)
+	else if (columnIndex == 1)
 	{
-		NSLog(@"%@", [error description]);
+		value = [[self documentInfo] isColumnBRichText];
+		atomKey = @"atomB";	// XXX
+	}
+
+	BOOL result = [self convertAllAtomsToRichText:!value forAtomKey:atomKey];
+	if (result == NO)
+	{
+		[sender setState:(value ? NSOnState : NSOffState)];
 		return;
 	}
-		
-	NSEnumerator * objectEnumerator = [array objectEnumerator];
-	GeniusAtom * atom;
-	while ((atom = [objectEnumerator nextObject]))
-		[atom setUsesRTFData:currentValue];
-		
+	
+	value = !value;
 	if (columnIndex == 0)
-		[[self documentInfo] setIsColumnARichText:currentValue];
+		[[self documentInfo] setIsColumnARichText:value];
 	else if (columnIndex == 1)
-		[[self documentInfo] setIsColumnBRichText:currentValue];
+		[[self documentInfo] setIsColumnBRichText:value];
 }
 
 
@@ -481,22 +537,32 @@
 
 - (IBAction) runQuiz:(id)sender
 {
-	// number of items or time limit
-	// initial set of associations
+	// XXX: let user choose number of items or time limit, initial set of associations
 
 	QuizModel * model = [[QuizModel alloc] initWithDocument:self];
 	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
 	[model release];
+
+	if ([[associationEnumerator allObjects] count] == 0)
+	{
+		NSString * messageString = NSLocalizedString(@"There is nothing to study.", nil);
+		NSString * informativeString = NSLocalizedString(@"Make sure the items you want to study are filled in and enabled, or add more items.", nil);
+
+		NSAlert * alert = [NSAlert alertWithMessageText:messageString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:informativeString];
+		[alert beginSheetModalForWindow:[self _mainWindow] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+		return;
+	}
 
 	QuizController * quiz = [[QuizController alloc] initWithAssociationEnumerator:associationEnumerator];
 	[quiz runQuiz];
 	[quiz release];
 }
 
-- (IBAction) toggleSoundEffects:(id)sender
+
+- (IBAction) toggleFullScreen:(id)sender
 {
-	// do nothing - NSUserDefaultsController handles this in the nib
-	// This is defined for automatic menu item enabling
+	// do nothing - this handled by the NSUserDefaultsController in MainMenu.nib
+	// defined only for automatic menu enabling
 }
 
 

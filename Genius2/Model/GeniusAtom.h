@@ -20,9 +20,9 @@ extern NSString * GeniusAtomRTFDDataKey;
 {
 }
 
-- (void) setUsesRTFData:(BOOL)flag;	// converts string <-> rtfdData
+- (void) setUsesRTFDData:(BOOL)flag;	// converts string <-> rtfdData
 
 - (void) setString:(NSString *)string;	// also sets rtfdData to nil
-- (void) setRtfData:(NSData *)rtfdData;	// also sets string to plain text form
+- (void) setRtfdData:(NSData *)rtfdData;	// also sets string to plain text form
 
 @end

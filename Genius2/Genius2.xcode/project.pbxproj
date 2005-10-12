@@ -126,6 +126,8 @@
 				2349721908F0C06D0004234D,
 				2349721A08F0C06D0004234D,
 				23B7837708F9D7F9007CD679,
+				234E539808FC635B005FCF83,
+				234E539908FC635B005FCF83,
 			);
 			isa = PBXGroup;
 			name = "Model Classes";
@@ -203,8 +205,6 @@
 			children = (
 				23380CD608E58DFF00862CBC,
 				23380CD708E58DFF00862CBC,
-				23835FC108F99D0D0066323F,
-				23835FC208F99D0D0066323F,
 			);
 			isa = PBXGroup;
 			path = Widgets;
@@ -303,6 +303,8 @@
 			children = (
 				233EC5DB08F3F1E700009D94,
 				2338119C08E60F2900862CBC,
+				234E563508FC833A005FCF83,
+				234E563608FC833A005FCF83,
 			);
 			isa = PBXGroup;
 			name = Images;
@@ -362,8 +364,6 @@
 		};
 		233EC5DB08F3F1E700009D94 = {
 			children = (
-				233EC5DD08F3F1E700009D94,
-				233EC5DE08F3F1E700009D94,
 				233EC5DF08F3F1E700009D94,
 				23645E2208F4293C00B8C28B,
 				233EC5E008F3F1E700009D94,
@@ -372,20 +372,6 @@
 			);
 			isa = PBXGroup;
 			path = "toolbar-images";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		233EC5DD08F3F1E700009D94 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.tiff;
-			path = colors.tiff;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		233EC5DE08F3F1E700009D94 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.tiff;
-			path = fonts.tiff;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -409,18 +395,6 @@
 			path = preferences.tiff;
 			refType = 4;
 			sourceTree = "<group>";
-		};
-		233EC5E308F3F1E700009D94 = {
-			fileRef = 233EC5DD08F3F1E700009D94;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		233EC5E408F3F1E700009D94 = {
-			fileRef = 233EC5DE08F3F1E700009D94;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		233EC5E508F3F1E700009D94 = {
 			fileRef = 233EC5DF08F3F1E700009D94;
@@ -505,6 +479,120 @@
 		};
 		2349721B08F0C06D0004234D = {
 			fileRef = 2349721A08F0C06D0004234D;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		234E52EA08FC5B06005FCF83 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = VisualStringDiff.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E52EB08FC5B06005FCF83 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = VisualStringDiff.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E52EC08FC5B06005FCF83 = {
+			fileRef = 234E52EB08FC5B06005FCF83;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		234E52F308FC5B34005FCF83 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = QuizArrayAdditions.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E52F408FC5B34005FCF83 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = QuizArrayAdditions.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E52F508FC5B35005FCF83 = {
+			fileRef = 234E52F408FC5B34005FCF83;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		234E539808FC635B005FCF83 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = GeniusPreferences.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E539908FC635B005FCF83 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = GeniusPreferences.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E539A08FC635B005FCF83 = {
+			fileRef = 234E539908FC635B005FCF83;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		234E545E08FC6AED005FCF83 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = QuizFullScreenWindow.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E545F08FC6AED005FCF83 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = QuizFullScreenWindow.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E546008FC6AED005FCF83 = {
+			fileRef = 234E545F08FC6AED005FCF83;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		234E563508FC833A005FCF83 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = colors_16.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E563608FC833A005FCF83 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = fonts_16.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		234E563708FC833A005FCF83 = {
+			fileRef = 234E563508FC833A005FCF83;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		234E563808FC833A005FCF83 = {
+			fileRef = 234E563608FC833A005FCF83;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -596,10 +684,14 @@
 				23B7832708F9D6BB007CD679,
 				2383601308F9A1680066323F,
 				2383601408F9A1680066323F,
-				23B784D708F9E633007CD679,
-				23B784D808F9E633007CD679,
 				23B7855C08F9E9C4007CD679,
 				23B7855D08F9E9C4007CD679,
+				234E52F308FC5B34005FCF83,
+				234E52F408FC5B34005FCF83,
+				234E52EA08FC5B06005FCF83,
+				234E52EB08FC5B06005FCF83,
+				234E545E08FC6AED005FCF83,
+				234E545F08FC6AED005FCF83,
 			);
 			isa = PBXGroup;
 			name = "Quiz Classes";
@@ -615,28 +707,6 @@
 		};
 		23835F1B08F970380066323F = {
 			fileRef = 23835F1208F970380066323F;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		23835FC108F99D0D0066323F = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = VisualStringDiff.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		23835FC208F99D0D0066323F = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.objc;
-			path = VisualStringDiff.m;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		23835FC308F99D0D0066323F = {
-			fileRef = 23835FC208F99D0D0066323F;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -855,28 +925,6 @@
 			settings = {
 			};
 		};
-		23B784D708F9E633007CD679 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = QuizArrayAdditions.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		23B784D808F9E633007CD679 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.objc;
-			path = QuizArrayAdditions.m;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		23B784D908F9E633007CD679 = {
-			fileRef = 23B784D808F9E633007CD679;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		23B7855C08F9E9C4007CD679 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -904,7 +952,7 @@
 				23B7866B08F9F7C5007CD679,
 			);
 			isa = PBXVariantGroup;
-			name = Documentation.nib;
+			name = Help.nib;
 			path = "";
 			refType = 4;
 			sourceTree = "<group>";
@@ -913,7 +961,7 @@
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.nib;
 			name = English;
-			path = English.lproj/Documentation.nib;
+			path = English.lproj/Help.nib;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1347,8 +1395,6 @@
 				233811A308E60F2900862CBC,
 				2349703C08F0B0850004234D,
 				23D76E3E08F0D14B0072EE07,
-				233EC5E308F3F1E700009D94,
-				233EC5E408F3F1E700009D94,
 				233EC5E508F3F1E700009D94,
 				233EC5E608F3F1E700009D94,
 				233EC5E708F3F1E700009D94,
@@ -1360,6 +1406,8 @@
 				23B7867208F9F7C5007CD679,
 				23B7869008F9F85F007CD679,
 				239CEE7E08F9FFFE00B79606,
+				234E563708FC833A005FCF83,
+				234E563808FC833A005FCF83,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1401,15 +1449,17 @@
 				2389A63C08F207B600F0CEDF,
 				23835F1A08F970380066323F,
 				23835F1B08F970380066323F,
-				23835FC308F99D0D0066323F,
 				2383601508F9A1680066323F,
 				23B7832808F9D6BB007CD679,
 				23B7837E08F9D7F9007CD679,
 				23B7837F08F9D7F9007CD679,
 				23B7838008F9D7F9007CD679,
-				23B784D908F9E633007CD679,
 				23B7855E08F9E9C4007CD679,
 				23B7867F08F9F806007CD679,
+				234E52EC08FC5B06005FCF83,
+				234E52F508FC5B35005FCF83,
+				234E539A08FC635B005FCF83,
+				234E546008FC6AED005FCF83,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

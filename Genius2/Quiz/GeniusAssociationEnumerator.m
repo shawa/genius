@@ -38,7 +38,7 @@
 - (id) nextObject
 {
 	[_currentAssociation release];
-	
+
     if ([_scheduledAssociations count] > 0)
     {
         _currentAssociation = [_scheduledAssociations objectAtIndex:0];
@@ -66,7 +66,7 @@
 - (void) _rescheduleCurrentAssociation
 {
     unsigned int deltaSec = 5;
-	if ([_currentAssociation lastResult] == YES)
+	if ([_currentAssociation lastResultValue] == YES)
 		deltaSec = pow(5, [_currentAssociation resultCount]);
 	
     NSDate * dueDate = [[NSDate date] addTimeInterval:deltaSec];

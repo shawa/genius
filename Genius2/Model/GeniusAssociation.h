@@ -28,12 +28,13 @@ extern NSString * GeniusAssociationPredictedScoreKey;
 - (GeniusAtom *) sourceAtom;
 - (GeniusAtom *) targetAtom;
 
-- (BOOL) lastResult;
+- (BOOL) lastResultValue;
 - (unsigned int) resultCount;
 
 - (void) addResult:(BOOL)value;
 
 - (void) reset;
+- (BOOL) isReset;
 
 @end
 

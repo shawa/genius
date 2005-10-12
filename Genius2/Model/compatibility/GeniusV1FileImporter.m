@@ -105,7 +105,7 @@
 			[newItem setValue:[NSNumber numberWithInt:2] forKey:GeniusItemMyRatingKey];
 			break;
 		case 5:
-			[newItem setValue:[NSNumber numberWithInt:3] forKey:GeniusItemMyRatingKey];
+			// do nothing
 			break;
 		case 8:
 			[newItem setValue:[NSNumber numberWithInt:4] forKey:GeniusItemMyRatingKey];
@@ -167,7 +167,7 @@
 		}
 
 		// Document Header
-		NSLog(@"Importing Genius 1.x data file");
+		//NSLog(@"Importing Genius 1.x data file");
 		// XXX: TO DO
 #warning Need to import Genius 1.x document metadata
 /*        NSArray * visibleColumnIdentifiers = [unarchiver decodeObjectForKey:@"visibleColumnIdentifiers"];

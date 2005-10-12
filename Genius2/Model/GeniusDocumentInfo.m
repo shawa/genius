@@ -14,6 +14,12 @@ NSString * GeniusDocumentInfoIsColumnARichTextKey = @"isColumnARichText";
 NSString * GeniusDocumentInfoIsColumnBRichTextKey = @"isColumnBRichText";
 
 
+#import "GeniusDocument.h"
+@interface GeniusDocument (Private)	// XXX
+- (BOOL) convertAllAtomsToRichText:(BOOL)value forAtomKey:(NSString *)atomKey;
+@end
+
+
 @implementation GeniusDocumentInfo
 
 - (NSArray *) hiddenColumnIdentifiers				// never returns nil
@@ -61,9 +67,13 @@ NSString * GeniusDocumentInfoIsColumnBRichTextKey = @"isColumnBRichText";
 
 - (void) setIsColumnARichText:(BOOL)flag
 {
+	[self willChangeValueForKey:GeniusDocumentInfoIsColumnARichTextKey];
+
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionaryWithDictionary:[self _richTextColumnsDictionary]];
 	[dictionary setObject:[NSNumber numberWithBool:flag] forKey:@"atomA"];
 	[self _setRichTextColumnsDictionary:dictionary];
+
+	[self didChangeValueForKey:GeniusDocumentInfoIsColumnARichTextKey];
 }
 
 
@@ -77,10 +87,15 @@ NSString * GeniusDocumentInfoIsColumnBRichTextKey = @"isColumnBRichText";
 
 - (void) setIsColumnBRichText:(BOOL)flag
 {
+	[self willChangeValueForKey:GeniusDocumentInfoIsColumnBRichTextKey];
+
 	NSMutableDictionary * dictionary = [NSMutableDictionary dictionaryWithDictionary:[self _richTextColumnsDictionary]];
 	[dictionary setObject:[NSNumber numberWithBool:flag] forKey:@"atomB"];
 	[self _setRichTextColumnsDictionary:dictionary];
+
+	[self didChangeValueForKey:GeniusDocumentInfoIsColumnBRichTextKey];
 }
+
 
 
 - (int) quizDirectionMode
