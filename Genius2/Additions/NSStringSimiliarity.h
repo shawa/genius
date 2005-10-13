@@ -1,9 +1,9 @@
 //
 //  NSStringSimiliarity.h
-//  Genius
 //
 //  Created by John R Chang on Thu Dec 25 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
+//  This code is Creative Commons Public Domain.  You may use it for any purpose whatsoever.
+//  http://creativecommons.org/licenses/publicdomain/
 //
 
 #import <Foundation/Foundation.h>
@@ -13,9 +13,8 @@
 
 /*
     Returns 0.0 <= x <= 1.0.  0.0 == not equal (or error), 1.0 == equal.
-    Uses SearchKit (AIAT) technology for word-based analysis.
-    FIX: Doesn't set kSKLanguageTypes.
+    Uses Search Kit (a.k.a. AIAT, V-Twin) technology.
 */
-- (float)isSimilarToString:(NSString *)aString;
+- (float) isSimilarToString:(NSString *)aString;
 
 @end

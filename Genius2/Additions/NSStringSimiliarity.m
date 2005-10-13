@@ -1,12 +1,13 @@
 //
 //  NSStringSimiliarity.m
-//  Genius
 //
 //  Created by John R Chang on Thu Dec 25 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
+//  This code is Creative Commons Public Domain.  You may use it for any purpose whatsoever.
+//  http://creativecommons.org/licenses/publicdomain/
 //
 
 #import "NSStringSimiliarity.h"
+
 #import <CoreServices/CoreServices.h>
 
 
@@ -14,84 +15,86 @@
 
 - (float)isSimilarToString:(NSString *)aString
 {
-    // Non-fuzzy fast case
+    // Exact-match fast case
     if ([self caseInsensitiveCompare:aString] == NSOrderedSame)
         return 1.0;
 
     // Fuzzy match
     float outScore = 0.0;
-    SKIndexRef index = NULL;
-    SKSearchGroupRef group = NULL;
-    SKDocumentRef document1 = NULL;
-    SKDocumentRef document2 = NULL;
-    SKSearchResultsRef searchResults = NULL;
-    Boolean succeed;
+    SKIndexRef skIndex = NULL;
+    SKSearchGroupRef skGroup = NULL;
+    SKDocumentRef skDocument1 = NULL;
+    SKDocumentRef skDocument2 = NULL;
+    SKSearchResultsRef skSearchResults = NULL;
+    Boolean result;
     
     CFStringRef string1 = CFStringCreateCopy(NULL, (CFStringRef)self);
     if (string1 == NULL)
         return outScore;
 
-
+	// Create in-memory Search Kit index
     CFMutableDataRef indexData = (CFMutableDataRef)[NSMutableData data];
-    index = SKIndexCreateWithMutableData(indexData, NULL, kSKIndexVector, NULL);
-    if (index == NULL)
-        goto exit_isSimilarToString;
+    skIndex = SKIndexCreateWithMutableData(indexData, NULL, kSKIndexVector, NULL);
+    if (skIndex == NULL)
+        goto catch_error;
 
-    document1 = SKDocumentCreate(CFSTR("genius"), NULL, CFSTR("s1"));
-    if (document1 == NULL)
-        goto exit_isSimilarToString;
-    succeed = SKIndexAddDocumentWithText(index, document1, string1, true);
-    if (!succeed)
-        goto exit_isSimilarToString;
+	// Create documents with content of given strings
+    skDocument1 = SKDocumentCreate(CFSTR(""), NULL, CFSTR("s1"));
+    if (skDocument1 == NULL)
+        goto catch_error;
+    result = SKIndexAddDocumentWithText(skIndex, skDocument1, string1, true);
+    if (result == false)
+        goto catch_error;
     
-    document2 = SKDocumentCreate(CFSTR("genius"), NULL, CFSTR("s2"));
-    if (document2 == NULL)
-        goto exit_isSimilarToString;
-    succeed = SKIndexAddDocumentWithText(index, document2, (CFStringRef)aString, true);
-    if (!succeed)
-        goto exit_isSimilarToString;
+    skDocument2 = SKDocumentCreate(CFSTR(""), NULL, CFSTR("s2"));
+    if (skDocument2 == NULL)
+        goto catch_error;
+    result = SKIndexAddDocumentWithText(skIndex, skDocument2, (CFStringRef)aString, true);
+    if (result == false)
+        goto catch_error;
     
-    succeed = SKIndexFlush(index);
-    if (!succeed)
-        goto exit_isSimilarToString;
+    result = SKIndexFlush(skIndex);
+    if (result == false)
+        goto catch_error;
     
-    
-    CFArrayRef indices = (CFArrayRef)[NSArray arrayWithObject:(id)index];
+    // Create search group
+    CFArrayRef indices = (CFArrayRef)[NSArray arrayWithObject:(id)skIndex];
     if (indices == NULL)
-        goto exit_isSimilarToString;
+        goto catch_error;
     
-    group = SKSearchGroupCreate(indices);
-    if (group == NULL)
-        goto exit_isSimilarToString;
+    skGroup = SKSearchGroupCreate(indices);
+    if (skGroup == NULL)
+        goto catch_error;
 
-    CFArrayRef exampleDocuments = (CFArrayRef)[NSArray arrayWithObject:(id)document1];
-    searchResults = SKSearchResultsCreateWithDocuments(group, exampleDocuments, 2, NULL, NULL);
-    if (searchResults == NULL)
-        goto exit_isSimilarToString;
+	// Create search results
+    CFArrayRef exampleDocuments = (CFArrayRef)[NSArray arrayWithObject:(id)skDocument1];
+    skSearchResults = SKSearchResultsCreateWithDocuments(skGroup, exampleDocuments, 2, NULL, NULL);
+    if (skSearchResults == NULL)
+        goto catch_error;
       
+	// Get relevance score
     SKDocumentRef foundDocuments[2];
     float foundScores[2] = {};
-
-    CFIndex count = SKSearchResultsGetInfoInRange(searchResults, CFRangeMake(0,2), (SKDocumentRef *)&foundDocuments, NULL, (float *)&foundScores);
+    CFIndex count = SKSearchResultsGetInfoInRange(skSearchResults, CFRangeMake(0,2), (SKDocumentRef *)&foundDocuments, NULL, (float *)&foundScores);
     if (count != 2)
     {
         outScore = 0.0;
-        goto exit_isSimilarToString;
+        goto catch_error;
     }
         
     outScore = foundScores[1];
 
-exit_isSimilarToString:    
-    if (index)
-        CFRelease(index);
-    if (group)
-        CFRelease(group);
-    if (document1)
-        CFRelease(document1);
-    if (document2)
-        CFRelease(document2);
-    if (searchResults)
-        CFRelease(searchResults);
+catch_error:    
+    if (skIndex)
+        CFRelease(skIndex);
+    if (skGroup)
+        CFRelease(skGroup);
+    if (skDocument1)
+        CFRelease(skDocument1);
+    if (skDocument2)
+        CFRelease(skDocument2);
+    if (skSearchResults)
+        CFRelease(skSearchResults);
 
     CFRelease(string1);
     return outScore;
