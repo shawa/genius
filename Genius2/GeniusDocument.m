@@ -6,21 +6,29 @@
 
 #import "GeniusDocument.h"
 #import "GeniusDocumentToolbar.h"
-#import "GeniusDocumentInfo.h"
-#import "IconTextFieldCell.h"
 
+// View
+#import "IconTextFieldCell.h"
+#import "GeniusAtomView.h"
+#import "ColorView.h"
+#import "CollapsableSplitView.h"
+
+// Model
+#import "GeniusDocumentInfo.h"
 #import "GeniusItem.h"	// actions
 #import "GeniusAtom.h"	// -toggleColumnRichText:
 #import "GeniusPreferences.h"
 
 #import "GeniusInspectorController.h"
 
+// Quiz
 #import "QuizModel.h"
 #import "QuizController.h"
 
 
 @interface GeniusDocument (Private)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
+- (BOOL) convertAllAtomsToRichText:(BOOL)value forAtomKey:(NSString *)atomKey;
 @end
 
 
@@ -53,13 +61,21 @@
     [super windowControllerDidLoadNib:windowController];
     // user interface preparation code
 
-	// Set up object controllers
+	/* Set up object controllers */
 	[itemArrayController setManagedObjectContext:[self managedObjectContext]];
 	[documentInfoController setContent:[self documentInfo]];
 	
+/* Window */
 	// Set up window toolbar
 	[self setupToolbarForWindow:[windowController window]];
-		
+	
+	// Tweak window appearance
+	[[windowController window] setBackgroundColor:[NSColor colorWithCalibratedWhite:(200.0/255.0) alpha:1.0]];
+	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
+	[(ColorView *)bottomView setFrameColor:[NSColor colorWithCalibratedWhite:(170.0/255.0) alpha:1.0]];
+//	[[searchField cell] setMenu:nil];
+	
+/* Table View */
 	// Retain table columns
 	_tableColumnDictionary = [NSMutableDictionary new];
 	NSArray * tableColumns = [tableView tableColumns];
@@ -87,10 +103,6 @@
 
 	tableColumn = [tableView tableColumnWithIdentifier:@"atomB"];
 	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
-
-	// Set up handler to automatically make new item if user presses Return in last row
-	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
 	
     // Set up icon text field cells for colored grade indication
     tableColumn = [tableView tableColumnWithIdentifier:@"grade"];
@@ -105,9 +117,25 @@
 	// Set up double-click action to handle uneditable rich text cells
 	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];
 
-	// Configure table view size
+	// Configure list font size
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
 	[self _handleUserDefaultsDidChange:nil];
+
+/* Split View */
+	// Bind atom views
+	[splitView collapseSubviewAt:1];
+
+		// unregistered in -windowWillClose:
+    [atomAView bindAtomToController:itemArrayController withKeyPath:@"selection.atomA"];	// XXX
+	[atomAView addObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey options:0L context:NULL];
+
+    [atomBView bindAtomToController:itemArrayController withKeyPath:@"selection.atomB"];	// XXX
+	[atomBView addObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey options:0L context:NULL];
+
+/* Misc. */
+	// Set up handler to automatically make new item if user presses Return in last row
+	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
 
 	// -documentInfo created a new managed object, which sets the dirty bit
 	[[self undoManager] removeAllActions];
@@ -119,6 +147,18 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_tableColumnDictionary release];
 	[super dealloc];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqualToString:GeniusAtomViewUseRichTextAndGraphicsKey])
+	{
+		if (object == atomAView)
+			[self convertAllAtomsToRichText:[atomAView useRichTextAndGraphics] forAtomKey:@"atomA"];	// XXX
+		else if (object == atomBView)
+			[self convertAllAtomsToRichText:[atomBView useRichTextAndGraphics] forAtomKey:@"atomB"];	// XXX
+	}
 }
 
 
@@ -294,7 +334,7 @@
 		return NO;
 	}
 		
-	if ([array count] == 0)
+/*	if ([array count] == 0)
 		return YES;
 	
 	if (value == NO)
@@ -309,7 +349,7 @@
 		int returnCode = [alert runModal];
 		if (returnCode == 0)	// No	// XXX: documentation says it's supposed to be NSAlertSecondButtonReturn
 			return NO;
-	}
+	}*/
 	
 	NSEnumerator * objectEnumerator = [array objectEnumerator];
 	GeniusAtom * atom;
@@ -324,19 +364,38 @@
 
 @implementation GeniusDocument (NSWindowDelegate)
 
-/*- (void)windowWillClose:(NSNotification *)aNotification
+- (void)windowWillClose:(NSNotification *)aNotification
 {
-	// "Re: Retain cycle problem with bindings & NSWindowController"
-	// http://lists.apple.com/archives/cocoa-dev/2004/Jun/msg00602.html
-	NSWindow * window = [aNotification object];
-	NSLog(@"windowWillClose: %@", [window description]);
-	[itemArrayController setContent:nil];
-}*/
+	[atomAView removeObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey];
+	[atomBView removeObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey];
+}
 
 - (void)windowDidResignKey:(NSNotification *)aNotification
 {
 	if ([[NSApp keyWindow] isKindOfClass:[NSPanel class]])
 		[self _dismissFieldEditor];
+}
+
+@end
+
+
+@implementation GeniusDocument (NSSplitViewDelegate)
+
+- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
+{
+	if ([[sender subviews] indexOfObject:subview] == 1)
+		return YES;
+	return NO;
+}
+
+- (float)splitView:(NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
+{
+	return 0.0;
+}
+
+- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+{
+	return proposedMax - 100.0;
 }
 
 @end
@@ -486,7 +545,7 @@
 
 // Format menu
 
-- (IBAction) toggleColumnRichText:(id)sender
+/*- (IBAction) toggleColumnRichText:(id)sender
 {
 	[self _dismissFieldEditor];
 	
@@ -516,7 +575,7 @@
 		[[self documentInfo] setIsColumnARichText:value];
 	else if (columnIndex == 1)
 		[[self documentInfo] setIsColumnBRichText:value];
-}
+}*/
 
 
 // Study menu

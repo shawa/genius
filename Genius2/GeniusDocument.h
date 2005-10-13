@@ -8,10 +8,16 @@
 {
     IBOutlet id itemArrayController;
     IBOutlet id documentInfoController;
+
     IBOutlet id levelIndicator;
     IBOutlet id searchField;
+
     IBOutlet id tableView;
     IBOutlet id tableColumnMenu;
+
+    IBOutlet id splitView;
+    IBOutlet id atomAView;
+    IBOutlet id atomBView;
 
 	NSDictionary * _tableColumnDictionary;
 }
@@ -38,7 +44,7 @@
 - (IBAction) resetItemScore:(id)sender;
 
 // Format menu
-- (IBAction) toggleColumnRichText:(id)sender;
+//- (IBAction) toggleColumnRichText:(id)sender;
 
 // Study menu
 - (IBAction) setQuizDirectionModeAction:(NSMenuItem *)sender;

@@ -1,14 +1,19 @@
 window close dirty
 fix rich text/graphics
-
+grading
 hook up level indicator
-hook up text import/export
-drag and drop
-hook up relax panel
-hook up swap command
 
+drag and drop
+hook up text import/export
+
+hook up relax panel
+LastOpenFiles
+
+get rid of search field pop-up
+hook up swap command
 polish column behavior
 window and table position saving
+
 
 // version 3.0
 tri-directional

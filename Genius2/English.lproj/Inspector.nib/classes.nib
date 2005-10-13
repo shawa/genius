@@ -7,7 +7,6 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {}; 
             CLASS = GeniusInspectorController; 
             LANGUAGE = ObjC; 
             OUTLETS = {

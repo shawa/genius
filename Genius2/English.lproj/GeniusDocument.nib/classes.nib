@@ -1,5 +1,7 @@
 {
     IBClasses = (
+        {CLASS = CollapsableSplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }, 
+        {CLASS = ColorView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {
             ACTIONS = {newItem = id; resetItemScore = id; toggleTableColumnShown = id; }; 
             CLASS = FirstResponder; 
@@ -12,13 +14,23 @@
             SUPERCLASS = NSTextFieldCell; 
         }, 
         {
+            ACTIONS = {performToggleRichText = id; }; 
+            CLASS = GeniusAtomView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {textView = id; toggleButton = id; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
             CLASS = GeniusDocument; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                atomAView = id; 
+                atomBView = id; 
                 documentInfoController = id; 
                 itemArrayController = id; 
                 levelIndicator = id; 
                 searchField = id; 
+                splitView = id; 
                 tableColumnMenu = id; 
                 tableView = id; 
             }; 
