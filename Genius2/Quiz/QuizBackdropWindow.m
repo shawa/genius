@@ -1,15 +1,15 @@
 //
-//  QuizFullScreenWindow.m
+//  QuizBackdropWindow.m
 //  Genius2
 //
 //  Created by John R Chang on 2005-10-11.
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
-#import "QuizFullScreenWindow.h"
+#import "QuizBackdropWindow.h"
 
 
-@implementation QuizFullScreenWindow
+@implementation QuizBackdropWindow
 
 - (id)init
 {

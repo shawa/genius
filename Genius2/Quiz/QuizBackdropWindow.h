@@ -1,5 +1,5 @@
 //
-//  QuizFullScreenWindow.h
+//  QuizBackdropWindow.h
 //  Genius2
 //
 //  Created by John R Chang on 2005-10-11.
@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface QuizFullScreenWindow : NSWindow {
+@interface QuizBackdropWindow : NSWindow {
 
 }
 

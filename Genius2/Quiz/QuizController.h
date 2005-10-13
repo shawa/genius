@@ -11,6 +11,8 @@
 #import "GeniusAssociationEnumerator.h"
 
 
+@class QuizBackdropWindow;
+
 @interface QuizController : NSWindowController {
 	IBOutlet id stateController;
 	IBOutlet id sourceTextView;
@@ -24,6 +26,7 @@
 	GeniusAssociationEnumerator * _associationEnumerator;
 	NSMutableDictionary * _stateInfo;
 	unsigned int _maxCount;
+	QuizBackdropWindow * _screenWindow;
 	
     NSSound * _newSound;
     NSSound * _rightSound;

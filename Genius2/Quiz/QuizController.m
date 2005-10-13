@@ -13,8 +13,11 @@
 
 #import "GeniusPreferences.h"
 
-#import "QuizFullScreenWindow.h"
+#import "QuizBackdropWindow.h"
 
+
+const NSTimeInterval kQuizBackdropAnimationEaseInTimeInterval = 0.3;
+const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 
 enum {
 	QuizNewAssociationState,
@@ -201,16 +204,24 @@ enum {
 
 - (void) runQuiz
 {
-	QuizFullScreenWindow * screenWindow = nil;
+	_screenWindow = nil;
+	NSAnimation * animation = nil;
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
 	if ([ud boolForKey:GeniusPreferencesUseFullScreenKey])
 	{
-		[QuizFullScreenWindow new];
-		[screenWindow orderFront:self];
+		_screenWindow = [QuizBackdropWindow new];
+
+		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
+		[animation setDelegate:self];
+		[animation addProgressMark:0.025];
+		[_screenWindow setAlphaValue:0.0];
+		[_screenWindow orderFront:self];
+
+		[animation startAnimation];
 	}
 
     [[self window] center];
-
+	
 	GeniusAssociation * association;
     while ((association = [_associationEnumerator nextObject]))
 	{
@@ -244,7 +255,13 @@ enum {
 
     [self close];
 	
-	[screenWindow close];
+	{
+		[animation setAnimationCurve:NSAnimationEaseOut];
+		[animation setDuration:kQuizBackdropAnimationEaseOutTimeInterval];
+		[animation startAnimation];
+		[_screenWindow close];
+		[animation release];
+	}
 }
 
 
@@ -262,9 +279,10 @@ enum {
 - (IBAction) right:(id)sender
 {
     // End editing (from -[NSWindow endEditingFor:] documentation)
-    BOOL succeed = [[self window] makeFirstResponder:[self window]];
+	NSWindow * window = [self window];
+    BOOL succeed = [window makeFirstResponder:window];
     if (!succeed)
-        [[self window] endEditingFor:nil];
+        [window endEditingFor:nil];
 
     [_associationEnumerator right];
     [NSApp stopModal];
@@ -273,9 +291,10 @@ enum {
 - (IBAction) wrong:(id)sender
 {
     // End editing (from -[NSWindow endEditingFor:] documentation)
-    BOOL succeed = [[self window] makeFirstResponder:[self window]];
+	NSWindow * window = [self window];
+    BOOL succeed = [window makeFirstResponder:window];
     if (!succeed)
-        [[self window] endEditingFor:nil];
+        [window endEditingFor:nil];
 
     [_associationEnumerator wrong];
     [NSApp stopModal];
@@ -284,9 +303,10 @@ enum {
 - (IBAction) skip:(id)sender
 {
     // End editing (from -[NSWindow endEditingFor:] documentation)
-    BOOL succeed = [[self window] makeFirstResponder:[self window]];
+	NSWindow * window = [self window];
+    BOOL succeed = [window makeFirstResponder:window];
     if (!succeed)
-        [[self window] endEditingFor:nil];
+        [window endEditingFor:nil];
 
     [_associationEnumerator right];
 }
@@ -294,7 +314,19 @@ enum {
 @end
 
 
-@implementation QuizController (WindowDelegate)
+@implementation QuizController (NSAnimationDelegate)
+
+- (void)animation:(NSAnimation*)animation didReachProgressMark:(NSAnimationProgress)progress
+{
+	float alpha = [animation currentValue] * 0.5;
+	[_screenWindow setAlphaValue:alpha];
+	[animation addProgressMark:0.1];
+}
+
+@end
+
+
+@implementation QuizController (NSWindowDelegate)
 
 - (void)keyDown:(NSEvent *)theEvent
 {
@@ -310,9 +342,10 @@ enum {
 - (BOOL)windowShouldClose:(id)sender
 {
     // End editing (from -[NSWindow endEditingFor:] documentation)
-    BOOL succeed = [[self window] makeFirstResponder:[self window]];
+	NSWindow * window = [self window];
+    BOOL succeed = [window makeFirstResponder:window];
     if (!succeed)
-        [[self window] endEditingFor:nil];
+        [window endEditingFor:nil];
 
     return YES;
 }
