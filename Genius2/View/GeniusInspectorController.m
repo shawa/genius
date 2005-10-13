@@ -116,8 +116,10 @@
 + (NSDictionary *) _defaultTextAttributes
 {
 	return [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSFont boldSystemFontOfSize:18.0], NSFontAttributeName, NULL];
+/*	return [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSFont userFontOfSize:12.0], NSFontAttributeName,
-		[NSParagraphStyle defaultParagraphStyle], NSParagraphStyleAttributeName, NULL];
+		[NSParagraphStyle defaultParagraphStyle], NSParagraphStyleAttributeName, NULL];*/
 }
 
 - (void) _setRichTextEnabled:(BOOL)flag forTextView:(NSTextView *)textView objectController:(NSObjectController *)controller
@@ -125,6 +127,7 @@
 	// Unbind
 	[textView unbind:NSValueBinding];
 	[textView unbind:NSDataBinding];
+//	[textView unbind:NSEditableBinding];
 
 	// Change text view
 	[textView setRichText:flag];
@@ -153,11 +156,17 @@
 		}
 
 		[textView bind:NSDataBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomRTFDDataKey] options:options];
+
+/*		options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:NSNoSelectionPlaceholderBindingOption];
+		[textView bind:NSEditableBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomRTFDDataKey] options:options];*/
 	}
 	else
 	{
 		NSDictionary * options = [NSDictionary dictionaryWithObject:noSelectionString forKey:NSNoSelectionPlaceholderBindingOption];
-		[textView bind:NSValueBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomStringKey] options:options];
+		[textView bind:NSValueBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomStringKey] options:options];		
+
+/*		options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:NSNoSelectionPlaceholderBindingOption];
+		[textView bind:NSEditableBinding toObject:controller withKeyPath:[NSString stringWithFormat:@"selection.%@", GeniusAtomStringKey] options:options];*/
 	}
 
 	// Set default text attributes
@@ -167,6 +176,7 @@
 	[attrString setAttributes:defaultTextAttributes range:range];
 	[textView setTypingAttributes:defaultTextAttributes];
 	[textView setAlignment:NSCenterTextAlignment];
+	
 	if ([textView isEditable])
 		[textView selectAll:nil];
 }

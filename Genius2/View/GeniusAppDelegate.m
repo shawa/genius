@@ -63,3 +63,28 @@
 }
 
 @end
+
+
+@implementation GeniusAppDelegate (NSApplicationDelegate)
+
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+    srandom(time(NULL) * getpid());
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	// LastVersionRun
+    NSBundle * mainBundle = [NSBundle mainBundle];
+    NSString * currentVersion = [mainBundle objectForInfoDictionaryKey:(id)kCFBundleVersionKey];
+    NSString * lastVersion = [ud stringForKey:@"LastVersionRun"];
+    if (!lastVersion || [currentVersion compare:lastVersion] > NSOrderedSame)
+    {
+        [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
+        [ud setObject:currentVersion forKey:@"LastVersionRun"];
+    }
+}
+
+@end
