@@ -33,8 +33,8 @@
 	[_backgroundColor set];
 	NSRectFill(rect);
 	
+	rect = NSInsetRect([self bounds], -1.0, 0.0);	// XXX: hack to draw only the top and bottom borders
 	[_frameColor set];
-	rect = NSInsetRect(rect, -1.0, 0.0);	// XXX: hack to draw only the top and bottom borders, actually
 	NSFrameRect(rect);
 }
 

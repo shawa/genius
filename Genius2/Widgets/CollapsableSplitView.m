@@ -33,24 +33,23 @@
 
 - (void)drawDividerInRect:(NSRect)aRect	// XXX: doesn't really belong here
 {
-	NSArray * subviews = [self subviews];
-	int i, count = [subviews count];
-	for (i=0; i<count; i++)
+	if ([_collapsedSubviewsDict count] > 0)
 	{
-		NSView * subview = [subviews objectAtIndex:i];
+		BOOL isVertical = [self isVertical];
 
-		// If subview is collapsed...
-		id key = [NSValue valueWithPointer:subview];
-		NSView * origSubview = [_collapsedSubviewsDict objectForKey:key];
-		if (origSubview)
+		NSEnumerator * keyEnumerator = [_collapsedSubviewsDict keyEnumerator];
+		id key;
+		while ((key = [keyEnumerator nextObject]))
 		{
-			// ... but is now resized by the user to be uncollapsed
-			BOOL isVertical = [self isVertical];
-			NSSize size = [subview frame].size;
+			NSView * tempView = [key pointerValue];
+			
+			// If the collapsed placeholder view has now been resized by the user to be uncollapsed
+			NSSize size = [tempView frame].size;
 			if ((isVertical && size.width > 0.0) || (isVertical == NO && size.height > 0.0))
 			{
 				// Swap in subview
-				[self replaceSubview:subview with:origSubview];
+				NSView * origSubview = [_collapsedSubviewsDict objectForKey:key];
+				[self replaceSubview:tempView with:origSubview];
 				[_collapsedSubviewsDict removeObjectForKey:key];
 			}
 		}
