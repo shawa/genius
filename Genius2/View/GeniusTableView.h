@@ -8,15 +8,17 @@
 	NSMutableArray * _allTableColumns;
 }
 
+- (NSDictionary *)configurationDictionary;
+- (void)setConfigurationFromDictionary:(NSDictionary *)configDict;
+
 @end
 
 
 @interface NSObject (GeniusTableViewDelegate)
 
-- (NSArray *) tableViewHiddenTableColumnIdentifiers:(NSTableView *)tableView;
-- (void) tableView:(NSTableView *)tableView setHiddenTableColumnIdentifiers:(NSArray *)hiddenIdentifiers;
-
-- (void) tableView:(NSTableView *)tableView didShowTableColumn:(NSTableColumn *)tableColumn;
+- (NSArray *)tableViewDefaultHiddenTableColumnIdentifiers:(NSTableView *)aTableView;
+- (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn;
+- (void) tableView:(NSTableView *)aTableView didShowTableColumn:(NSTableColumn *)tableColumn;
 
 
 - (void) delete:(id)sender;

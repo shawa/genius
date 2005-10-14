@@ -22,21 +22,18 @@ NSString * GeniusDocumentInfoIsColumnBRichTextKey = @"isColumnBRichText";
 
 @implementation GeniusDocumentInfo
 
-- (NSArray *) hiddenTableColumnIdentifiers			// never returns nil
+- (NSDictionary *) tableViewConfigurationDictionary
 {
-	NSArray * hiddenTableColumnIdentifiers = nil;
-	NSData * data = [self valueForKey:@"hiddenTableColumnIdentifiersData"];
-	if (data)
-		hiddenTableColumnIdentifiers = [NSUnarchiver unarchiveObjectWithData:data];
-	if (hiddenTableColumnIdentifiers == nil)
-		hiddenTableColumnIdentifiers = [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
-	return hiddenTableColumnIdentifiers;
+	NSData * data = [self valueForKey:@"tableViewConfigurationDictionaryData"];
+	if (data == nil)
+		return nil;
+	return [NSUnarchiver unarchiveObjectWithData:data];
 }
 
-- (void) setHiddenTableColumnIdentifiers:(NSArray *)array
+- (void) setTableViewConfigurationDictionary:(NSDictionary *)configDict
 {
-	NSData * data = [NSArchiver archivedDataWithRootObject:array];
-	[self setValue:data forKey:@"hiddenTableColumnIdentifiersData"];
+	NSData * data = [NSArchiver archivedDataWithRootObject:configDict];
+	[self setValue:data forKey:@"tableViewConfigurationDictionaryData"];
 }
 
 

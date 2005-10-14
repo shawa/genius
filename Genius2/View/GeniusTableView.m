@@ -7,6 +7,11 @@
 @interface GeniusTableHeaderView : NSTableHeaderView
 @end
 
+@interface GeniusTableView (Private)
+- (NSArray *) _allTableColumns;
+@end
+
+
 @implementation GeniusTableView
 
 - (void) awakeFromNib
@@ -21,17 +26,18 @@
 
 	// Remove non-default table columns
 	id delegate = [self delegate];
-	if (delegate && [delegate respondsToSelector:@selector(tableViewHiddenTableColumnIdentifiers:)])
+	if (delegate && [delegate respondsToSelector:@selector(tableViewDefaultHiddenTableColumnIdentifiers:)])
 	{
-		NSArray * hiddenTableColumnIdentifiers = [delegate tableViewHiddenTableColumnIdentifiers:self];
+		NSArray * hiddenIdentifiers = [delegate tableViewDefaultHiddenTableColumnIdentifiers:self];
 
-		NSEnumerator * identifierEnumerator = [hiddenTableColumnIdentifiers objectEnumerator];
+		NSEnumerator * identifierEnumerator = [hiddenIdentifiers objectEnumerator];
 		NSString * identifier;
 		while ((identifier = [identifierEnumerator nextObject]))
 		{
 			NSTableColumn * tableColumn = [self tableColumnWithIdentifier:identifier];
 			[self removeTableColumn:tableColumn];
 		}
+
 	}
 	
 	// Swap in custom header view to handle contextual menu
@@ -42,17 +48,16 @@
 }
 
 
-- (NSArray *) allTableColumns
+- (NSArray *) _allTableColumns
 {
 	return _allTableColumns;
 }
 
-- (NSArray *) hiddenTableColumnIdentifiers
+- (NSArray *) _hiddenTableColumnIdentifiers
 {
 	NSMutableArray * tableColumnIdentifiers = [NSMutableArray array];
 	NSSet * nonHiddenTableColumnSet = [NSSet setWithArray:[self tableColumns]];	// only non-hidden
-	NSArray * tableColumns = [self allTableColumns];							// both hidden and non-hidden
-	NSEnumerator * tableColumnEnumerator = [tableColumns objectEnumerator];
+	NSEnumerator * tableColumnEnumerator = [_allTableColumns objectEnumerator];	// both hidden and non-hidden
 	NSTableColumn * tableColumn;
 	while ((tableColumn = [tableColumnEnumerator nextObject]))
 	{
@@ -64,6 +69,28 @@
 		}
 	}
 	return tableColumnIdentifiers;
+}
+
+- (NSDictionary *)configurationDictionary
+{
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+		[self _hiddenTableColumnIdentifiers], @"hiddenIdentifiers", NULL];
+}
+
+- (void)setConfigurationFromDictionary:(NSDictionary *)configDict
+{
+	NSArray * hiddenIdentifiers = [configDict objectForKey:@"hiddenIdentifiers"];
+	if (hiddenIdentifiers)
+	{
+		// XXX: doesn't add relevant columns
+		NSEnumerator * identifierEnumerator = [hiddenIdentifiers objectEnumerator];
+		NSString * identifier;
+		while ((identifier = [identifierEnumerator nextObject]))
+		{
+			NSTableColumn * tableColumn = [self tableColumnWithIdentifier:identifier];
+			[self removeTableColumn:tableColumn];
+		}
+	}
 }
 
 
@@ -80,29 +107,20 @@
 	if (state == NSOnState)
 	{
 		[self removeTableColumn:tableColumn];	// hide
+
+		if (delegate && [delegate respondsToSelector:@selector(tableView:didHideTableColumn:)])
+			[delegate tableView:self didShowTableColumn:tableColumn];
 	}
 	else
 	{
-		// TO DO: add in order
+		// XXX: TO DO: add in order
 		[self addTableColumn:tableColumn];		// show
 
 		if (delegate && [delegate respondsToSelector:@selector(tableView:didShowTableColumn:)])
 			[delegate tableView:self didShowTableColumn:tableColumn];
-			
-/*		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:GeniusTableViewHiddenTableColumnsDidChangeNotification object:self];*/
 	}
 	
 	[sender setState:(state == NSOffState ? NSOnState : NSOffState)];
-	
-/*	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:GeniusTableViewHiddenTableColumnsDidChangeNotification object:self];*/
-
-	if (delegate && [delegate respondsToSelector:@selector(tableView:setHiddenTableColumnIdentifiers:)])
-	{
-		NSArray * hiddenIdentifiers = [self hiddenTableColumnIdentifiers];
-		[delegate tableView:self setHiddenTableColumnIdentifiers:hiddenIdentifiers];
-	}
 }
 
 
@@ -132,11 +150,11 @@
 	GeniusTableView * tableView = (GeniusTableView *)[self tableView];
 	NSSet * nonHiddenTableColumnSet = [NSSet setWithArray:[tableView tableColumns]];
 
-	NSArray * tableColumns = [tableView allTableColumns];	// both hidden and non-hidden
-	int i, count = [tableColumns count];
+	NSArray * allTableColumns = [tableView _allTableColumns];				// both hidden and non-hidden
+	int i, count = [allTableColumns count];
 	for (i=0; i<count; i++)
 	{
-		NSTableColumn * tableColumn = [tableColumns objectAtIndex:i];
+		NSTableColumn * tableColumn = [allTableColumns objectAtIndex:i];
 		
 		NSString * title = [[tableColumn headerCell] title];
 		if ([title isEqualToString:@""])

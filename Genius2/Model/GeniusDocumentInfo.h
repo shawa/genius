@@ -19,12 +19,10 @@ enum
 };
 
 
-@interface GeniusDocumentInfo : NSManagedObject {
-	
-}
+@interface GeniusDocumentInfo : NSManagedObject
 
-- (NSArray *) hiddenTableColumnIdentifiers;
-- (void) setHiddenTableColumnIdentifiers:(NSArray *)array;
+- (NSDictionary *) tableViewConfigurationDictionary;
+- (void) setTableViewConfigurationDictionary:(NSDictionary *)configDict;
 
 - (BOOL) isColumnARichText;
 - (void) setIsColumnARichText:(BOOL)flag;

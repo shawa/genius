@@ -72,6 +72,9 @@
 /* Table View */	
 	[(GeniusWindowController *)windowController setupTableView:tableView withHeaderViewMenu:tableColumnMenu];
 
+	NSDictionary * configDict = [[self documentInfo] tableViewConfigurationDictionary];	
+	[(GeniusTableView *)tableView setConfigurationFromDictionary:configDict];
+
 	// Configure list font size
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
@@ -357,18 +360,22 @@
 
 @implementation GeniusDocument (GeniusTableViewDelegate)
 
-- (NSArray *) tableViewHiddenTableColumnIdentifiers:(NSTableView *)tableView
+- (NSArray *)tableViewDefaultHiddenTableColumnIdentifiers:(NSTableView *)aTableView
 {
-	return [[self documentInfo] hiddenTableColumnIdentifiers];
+	return [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
 }
 
-- (void) tableView:(NSTableView *)tableView setHiddenTableColumnIdentifiers:(NSArray *)hiddenIdentifiers
+- (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn
 {
-	[[self documentInfo] setHiddenTableColumnIdentifiers:hiddenIdentifiers];	
+	NSDictionary * configDict = [(GeniusTableView *)aTableView configurationDictionary];
+	[[self documentInfo] setTableViewConfigurationDictionary:configDict];	
 }
 
-- (void) tableView:(NSTableView *)tableView didShowTableColumn:(NSTableColumn *)tableColumn
+- (void) tableView:(NSTableView *)aTableView didShowTableColumn:(NSTableColumn *)tableColumn
 {
+	NSDictionary * configDict = [(GeniusTableView *)aTableView configurationDictionary];
+	[[self documentInfo] setTableViewConfigurationDictionary:configDict];	
+
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
 	int index = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
 	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:index];
