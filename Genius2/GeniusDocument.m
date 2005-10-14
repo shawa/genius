@@ -5,21 +5,19 @@
 //  Copyright __MyCompanyName__ 2005 . All rights reserved.
 
 #import "GeniusDocument.h"
-#import "GeniusDocumentToolbar.h"
+
+#import "GeniusWindowController.h"
+#import "GeniusWindowToolbar.h"
+#import "GeniusPreferences.h"
 
 // View
-#import "IconTextFieldCell.h"
 #import "GeniusAtomView.h"
-#import "ColorView.h"
-#import "CollapsableSplitView.h"
+#import "GeniusTableView.h"
 
 // Model
 #import "GeniusDocumentInfo.h"
 #import "GeniusItem.h"	// actions
 #import "GeniusAtom.h"	// -toggleColumnRichText:
-#import "GeniusPreferences.h"
-
-#import "GeniusInspectorController.h"
 
 // Quiz
 #import "QuizModel.h"
@@ -39,93 +37,53 @@
     self = [super init];
     if (self != nil) {
         // initialization code
-		_tableColumnDictionary = nil;
     }
 	
     return self;
 }
 
-- (NSString *)windowNibName 
+- (void)makeWindowControllers
 {
-    return @"GeniusDocument";
+	GeniusWindowController * wc = [[GeniusWindowController alloc] initWithWindowNibName:@"GeniusDocument" owner:self];
+	[self addWindowController:wc];
+	[wc release];
 }
+
 
 /*
 	Warning: "If you have a nib in which File's Owner is a subclass of
 	NSWindowController or NSDocument, do not bind anything through file's owner."
 	http://theobroma.treehouseideas.com/document.page/18
 */
-
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController 
 {	
     [super windowControllerDidLoadNib:windowController];
     // user interface preparation code
 
-	/* Set up object controllers */
+/* Hook up object controllers */
 	[itemArrayController setManagedObjectContext:[self managedObjectContext]];
 	[documentInfoController setContent:[self documentInfo]];
 	
-/* Window */
-	// Set up window toolbar
-	[self setupToolbarForWindow:[windowController window]];
-	
-	// Tweak window appearance
-	[[windowController window] setBackgroundColor:[NSColor colorWithCalibratedWhite:(200.0/255.0) alpha:1.0]];
-	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
-	[(ColorView *)bottomView setFrameColor:[NSColor colorWithCalibratedWhite:(170.0/255.0) alpha:1.0]];
-//	[[searchField cell] setMenu:nil];
-	
-/* Table View */
-	// Retain table columns
-	_tableColumnDictionary = [NSMutableDictionary new];
-	NSArray * tableColumns = [tableView tableColumns];
-	NSEnumerator * tableColumnEnumerator = [tableColumns objectEnumerator];
-	NSTableColumn * tableColumn;
-	while ((tableColumn = [tableColumnEnumerator nextObject]))
-	{
-		NSString * columnTitle = [[tableColumn headerCell] stringValue];
-		[(NSMutableDictionary *)_tableColumnDictionary setObject:tableColumn forKey:columnTitle];
-	}
+/* Window */	
+	// Set up toolbar
+	[(GeniusWindowController *)windowController setupToolbarWithLevelIndicator:levelIndicator searchField:searchField];
+	// [[searchField cell] setMenu:nil];
 
-	// Remove non-default table columns
-	NSArray * hiddenColumnIdentifiers = [[self documentInfo] hiddenColumnIdentifiers];
-	NSEnumerator * hiddenColumnIdentifierEnumerator = [hiddenColumnIdentifiers objectEnumerator];
-	NSString * identifier;
-	while ((identifier = [hiddenColumnIdentifierEnumerator nextObject]))
-	{
-		tableColumn = [tableView tableColumnWithIdentifier:identifier];
-		[tableView removeTableColumn:tableColumn];
-	}
-
-	// Set up line break mode for table columns
-	tableColumn = [tableView tableColumnWithIdentifier:@"atomA"];
-	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
-
-	tableColumn = [tableView tableColumnWithIdentifier:@"atomB"];
-	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
-	
-    // Set up icon text field cells for colored grade indication
-    tableColumn = [tableView tableColumnWithIdentifier:@"grade"];
-    IconTextFieldCell * cell = [IconTextFieldCell new];
-    [tableColumn setDataCell:cell];
-    //NSNumberFormatter * numberFormatter = [[tableColumn dataCell] formatter];
-    //[cell setFormatter:numberFormatter];
-	
-	// Set up contextual menu on the table column headers
-	[[tableView headerView] setMenu:tableColumnMenu];	
-
-	// Set up double-click action to handle uneditable rich text cells
-	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];
+/* Table View */	
+	[(GeniusWindowController *)windowController setupTableView:tableView withHeaderViewMenu:tableColumnMenu];
 
 	// Configure list font size
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
 	[self _handleUserDefaultsDidChange:nil];
 
-/* Split View */
-	// Bind atom views
-	[splitView collapseSubviewAt:1];
+	// Set up handler to automatically make new item if user presses Return in last row
+	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
 
+/* Split View */
+	[(GeniusWindowController *)windowController setupSplitView:splitView];
+
+	// Bind atom views
 		// unregistered in -windowWillClose:
     [atomAView bindAtomToController:itemArrayController withKeyPath:@"selection.atomA"];	// XXX
 	[atomAView addObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey options:0L context:NULL];
@@ -134,9 +92,6 @@
 	[atomBView addObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey options:0L context:NULL];
 
 /* Misc. */
-	// Set up handler to automatically make new item if user presses Return in last row
-	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
-
 	// -documentInfo created a new managed object, which sets the dirty bit
 	[[self undoManager] removeAllActions];
 }
@@ -145,7 +100,6 @@
 {
 	//NSLog(@"-[GeniusDocument dealloc]");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[_tableColumnDictionary release];
 	[super dealloc];
 }
 
@@ -177,6 +131,29 @@
 		[window endEditingFor:nil];
 }
 
+
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
+{
+	[self _dismissFieldEditor];
+	
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
+	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:mode];
+
+	float rowHeight = fontSize + 4.0;
+	if (mode == 1)
+		rowHeight = fontSize + 5.0;
+	[tableView setRowHeight:rowHeight];
+
+	NSEnumerator * tableColumnEnumerator = [[tableView tableColumns] objectEnumerator];
+	NSTableColumn * tableColumn;
+	while ((tableColumn = [tableColumnEnumerator nextObject]))
+	{
+		//[[tableColumn dataCell] setControlSize:controlSize];
+		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
+	}
+}
+
 - (void) _handleTextDidEndEditing:(NSNotification *)aNotification
 {
 	NSView * textView = [aNotification object];
@@ -194,34 +171,6 @@
 	}
 }
 
-- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
-{
-	[self _dismissFieldEditor];
-	
-	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-	int index = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
-
-	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
-	NSControlSize controlSize = NSMiniControlSize;
-	float fontSize = [NSFont smallSystemFontSize];
-	float rowHeight = fontSize + 4.0;
-	if (index == 1)
-	{
-		controlSize = NSRegularControlSize;
-		fontSize = [NSFont systemFontSize];
-		rowHeight = fontSize + 5.0;
-	}
-	
-	[tableView setRowHeight:rowHeight];
-
-	NSEnumerator * tableColumnEnumerator = [_tableColumnDictionary objectEnumerator];
-	NSTableColumn * tableColumn;
-	while ((tableColumn = [tableColumnEnumerator nextObject]))
-	{
-		//[[tableColumn dataCell] setControlSize:controlSize];
-		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
-	}
-}
 
 - (void) _tableViewDoubleAction:(id)sender
 {
@@ -231,14 +180,15 @@
 	if ([sender clickedColumn] == -1)
 		return;
 
-	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
+	// XXX
+/*	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
 	[ic window];	// load window
 
 	NSTableColumn * column = [[sender tableColumns] objectAtIndex:clickedColumn];
 	NSString * identifier = [column identifier];
 	[[ic tabView] selectTabViewItemWithIdentifier:identifier];
 
-	[ic showWindow:sender];
+	[ic showWindow:sender];*/
 }
 
 
@@ -290,6 +240,7 @@
 {
 	return itemArrayController;
 }
+
 
 - (GeniusDocumentInfo *) documentInfo
 {
@@ -370,33 +321,11 @@
 	[atomBView removeObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey];
 }
 
-- (void)windowDidResignKey:(NSNotification *)aNotification
+/*- (void)windowDidResignKey:(NSNotification *)aNotification
 {
 	if ([[NSApp keyWindow] isKindOfClass:[NSPanel class]])
 		[self _dismissFieldEditor];
-}
-
-@end
-
-
-@implementation GeniusDocument (NSSplitViewDelegate)
-
-- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
-{
-	if ([[sender subviews] indexOfObject:subview] == 1)
-		return YES;
-	return NO;
-}
-
-- (float)splitView:(NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
-{
-	return 0.0;
-}
-
-- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
-{
-	return proposedMax - 100.0;
-}
+}*/
 
 @end
 
@@ -421,6 +350,29 @@
 		
         [aCell setImage:image];
     }
+}
+
+@end
+
+
+@implementation GeniusDocument (GeniusTableViewDelegate)
+
+- (NSArray *) tableViewHiddenTableColumnIdentifiers:(NSTableView *)tableView
+{
+	return [[self documentInfo] hiddenTableColumnIdentifiers];
+}
+
+- (void) tableView:(NSTableView *)tableView setHiddenTableColumnIdentifiers:(NSArray *)hiddenIdentifiers
+{
+	[[self documentInfo] setHiddenTableColumnIdentifiers:hiddenIdentifiers];	
+}
+
+- (void) tableView:(NSTableView *)tableView didShowTableColumn:(NSTableColumn *)tableColumn
+{
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	int index = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
+	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:index];
+	[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
 }
 
 
@@ -448,15 +400,6 @@
 	{
 		return [itemArrayController selectionIndex] != NSNotFound;
 	}
-	// Format menu
-/*	else if ([menuItem action] == @selector(toggleColumnRichText:))
-	{
-		int tag = [menuItem tag];
-		if (tag == 0)
-			[menuItem setState:([[self documentInfo] isColumnARichText] ? NSOnState : NSOffState)];
-		else if (tag == 1)
-			[menuItem setState:([[self documentInfo] isColumnBRichText] ? NSOnState : NSOffState)];
-	}*/
 	// Study menu
 	else if ([menuItem action] == @selector(setQuizDirectionModeAction:))
 	{
@@ -481,14 +424,6 @@
 }*/
 
 
-// Edit menu
-
-- (IBAction) selectSearchField:(id)sender
-{
-	[searchField selectText:sender];
-}
-
-
 // Item menu
 
 - (IBAction) newItem:(id)sender
@@ -501,17 +436,6 @@
 		int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
 		[tableView editColumn:1 row:rowIndex withEvent:nil select:YES];
 	}
-}
-
-- (IBAction) toggleInspector:(id)sender
-{
-//	[self _dismissFieldEditor];
-
-	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
-	if ([[ic window] isVisible])
-		[[ic window] performClose:sender];
-	else
-		[ic showWindow:sender];
 }
 
 - (IBAction) setItemRating:(NSMenuItem *)sender
@@ -541,41 +465,6 @@
 
 	[tableView reloadData];
 }
-
-
-// Format menu
-
-/*- (IBAction) toggleColumnRichText:(id)sender
-{
-	[self _dismissFieldEditor];
-	
-	BOOL value = NO;
-	NSString * atomKey = nil;
-	int columnIndex = [sender tag];
-	if (columnIndex == 0)
-	{
-		value = [[self documentInfo] isColumnARichText];
-		atomKey = @"atomA";	// XXX
-	}
-	else if (columnIndex == 1)
-	{
-		value = [[self documentInfo] isColumnBRichText];
-		atomKey = @"atomB";	// XXX
-	}
-
-	BOOL result = [self convertAllAtomsToRichText:!value forAtomKey:atomKey];
-	if (result == NO)
-	{
-		[sender setState:(value ? NSOnState : NSOffState)];
-		return;
-	}
-	
-	value = !value;
-	if (columnIndex == 0)
-		[[self documentInfo] setIsColumnARichText:value];
-	else if (columnIndex == 1)
-		[[self documentInfo] setIsColumnBRichText:value];
-}*/
 
 
 // Study menu
@@ -615,44 +504,6 @@
 	QuizController * quiz = [[QuizController alloc] initWithAssociationEnumerator:associationEnumerator];
 	[quiz runQuiz];
 	[quiz release];
-}
-
-
-- (IBAction) toggleFullScreen:(id)sender
-{
-	// do nothing - this handled by the NSUserDefaultsController in MainMenu.nib
-	// defined only for automatic menu enabling
-}
-
-
-// table view pop-up menu
-
-- (IBAction) toggleTableColumnShown:(NSMenuItem *)sender
-{
-	NSString * menuItemTitle = [sender title];
-	NSTableColumn * tableColumn = [_tableColumnDictionary objectForKey:menuItemTitle];
-
-	NSArray * hiddenColumnIdentifiers = [[self documentInfo] hiddenColumnIdentifiers];
-	
-	int state = [sender state];			
-	if (state == NSOnState)
-	{
-		[tableView removeTableColumn:tableColumn];	// hide
-
-		hiddenColumnIdentifiers = [hiddenColumnIdentifiers arrayByAddingObject:[tableColumn identifier]];
-	}
-	else
-	{
-		// TO DO: add in order
-		[tableView addTableColumn:tableColumn];		// show
-
-		hiddenColumnIdentifiers = [[hiddenColumnIdentifiers mutableCopy] autorelease];
-		[(NSMutableArray *)hiddenColumnIdentifiers removeObject:[tableColumn identifier]];
-	}
-	
-	[sender setState:(state == NSOffState ? NSOnState : NSOffState)];
-	
-	[[self documentInfo] setHiddenColumnIdentifiers:hiddenColumnIdentifiers];
 }
 
 @end

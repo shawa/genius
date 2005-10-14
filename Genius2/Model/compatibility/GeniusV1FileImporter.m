@@ -28,16 +28,16 @@
 		// Make up a fake set of data points from the single "score" value of Genius 1.x		
 		NSMutableArray * dataPoints = [NSMutableArray array];
 
-		int n = MAX(18, score);
+		int n = score; // MAX(18, score);
 		NSDate * firstDate = [NSDate dateWithTimeIntervalSinceNow:-(n * 60*60*24)];
 		int i;
 		for (i=0; i<n; i++)
 		{
 			// Create new data point
 			NSDate * date = [firstDate addTimeInterval:(i * 60*60*24)];
-			BOOL value = NO;
-			if (i >= n - score)
-				value = YES;
+			BOOL value = YES; //NO;
+/*			if (i >= n - score)
+				value = YES;*/
 			
 			NSMutableDictionary * newDataPoint = [NSMutableDictionary dictionary];
 			[newDataPoint setValue:date forKey:GeniusAssociationResultDictDateKey];

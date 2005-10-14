@@ -22,21 +22,21 @@ NSString * GeniusDocumentInfoIsColumnBRichTextKey = @"isColumnBRichText";
 
 @implementation GeniusDocumentInfo
 
-- (NSArray *) hiddenColumnIdentifiers				// never returns nil
+- (NSArray *) hiddenTableColumnIdentifiers			// never returns nil
 {
-	NSArray * hiddenColumnIdentifiers = nil;
-	NSData * data = [self valueForKey:@"hiddenColumnIdentifiersData"];
+	NSArray * hiddenTableColumnIdentifiers = nil;
+	NSData * data = [self valueForKey:@"hiddenTableColumnIdentifiersData"];
 	if (data)
-		hiddenColumnIdentifiers = [NSUnarchiver unarchiveObjectWithData:data];
-	if (hiddenColumnIdentifiers == nil)
-		hiddenColumnIdentifiers = [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
-	return hiddenColumnIdentifiers;
+		hiddenTableColumnIdentifiers = [NSUnarchiver unarchiveObjectWithData:data];
+	if (hiddenTableColumnIdentifiers == nil)
+		hiddenTableColumnIdentifiers = [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
+	return hiddenTableColumnIdentifiers;
 }
 
-- (void) setHiddenColumnIdentifiers:(NSArray *)array
+- (void) setHiddenTableColumnIdentifiers:(NSArray *)array
 {
 	NSData * data = [NSArchiver archivedDataWithRootObject:array];
-	[self setValue:data forKey:@"hiddenColumnIdentifiersData"];
+	[self setValue:data forKey:@"hiddenTableColumnIdentifiersData"];
 }
 
 

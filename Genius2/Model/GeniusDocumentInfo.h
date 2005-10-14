@@ -23,8 +23,8 @@ enum
 	
 }
 
-- (NSArray *) hiddenColumnIdentifiers;
-- (void) setHiddenColumnIdentifiers:(NSArray *)array;
+- (NSArray *) hiddenTableColumnIdentifiers;
+- (void) setHiddenTableColumnIdentifiers:(NSArray *)array;
 
 - (BOOL) isColumnARichText;
 - (void) setIsColumnARichText:(BOOL)flag;

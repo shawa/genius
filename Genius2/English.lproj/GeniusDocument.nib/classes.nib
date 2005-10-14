@@ -36,6 +36,7 @@
             }; 
             SUPERCLASS = NSPersistentDocument; 
         }, 
+        {CLASS = GeniusScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {CLASS = GeniusTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSPersistentDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }

@@ -1,5 +1,4 @@
 window close dirty
-fix rich text/graphics
 grading
 hook up level indicator
 
