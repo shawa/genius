@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {cancel = id; quiz = id; }; 
+            CLASS = QuizOptionsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                fixedTimeTextField = id; 
+                learnMoreTextView = id; 
+                numItemsTextField = id; 
+                quizModeRadioMatrix = id; 
+                reviewLearnSlider = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

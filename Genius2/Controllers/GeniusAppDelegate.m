@@ -53,7 +53,14 @@
 
 - (IBAction) showHelpWindow:(id)sender
 {
-    [GeniusHelpController showWindow];
+	static GeniusHelpController * sHelpController = nil;
+	if (sHelpController == nil)
+	{
+		NSString * title = NSLocalizedString(@"Genius Help", nil);
+		sHelpController = [[GeniusHelpController alloc] initWithResourceName:@"Help" title:title];
+	}
+
+    [sHelpController showWindow:sender];
 }
 
 - (IBAction) openSupportSite:(id)sender

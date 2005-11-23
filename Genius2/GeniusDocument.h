@@ -19,6 +19,8 @@
     IBOutlet id atomBView;
 }
 
+- (NSWindow *) mainWindow;
+
 - (NSArrayController *) itemArrayController;
 
 - (GeniusDocumentInfo *) documentInfo;	// used by GeniusDocument.nib and QuizModel

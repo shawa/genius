@@ -17,6 +17,7 @@
 - (void) setupSplitView:(NSSplitView *)splitView;
 
 + (float) listTextFontSizeForSizeMode:(int)mode;
++ (float) rowHeightForSizeMode:(int)mode;
 
 
 // Edit menu

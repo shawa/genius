@@ -119,7 +119,7 @@
 }
 
 
-- (NSWindow *) _mainWindow
+- (NSWindow *) mainWindow
 {
 	NSArray * windowControllers = [self windowControllers];
 	if ([windowControllers count] == 0)
@@ -129,7 +129,7 @@
 
 - (void) _dismissFieldEditor
 {
-	NSWindow * window = [self _mainWindow];
+	NSWindow * window = [self mainWindow];
 	if ([window makeFirstResponder:window] == NO)
 		[window endEditingFor:nil];
 }
@@ -140,21 +140,18 @@
 	[self _dismissFieldEditor];
 	
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	// Handle font size
 	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
 	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:mode];
 
-	float rowHeight = fontSize + 4.0;
-	if (mode == 1)
-		rowHeight = fontSize + 5.0;
+	float rowHeight = [GeniusWindowController rowHeightForSizeMode:mode];
 	[tableView setRowHeight:rowHeight];
 
 	NSEnumerator * tableColumnEnumerator = [[tableView tableColumns] objectEnumerator];
 	NSTableColumn * tableColumn;
 	while ((tableColumn = [tableColumnEnumerator nextObject]))
-	{
-		//[[tableColumn dataCell] setControlSize:controlSize];
 		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
-	}
 }
 
 - (void) _handleTextDidEndEditing:(NSNotification *)aNotification
@@ -438,7 +435,7 @@
 	id newObject = [itemArrayController newObject];
 	[itemArrayController addObject:newObject];
 
-	if ([[self _mainWindow] isKeyWindow] && [[self documentInfo] isColumnARichText] == NO)
+	if ([[self mainWindow] isKeyWindow] && [[self documentInfo] isColumnARichText] == NO)
 	{
 		int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
 		[tableView editColumn:1 row:rowIndex withEvent:nil select:YES];
@@ -494,21 +491,7 @@
 {
 	// XXX: let user choose number of items or time limit, initial set of associations
 
-	QuizModel * model = [[QuizModel alloc] initWithDocument:self];
-	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
-	[model release];
-
-	if ([[associationEnumerator allObjects] count] == 0)
-	{
-		NSString * messageString = NSLocalizedString(@"There is nothing to study.", nil);
-		NSString * informativeString = NSLocalizedString(@"Make sure the items you want to study are filled in and enabled, or add more items.", nil);
-
-		NSAlert * alert = [NSAlert alertWithMessageText:messageString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:informativeString];
-		[alert beginSheetModalForWindow:[self _mainWindow] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
-		return;
-	}
-
-	QuizController * quiz = [[QuizController alloc] initWithAssociationEnumerator:associationEnumerator];
+	QuizController * quiz = [[QuizController alloc] initWithDocument:self];
 	[quiz runQuiz];
 	[quiz release];
 }

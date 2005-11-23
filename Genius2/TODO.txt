@@ -1,21 +1,25 @@
-window close dirty
-grading
-hook up level indicator
-
 drag and drop
 hook up text import/export
+info button
+hook up level indicator
+grading
 
-hook up relax panel
-LastOpenFiles
-
-get rid of search field pop-up
+relax panel pref
+pay panel
 hook up swap command
+
+POLISH:
+window close dirty
+get rid of search field pop-up
 polish column behavior
 window and table position saving
-
+LastOpenFiles
+cursor around "Learn More..."
 
 // version 3.0
+iTunes-style all-in-one window
 tri-directional
 printing
 export to iPod
 file sharing
+built-in audio editing

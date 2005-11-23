@@ -4,9 +4,9 @@
 
 @interface GeniusHelpController : NSWindowController
 {
-    IBOutlet id textView;
+    IBOutlet id webView;
 }
 
-+ (void) showWindow;
+- (id) initWithResourceName:(NSString *)resourceName title:(NSString *)title;
 
 @end

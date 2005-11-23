@@ -1,20 +1,24 @@
 #import "GeniusHelpController.h"
 
+#import <WebKit/WebKit.h>
+
+
 @implementation GeniusHelpController
 
-- (void) awakeFromNib
+- (id) initWithResourceName:(NSString *)resourceName title:(NSString *)title
 {
-	NSString * path = [[NSBundle mainBundle] pathForResource:@"Help" ofType:@"rtf"];
-	[textView readRTFDFromFile:path];
-}
+	self = [super initWithWindowNibName:@"Help"];
 
-+ (void) showWindow
-{
-	NSString * title = NSLocalizedString(@"Genius Help", nil);
-	GeniusHelpController * wc = [[GeniusHelpController alloc] initWithWindowNibName:@"Documentation"];
-	[[wc window] setTitle:title];
-    [[wc window] center];
-    [wc showWindow:self];
+	[self window]; // load window
+	
+	NSString * path = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"html"];
+	NSString * string = [NSString stringWithContentsOfFile:path];
+	[[webView mainFrame] loadHTMLString:string baseURL:nil];
+
+	[[self window] setTitle:title];
+    [[self window] center];
+	
+	return self;
 }
 
 @end

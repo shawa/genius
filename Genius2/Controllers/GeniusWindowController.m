@@ -68,14 +68,33 @@
 + (float) listTextFontSizeForSizeMode:(int)mode
 {
 	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
-	//NSControlSize controlSize = NSMiniControlSize;
-	float fontSize = [NSFont smallSystemFontSize];
-	if (mode == 1)
+
+	switch (mode)
 	{
-		//controlSize = NSRegularControlSize;
-		fontSize = [NSFont systemFontSize];
+		case 0:
+			return [NSFont smallSystemFontSize];
+		case 1:
+			return [NSFont systemFontSize];
+		case 2:
+			return 15.0;
 	}
-	return fontSize;
+	
+	return [NSFont systemFontSize];
+}
+
++ (float) rowHeightForSizeMode:(int)mode
+{
+	switch (mode)
+	{
+		case 0:
+			return [NSFont smallSystemFontSize] + 4.0;
+		case 1:
+			return [NSFont systemFontSize] + 5.0;
+		case 2:
+			return 15.0 + 6.0;
+	}
+	
+	return [NSFont systemFontSize];
 }
 
 
