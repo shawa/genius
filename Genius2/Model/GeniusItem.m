@@ -164,7 +164,7 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	GeniusAssociation * association;
 	while ((association = [associationEnumerator nextObject]))
 	{
-		NSDate * assocDate = [association valueForKey:GeniusAssociationLastResultDateKey];
+		NSDate * assocDate = [association valueForKey:GeniusAssociationLastDataPointDateKey];
 		lastTestedDate = (lastTestedDate ? [lastTestedDate laterDate:assocDate] : assocDate);
 	}
 

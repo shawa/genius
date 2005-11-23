@@ -8,6 +8,8 @@
 
 #import "GeniusAssociationEnumerator.h"
 
+#import "GeniusAssociationDataPoint.h"
+
 
 @implementation GeniusAssociationEnumerator
 
@@ -63,11 +65,11 @@
 }
 
 
-- (void) _rescheduleCurrentAssociation
+- (void) _rescheduleCurrentAssociation	// XXX: does this belong here or GeniusAssociation ?
 {
     unsigned int deltaSec = 5;
-	if ([_currentAssociation lastResultValue] == YES)
-		deltaSec = pow(5, [_currentAssociation resultCount]);
+	if ([_currentAssociation lastDataPointValue] == YES)
+		deltaSec = [GeniusAssociationDataPoint timeIntervalForScore:[_currentAssociation resultCount]];
 	
     NSDate * dueDate = [[NSDate date] addTimeInterval:deltaSec];
     [_currentAssociation setValue:dueDate forKey:GeniusAssociationDueDateKey];

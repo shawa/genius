@@ -14,6 +14,7 @@
 #import "GeniusItem.h"
 #import "GeniusAtom.h"
 #import "GeniusAssociation.h"
+#import "GeniusAssociationDataPoint.h"
 
 
 @implementation GeniusDocument (GeniusV1FileImporter)
@@ -29,25 +30,19 @@
 		NSMutableArray * dataPoints = [NSMutableArray array];
 
 		int n = score; // MAX(18, score);
-		NSDate * firstDate = [NSDate dateWithTimeIntervalSinceNow:-(n * 60*60*24)];
+		NSDate * firstDate = [[NSDate date] addTimeInterval:-[GeniusAssociationDataPoint timeIntervalForScore:n-1] - 60*60*24*7*8];
 		int i;
 		for (i=0; i<n; i++)
 		{
 			// Create new data point
-			NSDate * date = [firstDate addTimeInterval:(i * 60*60*24)];
-			BOOL value = YES; //NO;
-/*			if (i >= n - score)
-				value = YES;*/
-			
-			NSMutableDictionary * newDataPoint = [NSMutableDictionary dictionary];
-			[newDataPoint setValue:date forKey:GeniusAssociationResultDictDateKey];
-			[newDataPoint setValue:[NSNumber numberWithBool:value] forKey:GeniusAssociationResultDictValueKey];
-
-			[dataPoints addObject:newDataPoint];
+			NSDate * date = [firstDate addTimeInterval:[GeniusAssociationDataPoint timeIntervalForScore:i]];
+			GeniusAssociationDataPoint * dataPoint = [[GeniusAssociationDataPoint alloc] initWithDate:date value:(float)YES];
+			[dataPoints addObject:dataPoint];
+			[dataPoint release];
 		}
 
 		NSData * data = [NSArchiver archivedDataWithRootObject:dataPoints];
-		[association setValue:data forKey:GeniusAssociationResultDictsKey];
+		[association setValue:data forKey:GeniusAssociationDataPointArrayDataKey];
 	}
 
 	NSDate * dueDate = [oldV1Assoc dueDate];

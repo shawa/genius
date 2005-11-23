@@ -14,7 +14,7 @@ extern NSString * GeniusPreferencesUseSoundEffectsKey;				// bool
 extern NSString * GeniusPreferencesUseFullScreenKey;				// bool
 
 // Preferences panel
-extern NSString * GeniusPreferencesListTextSizeModeKey;				// integer (0-1)
+extern NSString * GeniusPreferencesListTextSizeModeKey;				// integer (0-2)
 extern NSString * GeniusPreferencesQuizUseVisualErrorsKey;			// bool
 extern NSString * GeniusPreferencesQuizReviewLearnSliderFloatKey;	// float (0.0-100.0)
 extern NSString * GeniusPreferencesQuizMatchingModeKey;				// integer (0-2)

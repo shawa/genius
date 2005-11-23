@@ -45,7 +45,7 @@ NSString * GeniusAtomViewUseRichTextAndGraphicsKey = @"useRichTextAndGraphics";
 + (NSDictionary *) _defaultTextAttributes
 {
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSFont boldSystemFontOfSize:18.0], NSFontAttributeName, NULL];
+		[NSFont boldSystemFontOfSize:24.0], NSFontAttributeName, NULL];
 /*	return [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSFont userFontOfSize:12.0], NSFontAttributeName,
 		[NSParagraphStyle defaultParagraphStyle], NSParagraphStyleAttributeName, NULL];*/
@@ -69,7 +69,7 @@ NSString * GeniusAtomViewUseRichTextAndGraphicsKey = @"useRichTextAndGraphics";
 		// noSelectionString -> noSelectionData
 		NSDictionary * options = nil;
 		NSDictionary * attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSFont boldSystemFontOfSize:18.0], NSFontAttributeName,
+			[NSFont boldSystemFontOfSize:24.0], NSFontAttributeName,
 			NSForegroundColorAttributeName, [NSColor grayColor],
 			NULL];
 		NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:noSelectionString attributes:attributes] autorelease];

@@ -8,6 +8,9 @@
 
 #import "QuizController.h"
 
+#import "GeniusAssociationEnumerator.h"
+#import "QuizOptionsController.h"
+
 #import "NSStringSimiliarity.h"
 #import "VisualStringDiff.h"
 
@@ -59,6 +62,31 @@ enum {
     _wrongSound = [[NSSound soundNamed:@"Basso"] retain];
 
 	return self;
+}
+
+- (id) initWithDocument:(GeniusDocument *)document
+{
+	QuizModel * model = [[[QuizModel alloc] initWithDocument:document] autorelease];
+	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
+
+	if ([[associationEnumerator allObjects] count] == 0)
+	{
+		NSString * messageString = NSLocalizedString(@"There is nothing to study.", nil);
+		NSString * informativeString = NSLocalizedString(@"Make sure the items you want to study are filled in and enabled, or add more items.", nil);
+
+		NSAlert * alert = [NSAlert alertWithMessageText:messageString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:informativeString];
+		[alert beginSheetModalForWindow:[document mainWindow] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+		return nil;
+	}
+
+	QuizOptionsController * oc = [[QuizOptionsController alloc] init];
+	int result = [oc runModal];
+	[oc release];
+
+	if (result == NSRunAbortedResponse)
+		return nil;
+		
+	return [self initWithAssociationEnumerator:associationEnumerator];
 }
 
 - (void) dealloc

@@ -11,7 +11,7 @@
 #import "GeniusAtom.h"
 
 
-extern NSString * GeniusAssociationLastResultDateKey;
+extern NSString * GeniusAssociationLastDataPointDateKey;
 extern NSString * GeniusAssociationDueDateKey;
 extern NSString * GeniusAssociationPredictedScoreKey;
 
@@ -22,13 +22,13 @@ extern NSString * GeniusAssociationPredictedScoreKey;
 */
 @interface GeniusAssociation :  NSManagedObject  
 {
-	NSArray * _resultDicts;
+	NSArray * _dataPoints;
 }
 
 - (GeniusAtom *) sourceAtom;
 - (GeniusAtom *) targetAtom;
 
-- (BOOL) lastResultValue;
+- (BOOL) lastDataPointValue;		// XXX: used only by GeniusAssociationEnumerator
 - (unsigned int) resultCount;
 
 - (void) addResult:(BOOL)value;
@@ -44,6 +44,4 @@ extern NSString * GeniusAssociationSourceAtomKeyKey;
 extern NSString * GeniusAssociationTargetAtomKeyKey;
 
 // exported only for GeniusV1FileImporter
-extern NSString * GeniusAssociationResultDictsKey;
-extern NSString * GeniusAssociationResultDictDateKey;
-extern NSString * GeniusAssociationResultDictValueKey;
+extern NSString * GeniusAssociationDataPointArrayDataKey;

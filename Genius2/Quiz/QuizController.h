@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "GeniusAssociationEnumerator.h"
+#import "QuizModel.h"
 
 
+@class GeniusDocument;
 @class QuizBackdropWindow;
 
 @interface QuizController : NSWindowController {
@@ -33,7 +34,7 @@
     NSSound * _wrongSound;
 }
 
-- (id) initWithAssociationEnumerator:(GeniusAssociationEnumerator *)associationEnumerator;
+- (id) initWithDocument:(GeniusDocument *)document;
 
 - (void) runQuiz;
 
