@@ -243,22 +243,6 @@
 			sepNavWindowFrame = "{{15, 86}, {795, 741}}";
 		};
 	};
-	235E9421094104BB0077DB92 /* NSTextViewAdditions.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {740, 252}}";
-			sepNavSelRange = "{7, 19}";
-			sepNavVisRect = "{{0, 0}, {740, 180}}";
-			sepNavWindowFrame = "{{192, 56}, {847, 692}}";
-		};
-	};
-	235E9422094104BB0077DB92 /* NSTextViewAdditions.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {808, 980}}";
-			sepNavSelRange = "{1610, 0}";
-			sepNavVisRect = "{{0, 361}, {808, 619}}";
-			sepNavWindowFrame = "{{192, 56}, {847, 692}}";
-		};
-	};
 	238127B20941E30B0001CF4D /* ImageStringFormatter.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {781, 700}}";
@@ -602,8 +586,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 155318440;
-			PBXWorkspaceStateSaveDate = 155318440;
+			PBXPerProjectTemplateStateSaveDate = 155318785;
+			PBXWorkspaceStateSaveDate = 155318785;
 		};
 		sourceControlManager = 231A105E08FF1310004A16ED /* Source Control */;
 		userBuildSettings = {

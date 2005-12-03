@@ -37,7 +37,6 @@
 		234E52F508FC5B35005FCF83 /* QuizArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E52F408FC5B34005FCF83 /* QuizArrayAdditions.m */; };
 		234E539A08FC635B005FCF83 /* GeniusPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E539908FC635B005FCF83 /* GeniusPreferences.m */; };
 		234E546008FC6AED005FCF83 /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E545F08FC6AED005FCF83 /* QuizBackdropWindow.m */; };
-		235E9423094104BB0077DB92 /* NSTextViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 235E9422094104BB0077DB92 /* NSTextViewAdditions.m */; };
 		238127B40941E30B0001CF4D /* ImageStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 238127B30941E30B0001CF4D /* ImageStringFormatter.m */; };
 		23835E9C08F96C550066323F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23835E9A08F96C550066323F /* GeniusDocument.nib */; };
 		23835F1A08F970380066323F /* GeniusValueTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 23835F1008F970380066323F /* GeniusValueTransformers.m */; };
@@ -150,8 +149,6 @@
 		234E539908FC635B005FCF83 /* GeniusPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferences.m; sourceTree = "<group>"; };
 		234E545E08FC6AED005FCF83 /* QuizBackdropWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizBackdropWindow.h; sourceTree = "<group>"; };
 		234E545F08FC6AED005FCF83 /* QuizBackdropWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizBackdropWindow.m; sourceTree = "<group>"; };
-		235E9421094104BB0077DB92 /* NSTextViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTextViewAdditions.h; sourceTree = "<group>"; };
-		235E9422094104BB0077DB92 /* NSTextViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTextViewAdditions.m; sourceTree = "<group>"; };
 		238127B20941E30B0001CF4D /* ImageStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStringFormatter.h; sourceTree = "<group>"; };
 		238127B30941E30B0001CF4D /* ImageStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStringFormatter.m; sourceTree = "<group>"; };
 		23835E9B08F96C550066323F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GeniusDocument.nib; sourceTree = "<group>"; };
@@ -199,7 +196,7 @@
 		32DBCF750370BD2300C91783 /* Genius2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genius2_Prefix.pch; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,8 +357,6 @@
 		23835F0E08F970380066323F /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				235E9421094104BB0077DB92 /* NSTextViewAdditions.h */,
-				235E9422094104BB0077DB92 /* NSTextViewAdditions.m */,
 				23835F0F08F970380066323F /* GeniusValueTransformers.h */,
 				23835F1008F970380066323F /* GeniusValueTransformers.m */,
 				23835F1108F970380066323F /* NSStringSimiliarity.h */,
@@ -605,7 +600,6 @@
 				2302F580090190EC00585123 /* GeniusAssociationDataPoint.m in Sources */,
 				238C58B20933EBFB00926AF1 /* QuizOptionsController.m in Sources */,
 				238C5BBD0934D67E00926AF1 /* NSTextViewWithLinks.m in Sources */,
-				235E9423094104BB0077DB92 /* NSTextViewAdditions.m in Sources */,
 				238127B40941E30B0001CF4D /* ImageStringFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
