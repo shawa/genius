@@ -29,55 +29,119 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 }
 
 
-- (void) setUsesRTFDData:(BOOL)flag
++ (NSDictionary *) defaultTextAttributes
 {
-	if (flag)
+	static NSDictionary * sDefaultAttribs = nil;
+	if (sDefaultAttribs == nil)
 	{
-		NSString * string = [self primitiveValueForKey:GeniusAtomStringKey];
-		if (string)
-		{
-			// string -> rtfdData
-			NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:string] autorelease];
-			if (attrString)
-			{
-				NSRange range = NSMakeRange(0, [attrString length]);
-				NSData * rtfdData = [attrString RTFDFromRange:range documentAttributes:nil];
+		NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+		[parStyle setAlignment:NSCenterTextAlignment];
 
-				[self willChangeValueForKey:GeniusAtomRTFDDataKey];
-				[self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];
-				[self didChangeValueForKey:GeniusAtomRTFDDataKey];
-			}
-		}
+		sDefaultAttribs = [[NSDictionary alloc] initWithObjectsAndKeys:
+			[NSFont boldSystemFontOfSize:24.0], NSFontAttributeName,
+			parStyle, NSParagraphStyleAttributeName,
+			NULL];
+
+		[parStyle release];
 	}
-	else
+	return sDefaultAttribs;
+}
+
++ (BOOL) _isDefaultTextAttributes:(NSDictionary *)attributes
+{
+	if (attributes == nil)
+		return YES;
+	if ([attributes count] == 0)
+		return YES;
+	if ([attributes count] > [[self defaultTextAttributes] count])
+		return NO;
+
+	NSEnumerator * keyEnumerator = [attributes keyEnumerator];
+	NSString * key;
+	while ((key = [keyEnumerator nextObject]))
 	{
-		[self setPrimitiveValue:nil forKey:GeniusAtomRTFDDataKey];
+		id defaultValue = [[self defaultTextAttributes] objectForKey:key];
+		if (defaultValue == nil)
+			return NO;
+
+		id value = [attributes objectForKey:key];
+		if ([defaultValue isEqual:value] == NO)
+			return NO;
 	}
+	return YES;
+}
+
++ (BOOL) _attributedStringUsesDefaultTextAttributes:(NSAttributedString *)attrString
+{
+	if ([attrString length] > 0)
+	{
+		NSRange fullRange = NSMakeRange(0, [attrString length]);
+		NSRange effectiveRange;
+		NSDictionary * attribs = [attrString attributesAtIndex:0 longestEffectiveRange:&effectiveRange inRange:fullRange];
+		if ([GeniusAtom _isDefaultTextAttributes:attribs] == NO)
+			return NO;
+
+		if (NSEqualRanges(fullRange, effectiveRange) == NO)
+			return NO;
+	}
+	
+	return YES;
+}
+
+- (BOOL) usesDefaultTextAttributes
+{
+	NSData * rtfdData = [self primitiveValueForKey:GeniusAtomRTFDDataKey];
+	return (rtfdData == nil);
+}
+
+- (void)clearTextAttributes
+{
+	[self willChangeValueForKey:GeniusAtomRTFDDataKey];
+	[self setPrimitiveValue:nil forKey:GeniusAtomRTFDDataKey];
+	[self didChangeValueForKey:GeniusAtomRTFDDataKey];
 }
 
 
-- (void) setString:(NSString *)string
+- (void) setRtfdData:(NSData *)rtfdData
 {
+//	_isImageOnly = NO;
+
+	// rtfdData -> attrString
+	NSString * string = nil;
+	NSAttributedString * attrString = [[NSAttributedString alloc] initWithRTFD:rtfdData documentAttributes:nil];
+	if (attrString)
+	{
+		// attrString -> string
+		string = [attrString string];
+		
+		// It's plain text
+		if ([GeniusAtom _attributedStringUsesDefaultTextAttributes:attrString])
+			rtfdData = nil;
+	}
+	
+	NSLog(@"string=%X, rtfdData=%X", string, rtfdData);
+
+	[self willChangeValueForKey:GeniusAtomRTFDDataKey];
+	[self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];
+	[self didChangeValueForKey:GeniusAtomRTFDDataKey];
+	
 	[self willChangeValueForKey:GeniusAtomStringKey];
-    [self setPrimitiveValue:string forKey:GeniusAtomStringKey];
-    [self didChangeValueForKey:GeniusAtomStringKey];
-
-    [self setPrimitiveValue:nil forKey:GeniusAtomRTFDDataKey];
+	[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
+	[self didChangeValueForKey:GeniusAtomStringKey];
 }
 
-/*- (NSData *) rtfdData	// falls back to string
+
+- (NSData *) rtfdData	// falls back to string
 {
 	[self willAccessValueForKey:GeniusAtomRTFDDataKey];
-	NSData * rtfdData = [self primitiveValueForKey:GeniusAtomRTFDDataKey];
-	[self didAccessValueForKey:GeniusAtomRTFDDataKey];
-	
+	NSData * rtfdData = [self primitiveValueForKey:GeniusAtomRTFDDataKey];	
 	if (rtfdData == nil)
 	{
 		NSString * string = [self primitiveValueForKey:GeniusAtomStringKey];
 		if (string)
 		{
 			// string -> rtfdData
-			NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:string] autorelease];
+			NSAttributedString * attrString = [[[NSAttributedString alloc] initWithString:string attributes:[GeniusAtom defaultTextAttributes]] autorelease];
 			if (attrString)
 			{
 				NSRange range = NSMakeRange(0, [attrString length]);
@@ -85,26 +149,8 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 			}
 		}
 	}
-	
+	[self didAccessValueForKey:GeniusAtomRTFDDataKey];
 	return rtfdData;
-}*/
-
-- (void) setRtfdData:(NSData *)rtfdData
-{
-	[self willChangeValueForKey:GeniusAtomRTFDDataKey];
-    [self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];
-    [self didChangeValueForKey:GeniusAtomRTFDDataKey];
-
-	// rtfdData -> string	
-	NSAttributedString * attrString = [[NSAttributedString alloc] initWithRTFD:rtfdData documentAttributes:nil];
-	if (attrString)
-	{
-		NSString * string = [[attrString string] copy];
-		[self willChangeValueForKey:GeniusAtomStringKey];
-		[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
-		[self didChangeValueForKey:GeniusAtomStringKey];
-		[string release];
-	}
 }
 
 @end

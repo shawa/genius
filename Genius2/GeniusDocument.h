@@ -15,8 +15,8 @@
     IBOutlet id tableColumnMenu;
     IBOutlet id splitView;
 	
-    IBOutlet id atomAView;
-    IBOutlet id atomBView;
+    IBOutlet id atomATextView;
+    IBOutlet id atomBTextView;
 }
 
 - (NSWindow *) mainWindow;
@@ -37,7 +37,11 @@
 - (IBAction) newItem:(id)sender;
 - (IBAction) setItemRating:(NSMenuItem *)sender;
 - (IBAction) swapColumns:(id)sender;
+- (IBAction) makePlainText:(NSMenuItem *)sender;
 - (IBAction) resetItemScore:(id)sender;
+
+// Format menu
+- (IBAction) showRichTextEditor:(id)sender;
 
 // Study menu
 - (IBAction) setQuizDirectionModeAction:(NSMenuItem *)sender;

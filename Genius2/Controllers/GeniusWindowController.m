@@ -11,10 +11,14 @@
 #import "GeniusDocument.h"
 #import "GeniusInspectorController.h"
 
+// Model
+#import "GeniusAtom.h"	// GeniusAtomRTFDDataKey, +defaultTextAttributes
+
 // Widgets
 #import "IconTextFieldCell.h"
 #import "ColorView.h"
 #import "CollapsableSplitView.h"
+#import "ImageStringFormatter.h"
 
 
 @implementation GeniusWindowController
@@ -37,12 +41,19 @@
 - (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu
 {
 	// Set up line break mode for table columns
+	// And print "[Image]" in strings with image characters
+	ImageStringFormatter * stringFormatter = [ImageStringFormatter new];
+
 	NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:@"atomA"];
 	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
+    [[tableColumn dataCell] setFormatter:stringFormatter];
 
 	tableColumn = [tableView tableColumnWithIdentifier:@"atomB"];
-	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
+	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];	
+    [[tableColumn dataCell] setFormatter:stringFormatter];
 	
+	[stringFormatter release];
+
     // Set up icon text field cells for colored grade indication
     tableColumn = [tableView tableColumnWithIdentifier:@"grade"];
     IconTextFieldCell * cell = [IconTextFieldCell new];
@@ -62,6 +73,45 @@
 	[(ColorView *)bottomView setFrameColor:[NSColor colorWithCalibratedWhite:0.65 alpha:1.0]];
 
 	[(CollapsableSplitView *)splitView collapseSubviewAt:1];
+}
+
+- (void) setupAtomTextView:(NSTextView *)textView
+{
+	[textView setAlignment:NSCenterTextAlignment];
+}
+
+
++ (NSData *) _noSelectionPlaceholderData
+{
+	static NSData * sData = nil;
+	if (sData == nil)
+	{
+		NSString * noSelectionString = NSLocalizedString(@"No selection", nil);
+
+		// noSelectionString -> noSelectionAttrString
+		NSMutableDictionary * attribs = [[[GeniusAtom defaultTextAttributes] mutableCopy] autorelease];
+		[attribs setObject:[NSColor grayColor] forKey:NSForegroundColorAttributeName];
+		NSAttributedString * noSelectionAttrString = [[[NSAttributedString alloc] initWithString:noSelectionString attributes:attribs] autorelease];
+
+		// noSelectionAttrString -> noSelectionData
+		if (noSelectionAttrString)
+		{
+			NSRange range = NSMakeRange(0, [noSelectionAttrString length]);
+			sData = [[noSelectionAttrString RTFDFromRange:range documentAttributes:nil] retain];
+		}
+	}
+	return sData;
+}
+
+- (void) bindTextView:(NSTextView *)textView toController:(id)observableController withKeyPath:(NSString *)keyPath;
+{
+	NSDictionary * options = nil;
+	NSData * noSelectionPlaceholderData = [GeniusWindowController _noSelectionPlaceholderData];
+	if (noSelectionPlaceholderData)
+		options = [NSDictionary dictionaryWithObject:noSelectionPlaceholderData forKey:NSNoSelectionPlaceholderBindingOption];
+
+	NSString * fullKeyPath = [NSString stringWithFormat:@"%@.%@", keyPath, GeniusAtomRTFDDataKey];
+	[textView bind:NSDataBinding toObject:observableController withKeyPath:fullKeyPath options:options];	
 }
 
 
@@ -124,7 +174,7 @@
 
 @implementation GeniusWindowController (NSSplitViewDelegate)
 
-- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
+/*- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
 {
 	if ([[sender subviews] indexOfObject:subview] == 1)
 		return YES;
@@ -134,11 +184,11 @@
 - (float)splitView:(NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
 {
 	return 0.0;
-}
+}*/
 
-- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+/*- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
 {
 	return proposedMax - 100.0;
-}
+}*/
 
 @end

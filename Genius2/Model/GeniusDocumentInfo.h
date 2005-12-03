@@ -9,9 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-extern NSString * GeniusDocumentInfoIsColumnARichTextKey;
-extern NSString * GeniusDocumentInfoIsColumnBRichTextKey;
-
 enum
 {
 	GeniusQuizUnidirectionalMode = 1,
@@ -23,12 +20,6 @@ enum
 
 - (NSDictionary *) tableViewConfigurationDictionary;
 - (void) setTableViewConfigurationDictionary:(NSDictionary *)configDict;
-
-- (BOOL) isColumnARichText;
-- (void) setIsColumnARichText:(BOOL)flag;
-
-- (BOOL) isColumnBRichText;
-- (void) setIsColumnBRichText:(BOOL)flag;
 
 - (int) quizDirectionMode;
 - (void) setQuizDirectionMode:(int)value;

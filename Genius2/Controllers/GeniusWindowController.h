@@ -15,6 +15,8 @@
 
 - (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu;
 - (void) setupSplitView:(NSSplitView *)splitView;
+- (void) setupAtomTextView:(NSTextView *)textView;
+- (void) bindTextView:(NSTextView *)textView toController:(id)observableController withKeyPath:(NSString *)keyPath;
 
 + (float) listTextFontSizeForSizeMode:(int)mode;
 + (float) rowHeightForSizeMode:(int)mode;

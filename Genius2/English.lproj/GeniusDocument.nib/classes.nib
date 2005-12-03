@@ -14,18 +14,11 @@
             SUPERCLASS = NSTextFieldCell; 
         }, 
         {
-            ACTIONS = {performToggleRichText = id; }; 
-            CLASS = GeniusAtomView; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {textView = id; toggleButton = id; }; 
-            SUPERCLASS = NSView; 
-        }, 
-        {
             CLASS = GeniusDocument; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                atomAView = id; 
-                atomBView = id; 
+                atomATextView = id; 
+                atomBTextView = id; 
                 documentInfoController = id; 
                 itemArrayController = id; 
                 levelIndicator = id; 

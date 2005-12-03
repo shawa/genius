@@ -12,3 +12,8 @@
 @interface GeniusFloatPercentTransformer : NSValueTransformer
 
 @end
+
+
+@interface GeniusEnabledBooleanToTextColorTransformer : NSValueTransformer
+
+@end

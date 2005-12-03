@@ -11,7 +11,6 @@
 #import "GeniusPreferences.h"
 
 // View
-#import "GeniusAtomView.h"
 #import "GeniusTableView.h"
 
 // Model
@@ -26,7 +25,6 @@
 
 @interface GeniusDocument (Private)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
-- (BOOL) convertAllAtomsToRichText:(BOOL)value forAtomKey:(NSString *)atomKey;
 @end
 
 
@@ -86,13 +84,12 @@
 /* Split View */
 	[(GeniusWindowController *)windowController setupSplitView:splitView];
 
-	// Bind atom views
-		// unregistered in -windowWillClose:
-    [atomAView bindAtomToController:itemArrayController withKeyPath:@"selection.atomA"];	// XXX
-	[atomAView addObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey options:0L context:NULL];
+/* Text Views */
+	[(GeniusWindowController *)windowController setupAtomTextView:atomATextView];
+	[(GeniusWindowController *)windowController bindTextView:atomATextView toController:itemArrayController withKeyPath:@"selection.atomA"];
 
-    [atomBView bindAtomToController:itemArrayController withKeyPath:@"selection.atomB"];	// XXX
-	[atomBView addObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey options:0L context:NULL];
+	[(GeniusWindowController *)windowController setupAtomTextView:atomBTextView];
+	[(GeniusWindowController *)windowController bindTextView:atomBTextView toController:itemArrayController withKeyPath:@"selection.atomB"];
 
 /* Misc. */
 	// -documentInfo created a new managed object, which sets the dirty bit
@@ -104,18 +101,6 @@
 	//NSLog(@"-[GeniusDocument dealloc]");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
-}
-
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	if ([keyPath isEqualToString:GeniusAtomViewUseRichTextAndGraphicsKey])
-	{
-		if (object == atomAView)
-			[self convertAllAtomsToRichText:[atomAView useRichTextAndGraphics] forAtomKey:@"atomA"];	// XXX
-		else if (object == atomBView)
-			[self convertAllAtomsToRichText:[atomBView useRichTextAndGraphics] forAtomKey:@"atomB"];	// XXX
-	}
 }
 
 
@@ -267,59 +252,10 @@
 	return documentInfo;
 }
 
-
-- (BOOL) convertAllAtomsToRichText:(BOOL)value forAtomKey:(NSString *)atomKey
-{
-	// Fetch all atom objects for the specified column
-	NSManagedObjectContext * context = [self managedObjectContext];
-	NSFetchRequest * request = [[[NSFetchRequest alloc] init] autorelease];
-	NSEntityDescription * entity = [NSEntityDescription entityForName:@"GeniusAtom" inManagedObjectContext:context];
-	[request setEntity:entity];
-	NSPredicate * predicate = [NSPredicate predicateWithFormat:@"key == %@", atomKey];
-	[request setPredicate:predicate];
-	NSError * error = nil;
-	NSArray * array = [context executeFetchRequest:request error:&error];
-	if (array == nil)
-	{
-		NSLog(@"%@", [error description]);
-		return NO;
-	}
-		
-/*	if ([array count] == 0)
-		return YES;
-	
-	if (value == NO)
-	{
-		NSString * messageText = NSLocalizedString(@"Convert this column to plain text?", nil);
-		NSString * informativeText = NSLocalizedString(@"If you convert this column, you will lose all text styles (such as fonts and colors) and attachments.", nil);
-		NSString * defaultButton = NSLocalizedString(@"Convert", nil);
-		NSString * alternateButton = NSLocalizedString(@"Cancel", nil);
-
-		NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButton
-			alternateButton:alternateButton otherButton:nil informativeTextWithFormat:informativeText];
-		int returnCode = [alert runModal];
-		if (returnCode == 0)	// No	// XXX: documentation says it's supposed to be NSAlertSecondButtonReturn
-			return NO;
-	}*/
-	
-	NSEnumerator * objectEnumerator = [array objectEnumerator];
-	GeniusAtom * atom;
-	while ((atom = [objectEnumerator nextObject]))
-		[atom setUsesRTFDData:value];
-	
-	return YES;
-}
-
 @end
 
 
 @implementation GeniusDocument (NSWindowDelegate)
-
-- (void)windowWillClose:(NSNotification *)aNotification
-{
-	[atomAView removeObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey];
-	[atomBView removeObserver:self forKeyPath:GeniusAtomViewUseRichTextAndGraphicsKey];
-}
 
 /*- (void)windowDidResignKey:(NSNotification *)aNotification
 {
@@ -404,6 +340,21 @@
 	{
 		return [itemArrayController selectionIndex] != NSNotFound;
 	}
+	// Format menu
+	else if ([menuItem action] == @selector(makePlainText:))
+	{
+		NSArray * selectedObjects = [itemArrayController selectedObjects];
+		if ([selectedObjects count] == 0)
+			return NO;
+			
+		NSEnumerator * objectEnumerator = [selectedObjects objectEnumerator];
+		GeniusItem * item;
+		while ((item = [objectEnumerator nextObject]))
+			if ([item usesDefaultTextAttributes] == NO)
+				return YES;
+		
+		return NO;
+	}
 	// Study menu
 	else if ([menuItem action] == @selector(setQuizDirectionModeAction:))
 	{
@@ -432,10 +383,13 @@
 
 - (IBAction) newItem:(id)sender
 {
+	[self _dismissFieldEditor];
+
 	id newObject = [itemArrayController newObject];
 	[itemArrayController addObject:newObject];
 
-	if ([[self mainWindow] isKeyWindow] && [[self documentInfo] isColumnARichText] == NO)
+	// Auto-select first text field
+	if ([[self mainWindow] isKeyWindow])
 	{
 		int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
 		[tableView editColumn:1 row:rowIndex withEvent:nil select:YES];
@@ -459,15 +413,51 @@
 	// TO DO
 }*/
 
+- (IBAction) makePlainText:(NSMenuItem *)sender
+{
+	NSString * messageText = NSLocalizedString(@"Convert the selected items to plain text?", nil);
+	NSString * informativeText = NSLocalizedString(@"If you convert the items, you will lose all text styles (such as fonts and colors) and attachments.", nil);
+	NSString * defaultButton = NSLocalizedString(@"Convert", nil);
+	NSString * alternateButton = NSLocalizedString(@"Cancel", nil);
+
+	NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButton
+		alternateButton:alternateButton otherButton:nil informativeTextWithFormat:informativeText];
+	[alert beginSheetModalForWindow:[self mainWindow] modalDelegate:self didEndSelector:@selector(_makePlainTextAlertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+}
+
+- (void)_makePlainTextAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+{
+	if (returnCode == 0)	// Cancel	// XXX: documentation says it's supposed to be NSAlertSecondButtonReturn
+		return;
+
+	NSArray * selectedObjects = [itemArrayController selectedObjects];
+	[selectedObjects makeObjectsPerformSelector:@selector(clearTextAttributes)];
+
+	[atomATextView setTypingAttributes:[NSDictionary dictionary]];	// nil doesn't have any effect
+	[atomBTextView setTypingAttributes:[NSDictionary dictionary]];	// nil doesn't have any effect
+}
+
+
 - (IBAction) resetItemScore:(id)sender
 {
 	NSArray * selectedObjects = [itemArrayController selectedObjects];
-	NSEnumerator * objectEnumerator = [selectedObjects objectEnumerator];
-	GeniusItem * item;
-	while ((item = [objectEnumerator nextObject]))
-		[item resetAssociations];
+	[selectedObjects makeObjectsPerformSelector:@selector(resetAssociations)];
 
 	[tableView reloadData];
+}
+
+// Format menu
+
+- (IBAction) showRichTextEditor:(id)sender
+{
+	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
+	int i;
+	for (i=0; i<4; i++)
+	{
+		[bottomView setFrameSize:NSMakeSize([splitView frame].size.width, 128.0)];
+		[splitView adjustSubviews];
+		[splitView displayIfNeeded];
+	}
 }
 
 

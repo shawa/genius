@@ -127,8 +127,11 @@
 // Handle delete:
 - (void)keyDown:(NSEvent *)theEvent
 {	
-    if ([theEvent keyCode] == 51 && [theEvent modifierFlags] == 0)       // Delete
-    {
+    if (([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0)	// any modifiers
+		return;
+	
+    if ([theEvent keyCode] == 51)       // Delete
+    {	
         id delegate = [self delegate];
         if (delegate && [delegate respondsToSelector:@selector(delete:)])
         {
@@ -136,6 +139,8 @@
             return;
         }
     }
+	
+	[super keyDown:theEvent];
 }
 
 @end

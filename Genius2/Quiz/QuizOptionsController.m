@@ -20,7 +20,7 @@
 
 - (void)windowDidLoad
 {
-	NSRange range = NSMakeRange(0, [[learnMoreTextView string] length]);
+//	NSRange range = NSMakeRange(0, [[learnMoreTextView string] length]);
 	NSRect rect = [learnMoreTextView bounds]; // firstRectForCharacterRange:range];
 	[learnMoreTextView addCursorRect:rect cursor:[NSCursor pointingHandCursor]];
 }

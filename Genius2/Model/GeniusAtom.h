@@ -18,11 +18,19 @@ extern NSString * GeniusAtomRTFDDataKey;
 */
 @interface GeniusAtom :  NSManagedObject  
 {
+//	BOOL _isImageOnly;
 }
 
-- (void) setUsesRTFDData:(BOOL)flag;	// converts string <-> rtfdData
++ (NSDictionary *) defaultTextAttributes;
+- (BOOL) usesDefaultTextAttributes;		// used by GeniusDocument.nib
+- (void) clearTextAttributes;
+
+/*- (void) setUsesRTFDData:(BOOL)flag;	// converts string <-> rtfdData
 
 - (void) setString:(NSString *)string;	// also sets rtfdData to nil
 - (void) setRtfdData:(NSData *)rtfdData;	// also sets string to plain text form
+*/
+
+- (void) setRtfdData:(NSData *)rtfdData;
 
 @end

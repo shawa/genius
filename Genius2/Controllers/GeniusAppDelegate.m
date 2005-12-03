@@ -12,9 +12,14 @@
 
 + (void) initialize
 {
-	GeniusFloatPercentTransformer * transformer = [[[GeniusFloatPercentTransformer alloc] init] autorelease];
+	// Register value transformers
+	NSValueTransformer * transformer = [[[GeniusFloatPercentTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusFloatPercentTransformer"];
 	
+	transformer = [[[GeniusEnabledBooleanToTextColorTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusEnabledBooleanToTextColorTransformer"];
+
+
 	[GeniusPreferences registerDefaults];
 }
 

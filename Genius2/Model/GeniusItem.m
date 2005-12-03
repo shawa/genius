@@ -221,13 +221,27 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 }
 
 
+- (BOOL) usesDefaultTextAttributes
+{
+	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey]; 
+	NSEnumerator * atomEnumerator = [atomSet objectEnumerator];
+	GeniusAtom * atom;
+	while ((atom = [atomEnumerator nextObject]))
+		if ([atom usesDefaultTextAttributes] == NO)
+			return NO;
+	return YES;
+}
+
+- (void) clearTextAttributes
+{
+	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey]; 
+	[atomSet makeObjectsPerformSelector:@selector(clearTextAttributes)];
+}
+
 - (void) resetAssociations
 {
 	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
-	NSEnumerator * associationEnumerator = [associationSet objectEnumerator];
-	GeniusAssociation * association;
-	while ((association = [associationEnumerator nextObject]))
-		[association reset];
+	[associationSet makeObjectsPerformSelector:@selector(reset)];
 }
 
 

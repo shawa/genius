@@ -4,6 +4,7 @@
             ACTIONS = {
                 exportFile = id; 
                 importFile = id; 
+                makePlainText = id; 
                 newItem = id; 
                 openFileSharingSite = id; 
                 openSupportSite = id; 
@@ -15,6 +16,7 @@
                 setQuizDirectionModeAction = id; 
                 showHelpWindow = id; 
                 showPreferences = id; 
+                showRichTextEditor = id; 
                 swapColumns = id; 
                 toggleColumnRichText = id; 
                 toggleInspector = id; 

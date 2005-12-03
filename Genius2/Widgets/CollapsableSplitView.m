@@ -43,12 +43,14 @@
 		{
 			NSView * tempView = [key pointerValue];
 			
-			// If the collapsed placeholder view has now been resized by the user to be uncollapsed
+			// If the collapsed placeholder view has now been resized by the user
+			// to the extent that it should be uncollapsed (i.e. expanded) ...
 			NSSize size = [tempView frame].size;
 			if ((isVertical && size.width > 0.0) || (isVertical == NO && size.height > 0.0))
 			{
 				// Swap in subview
 				NSView * origSubview = [_collapsedSubviewsDict objectForKey:key];
+				[origSubview setFrameSize:size];
 				[self replaceSubview:tempView with:origSubview];
 				[_collapsedSubviewsDict removeObjectForKey:key];
 			}
@@ -71,5 +73,18 @@
 	
 	[tempView release];
 }
+
+
+/*- (BOOL)isSubviewCollapsed:(NSView *)subview
+{
+	// The subview might have been collapsed by us or privately by Cocoa
+	
+	BOOL isVertical = [self isVertical];
+	NSSize size = [subview frame].size;
+	if ((isVertical && size.width == 0.0) || (isVertical == NO && size.height == 0.0))
+		return YES;
+	
+	return [super isSubviewCollapsed:subview];
+}*/
 
 @end

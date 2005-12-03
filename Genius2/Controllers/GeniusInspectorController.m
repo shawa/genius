@@ -1,7 +1,7 @@
 #import "GeniusInspectorController.h"
 
 #import "GeniusDocument.h"
-#import "GeniusDocumentInfo.h"	// -isColumnARichText, -isColumnBRichText
+//#import "GeniusDocumentInfo.h"	// -isColumnARichText, -isColumnBRichText
 
 #import "GeniusAtom.h"
 
@@ -48,10 +48,10 @@
 		if ([windowControllers count] > 0)
 			NSLog(@"GeniusInspectorController: Resigned document %@", [[[windowControllers objectAtIndex:0] window] title]);
 		*/
-		GeniusDocumentInfo * documentInfo = [lastDocument documentInfo];
+/*		GeniusDocumentInfo * documentInfo = [lastDocument documentInfo];
 		[documentInfo removeObserver:self forKeyPath:GeniusDocumentInfoIsColumnARichTextKey];
 		[documentInfo removeObserver:self forKeyPath:GeniusDocumentInfoIsColumnBRichTextKey];
-		
+*/		
 		if ([[sdc documents] count] == 0)
 			[self close];
 	}
@@ -62,12 +62,12 @@
 	{
 		//NSLog(@"GeniusInspectorController: Target document %@ (%@)", [mainWindow title], [document description]);
 
-		GeniusDocumentInfo * documentInfo = [document documentInfo];
+/*		GeniusDocumentInfo * documentInfo = [document documentInfo];
 		[self _setRichTextEnabled:[documentInfo isColumnARichText] forTextView:atomATextView objectController:atomAController];
 		[self _setRichTextEnabled:[documentInfo isColumnBRichText] forTextView:atomBTextView objectController:atomBController];
 		[documentInfo addObserver:self forKeyPath:GeniusDocumentInfoIsColumnARichTextKey options:0L context:NULL];
 		[documentInfo addObserver:self forKeyPath:GeniusDocumentInfoIsColumnBRichTextKey options:0L context:NULL];
-	}
+*/	}
 }
 
 - (void)windowDidLoad
@@ -88,7 +88,7 @@
 }
 
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+/*- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if ([keyPath isEqualToString:GeniusDocumentInfoIsColumnARichTextKey])
 	{
@@ -100,7 +100,7 @@
 		BOOL flag = [(GeniusDocumentInfo *)object isColumnBRichText];
 		[self _setRichTextEnabled:flag forTextView:atomBTextView objectController:atomBController];
 	}
-}
+}*/
 
 
 - (NSTabView *) tabView
