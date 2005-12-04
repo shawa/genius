@@ -1,21 +1,22 @@
+BUGS:
 drag image bug
-table view up down arrows
 quiz handling of blank strings
 
+quiz time option
 hook up level indicator
 drag and drop
-info button
 hook up text import/export
+save panel option
+info button
 
-quiz time option
 pay panel
-hook up swap command
 
 POLISH:
 window close dirty
 reveal rich text first resize
 get rid of search field pop-up
 cursor around "Learn More..."
+return on item starts editing
 
 polish column behavior
 window and table position saving

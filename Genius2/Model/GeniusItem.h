@@ -36,6 +36,8 @@ extern NSString * GeniusItemLastModifiedDateKey;
 
 - (NSString *) displayGrade;
 
+- (void) swapAtoms;
+
 - (BOOL) usesDefaultTextAttributes;
 - (void) clearTextAttributes;
 

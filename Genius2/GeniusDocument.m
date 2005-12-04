@@ -426,10 +426,13 @@
 		[item setValue:newRatingValue forKey:@"myRating"];
 }
 
-/*- (IBAction) swapColumns:(id)sender
+- (IBAction) swapColumns:(id)sender
 {
-	// TO DO
-}*/
+	NSArray * selectedObjects = [itemArrayController selectedObjects];
+	[selectedObjects makeObjectsPerformSelector:@selector(swapAtoms)];
+
+	[itemArrayController rearrangeObjects];
+}
 
 - (IBAction) makePlainText:(NSMenuItem *)sender
 {
