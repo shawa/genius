@@ -31,6 +31,8 @@
 		23380CC708E58CE200862CBC /* GeniusAtom.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC008E58CE200862CBC /* GeniusAtom.m */; };
 		23380CC808E58CE200862CBC /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC208E58CE200862CBC /* GeniusItem.m */; };
 		23380CE408E58DFF00862CBC /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CD708E58DFF00862CBC /* IconTextFieldCell.m */; };
+		23443B0909436AD50070D478 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
+		23443B0A09436AD90070D478 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
 		2349703C08F0B0850004234D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2349703A08F0B0850004234D /* Localizable.strings */; };
 		2349721B08F0C06D0004234D /* GeniusDocumentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2349721A08F0C06D0004234D /* GeniusDocumentInfo.m */; };
 		234E52EC08FC5B06005FCF83 /* VisualStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E52EB08FC5B06005FCF83 /* VisualStringDiff.m */; };
@@ -97,6 +99,19 @@
 		};
 /* End PBXBuildStyle section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2303020F09436A27003919FC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				23443B0A09436AD90070D478 /* Samples in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -138,6 +153,7 @@
 		23380CC208E58CE200862CBC /* GeniusItem.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusItem.m; sourceTree = "<group>"; };
 		23380CD608E58DFF00862CBC /* IconTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconTextFieldCell.h; sourceTree = "<group>"; };
 		23380CD708E58DFF00862CBC /* IconTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconTextFieldCell.m; sourceTree = "<group>"; };
+		23443B0409436AD50070D478 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Samples; path = UserDocs/Samples; sourceTree = "<group>"; };
 		2349703B08F0B0850004234D /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2349721908F0C06D0004234D /* GeniusDocumentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocumentInfo.h; sourceTree = "<group>"; };
 		2349721A08F0C06D0004234D /* GeniusDocumentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentInfo.m; sourceTree = "<group>"; };
@@ -354,6 +370,14 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		23443B0309436AC40070D478 /* UserDocs */ = {
+			isa = PBXGroup;
+			children = (
+				23443B0409436AD50070D478 /* Samples */,
+			);
+			name = UserDocs;
+			sourceTree = "<group>";
+		};
 		23835F0E08F970380066323F /* Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +432,7 @@
 				E1B74B1A0667B4A90069E3BA /* Models */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				23443B0309436AC40070D478 /* UserDocs */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
@@ -482,6 +507,7 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				2303020F09436A27003919FC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -556,6 +582,7 @@
 				238C59D20934B8DF00926AF1 /* Help.nib in Resources */,
 				238C5A760934BF6200926AF1 /* Help.html in Resources */,
 				238C5A790934BF6B00926AF1 /* Relax.html in Resources */,
+				23443B0909436AD50070D478 /* Samples in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
