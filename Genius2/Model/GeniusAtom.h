@@ -16,21 +16,19 @@ extern NSString * GeniusAtomRTFDDataKey;
 /*
 	An atom models one or more representations of a memorizable unit of information
 */
-@interface GeniusAtom :  NSManagedObject  
+@interface GeniusAtom :  NSManagedObject <NSCopying>
 {
-//	BOOL _isImageOnly;
 }
 
 + (NSDictionary *) defaultTextAttributes;
 - (BOOL) usesDefaultTextAttributes;		// used by GeniusDocument.nib
 - (void) clearTextAttributes;
 
-/*- (void) setUsesRTFDData:(BOOL)flag;	// converts string <-> rtfdData
-
-- (void) setString:(NSString *)string;	// also sets rtfdData to nil
-- (void) setRtfdData:(NSData *)rtfdData;	// also sets string to plain text form
-*/
-
 - (void) setRtfdData:(NSData *)rtfdData;
 
 @end
+
+
+// Exported only for GeniusItem
+extern NSString * GeniusAtomKeyKey;
+extern NSString * GeniusAtomModifiedDateKey;

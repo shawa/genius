@@ -67,7 +67,7 @@
 
 - (void) _rescheduleCurrentAssociation	// XXX: does this belong here or GeniusAssociation ?
 {
-    unsigned int deltaSec = 5;
+    unsigned int deltaSec = [GeniusAssociationDataPoint timeIntervalForScore:1];
 	if ([_currentAssociation lastDataPointValue] == YES)
 		deltaSec = [GeniusAssociationDataPoint timeIntervalForScore:[_currentAssociation resultCount]];
 	

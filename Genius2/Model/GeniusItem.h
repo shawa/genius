@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
+#import "GeniusAtom.h"
+
 
 extern NSString * GeniusItemIsEnabledKey;
 extern NSString * GeniusItemMyGroupKey;
@@ -18,12 +20,16 @@ extern NSString * GeniusItemLastTestedDateKey;
 extern NSString * GeniusItemLastModifiedDateKey;
 
 
-@interface GeniusItem :  NSManagedObject  
+@interface GeniusItem :  NSManagedObject <NSCopying>
 {
+	GeniusAtom * _atomA, * _atomB;
 	NSString * _displayGrade;
 }
 
 + (NSArray *) allAtomKeys;
+
+- (GeniusAtom *) atomA;
+- (GeniusAtom *) atomB;
 
 - (void) touchLastModifiedDate;
 - (void) touchLastTestedDate;
@@ -41,9 +47,6 @@ extern NSString * GeniusItemLastModifiedDateKey;
 
 
 // exported only for GeniusV1FileImporter
-extern NSString * GeniusItemAtomAKey;
-extern NSString * GeniusItemAtomBKey;
-
 extern NSString * GeniusItemAssociationsKey;
 extern NSString * GeniusItemAssociationABKey;
 extern NSString * GeniusItemAssociationBAKey;

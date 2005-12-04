@@ -100,11 +100,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0a0</string>
+	<string>2.0a1</string>
 	<key>CFBundleSignature</key>
-	<string>jrc </string>
+	<string>jrcG</string>
 	<key>CFBundleVersion</key>
-	<string>20051123</string>
+	<string>20051204</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

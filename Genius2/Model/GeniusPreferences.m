@@ -10,11 +10,10 @@
 
 
 NSString * GeniusPreferencesUseSoundEffectsKey = @"useSoundEffects";
-NSString * GeniusPreferencesUseFullScreenKey = @"useFullScreen";
 
 NSString * GeniusPreferencesListTextSizeModeKey = @"ListTextSizeMode";
+NSString * GeniusPreferencesQuizUseFullScreenKey = @"useFullScreen";
 NSString * GeniusPreferencesQuizUseVisualErrorsKey = @"QuizUseVisualErrors";
-NSString * GeniusPreferencesQuizReviewLearnSliderFloatKey = @"QuizReviewLearnSliderValue";
 NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
 
 
@@ -26,10 +25,9 @@ NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
 	NSDictionary * defaults = [NSDictionary dictionaryWithObjectsAndKeys:
 
 		[NSNumber numberWithBool:YES], GeniusPreferencesUseSoundEffectsKey,
-		[NSNumber numberWithBool:YES], GeniusPreferencesUseFullScreenKey,
+		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseFullScreenKey,
 
 		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseVisualErrorsKey,
-		[NSNumber numberWithFloat:50.0], GeniusPreferencesQuizReviewLearnSliderFloatKey,
 		[NSNumber numberWithInt:GeniusPreferencesQuizSimilarMatchingMode], GeniusPreferencesQuizMatchingModeKey,
 
 		NULL];

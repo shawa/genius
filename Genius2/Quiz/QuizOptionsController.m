@@ -46,24 +46,24 @@
 	[NSApp stopModal];
 }
 
-- (NSMatrix *) quizModeRadioMatrix
+
+- (int) numItems
 {
-	return quizModeRadioMatrix;
+	if ([quizModeRadioMatrix selectedRow] == 0)
+		return [numItemsTextField intValue];
+	return 0;
 }
 
-- (NSTextField *) fixedTimeTextField
+- (int) fixedTimeMinutes
 {
-	return fixedTimeTextField;
+	if ([quizModeRadioMatrix selectedRow] == 1)
+		return [fixedTimeTextField intValue];
+	return 0;
 }
 
-- (NSTextField *) numItemsTextField
+- (float) reviewLearnFloat
 {
-	return numItemsTextField;
-}
-
-- (NSSlider *) reviewLearnSlider
-{
-	return reviewLearnSlider;
+	return [reviewLearnSlider floatValue];
 }
 
 @end

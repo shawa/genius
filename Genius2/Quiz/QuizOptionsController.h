@@ -5,9 +5,9 @@
 @interface QuizOptionsController : NSWindowController
 {
     IBOutlet id quizModeRadioMatrix;
-    IBOutlet id fixedTimeTextField;
     IBOutlet id numItemsTextField;
 	IBOutlet id numItemsStepper;
+    IBOutlet id fixedTimeTextField;
     IBOutlet id reviewLearnSlider;
 
     IBOutlet id learnMoreTextView;
@@ -17,9 +17,8 @@
 - (int) runModal;
 
 
-- (NSMatrix *) quizModeRadioMatrix;
-- (NSTextField *) fixedTimeTextField;
-- (NSTextField *) numItemsTextField;
-- (NSSlider *) reviewLearnSlider;
+- (int) numItems;			// 0 if disabled
+- (int) fixedTimeMinutes;	// 0 if disabled
+- (float) reviewLearnFloat;
 
 @end

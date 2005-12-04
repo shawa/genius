@@ -67,9 +67,8 @@ enum {
 - (id) initWithDocument:(GeniusDocument *)document
 {
 	QuizModel * model = [[[QuizModel alloc] initWithDocument:document] autorelease];
-	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
 
-	if ([[associationEnumerator allObjects] count] == 0)
+	if ([model hasValidItems] == NO)
 	{
 		NSString * messageString = NSLocalizedString(@"There is nothing to study.", nil);
 		NSString * informativeString = NSLocalizedString(@"Make sure the items you want to study are filled in and enabled, or add more items.", nil);
@@ -81,11 +80,20 @@ enum {
 
 	QuizOptionsController * oc = [[QuizOptionsController alloc] init];
 	int result = [oc runModal];
+	
+	int requestedNumItems = [oc numItems];
+	if (requestedNumItems > 0)
+		[model setCount:requestedNumItems];
+
+	[model setReviewLearnFloat:[oc reviewLearnFloat]];
+//- (int) fixedTimeMinutes;	// 0 if disabled
+	
 	[oc release];
 
 	if (result == NSRunAbortedResponse)
 		return nil;
 		
+	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
 	return [self initWithAssociationEnumerator:associationEnumerator];
 }
 
@@ -121,6 +129,7 @@ enum {
 	[inputField setStringValue:targetString];
 
 	[inputField setEnabled:YES];
+	[[self window] makeFirstResponder:inputField];
 	[inputField selectText:self];
 	
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
@@ -143,6 +152,7 @@ enum {
 	[inputField setStringValue:@""];
 
 	[inputField setEnabled:YES];
+	[[self window] makeFirstResponder:inputField];
 	[inputField selectText:self];
 }
 
@@ -235,7 +245,7 @@ enum {
 	_screenWindow = nil;
 	NSAnimation * animation = nil;
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-	if ([ud boolForKey:GeniusPreferencesUseFullScreenKey])
+	if ([ud boolForKey:GeniusPreferencesQuizUseFullScreenKey])
 	{
 		_screenWindow = [QuizBackdropWindow new];
 

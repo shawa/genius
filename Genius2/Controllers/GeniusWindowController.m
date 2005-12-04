@@ -62,7 +62,7 @@
     //[cell setFormatter:numberFormatter];
 	
 	// Set up double-click action to handle uneditable rich text cells
-//	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];	
+	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];	
 }
 
 - (void) setupSplitView:(NSSplitView *)splitView
@@ -172,9 +172,9 @@
 @end
 
 
-@implementation GeniusWindowController (NSSplitViewDelegate)
+/*@implementation GeniusWindowController (NSSplitViewDelegate)
 
-/*- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
+- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
 {
 	if ([[sender subviews] indexOfObject:subview] == 1)
 		return YES;
@@ -189,6 +189,6 @@
 /*- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
 {
 	return proposedMax - 100.0;
-}*/
+}
 
-@end
+@end*/

@@ -118,6 +118,8 @@
 
 		if (delegate && [delegate respondsToSelector:@selector(tableView:didShowTableColumn:)])
 			[delegate tableView:self didShowTableColumn:tableColumn];
+			
+		[self sizeToFit];
 	}
 	
 	[sender setState:(state == NSOffState ? NSOnState : NSOffState)];

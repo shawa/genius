@@ -159,21 +159,19 @@
 
 - (void) _tableViewDoubleAction:(id)sender
 {
-	if ([sender clickedRow] == -1)
-		return;
-	int clickedColumn = [sender clickedColumn];
-	if ([sender clickedColumn] == -1)
+	if ([sender clickedRow] == -1 || [sender clickedColumn] == -1)
 		return;
 
-	// XXX
-/*	GeniusInspectorController * ic = [GeniusInspectorController sharedInspectorController];
-	[ic window];	// load window
+	[self showRichTextEditor:sender];
 
-	NSTableColumn * column = [[sender tableColumns] objectAtIndex:clickedColumn];
-	NSString * identifier = [column identifier];
-	[[ic tabView] selectTabViewItemWithIdentifier:identifier];
-
-	[ic showWindow:sender];*/
+	// Select all in the appropriate text view
+	NSTextView * textView;
+	if ([sender clickedColumn] == 1)		// XXX
+		textView = atomATextView;
+	else if ([sender clickedColumn] == 2)	// XXX
+		textView = atomBTextView;
+	[[self mainWindow] makeFirstResponder:textView];
+	[textView selectAll:sender];
 }
 
 
@@ -355,6 +353,10 @@
 		
 		return NO;
 	}
+	else if ([menuItem action] == @selector(resetItemScore:))
+	{
+		return [itemArrayController selectionIndex] != NSNotFound;
+	}
 	// Study menu
 	else if ([menuItem action] == @selector(setQuizDirectionModeAction:))
 	{
@@ -378,6 +380,22 @@
 	// TO DO
 }*/
 
+// Edit menu
+
+- (IBAction) duplicate:(id)sender
+{
+	[self _dismissFieldEditor];
+
+    NSArray * selectedObjects = [itemArrayController selectedObjects];
+
+    NSIndexSet * selectionIndexes = [itemArrayController selectionIndexes];
+    int lastIndex = [selectionIndexes lastIndex];
+    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(lastIndex+1, [selectionIndexes count])];
+    NSArray * newObjects = [[NSArray alloc] initWithArray:selectedObjects copyItems:YES];
+    [itemArrayController insertObjects:newObjects atArrangedObjectIndexes:indexSet];
+    [itemArrayController setSelectedObjects:newObjects];
+    [newObjects release];
+}
 
 // Item menu
 

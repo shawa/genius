@@ -2,6 +2,7 @@
     IBClasses = (
         {
             ACTIONS = {
+                duplicate = id; 
                 exportFile = id; 
                 importFile = id; 
                 makePlainText = id; 

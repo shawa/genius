@@ -14,17 +14,20 @@
 
 @interface QuizModel : NSObject {
 	GeniusDocument * _document;
-	NSArray * _associations;
+	NSArray * _allActiveAssociations;
 
 	unsigned int _requestedCount;
+	float _requestedReviewLearnFloat;
 	float _requestedMinScore;
 }
 
 - (id) initWithDocument:(GeniusDocument *)document;
 
-- (void) setCount:(unsigned int)count;
-- (void) setMinimumScore:(float)score;
+- (BOOL) hasValidItems;	// preflight
 
-- (GeniusAssociationEnumerator *) associationEnumerator;
+- (void) setCount:(unsigned int)count;	// 0 means all
+- (void) setReviewLearnFloat:(float)value;
+
+- (GeniusAssociationEnumerator *) associationEnumerator;	// does the selection here
 
 @end

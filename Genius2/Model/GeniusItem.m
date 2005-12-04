@@ -8,7 +8,6 @@
 
 #import "GeniusItem.h"
 
-#import "GeniusAtom.h"
 #import "GeniusAssociation.h"
 
 // XXX
@@ -51,9 +50,70 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 }
 
 
+- (void) _attachAtomA:(GeniusAtom *)atomA atomB:(GeniusAtom *)atomB
+{
+	NSMutableSet * atomSet = [self mutableSetValueForKey:GeniusItemAtomsKey];	// persistent
+	[atomSet addObject:atomA];
+	[atomSet addObject:atomB];
+}
+
+- (void) _detachAtoms
+{
+	NSMutableSet * atomSet = [self mutableSetValueForKey:GeniusItemAtomsKey];	// persistent
+	[atomSet removeAllObjects];
+
+	[_atomA release];
+	_atomA = nil;
+	
+	[_atomB release];
+	_atomB = nil;
+}
+
+- (void) _addSelfAsObserverToChildAtoms
+{
+	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];	// persistent
+	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
+	NSManagedObject * atom;
+	while ((atom = [atomSetEnumerator nextObject]))
+		[atom addObserver:self forKeyPath:GeniusAtomModifiedDateKey options:0 context:NULL];
+}
+
+- (void) _removeSelfAsObserverToChildAtoms
+{
+	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];	// persistent
+	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
+	NSManagedObject * atom;
+	while ((atom = [atomSetEnumerator nextObject]))
+		[atom removeObserver:self forKeyPath:GeniusAtomModifiedDateKey];
+}
+
+
+- (id)copyWithZone:(NSZone *)zone
+{
+	NSManagedObjectContext * context = [self managedObjectContext];
+
+	// Create new item
+	GeniusItem * newObject = [[[self class] allocWithZone:zone] initWithEntity:[self entity] insertIntoManagedObjectContext:context];
+
+	// Remove new atoms
+	[newObject _detachAtoms];
+	[newObject _removeSelfAsObserverToChildAtoms];
+	
+	// Use old atoms
+	GeniusAtom * newAtomA = [[[self atomA] copy] autorelease];
+	GeniusAtom * newAtomB = [[[self atomB] copy] autorelease];
+	[newObject _attachAtomA:newAtomA atomB:newAtomB];
+
+	[newObject _addSelfAsObserverToChildAtoms];
+
+    return newObject;
+}
+
 - (void) commonAwake
 {
-	[self flushCache];
+	[self _addSelfAsObserverToChildAtoms];
+
+//	[self flushCache];
 }
 
 - (void)awakeFromInsert
@@ -63,22 +123,14 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	NSManagedObjectContext * context = [self managedObjectContext];
 
 	// Create atoms
-	NSManagedObject * atomA = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
-	[atomA setPrimitiveValue:@"atomA" forKey:@"key"];
+	GeniusAtom * atomA = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
+	[atomA setPrimitiveValue:GeniusItemAtomAKey forKey:GeniusAtomKeyKey];
 
-	NSManagedObject * atomB = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
-	[atomB setPrimitiveValue:@"atomB" forKey:@"key"];
+	GeniusAtom * atomB = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
+	[atomB setPrimitiveValue:GeniusItemAtomBKey forKey:GeniusAtomKeyKey];
 
-/*	NSManagedObject * atomC = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
-	[atomC setValue:@"atomC" forKey:@"key"];
-	[self setPrimitiveValue:atomC forKey:@"atomC"];
-*/
-	[self setPrimitiveValue:atomA forKey:GeniusItemAtomAKey];	// transient
-	[self setPrimitiveValue:atomB forKey:GeniusItemAtomBKey];	// transient
-
-	NSMutableSet * atomSet = [self mutableSetValueForKey:GeniusItemAtomsKey];	// persistent
-	[atomSet addObject:atomA];
-	[atomSet addObject:atomB];
+	// Link new atoms to self
+	[self _attachAtomA:atomA atomB:atomB];
 
 	// Create associations
 	NSManagedObject * assocAB = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAssociation" inManagedObjectContext:context];
@@ -92,12 +144,15 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	[self setPrimitiveValue:assocAB forKey:GeniusItemAssociationABKey];	// transient
 	[self setPrimitiveValue:assocBA forKey:GeniusItemAssociationBAKey];	// transient
 
+	// Link new associations to self
 	NSMutableSet * associationSet = [self mutableSetValueForKey:GeniusItemAssociationsKey];	// persistent
 	[associationSet addObject:assocAB];
 	[associationSet addObject:assocBA];
 
 	// Initialize lastModifiedDate
 	[self setPrimitiveValue:[NSDate date] forKey:GeniusItemLastModifiedDateKey];
+
+	[self commonAwake];
 }
 
 - (void)awakeFromFetch
@@ -106,18 +161,16 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 	[self flushCache];
 
-	// Set up transient atoms
+/*	// Set up transient atoms
 	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];
 	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
 	NSManagedObject * atom;
 	while ((atom = [atomSetEnumerator nextObject]))
 	{
-		NSString * key = [atom valueForKey:@"key"];
+		NSString * key = [atom valueForKey:GeniusAtomKeyKey];
 		if (key)
-		{
 			[self setPrimitiveValue:atom forKey:key];
-		}
-	}
+	}*/
 
 	// Set up transient associations
 	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
@@ -133,6 +186,48 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 			[self setPrimitiveValue:association forKey:key];
 		}
 	}
+	
+	[self commonAwake];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqualToString:GeniusAtomModifiedDateKey])
+	{
+		[self touchLastModifiedDate];
+	}
+}
+
+
+- (GeniusAtom *) _atomForKey:(NSString *)aKey
+{
+	// is NSFetchRequest faster?
+
+	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];
+	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
+	GeniusAtom * atom;
+	while ((atom = [atomSetEnumerator nextObject]))
+	{
+		NSString * key = [atom valueForKey:GeniusAtomKeyKey];
+		if ([key isEqualToString:aKey])
+			return atom;
+	}
+	return nil;
+}
+
+- (GeniusAtom *) atomA
+{
+	if (_atomA == nil)
+		_atomA = [[self _atomForKey:GeniusItemAtomAKey] retain];
+	return _atomA;
+}
+
+- (GeniusAtom *) atomB
+{
+	if (_atomB == nil)
+		_atomB = [[self _atomForKey:GeniusItemAtomBKey] retain];
+	return _atomB;
 }
 
 

@@ -33,6 +33,9 @@
 // File menu
 - (IBAction) exportFile:(id)sender;
 
+// Edit menu
+- (IBAction) duplicate:(id)sender;
+
 // Item menu
 - (IBAction) newItem:(id)sender;
 - (IBAction) setItemRating:(NSMenuItem *)sender;

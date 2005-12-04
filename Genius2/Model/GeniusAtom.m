@@ -7,10 +7,10 @@
 //
 
 #import "GeniusAtom.h"
-#import "GeniusItem.h"
 
 
-static NSString * GeniusAtomParentItemKey = @"parentItem";
+NSString * GeniusAtomKeyKey = @"key";
+NSString * GeniusAtomModifiedDateKey = @"modifiedDate";
 
 NSString * GeniusAtomStringKey = @"string";
 NSString * GeniusAtomRTFDDataKey = @"rtfdData";
@@ -18,13 +18,32 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 
 @implementation GeniusAtom 
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	NSManagedObjectContext * context = [self managedObjectContext];
+
+	GeniusAtom * newObject = [[[self class] allocWithZone:zone] initWithEntity:[self entity] insertIntoManagedObjectContext:context];
+
+	NSString * newKey = [[[self valueForKey:GeniusAtomKeyKey] copy] autorelease];
+	[newObject setValue:newKey forKey:GeniusAtomKeyKey];
+
+	NSString * newString = [[[self valueForKey:GeniusAtomStringKey] copy] autorelease];
+	[newObject setValue:newString forKey:GeniusAtomStringKey];
+
+	NSData * newRtfdData = [[[self valueForKey:GeniusAtomRTFDDataKey] copy] autorelease];
+	[newObject setValue:newRtfdData forKey:GeniusAtomRTFDDataKey];
+
+    return newObject;
+}
+
+
 - (void)didChangeValueForKey:(NSString *)key
 {
-	if ([key isEqualToString:GeniusAtomParentItemKey] == NO)
+	if ([key isEqual:GeniusAtomModifiedDateKey] == NO)
 	{
-		GeniusItem * item = [self valueForKey:GeniusAtomParentItemKey];
-		[item touchLastModifiedDate];
+		[self setValue:[NSDate date] forKey:GeniusAtomModifiedDateKey];	
 	}
+	
 	[super didChangeValueForKey:key];
 }
 
@@ -119,7 +138,7 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 			rtfdData = nil;
 	}
 	
-	NSLog(@"string=%X, rtfdData=%X", string, rtfdData);
+	//NSLog(@"string=%X, rtfdData=%X", string, rtfdData);
 
 	[self willChangeValueForKey:GeniusAtomRTFDDataKey];
 	[self setPrimitiveValue:rtfdData forKey:GeniusAtomRTFDDataKey];

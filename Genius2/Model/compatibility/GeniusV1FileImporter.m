@@ -60,15 +60,13 @@
 	NSString * stringA = [[v1Pair itemA] stringValue];
 	if (stringA)
 	{
-		GeniusAtom * atomA = [newItem valueForKey:GeniusItemAtomAKey];
-		[atomA setValue:stringA forKey:GeniusAtomStringKey];
+		[[newItem atomA] setValue:stringA forKey:GeniusAtomStringKey];
 	}
 	
 	NSString * stringB = [[v1Pair itemB] stringValue];
 	if (stringB)
 	{
-		GeniusAtom * atomB = [newItem valueForKey:GeniusItemAtomBKey];
-		[atomB setValue:stringB forKey:GeniusAtomStringKey];
+		[[newItem atomB] setValue:stringB forKey:GeniusAtomStringKey];
 	}
 
 	// Update associations

@@ -1,12 +1,13 @@
 drag image bug
 table view up down arrows
+quiz handling of blank strings
 
-quiz options
-hook up text import/export
 hook up level indicator
 drag and drop
 info button
+hook up text import/export
 
+quiz time option
 pay panel
 hook up swap command
 
