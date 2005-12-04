@@ -104,6 +104,13 @@
 }
 
 
+- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
+{
+	[savePanel setAccessoryView:nil];
+	return YES;
+}
+
+
 - (NSWindow *) mainWindow
 {
 	NSArray * windowControllers = [self windowControllers];

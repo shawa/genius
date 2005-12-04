@@ -35,6 +35,8 @@ NSString * GeniusPreferencesQuizReviewLearnFloatKey = @"QuizReviewLearnFloat";
 		[NSNumber numberWithInt:GeniusPreferencesQuizSimilarMatchingMode], GeniusPreferencesQuizMatchingModeKey,
 
 		[NSNumber numberWithInt:10], GeniusPreferencesQuizNumItemsKey,
+		[NSNumber numberWithInt:20], GeniusPreferencesQuizFixedTimeMinKey,
+		[NSNumber numberWithFloat:50.0], GeniusPreferencesQuizReviewLearnFloatKey,
 
 		NULL];
 

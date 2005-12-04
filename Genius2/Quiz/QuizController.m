@@ -283,6 +283,8 @@ enum {
 			int result = [NSApp runModalForWindow:[self window]];
 			if (result == NSRunAbortedResponse)
 				break;
+
+			[_associationEnumerator neutral];
 		}
 		else
 		{
@@ -318,8 +320,7 @@ enum {
 
 - (IBAction) next:(id)sender
 {
-	[_associationEnumerator neutral];
-    [NSApp stopModal];
+    [NSApp stopModal];	
 }
 
 - (IBAction) checkInput:(id)sender
@@ -358,8 +359,6 @@ enum {
     BOOL succeed = [window makeFirstResponder:window];
     if (!succeed)
         [window endEditingFor:nil];
-
-    [_associationEnumerator right];
 }
 
 @end
