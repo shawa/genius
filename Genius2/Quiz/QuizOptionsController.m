@@ -20,6 +20,10 @@
 
 - (void)windowDidLoad
 {
+	[numItemsStepper setMinValue:1];
+	[numItemsStepper setMaxValue:999];
+	[numItemsStepper setValueWraps:NO];
+
 //	NSRange range = NSMakeRange(0, [[learnMoreTextView string] length]);
 	NSRect rect = [learnMoreTextView bounds]; // firstRectForCharacterRange:range];
 	[learnMoreTextView addCursorRect:rect cursor:[NSCursor pointingHandCursor]];
@@ -40,6 +44,26 @@
 - (IBAction)quiz:(id)sender
 {
 	[NSApp stopModal];
+}
+
+- (NSMatrix *) quizModeRadioMatrix
+{
+	return quizModeRadioMatrix;
+}
+
+- (NSTextField *) fixedTimeTextField
+{
+	return fixedTimeTextField;
+}
+
+- (NSTextField *) numItemsTextField
+{
+	return numItemsTextField;
+}
+
+- (NSSlider *) reviewLearnSlider
+{
+	return reviewLearnSlider;
 }
 
 @end

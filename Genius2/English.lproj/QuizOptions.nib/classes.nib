@@ -8,6 +8,7 @@
             OUTLETS = {
                 fixedTimeTextField = id; 
                 learnMoreTextView = id; 
+                numItemsStepper = id; 
                 numItemsTextField = id; 
                 quizModeRadioMatrix = id; 
                 reviewLearnSlider = id; 

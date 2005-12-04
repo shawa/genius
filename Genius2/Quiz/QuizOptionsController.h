@@ -4,17 +4,22 @@
 
 @interface QuizOptionsController : NSWindowController
 {
+    IBOutlet id quizModeRadioMatrix;
     IBOutlet id fixedTimeTextField;
     IBOutlet id numItemsTextField;
-    IBOutlet id quizModeRadioMatrix;
-    IBOutlet id learnMoreTextView;
+	IBOutlet id numItemsStepper;
     IBOutlet id reviewLearnSlider;
+
+    IBOutlet id learnMoreTextView;
 }
 
 - (id) init;
 - (int) runModal;
 
-- (IBAction)cancel:(id)sender;
-- (IBAction)quiz:(id)sender;
+
+- (NSMatrix *) quizModeRadioMatrix;
+- (NSTextField *) fixedTimeTextField;
+- (NSTextField *) numItemsTextField;
+- (NSSlider *) reviewLearnSlider;
 
 @end

@@ -2,13 +2,11 @@ drag image bug
 table view up down arrows
 
 quiz options
-info button
-drag and drop
 hook up text import/export
 hook up level indicator
-grading
+drag and drop
+info button
 
-relax panel pref
 pay panel
 hook up swap command
 
@@ -16,15 +14,16 @@ POLISH:
 window close dirty
 reveal rich text first resize
 get rid of search field pop-up
+cursor around "Learn More..."
 
 polish column behavior
 window and table position saving
 LastOpenFiles
-cursor around "Learn More..."
 
 // version 3.0
 iTunes-style all-in-one window
 tri-directional
+grading
 printing
 export to iPod
 file sharing

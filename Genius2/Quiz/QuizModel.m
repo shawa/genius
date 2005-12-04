@@ -68,7 +68,7 @@
 
 - (NSArray *) _activeAssociations
 {
-	NSMutableArray * fragments = [NSMutableArray arrayWithObject:@"(parentItem.isEnabled == YES) AND (parentItem.atomA.string != NIL) AND (parentItem.atomB.string != NIL)"];
+	NSMutableArray * fragments = [NSMutableArray arrayWithObject:@"(parentItem.isEnabled == YES)"]; // AND (parentItem.atomA.string != NIL) AND (parentItem.atomB.string != NIL)"];
 
 	int quizDirectionMode = [[_document documentInfo] quizDirectionMode];
 	if (quizDirectionMode == GeniusQuizUnidirectionalMode)
