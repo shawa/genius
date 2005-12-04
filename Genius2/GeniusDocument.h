@@ -17,6 +17,8 @@
 	
     IBOutlet id atomATextView;
     IBOutlet id atomBTextView;
+	
+	NSArray * _itemsDuringDrag;
 }
 
 - (NSWindow *) mainWindow;

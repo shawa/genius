@@ -1,8 +1,9 @@
 {
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = IntegerFormatter; LANGUAGE = ObjC; SUPERCLASS = NSFormatter; }, 
         {
-            ACTIONS = {cancel = id; quiz = id; }; 
+            ACTIONS = {cancel = id; didChangeQuizModeRadioMatrix = id; quiz = id; }; 
             CLASS = QuizOptionsController; 
             LANGUAGE = ObjC; 
             OUTLETS = {

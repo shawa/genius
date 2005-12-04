@@ -9,12 +9,17 @@
 #import "GeniusPreferences.h"
 
 
-NSString * GeniusPreferencesUseSoundEffectsKey = @"useSoundEffects";
+NSString * GeniusPreferencesUseSoundEffectsKey = @"UseSoundEffects";
 
 NSString * GeniusPreferencesListTextSizeModeKey = @"ListTextSizeMode";
 NSString * GeniusPreferencesQuizUseFullScreenKey = @"useFullScreen";
 NSString * GeniusPreferencesQuizUseVisualErrorsKey = @"QuizUseVisualErrors";
 NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
+
+//static NSString * GeniusPreferencesQuizLengthModeKey = @"QuizLengthMode";
+NSString * GeniusPreferencesQuizNumItemsKey = @"QuizNumItems";
+NSString * GeniusPreferencesQuizFixedTimeMinKey = @"QuizFixedTimeMin";
+NSString * GeniusPreferencesQuizReviewLearnFloatKey = @"QuizReviewLearnFloat";
 
 
 @implementation GeniusPreferences
@@ -26,9 +31,10 @@ NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
 
 		[NSNumber numberWithBool:YES], GeniusPreferencesUseSoundEffectsKey,
 		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseFullScreenKey,
-
 		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseVisualErrorsKey,
 		[NSNumber numberWithInt:GeniusPreferencesQuizSimilarMatchingMode], GeniusPreferencesQuizMatchingModeKey,
+
+		[NSNumber numberWithInt:10], GeniusPreferencesQuizNumItemsKey,
 
 		NULL];
 

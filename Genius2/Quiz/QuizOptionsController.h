@@ -16,9 +16,4 @@
 - (id) init;
 - (int) runModal;
 
-
-- (int) numItems;			// 0 if disabled
-- (int) fixedTimeMinutes;	// 0 if disabled
-- (float) reviewLearnFloat;
-
 @end

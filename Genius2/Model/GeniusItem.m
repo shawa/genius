@@ -366,3 +366,45 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 }
 
 @end
+
+
+@implementation GeniusItem (TextImportExport)
+
+- (NSString *) tabularText
+{
+	NSArray * keyPaths = [NSArray arrayWithObjects:@"atomA.string", @"atomB.string", nil];
+
+    NSMutableString * outputString = [NSMutableString string];
+    int i, count = [keyPaths count];
+    for (i=0; i<count; i++)
+    {
+        NSString * keyPath = [keyPaths objectAtIndex:i];
+        id value = [self valueForKeyPath:keyPath];
+        if (value)
+        {
+            // Escape any embedded special characters
+            NSMutableString * encodedString = [NSMutableString stringWithString:[value description]];
+            [encodedString replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSLiteralSearch range:NSMakeRange(0, [encodedString length])];
+            [encodedString replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSLiteralSearch range:NSMakeRange(0, [encodedString length])];
+            [encodedString replaceOccurrencesOfString:@"\r" withString:@"\\n" options:NSLiteralSearch range:NSMakeRange(0, [encodedString length])];
+
+            [outputString appendString:encodedString];
+        }
+        if (i<count-1)
+            [outputString appendString:@"\t"];
+    }
+
+    return outputString;	
+}
+
++ (NSString *) tabularTextFromItems:(NSArray *)items
+{
+    NSMutableString * outputString = [NSMutableString string];    
+    NSEnumerator * itemEnumerator = [items objectEnumerator];
+    GeniusItem * item;
+    while ((item = [itemEnumerator nextObject]))
+        [outputString appendFormat:@"%@\n", [item tabularText]];
+    return outputString;
+}
+
+@end

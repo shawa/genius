@@ -48,6 +48,14 @@ extern NSString * GeniusItemLastModifiedDateKey;
 @end
 
 
+@interface GeniusItem (TextImportExport)
+
+- (NSString *) tabularText;
++ (NSString *) tabularTextFromItems:(NSArray *)items;
+
+@end
+
+
 // exported only for GeniusV1FileImporter
 extern NSString * GeniusItemAssociationsKey;
 extern NSString * GeniusItemAssociationABKey;

@@ -43,27 +43,29 @@
 
 - (IBAction)quiz:(id)sender
 {
+	// Allow text field validation to occur before we continue
+	NSWindow * window = [self window];
+	if ([window makeFirstResponder:window] == NO)
+		return;
+
 	[NSApp stopModal];
 }
 
 
-- (int) numItems
+- (NSTextField *) _radioMatrixCorrespondingTextField
 {
 	if ([quizModeRadioMatrix selectedRow] == 0)
-		return [numItemsTextField intValue];
-	return 0;
+		return numItemsTextField;
+	else
+		return fixedTimeTextField;
 }
 
-- (int) fixedTimeMinutes
+- (IBAction)didChangeQuizModeRadioMatrix:(id)sender
 {
-	if ([quizModeRadioMatrix selectedRow] == 1)
-		return [fixedTimeTextField intValue];
-	return 0;
-}
-
-- (float) reviewLearnFloat
-{
-	return [reviewLearnSlider floatValue];
+	// Begin editing in corresponding text field
+	NSTextField * textField = [self _radioMatrixCorrespondingTextField];
+	[[self window] makeFirstResponder:textField];
+	[textField selectText:self];
 }
 
 @end

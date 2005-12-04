@@ -32,6 +32,8 @@
     NSSound * _newSound;
     NSSound * _rightSound;
     NSSound * _wrongSound;
+
+	NSDate * _quizUntilDate;	
 }
 
 - (id) initWithDocument:(GeniusDocument *)document;

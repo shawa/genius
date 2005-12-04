@@ -18,6 +18,10 @@ extern NSString * GeniusPreferencesQuizUseFullScreenKey;			// bool
 extern NSString * GeniusPreferencesQuizUseVisualErrorsKey;			// bool
 extern NSString * GeniusPreferencesQuizMatchingModeKey;				// integer (0-2)
 
+extern NSString * GeniusPreferencesQuizNumItemsKey;					// integer (1-)
+extern NSString * GeniusPreferencesQuizFixedTimeMinKey;				// integer (1-)
+extern NSString * GeniusPreferencesQuizReviewLearnFloatKey;			// float (0.0-100.0)
+
 enum {
 	GeniusPreferencesQuizExactMatchingMode = 0,
 	GeniusPreferencesQuizCaseInsensitiveMatchingMode,

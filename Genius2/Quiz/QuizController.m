@@ -47,7 +47,7 @@ enum {
 }
 
 
-- (id) initWithAssociationEnumerator:(GeniusAssociationEnumerator *)associationEnumerator
+- (id) _initWithAssociationEnumerator:(GeniusAssociationEnumerator *)associationEnumerator
 {
 	self = [super initWithWindowNibName:@"Quiz"];
 	
@@ -60,6 +60,8 @@ enum {
     _newSound = [[NSSound soundNamed:@"Blow"] retain];
     _rightSound = [[NSSound soundNamed:@"Hero"] retain];
     _wrongSound = [[NSSound soundNamed:@"Basso"] retain];
+
+	_quizUntilDate = nil;
 
 	return self;
 }
@@ -80,31 +82,39 @@ enum {
 
 	QuizOptionsController * oc = [[QuizOptionsController alloc] init];
 	int result = [oc runModal];
-	
-	int requestedNumItems = [oc numItems];
+	[oc release];
+	if (result == NSRunAbortedResponse)
+		return nil;
+
+	// Setup quiz options
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	int requestedNumItems = [ud integerForKey:GeniusPreferencesQuizNumItemsKey];
 	if (requestedNumItems > 0)
 		[model setCount:requestedNumItems];
 
-	[model setReviewLearnFloat:[oc reviewLearnFloat]];
-//- (int) fixedTimeMinutes;	// 0 if disabled
-	
-	[oc release];
+	int fixedTimeMinutes = [ud integerForKey:GeniusPreferencesQuizFixedTimeMinKey];
+	if (fixedTimeMinutes > 0)
+		_quizUntilDate = [NSDate dateWithTimeIntervalSinceNow:(60 * fixedTimeMinutes)];
 
-	if (result == NSRunAbortedResponse)
-		return nil;
-		
+	float reviewLearnFloat = [ud floatForKey:GeniusPreferencesQuizReviewLearnFloatKey];
+	[model setReviewLearnFloat:reviewLearnFloat];
+
+				
 	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
-	return [self initWithAssociationEnumerator:associationEnumerator];
+	return [self _initWithAssociationEnumerator:associationEnumerator];
 }
 
 - (void) dealloc
 {
+	[_stateInfo release];
+	[_associationEnumerator release];
+
     [_newSound release];
     [_rightSound release];
     [_wrongSound release];
 	
-	[_stateInfo release];
-	[_associationEnumerator release];
+	[_quizUntilDate release];
 	
 	[super dealloc];
 }
@@ -289,6 +299,9 @@ enum {
 		}
 
 		[self _updateProgress];
+
+		if ([(NSDate *)[NSDate date] compare:_quizUntilDate] == NSOrderedDescending)
+			break;
 	}
 
     [self close];
