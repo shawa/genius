@@ -2,7 +2,7 @@ BUGS:
 drag image bug
 quiz handling of blank strings / lex similarity return only
 
-hook up level indicator
+grading / hook up level indicator
 drag and drop / hook up text import
 info button
 

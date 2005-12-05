@@ -600,7 +600,7 @@
 
 - (IBAction) runQuiz:(id)sender
 {
-	// XXX: let user choose number of items or time limit, initial set of associations
+	// XXX: let user choose initial set of items
 
 	QuizController * quiz = [[QuizController alloc] initWithDocument:self];
 	[quiz runQuiz];

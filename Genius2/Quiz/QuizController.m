@@ -70,6 +70,7 @@ enum {
 {
 	QuizModel * model = [[[QuizModel alloc] initWithDocument:document] autorelease];
 
+	// Put up error sheet
 	if ([model hasValidItems] == NO)
 	{
 		NSString * messageString = NSLocalizedString(@"There is nothing to study.", nil);
@@ -80,6 +81,7 @@ enum {
 		return nil;
 	}
 
+	// Put up modal options dialog
 	QuizOptionsController * oc = [[QuizOptionsController alloc] init];
 	int result = [oc runModal];
 	[oc release];
@@ -100,7 +102,7 @@ enum {
 	float reviewLearnFloat = [ud floatForKey:GeniusPreferencesQuizReviewLearnFloatKey];
 	[model setReviewLearnFloat:reviewLearnFloat];
 
-				
+	
 	GeniusAssociationEnumerator * associationEnumerator = [model associationEnumerator];
 	return [self _initWithAssociationEnumerator:associationEnumerator];
 }
@@ -252,6 +254,18 @@ enum {
 
 - (void) runQuiz
 {
+	// Hide other document windows
+	NSEnumerator * documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
+	NSDocument * document;
+	while ((document = [documentEnumerator nextObject]))
+	{
+		NSEnumerator * windowControllerEnumerator = [[document windowControllers] objectEnumerator];
+		NSWindowController * windowController;
+		while ((windowController = [windowControllerEnumerator nextObject]))
+			[[windowController window] orderOut:nil];
+	}
+	
+	// Put up backdrop window
 	_screenWindow = nil;
 	NSAnimation * animation = nil;
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
@@ -308,12 +322,22 @@ enum {
 
     [self close];
 	
+	// Take down backdrop window
+	if (_screenWindow)
 	{
 		[animation setAnimationCurve:NSAnimationEaseOut];
 		[animation setDuration:kQuizBackdropAnimationEaseOutTimeInterval];
 		[animation startAnimation];
 		[_screenWindow close];
 		[animation release];
+	}
+
+	// Show other document windows
+	documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
+	while ((document = [documentEnumerator nextObject]))
+	{
+		NSArray * windowControllers = [document windowControllers];
+		[windowControllers makeObjectsPerformSelector:@selector(showWindow:) withObject:nil];
 	}
 }
 
