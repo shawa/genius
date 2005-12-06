@@ -204,10 +204,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>23A2C6B60944C97300BD42FF</string>
+						<string>23A2C826094513A700BD42FF</string>
 						<key>history</key>
 						<array>
-							<string>23A2C6B10944C96D00BD42FF</string>
+							<string>23A2C7E30945128400BD42FF</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -223,7 +223,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>685 187 513 522 0 0 1280 832 </string>
+				<string>566 184 513 522 0 0 1280 832 </string>
 			</dict>
 		</dict>
 	</array>
@@ -259,8 +259,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -303,7 +301,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
+									<integer>7</integer>
+									<integer>3</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -372,6 +372,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -544,15 +546,16 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>23A2C68C0944947E00BD42FF</string>
 		<string>23A2C68D0944947E00BD42FF</string>
 		<string>2302F62B0901A7C000585123</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>23A2C67F0944946000BD42FF</string>
-		<string>23E0F8540901AD1400807121</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
+		<string>23E0F8540901AD1400807121</string>
 		<string>23A2C6B40944C97300BD42FF</string>
+		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>58 435 690 397 0 0 1280 832 </string>
@@ -593,6 +596,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -643,7 +648,7 @@
 			<key>WindowToolGUID</key>
 			<string>23E0F8540901AD1400807121</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -777,7 +782,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusPreferences.m</string>
+										<string>GeniusInspectorController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -835,8 +840,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>23443BE20943742D0070D478</string>
-				<string>23443BE30943742D0070D478</string>
+				<string>23A2C795094504B100BD42FF</string>
+				<string>23A2C796094504B100BD42FF</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -971,7 +976,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {686, 243}}</string>
 								<key>RubberWindowFrame</key>
-								<string>2 220 686 284 0 0 1280 832 </string>
+								<string>29 122 686 284 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXRunSessionModule</string>
@@ -1001,11 +1006,11 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
 			<key>WindowString</key>
-			<string>2 220 686 284 0 0 1280 832 </string>
+			<string>29 122 686 284 0 0 1280 832 </string>
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

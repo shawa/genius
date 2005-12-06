@@ -91,6 +91,7 @@
 		// noSelectionString -> noSelectionAttrString
 		NSMutableDictionary * attribs = [[[GeniusAtom defaultTextAttributes] mutableCopy] autorelease];
 		[attribs setObject:[NSColor grayColor] forKey:NSForegroundColorAttributeName];
+		[attribs setObject:[NSFont systemFontOfSize:24.0] forKey:NSFontAttributeName];
 		NSAttributedString * noSelectionAttrString = [[[NSAttributedString alloc] initWithString:noSelectionString attributes:attribs] autorelease];
 
 		// noSelectionAttrString -> noSelectionData

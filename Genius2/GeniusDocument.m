@@ -409,6 +409,39 @@
 @end
 
 
+@implementation GeniusDocument (NSTextViewDelegate)
+
+- (void)textDidBeginEditing:(NSNotification *)aNotification
+{
+	NSTextView * textView = [aNotification object];
+	
+	if ([[textView string] length] == 0)
+		[textView setTypingAttributes:[GeniusAtom defaultTextAttributes]];
+}
+
+// Workaround suspected bindings bug where data model doesn't get updated if string only contains an image
+- (NSDictionary *)textView:(NSTextView *)textView shouldChangeTypingAttributes:(NSDictionary *)oldTypingAttributes toAttributes:(NSDictionary *)newTypingAttributes
+{
+	if ([newTypingAttributes objectForKey:NSAttachmentAttributeName])
+	{
+		// textView -> rtfdData
+		NSAttributedString * attrString = [textView textStorage];	
+		NSRange range = NSMakeRange(0, [attrString length]);
+		NSData * rtfdData = [attrString RTFDFromRange:range documentAttributes:nil];
+
+		NSDictionary * infoForBinding = [textView infoForBinding:NSDataBinding];
+		NSString * object = [infoForBinding objectForKey:NSObservedObjectKey];
+		NSString * keyPath = [infoForBinding objectForKey:NSObservedKeyPathKey];
+		
+		[object setValue:rtfdData forKeyPath:keyPath];
+	}
+
+	return newTypingAttributes;
+}
+
+@end
+
+
 @implementation GeniusDocument (NSMenuValidation)
 
 - (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem

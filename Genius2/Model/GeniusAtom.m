@@ -58,6 +58,7 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 
 		sDefaultAttribs = [[NSDictionary alloc] initWithObjectsAndKeys:
 			[NSFont boldSystemFontOfSize:24.0], NSFontAttributeName,
+/*			[NSColor blackColor], NSForegroundColorAttributeName,*/
 			parStyle, NSParagraphStyleAttributeName,
 			NULL];
 

@@ -130,7 +130,7 @@
 - (void)keyDown:(NSEvent *)theEvent
 {	
     if ([theEvent keyCode] == 51 &&
-		([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask == 0))	// Delete
+		([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) == 0)	// Delete
     {	
         id delegate = [self delegate];
         if (delegate && [delegate respondsToSelector:@selector(delete:)])

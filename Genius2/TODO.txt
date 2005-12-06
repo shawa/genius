@@ -1,20 +1,20 @@
 BUGS:
-drag image bug
 quiz handling of blank strings / lex similarity return only
 
 grading / hook up level indicator
 drag and drop / hook up text import
 info button
+new first item / window close dirty
+keyboard nav
 
 check for leaks
 pay panel
-setAutosavingDelay
 fix up export behavior
 
 POLISH:
+end editing doesn't refresh textview
 case insensitive sorting
 formatting error on quiz options
-window close dirty
 reveal rich text first resize
 get rid of search field pop-up
 cursor around "Learn More..."
@@ -27,8 +27,8 @@ LastOpenFiles
 // version 3.0
 iTunes-style all-in-one window
 tri-directional
-grading
 printing
 export to iPod
 file sharing
 built-in audio editing
+setAutosavingDelay
