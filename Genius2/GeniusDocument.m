@@ -23,6 +23,8 @@
 #import "QuizController.h"
 
 
+const int kGeniusDocumentAtomAColumnIndex = 1;
+
 @interface GeniusDocument (Private)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
 @end
@@ -38,6 +40,13 @@
     }
 	
     return self;
+}
+
+- (id)initWithType:(NSString *)typeName error:(NSError **)outError
+{
+	self = [super initWithType:typeName error:outError];
+	[NSEntityDescription insertNewObjectForEntityForName:@"GeniusItem" inManagedObjectContext:[self managedObjectContext]];	
+	return self;
 }
 
 - (void)makeWindowControllers
@@ -61,7 +70,7 @@
 /* Hook up object controllers */
 	[itemArrayController setManagedObjectContext:[self managedObjectContext]];
 	[documentInfoController setContent:[self documentInfo]];
-	
+
 /* Window */	
 	// Set up toolbar
 	[(GeniusWindowController *)windowController setupToolbarWithLevelIndicator:levelIndicator searchField:searchField];
@@ -86,14 +95,15 @@
 
 /* Text Views */
 	[(GeniusWindowController *)windowController setupAtomTextView:atomATextView];
-	[(GeniusWindowController *)windowController bindTextView:atomATextView toController:itemArrayController withKeyPath:@"selection.atomA"];
-
 	[(GeniusWindowController *)windowController setupAtomTextView:atomBTextView];
+
+	// In order to set NSNoSelectionPlaceholderBindingOption
+	[(GeniusWindowController *)windowController bindTextView:atomATextView toController:itemArrayController withKeyPath:@"selection.atomA"];
 	[(GeniusWindowController *)windowController bindTextView:atomBTextView toController:itemArrayController withKeyPath:@"selection.atomB"];
 
 /* Misc. */
-	// -documentInfo created a new managed object, which sets the dirty bit
-	[[self undoManager] removeAllActions];
+	[[self undoManager] removeAllActions]; // -documentInfo created a new managed object, which sets the dirty bit
+//	[tableView editColumn:kGeniusDocumentAtomAColumnIndex row:1 withEvent:nil select:YES];
 }
 
 - (void)dealloc
@@ -104,6 +114,7 @@
 }
 
 
+// Get rid of CoreData's Binary/SQL/XML popup
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
 {
 	[savePanel setAccessoryView:nil];
@@ -118,6 +129,7 @@
 		return nil;
 	return [[windowControllers objectAtIndex:0] window];
 }
+
 
 - (void) _dismissFieldEditor
 {
@@ -146,6 +158,7 @@
 		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
 }
 
+// Make new item if user presses Return in last row
 - (void) _handleTextDidEndEditing:(NSNotification *)aNotification
 {
 	NSView * textView = [aNotification object];
@@ -162,7 +175,6 @@
 		}
 	}
 }
-
 
 - (void) _tableViewDoubleAction:(id)sender
 {
@@ -420,12 +432,14 @@
 }
 
 // Workaround suspected bindings bug where data model doesn't get updated if string only contains an image
-- (NSDictionary *)textView:(NSTextView *)textView shouldChangeTypingAttributes:(NSDictionary *)oldTypingAttributes toAttributes:(NSDictionary *)newTypingAttributes
+- (void)textDidEndEditing:(NSNotification *)aNotification
 {
-	if ([newTypingAttributes objectForKey:NSAttachmentAttributeName])
+	NSTextView * textView = [aNotification object];
+
+	NSAttributedString * attrString = [textView textStorage];	
+	if ([attrString containsAttachments])
 	{
-		// textView -> rtfdData
-		NSAttributedString * attrString = [textView textStorage];	
+		// attrString -> rtfdData
 		NSRange range = NSMakeRange(0, [attrString length]);
 		NSData * rtfdData = [attrString RTFDFromRange:range documentAttributes:nil];
 
@@ -435,8 +449,6 @@
 		
 		[object setValue:rtfdData forKeyPath:keyPath];
 	}
-
-	return newTypingAttributes;
 }
 
 @end
@@ -543,7 +555,7 @@
 	if ([[self mainWindow] isKeyWindow])
 	{
 		int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
-		[tableView editColumn:1 row:rowIndex withEvent:nil select:YES];
+		[tableView editColumn:kGeniusDocumentAtomAColumnIndex row:rowIndex withEvent:nil select:YES];
 	}
 }
 

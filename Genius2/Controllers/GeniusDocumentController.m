@@ -6,16 +6,16 @@
 
 @implementation GeniusDocumentController
 
-- (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
+/*- (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
 {
 	GeniusDocument * document = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
-/*	if (document)
+	if (document)
 	{
 		[document newItem:nil];
 		[[document undoManager] removeAllActions];
-	}*/
+	}
 	return document;
-}
+}*/
 
 
 /*
@@ -39,10 +39,9 @@
 }
 
 
-- (IBAction) importFile:(id)sender
+/*- (IBAction) importFile:(id)sender
 {
-#warning -importFile: not implemented
 	// TO DO
-}
+}*/
 
 @end

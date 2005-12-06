@@ -204,10 +204,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>23A2C826094513A700BD42FF</string>
+						<string>23A2C93F09452F7A00BD42FF</string>
 						<key>history</key>
 						<array>
-							<string>23A2C7E30945128400BD42FF</string>
+							<string>23A2C89C094529A400BD42FF</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -223,7 +223,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>566 184 513 522 0 0 1280 832 </string>
+				<string>650 76 513 522 0 0 1280 832 </string>
 			</dict>
 		</dict>
 	</array>
@@ -297,11 +297,12 @@
 								<string>2A37F4AAFDCFA73011CA2CEA</string>
 								<string>2326D1BE08FC34A600FACA07</string>
 								<string>2A37F4ABFDCFA73011CA2CEA</string>
+								<string>23380CB508E58CE200862CBC</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
+									<integer>6</integer>
 									<integer>3</integer>
 									<integer>2</integer>
 									<integer>0</integer>
@@ -552,10 +553,10 @@
 		<string>2302F62B0901A7C000585123</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>23A2C67F0944946000BD42FF</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>23E0F8540901AD1400807121</string>
-		<string>23A2C6B40944C97300BD42FF</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
+		<string>23A2C6B40944C97300BD42FF</string>
 	</array>
 	<key>WindowString</key>
 	<string>58 435 690 397 0 0 1280 832 </string>
@@ -579,7 +580,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>GeniusDocumentController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -648,7 +649,7 @@
 			<key>WindowToolGUID</key>
 			<string>23E0F8540901AD1400807121</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -803,8 +804,6 @@
 							<string>212pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

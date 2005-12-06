@@ -8,17 +8,12 @@
 
 #import "GeniusItem.h"
 
-#import "GeniusAssociation.h"
-
 // XXX
 #import "GeniusDocument.h"	// -documentInfo
 #import "GeniusDocumentInfo.h"	// -quizDirectionMode
 
 
-NSString * GeniusItemAssociationsKey = @"associations";
-NSString * GeniusItemAssociationABKey = @"association_atomA_atomB";
-NSString * GeniusItemAssociationBAKey = @"association_atomB_atomA";
-
+static NSString * GeniusItemAssociationsKey = @"associations";
 static NSString * GeniusItemAtomsKey = @"atoms";	// ???
 NSString * GeniusItemAtomAKey = @"atomA";
 NSString * GeniusItemAtomBKey = @"atomB";
@@ -141,9 +136,6 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	[assocBA setPrimitiveValue:GeniusAssociationAtomBKeyValue forKey:GeniusAssociationSourceAtomKeyKey];
 	[assocBA setPrimitiveValue:GeniusAssociationAtomAKeyValue forKey:GeniusAssociationTargetAtomKeyKey];
 
-	[self setPrimitiveValue:assocAB forKey:GeniusItemAssociationABKey];	// transient
-	[self setPrimitiveValue:assocBA forKey:GeniusItemAssociationBAKey];	// transient
-
 	// Link new associations to self
 	NSMutableSet * associationSet = [self mutableSetValueForKey:GeniusItemAssociationsKey];	// persistent
 	[associationSet addObject:assocAB];
@@ -173,7 +165,7 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	}*/
 
 	// Set up transient associations
-	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
+/*	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
 	NSEnumerator * associationSetEnumerator = [associationSet objectEnumerator];
 	NSManagedObject * association;
 	while ((association = [associationSetEnumerator nextObject]))
@@ -185,7 +177,7 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 			NSString * key = [NSString stringWithFormat:@"association_%@_%@", sourceAtomKey, targetAtomKey];
 			[self setPrimitiveValue:association forKey:key];
 		}
-	}
+	}*/
 	
 	[self commonAwake];
 }
@@ -231,6 +223,34 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 }
 
 
+- (GeniusAssociation *) _associationForSourceKey:(NSString *)sourceKey targetKey:(NSString *)targetKey
+{
+	// is NSFetchRequest faster?
+
+	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
+	NSEnumerator * associationSetEnumerator = [associationSet objectEnumerator];
+	GeniusAssociation * association;
+	while ((association = [associationSetEnumerator nextObject]))
+	{
+		NSString * aSourceKey = [association valueForKey:GeniusAssociationSourceAtomKeyKey];
+		NSString * aTargetKey = [association valueForKey:GeniusAssociationTargetAtomKeyKey];
+		if ([aSourceKey isEqualToString:sourceKey] && [aTargetKey isEqualToString:targetKey])
+			return association;
+	}
+	return nil;
+}
+
+- (GeniusAssociation *) associationAB
+{
+	return [self _associationForSourceKey:GeniusAssociationAtomAKeyValue targetKey:GeniusAssociationAtomBKeyValue];
+}
+
+- (GeniusAssociation *) associationBA
+{
+	return [self _associationForSourceKey:GeniusAssociationAtomBKeyValue targetKey:GeniusAssociationAtomAKeyValue];
+}
+
+
 - (NSArray *) _activeAssociations
 {	
 	// XXX: yuck
@@ -238,10 +258,11 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	int quizDirectionMode = [[document documentInfo] quizDirectionMode];
 	
 	if (quizDirectionMode == 1)
-		return [NSArray arrayWithObject:[self valueForKey:GeniusItemAssociationABKey]];
+		return [NSArray arrayWithObject:[self associationAB]];
 	else
-		return [NSArray arrayWithObjects:
-			[self valueForKey:GeniusItemAssociationABKey], [self valueForKey:GeniusItemAssociationBAKey], NULL];
+	{
+		return [NSArray arrayWithObjects:[self associationAB], [self associationBA], NULL];
+	}
 }
 
 

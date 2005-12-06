@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 
 #import "GeniusAtom.h"
+#import "GeniusAssociation.h"
 
 
 extern NSString * GeniusItemIsEnabledKey;
@@ -31,10 +32,15 @@ extern NSString * GeniusItemLastModifiedDateKey;
 - (GeniusAtom *) atomA;
 - (GeniusAtom *) atomB;
 
+- (GeniusAssociation *) associationAB;
+- (GeniusAssociation *) associationBA;
+
+
 - (void) touchLastModifiedDate;
 - (void) touchLastTestedDate;
 
 - (NSString *) displayGrade;
+
 
 - (void) swapAtoms;
 
@@ -54,9 +60,3 @@ extern NSString * GeniusItemLastModifiedDateKey;
 + (NSString *) tabularTextFromItems:(NSArray *)items;
 
 @end
-
-
-// exported only for GeniusV1FileImporter
-extern NSString * GeniusItemAssociationsKey;
-extern NSString * GeniusItemAssociationABKey;
-extern NSString * GeniusItemAssociationBAKey;

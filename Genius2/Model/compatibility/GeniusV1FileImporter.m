@@ -73,14 +73,14 @@
 	GeniusV1Association * v1AssocAB = [v1Pair associationAB];
 	if (v1AssocAB)
 	{
-		GeniusAssociation * assocAB = [newItem valueForKey:GeniusItemAssociationABKey];
+		GeniusAssociation * assocAB = [newItem associationAB];
 		[self _updateAssociation:assocAB withValuesFromV1Association:v1AssocAB];
 	}
 
 	GeniusV1Association * v1AssocBA = [v1Pair associationBA];
 	if (v1AssocBA)
 	{
-		GeniusAssociation * assocBA = [newItem valueForKey:GeniusItemAssociationBAKey]; 
+		GeniusAssociation * assocBA = [newItem associationBA]; 
 		[self _updateAssociation:assocBA withValuesFromV1Association:v1AssocBA];
 	}
 

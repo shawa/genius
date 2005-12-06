@@ -1,21 +1,21 @@
 BUGS:
 quiz handling of blank strings / lex similarity return only
-
 grading / hook up level indicator
-drag and drop / hook up text import
+check parentItem
+new first item
+reveal rich text first resize
 info button
-new first item / window close dirty
-keyboard nav
 
+drag and drop / hook up text import
 check for leaks
 pay panel
 fix up export behavior
 
 POLISH:
+keyboard nav
 end editing doesn't refresh textview
 case insensitive sorting
 formatting error on quiz options
-reveal rich text first resize
 get rid of search field pop-up
 cursor around "Learn More..."
 return on item starts editing

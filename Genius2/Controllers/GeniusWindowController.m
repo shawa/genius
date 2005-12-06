@@ -104,6 +104,7 @@
 	return sData;
 }
 
+// In order to set NSNoSelectionPlaceholderBindingOption
 - (void) bindTextView:(NSTextView *)textView toController:(id)observableController withKeyPath:(NSString *)keyPath;
 {
 	NSDictionary * options = nil;
