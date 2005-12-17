@@ -33,7 +33,6 @@
 		23380CE408E58DFF00862CBC /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CD708E58DFF00862CBC /* IconTextFieldCell.m */; };
 		23443B0909436AD50070D478 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
 		23443B0A09436AD90070D478 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
-		23443C4D0943827D0070D478 /* IntegerFormatter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23443C4B0943827D0070D478 /* IntegerFormatter.h */; };
 		23443C4E0943827D0070D478 /* IntegerFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23443C4C0943827D0070D478 /* IntegerFormatter.m */; };
 		2349703C08F0B0850004234D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2349703A08F0B0850004234D /* Localizable.strings */; };
 		2349721B08F0C06D0004234D /* GeniusDocumentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2349721A08F0C06D0004234D /* GeniusDocumentInfo.m */; };
@@ -41,6 +40,7 @@
 		234E52F508FC5B35005FCF83 /* QuizArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E52F408FC5B34005FCF83 /* QuizArrayAdditions.m */; };
 		234E539A08FC635B005FCF83 /* GeniusPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E539908FC635B005FCF83 /* GeniusPreferences.m */; };
 		234E546008FC6AED005FCF83 /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E545F08FC6AED005FCF83 /* QuizBackdropWindow.m */; };
+		2350E9220945D280000ADFF1 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2350E9210945D280000ADFF1 /* Genius.icns */; };
 		238127B40941E30B0001CF4D /* ImageStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 238127B30941E30B0001CF4D /* ImageStringFormatter.m */; };
 		23835E9C08F96C550066323F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23835E9A08F96C550066323F /* GeniusDocument.nib */; };
 		23835F1A08F970380066323F /* GeniusValueTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 23835F1008F970380066323F /* GeniusValueTransformers.m */; };
@@ -109,7 +109,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				23443B0A09436AD90070D478 /* Samples in CopyFiles */,
-				23443C4D0943827D0070D478 /* IntegerFormatter.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +169,7 @@
 		234E539908FC635B005FCF83 /* GeniusPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferences.m; sourceTree = "<group>"; };
 		234E545E08FC6AED005FCF83 /* QuizBackdropWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizBackdropWindow.h; sourceTree = "<group>"; };
 		234E545F08FC6AED005FCF83 /* QuizBackdropWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizBackdropWindow.m; sourceTree = "<group>"; };
+		2350E9210945D280000ADFF1 /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
 		238127B20941E30B0001CF4D /* ImageStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStringFormatter.h; sourceTree = "<group>"; };
 		238127B30941E30B0001CF4D /* ImageStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStringFormatter.m; sourceTree = "<group>"; };
 		23835E9B08F96C550066323F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GeniusDocument.nib; sourceTree = "<group>"; };
@@ -483,6 +483,7 @@
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				2349703A08F0B0850004234D /* Localizable.strings */,
+				2350E9210945D280000ADFF1 /* Genius.icns */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -590,6 +591,7 @@
 				238C5A760934BF6200926AF1 /* Help.html in Resources */,
 				238C5A790934BF6B00926AF1 /* Relax.html in Resources */,
 				23443B0909436AD50070D478 /* Samples in Resources */,
+				2350E9220945D280000ADFF1 /* Genius.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

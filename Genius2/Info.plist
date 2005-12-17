@@ -92,7 +92,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Genius</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>Genius</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mac.jrc.Genius</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -105,11 +105,11 @@
 	<string>jrcG</string>
 	<key>CFBundleVersion</key>
 	<string>20051204</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.4</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.4</string>
 </dict>
 </plist>
