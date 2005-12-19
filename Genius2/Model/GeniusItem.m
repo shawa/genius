@@ -303,19 +303,13 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 - (void) swapAtoms
 {
-/*	GeniusAtom * atomA = [self valueForKey:GeniusItemAtomAKey];
+	GeniusAtom * atomA = [self valueForKey:GeniusItemAtomAKey];
 	GeniusAtom * atomB = [self valueForKey:GeniusItemAtomBKey];
 
-	[atomA setPrimitiveValue:GeniusItemAtomBKey forKey:GeniusAtomKeyKey];
-	[atomB setPrimitiveValue:GeniusItemAtomAKey forKey:GeniusAtomKeyKey];
+	[self setValue:atomB forKey:GeniusItemAtomAKey];
+	[self setValue:atomA forKey:GeniusItemAtomBKey];
 
-	[_atomA release];
-	_atomA = nil;
-	
-	[_atomB release];
-	_atomB = nil;
-
-	[self touchLastModifiedDate];*/
+	[self touchLastModifiedDate];
 }
 
 - (BOOL) usesDefaultTextAttributes

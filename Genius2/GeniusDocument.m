@@ -42,12 +42,12 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
     return self;
 }
 
-- (id)initWithType:(NSString *)typeName error:(NSError **)outError
+/*- (id)initWithType:(NSString *)typeName error:(NSError **)outError
 {
 	self = [super initWithType:typeName error:outError];
 	[NSEntityDescription insertNewObjectForEntityForName:@"GeniusItem" inManagedObjectContext:[self managedObjectContext]];	
 	return self;
-}
+}*/
 
 - (void)makeWindowControllers
 {
@@ -417,6 +417,31 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
     [itemArrayController removeObjects:selectedObjects];
 }
 
+- (BOOL)performKeyDown:(NSEvent *)theEvent
+{	
+	if (([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) == 0)
+	{
+		if ([theEvent keyCode] == 36)	// Return
+		{
+			// If the user presses Return on a selected item, start editing it
+			int selectedRow = [tableView selectedRow];
+			if (selectedRow != -1)
+			{
+				[tableView editColumn:kGeniusDocumentAtomAColumnIndex row:selectedRow withEvent:nil select:YES];
+				return YES;
+			}
+		}
+		else if ([theEvent keyCode] == 51)	// Delete
+		{	
+			// Delete the selected item
+			[self delete:self];
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
 @end
 
 
@@ -459,6 +484,10 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 {
 	// Edit menu
 	if ([menuItem action] == @selector(delete:))
+	{
+		return [itemArrayController selectionIndex] != NSNotFound;
+	}
+	else if ([menuItem action] == @selector(duplicate:))
 	{
 		return [itemArrayController selectionIndex] != NSNotFound;
 	}

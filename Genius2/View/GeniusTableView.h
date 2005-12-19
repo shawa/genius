@@ -20,7 +20,7 @@
 - (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn;
 - (void) tableView:(NSTableView *)aTableView didShowTableColumn:(NSTableColumn *)tableColumn;
 
-
-- (void) delete:(id)sender;
+- (BOOL) performKeyDown:(NSEvent *)theEvent;
+- (BOOL) performKeyEquivalent:(NSEvent *)theEvent;
 
 @end

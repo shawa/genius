@@ -204,10 +204,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>23A0AB110957728300D44131</string>
+						<string>2310681209577BEF00EEBDD0</string>
 						<key>history</key>
 						<array>
-							<string>23A0AADA09576FD000D44131</string>
+							<string>2310678D0957768D00EEBDD0</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -223,7 +223,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>648 91 513 522 0 0 1280 832 </string>
+				<string>342 67 513 522 0 0 1280 832 </string>
 			</dict>
 		</dict>
 	</array>
@@ -379,7 +379,7 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>1</integer>
+											<integer>14</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -492,11 +492,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>23A0A84C0957416E00D44131</string>
-				<string>23A0A8B30957477500D44131</string>
+				<string>23106751095772CD00EEBDD0</string>
+				<string>23106752095772CD00EEBDD0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>23A0A84D0957416E00D44131</string>
+				<string>23106753095772CD00EEBDD0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -630,16 +630,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>23A0A92A09574C8200D44131</string>
-		<string>23A0A92B09574C8200D44131</string>
-		<string>2302F62B0901A7C000585123</string>
 		<string>23E0F8540901AD1400807121</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>23A0A8490957416D00D44131</string>
+		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>23A0AAE20957702400D44131</string>
-		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>58 435 690 397 0 0 1280 832 </string>
@@ -663,7 +657,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GeniusAssociation.m</string>
+								<string>GeniusDocument.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -721,7 +715,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>23E0F8540901AD1400807121</string>
-				<string>23A0A8B10957477300D44131</string>
+				<string>23106755095772CD00EEBDD0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1035,8 +1029,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {367, 168}}</string>
-											<string>{{0, 173}, {367, 270}}</string>
+											<string>{{0, 0}, {491, 168}}</string>
+											<string>{{0, 173}, {491, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -1085,9 +1079,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>23A0A84A0957416D00D44131</string>
+				<string>23106756095772CD00EEBDD0</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>23A0A84B0957416D00D44131</string>
+				<string>23106757095772CD00EEBDD0</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -1096,7 +1090,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

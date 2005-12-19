@@ -1,29 +1,31 @@
-BUGS:
-quiz handling of blank strings / lex similarity return only
+P1:
 grading / hook up level indicator
-check parentItem
-new first item
-reveal rich text first resize
 info button
-
+quiz handling of blank strings / lex similarity return only
 hook up text import
 check for leaks
-pay panel
-fix up export behavior
+ER: pay panel
+search
 
-POLISH:
-keyboard nav
+P2:
+BUG: reveal rich text first resize
+fix up export
 end editing doesn't refresh textview
-case insensitive sorting
-formatting error on quiz options
-get rid of search field pop-up
-cursor around "Learn More..."
-return on item starts editing
-option-drag copies
-
 polish column behavior
-window and table position saving
 LastOpenFiles
+ER: up down arrows
+
+P3:
+ER: new first item
+ER: option-drag copies
+keyboard nav
+window and table position autosaving
+formatting error on quiz options
+
+P4:
+BUG: get rid of search field pop-up
+BUG: cursor around "Learn More..."
+
 
 // version 3.0
 iTunes-style all-in-one window
