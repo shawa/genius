@@ -6,7 +6,7 @@ new first item
 reveal rich text first resize
 info button
 
-drag and drop / hook up text import
+hook up text import
 check for leaks
 pay panel
 fix up export behavior
@@ -19,6 +19,7 @@ formatting error on quiz options
 get rid of search field pop-up
 cursor around "Learn More..."
 return on item starts editing
+option-drag copies
 
 polish column behavior
 window and table position saving

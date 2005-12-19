@@ -195,7 +195,6 @@ enum {
 	
 	if (correctness == 1.0)
 	{
-		NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
 		if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
 			[_rightSound play];
 			

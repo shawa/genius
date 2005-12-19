@@ -12,6 +12,9 @@
 #import "GeniusAssociation.h"
 
 
+extern NSString * GeniusItemAtomAKey;
+extern NSString * GeniusItemAtomBKey;
+
 extern NSString * GeniusItemIsEnabledKey;
 extern NSString * GeniusItemMyGroupKey;
 extern NSString * GeniusItemMyTypeKey;
@@ -23,14 +26,8 @@ extern NSString * GeniusItemLastModifiedDateKey;
 
 @interface GeniusItem :  NSManagedObject <NSCopying>
 {
-	GeniusAtom * _atomA, * _atomB;
 	NSString * _displayGrade;
 }
-
-+ (NSArray *) allAtomKeys;
-
-- (GeniusAtom *) atomA;
-- (GeniusAtom *) atomB;
 
 - (GeniusAssociation *) associationAB;
 - (GeniusAssociation *) associationBA;

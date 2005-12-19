@@ -6,6 +6,7 @@
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
+#import <Cocoa/Cocoa.h>
 #import <CoreData/CoreData.h>
 
 
@@ -20,15 +21,18 @@ extern NSString * GeniusAtomRTFDDataKey;
 {
 }
 
++ (NSSet *)userModifiableKeySet;
+
 + (NSDictionary *) defaultTextAttributes;
 - (BOOL) usesDefaultTextAttributes;		// used by GeniusDocument.nib
 - (void) clearTextAttributes;
 
-- (void) setRtfdData:(NSData *)rtfdData;
+- (void) setStringRTFDData:(NSData *)rtfdData;
+- (NSData *) stringRTFDData;	// falls back to string
 
 @end
 
 
 // Exported only for GeniusItem
-extern NSString * GeniusAtomKeyKey;
-extern NSString * GeniusAtomModifiedDateKey;
+extern NSString * GeniusAtomStringRTDDataKey;
+extern NSString * GeniusAtomDirtyKey;

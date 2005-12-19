@@ -14,12 +14,8 @@
 
 
 static NSString * GeniusItemAssociationsKey = @"associations";
-static NSString * GeniusItemAtomsKey = @"atoms";	// ???
 NSString * GeniusItemAtomAKey = @"atomA";
 NSString * GeniusItemAtomBKey = @"atomB";
-
-static NSString * GeniusAssociationAtomAKeyValue = @"atomA";
-static NSString * GeniusAssociationAtomBKeyValue = @"atomB";
 
 NSString * GeniusItemIsEnabledKey = @"isEnabled";
 NSString * GeniusItemMyGroupKey = @"myGroup";
@@ -31,6 +27,8 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 
 @interface GeniusItem (Private)
+- (void) _addSelfAsObserverToChildAtoms;
+- (void) _removeSelfAsObserverToChildAtoms;
 
 - (void) _recalculateGrade;
 
@@ -39,47 +37,34 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 @implementation GeniusItem 
 
-+ (NSArray *) allAtomKeys
+- (NSArray *) allAtoms
 {
-	return [NSArray arrayWithObjects:GeniusItemAtomAKey, GeniusItemAtomBKey, nil];
+	return [NSArray arrayWithObjects:[self valueForKey:GeniusItemAtomAKey], [self valueForKey:GeniusItemAtomBKey], nil];
 }
 
 
-- (void) _attachAtomA:(GeniusAtom *)atomA atomB:(GeniusAtom *)atomB
-{
-	NSMutableSet * atomSet = [self mutableSetValueForKey:GeniusItemAtomsKey];	// persistent
-	[atomSet addObject:atomA];
-	[atomSet addObject:atomB];
+#pragma mark <NSCopying>
+/*
+	/Developer/ADC Reference Library/documentation/Cocoa/Conceptual/CoreData/Articles/cdUsingMOs.html
+	"In many cases the best strategy may be in copy to create a dictionary (property list) representation
+	of a managed object, then on paste create a new managed object and populate it using the dictionary."
+*/
+
++ (NSArray *)copyKeys {
+    static NSArray *copyKeys = nil;
+    if (copyKeys == nil) {
+        copyKeys = [[NSArray alloc] initWithObjects:
+			GeniusItemAtomAKey, GeniusItemAtomBKey,
+            @"associations",
+			GeniusItemIsEnabledKey, GeniusItemLastModifiedDateKey,
+			GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemMyNotesKey, GeniusItemMyRatingKey, nil];
+    }
+    return copyKeys;
 }
 
-- (void) _detachAtoms
+- (NSDictionary *)dictionaryRepresentation
 {
-	NSMutableSet * atomSet = [self mutableSetValueForKey:GeniusItemAtomsKey];	// persistent
-	[atomSet removeAllObjects];
-
-	[_atomA release];
-	_atomA = nil;
-	
-	[_atomB release];
-	_atomB = nil;
-}
-
-- (void) _addSelfAsObserverToChildAtoms
-{
-	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];	// persistent
-	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
-	NSManagedObject * atom;
-	while ((atom = [atomSetEnumerator nextObject]))
-		[atom addObserver:self forKeyPath:GeniusAtomModifiedDateKey options:0 context:NULL];
-}
-
-- (void) _removeSelfAsObserverToChildAtoms
-{
-	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];	// persistent
-	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
-	NSManagedObject * atom;
-	while ((atom = [atomSetEnumerator nextObject]))
-		[atom removeObserver:self forKeyPath:GeniusAtomModifiedDateKey];
+    return [self dictionaryWithValuesForKeys:[[self class] copyKeys]];
 }
 
 
@@ -90,19 +75,60 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	// Create new item
 	GeniusItem * newObject = [[[self class] allocWithZone:zone] initWithEntity:[self entity] insertIntoManagedObjectContext:context];
 
-	// Remove new atoms
-	[newObject _detachAtoms];
+	// Unsubscribe
 	[newObject _removeSelfAsObserverToChildAtoms];
+
+	// Fill in data
+	[newObject setValuesForKeysWithDictionary:[self dictionaryRepresentation]];
 	
 	// Use old atoms
-	GeniusAtom * newAtomA = [[[self atomA] copy] autorelease];
-	GeniusAtom * newAtomB = [[[self atomB] copy] autorelease];
-	[newObject _attachAtomA:newAtomA atomB:newAtomB];
+	GeniusAtom * newAtomA = [[[self valueForKey:GeniusItemAtomAKey] copy] autorelease];
+	[newObject setValue:newAtomA forKey:GeniusItemAtomAKey];
 
+	GeniusAtom * newAtomB = [[[self valueForKey:GeniusItemAtomBKey] copy] autorelease];
+	[newObject setValue:newAtomB forKey:GeniusItemAtomBKey];
+
+	// Subscribe
 	[newObject _addSelfAsObserverToChildAtoms];
+
+	[newObject touchLastModifiedDate];
 
     return newObject;
 }
+
+
+#pragma mark -
+
+- (void) _addSelfAsObserverToChildAtoms
+{
+	NSArray * allAtoms = [self allAtoms];
+	NSEnumerator * atomEnumerator = [allAtoms objectEnumerator];
+	NSManagedObject * atom;
+	while ((atom = [atomEnumerator nextObject]))
+	{
+		[atom addObserver:self forKeyPath:GeniusAtomDirtyKey options:0 context:NULL];
+	}
+}
+
+- (void) _removeSelfAsObserverToChildAtoms
+{
+	NSArray * allAtoms = [self allAtoms];
+	NSEnumerator * atomEnumerator = [allAtoms objectEnumerator];
+	NSManagedObject * atom;
+	while ((atom = [atomEnumerator nextObject]))
+		[atom removeObserver:self forKeyPath:GeniusAtomDirtyKey];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqualToString:GeniusAtomDirtyKey])
+	{
+		[self touchLastModifiedDate];
+	}
+}
+
+
+#pragma mark -
 
 - (void) commonAwake
 {
@@ -117,24 +143,22 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 	NSManagedObjectContext * context = [self managedObjectContext];
 
-	// Create atoms
+	// Create child atoms
 	GeniusAtom * atomA = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
-	[atomA setPrimitiveValue:GeniusItemAtomAKey forKey:GeniusAtomKeyKey];
-
 	GeniusAtom * atomB = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAtom" inManagedObjectContext:context];	
-	[atomB setPrimitiveValue:GeniusItemAtomBKey forKey:GeniusAtomKeyKey];
 
 	// Link new atoms to self
-	[self _attachAtomA:atomA atomB:atomB];
+	[self setPrimitiveValue:atomA forKey:GeniusItemAtomAKey];
+	[self setPrimitiveValue:atomB forKey:GeniusItemAtomBKey];
 
-	// Create associations
+	// Create child associations
 	NSManagedObject * assocAB = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAssociation" inManagedObjectContext:context];
-	[assocAB setPrimitiveValue:GeniusAssociationAtomAKeyValue forKey:GeniusAssociationSourceAtomKeyKey];
-	[assocAB setPrimitiveValue:GeniusAssociationAtomBKeyValue forKey:GeniusAssociationTargetAtomKeyKey];
+	[assocAB setPrimitiveValue:atomA forKey:GeniusAssociationSourceAtomKey];
+	[assocAB setPrimitiveValue:atomB forKey:GeniusAssociationTargetAtomKey];
 
 	NSManagedObject * assocBA = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusAssociation" inManagedObjectContext:context];
-	[assocBA setPrimitiveValue:GeniusAssociationAtomBKeyValue forKey:GeniusAssociationSourceAtomKeyKey];
-	[assocBA setPrimitiveValue:GeniusAssociationAtomAKeyValue forKey:GeniusAssociationTargetAtomKeyKey];
+	[assocBA setPrimitiveValue:atomB forKey:GeniusAssociationSourceAtomKey];
+	[assocBA setPrimitiveValue:atomA forKey:GeniusAssociationTargetAtomKey];
 
 	// Link new associations to self
 	NSMutableSet * associationSet = [self mutableSetValueForKey:GeniusItemAssociationsKey];	// persistent
@@ -153,77 +177,13 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 	[self flushCache];
 
-/*	// Set up transient atoms
-	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];
-	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
-	NSManagedObject * atom;
-	while ((atom = [atomSetEnumerator nextObject]))
-	{
-		NSString * key = [atom valueForKey:GeniusAtomKeyKey];
-		if (key)
-			[self setPrimitiveValue:atom forKey:key];
-	}*/
-
-	// Set up transient associations
-/*	NSSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
-	NSEnumerator * associationSetEnumerator = [associationSet objectEnumerator];
-	NSManagedObject * association;
-	while ((association = [associationSetEnumerator nextObject]))
-	{
-		NSString * sourceAtomKey = [association valueForKey:GeniusAssociationSourceAtomKeyKey];
-		NSString * targetAtomKey = [association valueForKey:GeniusAssociationTargetAtomKeyKey];
-		if (sourceAtomKey && targetAtomKey)
-		{
-			NSString * key = [NSString stringWithFormat:@"association_%@_%@", sourceAtomKey, targetAtomKey];
-			[self setPrimitiveValue:association forKey:key];
-		}
-	}*/
-	
 	[self commonAwake];
 }
 
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	if ([keyPath isEqualToString:GeniusAtomModifiedDateKey])
-	{
-		[self touchLastModifiedDate];
-	}
-}
+#pragma mark -
 
-
-- (GeniusAtom *) _atomForKey:(NSString *)aKey
-{
-	// is NSFetchRequest faster?
-
-	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey];
-	NSEnumerator * atomSetEnumerator = [atomSet objectEnumerator];
-	GeniusAtom * atom;
-	while ((atom = [atomSetEnumerator nextObject]))
-	{
-		NSString * key = [atom valueForKey:GeniusAtomKeyKey];
-		if ([key isEqualToString:aKey])
-			return atom;
-	}
-	return nil;
-}
-
-- (GeniusAtom *) atomA
-{
-	if (_atomA == nil)
-		_atomA = [[self _atomForKey:GeniusItemAtomAKey] retain];
-	return _atomA;
-}
-
-- (GeniusAtom *) atomB
-{
-	if (_atomB == nil)
-		_atomB = [[self _atomForKey:GeniusItemAtomBKey] retain];
-	return _atomB;
-}
-
-
-- (GeniusAssociation *) _associationForSourceKey:(NSString *)sourceKey targetKey:(NSString *)targetKey
+- (GeniusAssociation *) _associationForSourceAtom:(GeniusAtom *)sourceAtom targetAtom:(GeniusAtom *)targetAtom
 {
 	// is NSFetchRequest faster?
 
@@ -232,9 +192,9 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	GeniusAssociation * association;
 	while ((association = [associationSetEnumerator nextObject]))
 	{
-		NSString * aSourceKey = [association valueForKey:GeniusAssociationSourceAtomKeyKey];
-		NSString * aTargetKey = [association valueForKey:GeniusAssociationTargetAtomKeyKey];
-		if ([aSourceKey isEqualToString:sourceKey] && [aTargetKey isEqualToString:targetKey])
+		GeniusAtom * aSourceAtom = [association valueForKey:GeniusAssociationSourceAtomKey];
+		GeniusAtom * aTargetAtom = [association valueForKey:GeniusAssociationTargetAtomKey];
+		if ([aSourceAtom isEqual:sourceAtom] && [aTargetAtom isEqual:targetAtom])
 			return association;
 	}
 	return nil;
@@ -242,12 +202,16 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 - (GeniusAssociation *) associationAB
 {
-	return [self _associationForSourceKey:GeniusAssociationAtomAKeyValue targetKey:GeniusAssociationAtomBKeyValue];
+	GeniusAtom * atomA = [self valueForKey:GeniusItemAtomAKey];
+	GeniusAtom * atomB = [self valueForKey:GeniusItemAtomBKey];
+	return [self _associationForSourceAtom:atomA targetAtom:atomB];
 }
 
 - (GeniusAssociation *) associationBA
 {
-	return [self _associationForSourceKey:GeniusAssociationAtomBKeyValue targetKey:GeniusAssociationAtomAKeyValue];
+	GeniusAtom * atomA = [self valueForKey:GeniusItemAtomAKey];
+	GeniusAtom * atomB = [self valueForKey:GeniusItemAtomBKey];
+	return [self _associationForSourceAtom:atomB targetAtom:atomA];
 }
 
 
@@ -339,8 +303,8 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 - (void) swapAtoms
 {
-	GeniusAtom * atomA = [self atomA];
-	GeniusAtom * atomB = [self atomB];
+/*	GeniusAtom * atomA = [self valueForKey:GeniusItemAtomAKey];
+	GeniusAtom * atomB = [self valueForKey:GeniusItemAtomBKey];
 
 	[atomA setPrimitiveValue:GeniusItemAtomBKey forKey:GeniusAtomKeyKey];
 	[atomB setPrimitiveValue:GeniusItemAtomAKey forKey:GeniusAtomKeyKey];
@@ -351,13 +315,13 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 	[_atomB release];
 	_atomB = nil;
 
-	[self touchLastModifiedDate];
+	[self touchLastModifiedDate];*/
 }
 
 - (BOOL) usesDefaultTextAttributes
 {
-	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey]; 
-	NSEnumerator * atomEnumerator = [atomSet objectEnumerator];
+	NSArray * allAtoms = [self allAtoms];
+	NSEnumerator * atomEnumerator = [allAtoms objectEnumerator];
 	GeniusAtom * atom;
 	while ((atom = [atomEnumerator nextObject]))
 		if ([atom usesDefaultTextAttributes] == NO)
@@ -367,8 +331,8 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 - (void) clearTextAttributes
 {
-	NSSet * atomSet = [self valueForKey:GeniusItemAtomsKey]; 
-	[atomSet makeObjectsPerformSelector:@selector(clearTextAttributes)];
+	NSArray * allAtoms = [self allAtoms];
+	[allAtoms makeObjectsPerformSelector:@selector(clearTextAttributes)];
 }
 
 - (void) resetAssociations

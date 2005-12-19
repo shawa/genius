@@ -20,11 +20,12 @@ extern NSString * GeniusAssociationPredictedScoreKey;
 	A directed association between two atoms, with score-keeping data.
 	Like an axon between two neurons.
 */
-@interface GeniusAssociation :  NSManagedObject  
+@interface GeniusAssociation :  NSManagedObject <NSCopying>
 {
 	NSArray * _dataPoints;
 }
 
+// for QuizController
 - (GeniusAtom *) sourceAtom;
 - (GeniusAtom *) targetAtom;
 
@@ -40,8 +41,8 @@ extern NSString * GeniusAssociationPredictedScoreKey;
 
 
 // exported only for GeniusItem
-extern NSString * GeniusAssociationSourceAtomKeyKey;
-extern NSString * GeniusAssociationTargetAtomKeyKey;
+extern NSString * GeniusAssociationSourceAtomKey;
+extern NSString * GeniusAssociationTargetAtomKey;
 
 // exported only for GeniusV1FileImporter
 extern NSString * GeniusAssociationDataPointArrayDataKey;

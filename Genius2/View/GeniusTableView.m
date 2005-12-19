@@ -34,7 +34,7 @@
 		NSString * identifier;
 		while ((identifier = [identifierEnumerator nextObject]))
 		{
-			NSTableColumn * tableColumn = [self tableColumnWithIdentifier:identifier];
+			tableColumn = [self tableColumnWithIdentifier:identifier];
 			[self removeTableColumn:tableColumn];
 		}
 
@@ -98,8 +98,8 @@
 
 - (IBAction) _toggleTableColumnShown:(NSMenuItem *)sender
 {
-	int index = [sender tag];
-	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:index];
+	int tag = [sender tag];
+	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:tag];
 
 	id delegate = [self delegate];
 	

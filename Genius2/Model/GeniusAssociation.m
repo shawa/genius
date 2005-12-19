@@ -12,13 +12,14 @@
 #import "GeniusAssociationDataPoint.h"
 
 
-static NSString * GeniusAssociationParentItemKey = @"parentItem";	// XXX should be exported?
-NSString * GeniusAssociationSourceAtomKeyKey = @"sourceAtomKey";
-NSString * GeniusAssociationTargetAtomKeyKey = @"targetAtomKey";
+NSString * GeniusAssociationSourceAtomKey = @"sourceAtom";
+NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
+
+static NSString * GeniusAssociationParentItemKey = @"parentItem";
 
 NSString * GeniusAssociationDueDateKey = @"dueDate";
 NSString * GeniusAssociationDataPointArrayDataKey = @"dataPointArrayData";
-NSString * GeniusAssociationLastDataPointDateKey = @"lastDataPointDate";
+NSString * GeniusAssociationLastDataPointDateKey = @"lastDataPointDate";	// why is this persistent?
 NSString * GeniusAssociationPredictedScoreKey = @"predictedScore";
 
 
@@ -32,7 +33,36 @@ NSString * GeniusAssociationPredictedScoreKey = @"predictedScore";
 @end
 
 
-@implementation GeniusAssociation 
+@implementation GeniusAssociation
+
+#pragma mark <NSCopying>
+
++ (NSArray *)copyKeys {
+    static NSArray *copyKeys = nil;
+    if (copyKeys == nil) {
+        copyKeys = [[NSArray alloc] initWithObjects:
+            GeniusAssociationSourceAtomKey, GeniusAssociationTargetAtomKey,
+			GeniusAssociationDueDateKey, GeniusAssociationDataPointArrayDataKey, 
+			GeniusAssociationLastDataPointDateKey, GeniusAssociationPredictedScoreKey, nil];
+    }
+    return copyKeys;
+}
+
+- (NSDictionary *)dictionaryRepresentation
+{
+    return [self dictionaryWithValuesForKeys:[[self class] copyKeys]];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+	NSManagedObjectContext * context = [self managedObjectContext];
+	GeniusAtom * newObject = [[[self class] allocWithZone:zone] initWithEntity:[self entity] insertIntoManagedObjectContext:context];
+	[newObject setValuesForKeysWithDictionary:[self dictionaryRepresentation]];
+    return newObject;
+}
+
+
+#pragma mark -
 
 - (void) commonAwake
 {
@@ -137,20 +167,22 @@ NSString * GeniusAssociationPredictedScoreKey = @"predictedScore";
 }
 
 
+#pragma mark -
+
+// for QuizController
+
 - (GeniusAtom *) sourceAtom
 {
-	GeniusItem * item = [self valueForKey:GeniusAssociationParentItemKey];
-	NSString * atomKey = [self valueForKey:GeniusAssociationSourceAtomKeyKey];
-	return [item valueForKey:atomKey];
+	return [self primitiveValueForKey:GeniusAssociationSourceAtomKey];
 }
 
 - (GeniusAtom *) targetAtom
 {
-	GeniusItem * item = [self valueForKey:GeniusAssociationParentItemKey];
-	NSString * atomKey = [self valueForKey:GeniusAssociationTargetAtomKeyKey];
-	return [item valueForKey:atomKey];
+	return [self primitiveValueForKey:GeniusAssociationTargetAtomKey];
 }
 
+
+#pragma mark -
 
 - (BOOL) lastDataPointValue
 {

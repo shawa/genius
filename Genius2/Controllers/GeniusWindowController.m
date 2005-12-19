@@ -12,7 +12,7 @@
 #import "GeniusInspectorController.h"
 
 // Model
-#import "GeniusAtom.h"	// GeniusAtomRTFDDataKey, +defaultTextAttributes
+#import "GeniusAtom.h"	// +defaultTextAttributes
 
 // Widgets
 #import "IconTextFieldCell.h"
@@ -112,7 +112,7 @@
 	if (noSelectionPlaceholderData)
 		options = [NSDictionary dictionaryWithObject:noSelectionPlaceholderData forKey:NSNoSelectionPlaceholderBindingOption];
 
-	NSString * fullKeyPath = [NSString stringWithFormat:@"%@.%@", keyPath, GeniusAtomRTFDDataKey];
+	NSString * fullKeyPath = [NSString stringWithFormat:@"%@.%@", keyPath, @"stringRTFDData"];
 	[textView bind:NSDataBinding toObject:observableController withKeyPath:fullKeyPath options:options];	
 }
 

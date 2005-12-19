@@ -9,44 +9,64 @@
 #import "GeniusAtom.h"
 
 
-NSString * GeniusAtomKeyKey = @"key";
-NSString * GeniusAtomModifiedDateKey = @"modifiedDate";
-
 NSString * GeniusAtomStringKey = @"string";
 NSString * GeniusAtomRTFDDataKey = @"rtfdData";
+
+NSString * GeniusAtomStringRTDDataKey = @"stringRTFDData";
+NSString * GeniusAtomDirtyKey = @"dirty";
 
 
 @implementation GeniusAtom 
 
+#pragma mark <NSCopying>
+
++ (NSArray *)copyKeys {
+    static NSArray *copyKeys = nil;
+    if (copyKeys == nil) {
+        copyKeys = [[NSArray alloc] initWithObjects:
+            GeniusAtomStringKey, GeniusAtomRTFDDataKey, nil];
+    }
+    return copyKeys;
+}
+
+- (NSDictionary *)dictionaryRepresentation
+{
+    return [self dictionaryWithValuesForKeys:[[self class] copyKeys]];
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
 	NSManagedObjectContext * context = [self managedObjectContext];
-
 	GeniusAtom * newObject = [[[self class] allocWithZone:zone] initWithEntity:[self entity] insertIntoManagedObjectContext:context];
-
-	NSString * newKey = [[[self valueForKey:GeniusAtomKeyKey] copy] autorelease];
-	[newObject setValue:newKey forKey:GeniusAtomKeyKey];
-
-	NSString * newString = [[[self valueForKey:GeniusAtomStringKey] copy] autorelease];
-	[newObject setValue:newString forKey:GeniusAtomStringKey];
-
-	NSData * newRtfdData = [[[self valueForKey:GeniusAtomRTFDDataKey] copy] autorelease];
-	[newObject setValue:newRtfdData forKey:GeniusAtomRTFDDataKey];
-
+	[newObject setValuesForKeysWithDictionary:[self dictionaryRepresentation]];
     return newObject;
 }
 
 
+#pragma mark -
+
++ (NSSet *)userModifiableKeySet {
+    static NSSet *userModifiableKeySet = nil;
+    if (userModifiableKeySet == nil) {
+        userModifiableKeySet = [[NSSet alloc] initWithObjects:
+            GeniusAtomStringKey, @"stringRTFDData", nil];
+    }
+    return userModifiableKeySet;
+}
+
 - (void)didChangeValueForKey:(NSString *)key
 {
-	if ([key isEqual:GeniusAtomModifiedDateKey] == NO)
+	if ([[GeniusAtom userModifiableKeySet] containsObject:key])
 	{
-		[self setValue:[NSDate date] forKey:GeniusAtomModifiedDateKey];	
+		[self willChangeValueForKey:GeniusAtomDirtyKey];
+		[self didChangeValueForKey:GeniusAtomDirtyKey];
 	}
 	
 	[super didChangeValueForKey:key];
 }
 
+
+#pragma mark -
 
 + (NSDictionary *) defaultTextAttributes
 {
@@ -122,8 +142,11 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 }
 
 
-- (void) setRtfdData:(NSData *)rtfdData
+#pragma mark -
+
+- (void) setStringRTFDData:(NSData *)rtfdData
 {
+	[self willChangeValueForKey:@"stringRTFDData"];
 //	_isImageOnly = NO;
 
 	// rtfdData -> attrString
@@ -148,10 +171,12 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 	[self willChangeValueForKey:GeniusAtomStringKey];
 	[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
 	[self didChangeValueForKey:GeniusAtomStringKey];
+
+	[self didChangeValueForKey:@"stringRTFDData"];
 }
 
 
-- (NSData *) rtfdData	// falls back to string
+- (NSData *) stringRTFDData	// falls back to string
 {
 	[self willAccessValueForKey:GeniusAtomRTFDDataKey];
 	NSData * rtfdData = [self primitiveValueForKey:GeniusAtomRTFDDataKey];	

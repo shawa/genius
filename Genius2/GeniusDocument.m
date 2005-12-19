@@ -90,6 +90,10 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	// Set up handler to automatically make new item if user presses Return in last row
 	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
 
+	// Set up drag-and-drop
+    [tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSTabularTextPboardType, NSStringPboardType, nil]];    
+	[tableView setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
+
 /* Split View */
 	[(GeniusWindowController *)windowController setupSplitView:splitView];
 
@@ -283,6 +287,74 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 @end
 
 
+@implementation GeniusDocument (NSTableDataSource)	// drag-and-drop
+
+- (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard
+{
+    [pboard declareTypes:[NSArray arrayWithObjects:NSTabularTextPboardType, NSStringPboardType, nil] owner:self];
+    
+    // Convert row numbers to items
+    _itemsDuringDrag = [[itemArrayController arrangedObjects] objectsAtIndexes:rowIndexes];
+
+    NSString * tabularText = [GeniusItem tabularTextFromItems:_itemsDuringDrag];
+    [pboard setString:tabularText forType:NSTabularTextPboardType];
+    [pboard setString:tabularText forType:NSStringPboardType];
+    
+    return YES;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
+{	
+    if ([info draggingSource] == aTableView)    // intra-document
+    {
+        if (operation == NSTableViewDropOn)
+            return NSDragOperationNone;
+		else
+			return NSDragOperationMove;
+    }
+    else                                        // inter-document, inter-application
+    {
+        [aTableView setDropRow:-1 dropOperation:NSTableViewDropOn]; // entire table view
+        return NSDragOperationCopy;
+    }
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
+{
+    if ([info draggingSource] == aTableView)      // intra-document
+    {
+        NSArray * copyOfItemsDuringDrag = [[NSArray alloc] initWithArray:_itemsDuringDrag copyItems:YES];
+    
+        NSIndexSet * indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row, [copyOfItemsDuringDrag count])];
+        [itemArrayController insertObjects:copyOfItemsDuringDrag atArrangedObjectIndexes:indexes];
+        
+        if ([info draggingSource] == aTableView)
+            [itemArrayController removeObjects:_itemsDuringDrag];
+        
+        [copyOfItemsDuringDrag release];
+        _itemsDuringDrag = nil;
+    }
+    else                                        // inter-document, inter-application
+    {
+        NSPasteboard * pboard = [info draggingPasteboard];
+        NSString * string = [pboard stringForType:NSStringPboardType];
+        if (string == nil)
+            return NO;
+
+        string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        NSArray * items = [GeniusItem itemsFromTabularText:string];
+        //[self setFilterString:@""];
+        [itemArrayController addObjects:items];
+    }
+        
+//    [self _markDocumentDirty:nil];
+    return YES;
+}
+
+@end
+
+
 @implementation GeniusDocument (NSTableViewDelegate)
 
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
@@ -327,8 +399,8 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	[[self documentInfo] setTableViewConfigurationDictionary:configDict];	
 
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-	int index = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
-	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:index];
+	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
+	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:mode];
 	[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
 }
 
@@ -343,79 +415,6 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	}
 	
     [itemArrayController removeObjects:selectedObjects];
-}
-
-@end
-
-@implementation GeniusDocument (NSTableDataSource)
-
-- (BOOL)tableView:(NSTableView *)tableView writeRows:(NSArray *)rows toPasteboard:(NSPasteboard*)pboard
-{
-    [pboard declareTypes:[NSArray arrayWithObjects:NSTabularTextPboardType, nil] owner:self];
-    
-    // Convert row numbers to items
-    _itemsDuringDrag = [NSMutableArray array];
-    NSEnumerator * rowNumberEnumerator = [rows objectEnumerator];
-    NSNumber * rowNumber;
-    while ((rowNumber = [rowNumberEnumerator nextObject]))
-    {
-        GeniusItem * item = [[itemArrayController arrangedObjects] objectAtIndex:[rowNumber intValue]];
-        [(NSMutableArray *)_itemsDuringDrag addObject:item];
-    }    
-
-    NSString * outputString = [GeniusItem tabularTextFromItems:_itemsDuringDrag];
-    [pboard setString:outputString forType:NSTabularTextPboardType];
-    [pboard setString:outputString forType:NSStringPboardType];
-    
-    return YES;
-}
-
-- (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
-{
-    if ([info draggingSource] == aTableView)    // intra-document
-    {
-        if (operation == NSTableViewDropOn)
-            return NSDragOperationNone;    
-        return NSDragOperationMove;
-    }
-    else                                        // inter-document, inter-application
-    {
-        [aTableView setDropRow:-1 dropOperation:NSTableViewDropOn]; // entire table view
-        return NSDragOperationCopy;
-    }
-}
-
-- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
-{
-    if ([info draggingSource] == aTableView)      // intra-document
-    {
-        NSArray * copyOfItemsDuringDrag = [[NSArray alloc] initWithArray:_itemsDuringDrag copyItems:YES];
-    
-        NSIndexSet * indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(row, [copyOfItemsDuringDrag count])];
-        [itemArrayController insertObjects:copyOfItemsDuringDrag atArrangedObjectIndexes:indexes];
-        
-        if ([info draggingSource] == aTableView)
-            [itemArrayController removeObjects:_itemsDuringDrag];
-        
-        [copyOfItemsDuringDrag release];
-        _itemsDuringDrag = nil;
-    }
-    else                                        // inter-document, inter-application
-    {
-        NSPasteboard * pboard = [info draggingPasteboard];
-        NSString * string = [pboard stringForType:NSStringPboardType];
-        if (string == nil)
-            return NO;
-
-        string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-        NSArray * items = [GeniusItem itemsFromTabularText:string];
-        //[itemArrayController setFilterString:@""];
-        [itemArrayController addObjects:items];
-    }
-        
-//    [self _markDocumentDirty:nil];
-    return YES;
 }
 
 @end
