@@ -188,13 +188,13 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	[self showRichTextEditor:sender];
 
 	// Select all in the appropriate text view
-	NSTextView * textView;
+/*	NSTextView * textView;
 	if ([sender clickedColumn] == 1)		// XXX
 		textView = atomATextView;
 	else if ([sender clickedColumn] == 2)	// XXX
 		textView = atomBTextView;
 	[[self mainWindow] makeFirstResponder:textView];
-	[textView selectAll:sender];
+	[textView selectAll:sender];*/
 }
 
 
@@ -611,11 +611,11 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 {
 	NSString * messageText = NSLocalizedString(@"Convert the selected items to plain text?", nil);
 	NSString * informativeText = NSLocalizedString(@"If you convert the items, you will lose all text styles (such as fonts and colors) and attachments.", nil);
-	NSString * defaultButton = NSLocalizedString(@"Convert", nil);
-	NSString * alternateButton = NSLocalizedString(@"Cancel", nil);
+	NSString * defaultButtonTitle = NSLocalizedString(@"Convert", nil);
+	NSString * alternateButtonTitle = NSLocalizedString(@"Cancel", nil);
 
-	NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButton
-		alternateButton:alternateButton otherButton:nil informativeTextWithFormat:informativeText];
+	NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButtonTitle
+		alternateButton:alternateButtonTitle otherButton:nil informativeTextWithFormat:informativeText];
 	[alert beginSheetModalForWindow:[self mainWindow] modalDelegate:self didEndSelector:@selector(_makePlainTextAlertDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 

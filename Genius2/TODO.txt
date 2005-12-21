@@ -1,11 +1,11 @@
 P1:
+genius file extension
 grading / hook up level indicator
 info button
 quiz handling of blank strings / lex similarity return only
 hook up text import
 check for leaks
-ER: pay panel
-search
+timer feature
 
 P2:
 BUG: reveal rich text first resize

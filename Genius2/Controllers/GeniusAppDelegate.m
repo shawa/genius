@@ -92,10 +92,10 @@
     NSBundle * mainBundle = [NSBundle mainBundle];
     NSString * currentVersion = [mainBundle objectForInfoDictionaryKey:(id)kCFBundleVersionKey];
     NSString * lastVersion = [ud stringForKey:@"LastVersionRun"];
-    if (!lastVersion || [currentVersion compare:lastVersion] > NSOrderedSame)
+    if ((lastVersion == nil) || ([currentVersion compare:lastVersion] > NSOrderedSame))
     {
-        [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
         [ud setObject:currentVersion forKey:@"LastVersionRun"];
+        [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
     }
 }
 

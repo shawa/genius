@@ -1,1 +1,11 @@
-{IBClasses = (); IBVersion = 1; }
+{
+    IBClasses = (
+        {
+            ACTIONS = {openTipJarSite = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
