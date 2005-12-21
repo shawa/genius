@@ -12,7 +12,7 @@
 NSString * GeniusPreferencesUseSoundEffectsKey = @"UseSoundEffects";
 
 NSString * GeniusPreferencesListTextSizeModeKey = @"ListTextSizeMode";
-NSString * GeniusPreferencesQuizUseFullScreenKey = @"useFullScreen";
+NSString * GeniusPreferencesQuizUseFullScreenKey = @"UseFullScreen";
 NSString * GeniusPreferencesQuizUseVisualErrorsKey = @"QuizUseVisualErrors";
 NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
 

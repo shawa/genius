@@ -13,16 +13,17 @@
 
 NSString * GeniusToolbarIdentifier = @"GeniusToolbar";
 
+NSString * GeniusToolbarAddItemIdentifier = @"Add";
+NSString * GeniusToolbarFontsItemIdentifier = @"Fonts";
+NSString * GeniusToolbarColorsItemIdentifier = @"Colors";
+NSString * GeniusToolbarInfoItemIdentifier = @"Info";
+NSString * GeniusToolbarLevelIndicatorItemIdentifier = @"LevelIndicator";
 NSString * GeniusToolbarQuizItemIdentifier = @"Quiz";
+NSString * GeniusToolbarSearchItemIdentifier = @"Search";
+NSString * GeniusToolbarPreferencesItemIdentifier = @"Preferences";
+
 //NSString * GeniusToolbarLearnReviewSliderItemIdentifier = @"LearnReviewSlider";
 //NSString * GeniusToolbarNotesItemIdentifier = @"Notes";
-NSString * GeniusToolbarInfoItemIdentifier = @"Info";
-NSString * GeniusToolbarColorsItemIdentifier = @"Colors";
-NSString * GeniusToolbarAddItemIdentifier = @"Add";
-NSString * GeniusToolbarPreferencesItemIdentifier = @"Preferences";
-NSString * GeniusToolbarFontsItemIdentifier = @"Fonts";
-NSString * GeniusToolbarLevelIndicatorItemIdentifier = @"LevelIndicator";
-NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
 
 // not the prettiest
@@ -34,6 +35,8 @@ static id sLevelIndicator = nil;
 {
     NSToolbar * toolbar = [[[NSToolbar alloc] initWithIdentifier:GeniusToolbarIdentifier] autorelease];
     [toolbar setDelegate:self];
+	[toolbar setAllowsUserCustomization:YES];
+	[toolbar setAutosavesConfiguration:YES];
 	
 	sLevelIndicator = levelIndicator;
 	_searchField = searchField;
@@ -46,23 +49,34 @@ static id sLevelIndicator = nil;
 
 @implementation GeniusWindowController (NSToolbarDelegate)
 
+- (NSArray *) toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
+{
+    return [NSArray arrayWithObjects:
+		GeniusToolbarAddItemIdentifier,
+	NSToolbarFlexibleSpaceItemIdentifier,
+		GeniusToolbarFontsItemIdentifier,
+		GeniusToolbarColorsItemIdentifier,
+		GeniusToolbarInfoItemIdentifier,
+	NSToolbarFlexibleSpaceItemIdentifier,
+		GeniusToolbarLevelIndicatorItemIdentifier,
+		GeniusToolbarQuizItemIdentifier, 
+	NSToolbarFlexibleSpaceItemIdentifier,
+		GeniusToolbarSearchItemIdentifier, nil];
+}
+
 - (NSArray *) toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
     return [NSArray arrayWithObjects:
-	GeniusToolbarAddItemIdentifier,
+		GeniusToolbarAddItemIdentifier,
+		GeniusToolbarFontsItemIdentifier,
+		GeniusToolbarColorsItemIdentifier,
+		GeniusToolbarInfoItemIdentifier,
+		GeniusToolbarLevelIndicatorItemIdentifier,
+		GeniusToolbarQuizItemIdentifier, 
+		GeniusToolbarSearchItemIdentifier,
 	NSToolbarFlexibleSpaceItemIdentifier,
-	GeniusToolbarInfoItemIdentifier,
-	NSToolbarFlexibleSpaceItemIdentifier,
-/*	GeniusToolbarPreferencesItemIdentifier, */
-	GeniusToolbarLevelIndicatorItemIdentifier,
-	GeniusToolbarQuizItemIdentifier, 
-	NSToolbarFlexibleSpaceItemIdentifier,
-	GeniusToolbarSearchItemIdentifier, nil];
-}
-
-- (NSArray *) toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
-{
-    return [self toolbarAllowedItemIdentifiers:toolbar];
+		GeniusToolbarPreferencesItemIdentifier,
+		nil];
 }
 
 
@@ -122,8 +136,8 @@ static id sLevelIndicator = nil;
             NSImage * image = [NSImage imageNamed:@"colors"];
             [toolbarItem setImage:image];
             
-            [toolbarItem setTarget:NSApp];
-            [toolbarItem setAction:@selector(orderFrontColorPanel:)];
+            [toolbarItem setTarget:self];
+            [toolbarItem setAction:@selector(toggleColorPanel:)];
         }
         else if ([itemIdentifier isEqual:GeniusToolbarFontsItemIdentifier])
         {
@@ -133,8 +147,8 @@ static id sLevelIndicator = nil;
             NSImage * image = [NSImage imageNamed:@"fonts"];
             [toolbarItem setImage:image];
             
-            [toolbarItem setTarget:NSApp];
-            [toolbarItem setAction:@selector(orderFrontFontPanel:)];
+            [toolbarItem setTarget:self];
+            [toolbarItem setAction:@selector(toggleFontPanel:)];
         }
 		else if ([itemIdentifier isEqual:GeniusToolbarPreferencesItemIdentifier])
         {

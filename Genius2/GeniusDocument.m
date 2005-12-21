@@ -405,18 +405,6 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 }
 
 
-- (IBAction)delete:(id)sender
-{
-    NSArray * selectedObjects = [itemArrayController selectedObjects];
-	if ([selectedObjects count] == 0)
-	{
-		NSBeep();
-		return;
-	}
-	
-    [itemArrayController removeObjects:selectedObjects];
-}
-
 - (BOOL)performKeyDown:(NSEvent *)theEvent
 {	
 	if (([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) == 0)
@@ -483,11 +471,10 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 - (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
 {
 	// Edit menu
-	if ([menuItem action] == @selector(delete:))
-	{
-		return [itemArrayController selectionIndex] != NSNotFound;
-	}
-	else if ([menuItem action] == @selector(duplicate:))
+	if ([menuItem action] == @selector(delete:)
+		|| [menuItem action] == @selector(duplicate:)
+		|| [menuItem action] == @selector(setItemRating:)
+		|| [menuItem action] == @selector(swapColumns:))
 	{
 		return [itemArrayController selectionIndex] != NSNotFound;
 	}
@@ -555,6 +542,18 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 // Edit menu
 
+- (IBAction)delete:(id)sender
+{
+    NSArray * selectedObjects = [itemArrayController selectedObjects];
+	if ([selectedObjects count] == 0)
+	{
+		NSBeep();
+		return;
+	}
+	
+    [itemArrayController removeObjects:selectedObjects];
+}
+
 - (IBAction) duplicate:(id)sender
 {
 	[self _dismissFieldEditor];
@@ -569,6 +568,22 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
     [itemArrayController setSelectedObjects:newObjects];
     [newObjects release];
 }
+
+
+// View menu
+
+- (IBAction) showRichTextEditor:(id)sender
+{
+	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
+	int i;
+	for (i=0; i<4; i++)
+	{
+		[bottomView setFrameSize:NSMakeSize([splitView frame].size.width, 128.0)];
+		[splitView adjustSubviews];
+		[splitView displayIfNeeded];
+	}
+}
+
 
 // Item menu
 
@@ -638,20 +653,6 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	[selectedObjects makeObjectsPerformSelector:@selector(resetAssociations)];
 
 	[tableView reloadData];
-}
-
-// Format menu
-
-- (IBAction) showRichTextEditor:(id)sender
-{
-	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
-	int i;
-	for (i=0; i<4; i++)
-	{
-		[bottomView setFrameSize:NSMakeSize([splitView frame].size.width, 128.0)];
-		[splitView adjustSubviews];
-		[splitView displayIfNeeded];
-	}
 }
 
 

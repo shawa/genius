@@ -25,8 +25,6 @@
 		231A11C308FF1EA5004A16ED /* play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BD08FF1EA5004A16ED /* play.tiff */; };
 		231A11C408FF1EA5004A16ED /* Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BE08FF1EA5004A16ED /* Plus.png */; };
 		231A11C508FF1EA5004A16ED /* preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BF08FF1EA5004A16ED /* preferences.tiff */; };
-		231A11CA08FF1EBD004A16ED /* colors_16.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11C808FF1EBD004A16ED /* colors_16.tiff */; };
-		231A11CB08FF1EBD004A16ED /* fonts_16.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11C908FF1EBD004A16ED /* fonts_16.tiff */; };
 		23380CC608E58CE200862CBC /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CBE08E58CE200862CBC /* GeniusAssociation.m */; };
 		23380CC708E58CE200862CBC /* GeniusAtom.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC008E58CE200862CBC /* GeniusAtom.m */; };
 		23380CC808E58CE200862CBC /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC208E58CE200862CBC /* GeniusItem.m */; };
@@ -145,8 +143,6 @@
 		231A11BD08FF1EA5004A16ED /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = play.tiff; sourceTree = "<group>"; };
 		231A11BE08FF1EA5004A16ED /* Plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plus.png; sourceTree = "<group>"; };
 		231A11BF08FF1EA5004A16ED /* preferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = preferences.tiff; sourceTree = "<group>"; };
-		231A11C808FF1EBD004A16ED /* colors_16.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = colors_16.tiff; sourceTree = "<group>"; };
-		231A11C908FF1EBD004A16ED /* fonts_16.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = fonts_16.tiff; sourceTree = "<group>"; };
 		23380CBD08E58CE200862CBC /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
 		23380CBE08E58CE200862CBC /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
 		23380CBF08E58CE200862CBC /* GeniusAtom.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAtom.h; sourceTree = "<group>"; };
@@ -300,7 +296,6 @@
 				231A114B08FF1CFB004A16ED /* GeniusScrollView.m */,
 				231A114C08FF1CFB004A16ED /* GeniusTableView.h */,
 				231A114D08FF1CFB004A16ED /* GeniusTableView.m */,
-				231A11C708FF1EBD004A16ED /* Images */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,15 +310,6 @@
 				231A11BF08FF1EA5004A16ED /* preferences.tiff */,
 			);
 			path = "toolbar-images";
-			sourceTree = "<group>";
-		};
-		231A11C708FF1EBD004A16ED /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				231A11C808FF1EBD004A16ED /* colors_16.tiff */,
-				231A11C908FF1EBD004A16ED /* fonts_16.tiff */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		2326D1BE08FC34A600FACA07 /* Classes */ = {
@@ -584,8 +570,6 @@
 				231A11C308FF1EA5004A16ED /* play.tiff in Resources */,
 				231A11C408FF1EA5004A16ED /* Plus.png in Resources */,
 				231A11C508FF1EA5004A16ED /* preferences.tiff in Resources */,
-				231A11CA08FF1EBD004A16ED /* colors_16.tiff in Resources */,
-				231A11CB08FF1EBD004A16ED /* fonts_16.tiff in Resources */,
 				238C58610933E10B00926AF1 /* QuizOptions.nib in Resources */,
 				238C59D20934B8DF00926AF1 /* Help.nib in Resources */,
 				238C5A760934BF6200926AF1 /* Help.html in Resources */,

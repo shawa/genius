@@ -21,11 +21,19 @@
 + (float) listTextFontSizeForSizeMode:(int)mode;
 + (float) rowHeightForSizeMode:(int)mode;
 
+@end
+
+
+@interface GeniusWindowController (Actions)
 
 // Edit menu
 - (IBAction) selectSearchField:(id)sender;
 
 // Item menu
 - (IBAction) toggleInspector:(id)sender;
+
+// Toolbar
+- (IBAction) toggleFontPanel:(id)sender;
+- (IBAction) toggleColorPanel:(id)sender;
 
 @end

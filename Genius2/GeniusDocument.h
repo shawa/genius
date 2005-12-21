@@ -36,17 +36,21 @@
 - (IBAction) exportFile:(id)sender;
 
 // Edit menu
+- (IBAction) delete:(id)sender;
 - (IBAction) duplicate:(id)sender;
+
+// View menu
+- (IBAction) showRichTextEditor:(id)sender;
 
 // Item menu
 - (IBAction) newItem:(id)sender;
+
 - (IBAction) setItemRating:(NSMenuItem *)sender;
+
 - (IBAction) swapColumns:(id)sender;
+
 - (IBAction) makePlainText:(NSMenuItem *)sender;
 - (IBAction) resetItemScore:(id)sender;
-
-// Format menu
-- (IBAction) showRichTextEditor:(id)sender;
 
 // Study menu
 - (IBAction) setQuizDirectionModeAction:(NSMenuItem *)sender;

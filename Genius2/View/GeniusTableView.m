@@ -1,14 +1,7 @@
 #import "GeniusTableView.h"
 
 
-//NSString * GeniusTableViewHiddenTableColumnsDidChangeNotification = @"GeniusTableViewHiddenTableColumnsDidChangeNotification";
-
-
 @interface GeniusTableHeaderView : NSTableHeaderView
-@end
-
-@interface GeniusTableView (Private)
-- (NSArray *) _allTableColumns;
 @end
 
 
@@ -48,10 +41,68 @@
 }
 
 
-- (NSArray *) _allTableColumns
+#pragma mark -
+// table view header contextual menu
+
+- (NSMenu *) dynamicColumnsMenu
 {
-	return _allTableColumns;
+	if (_columnsMenu == nil)
+	{
+		_columnsMenu = [[NSMenu alloc] initWithTitle:@""];
+	
+		// Patch in menu items
+		NSSet * nonHiddenTableColumnSet = [NSSet setWithArray:[self tableColumns]];
+
+		int i, count = [_allTableColumns count];				// both hidden and non-hidden
+		for (i=0; i<count; i++)
+		{
+			NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:i];
+			
+			NSString * title = [[tableColumn headerCell] title];
+			if ([title isEqualToString:@""])
+				continue;
+
+			NSMenuItem * menuItem = [_columnsMenu addItemWithTitle:title action:@selector(toggleTableColumnShown:) keyEquivalent:@""];
+			[menuItem setTarget:self];
+			[menuItem setTag:i];
+			[menuItem setState:([nonHiddenTableColumnSet containsObject:tableColumn] ? NSOnState : NSOffState)]; 
+		}
+	}
+	
+	return _columnsMenu;
 }
+
+- (IBAction) toggleTableColumnShown:(NSMenuItem *)sender
+{
+	int tag = [sender tag];
+	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:tag];
+
+	id delegate = [self delegate];
+	
+	int state = [sender state];			
+	if (state == NSOnState)
+	{
+		[self removeTableColumn:tableColumn];	// hide
+
+		if (delegate && [delegate respondsToSelector:@selector(tableView:didHideTableColumn:)])
+			[delegate tableView:self didShowTableColumn:tableColumn];
+	}
+	else
+	{
+		// XXX: TO DO: add in order
+		[self addTableColumn:tableColumn];		// show
+
+		if (delegate && [delegate respondsToSelector:@selector(tableView:didShowTableColumn:)])
+			[delegate tableView:self didShowTableColumn:tableColumn];
+			
+		[self sizeToFit];
+	}
+	
+	[sender setState:(state == NSOffState ? NSOnState : NSOffState)];
+}
+
+
+#pragma mark -
 
 - (NSArray *) _hiddenTableColumnIdentifiers
 {
@@ -94,37 +145,8 @@
 }
 
 
-// table view header contextual menu
-
-- (IBAction) _toggleTableColumnShown:(NSMenuItem *)sender
-{
-	int tag = [sender tag];
-	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:tag];
-
-	id delegate = [self delegate];
-	
-	int state = [sender state];			
-	if (state == NSOnState)
-	{
-		[self removeTableColumn:tableColumn];	// hide
-
-		if (delegate && [delegate respondsToSelector:@selector(tableView:didHideTableColumn:)])
-			[delegate tableView:self didShowTableColumn:tableColumn];
-	}
-	else
-	{
-		// XXX: TO DO: add in order
-		[self addTableColumn:tableColumn];		// show
-
-		if (delegate && [delegate respondsToSelector:@selector(tableView:didShowTableColumn:)])
-			[delegate tableView:self didShowTableColumn:tableColumn];
-			
-		[self sizeToFit];
-	}
-	
-	[sender setState:(state == NSOffState ? NSOnState : NSOffState)];
-}
-
+#pragma mark -
+// Events
 
 - (void)keyDown:(NSEvent *)theEvent
 {
@@ -167,28 +189,8 @@
 
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
 {
-	NSMenu * menu = [[NSMenu alloc] initWithTitle:@""];
-
 	GeniusTableView * tableView = (GeniusTableView *)[self tableView];
-	NSSet * nonHiddenTableColumnSet = [NSSet setWithArray:[tableView tableColumns]];
-
-	NSArray * allTableColumns = [tableView _allTableColumns];				// both hidden and non-hidden
-	int i, count = [allTableColumns count];
-	for (i=0; i<count; i++)
-	{
-		NSTableColumn * tableColumn = [allTableColumns objectAtIndex:i];
-		
-		NSString * title = [[tableColumn headerCell] title];
-		if ([title isEqualToString:@""])
-			continue;
-
-		NSMenuItem * menuItem = [menu addItemWithTitle:title action:@selector(_toggleTableColumnShown:) keyEquivalent:@""];
-		[menuItem setTarget:tableView];
-		[menuItem setTag:i];
-		[menuItem setState:([nonHiddenTableColumnSet containsObject:tableColumn] ? NSOnState : NSOffState)]; 
-	}
-
-	return menu;
+	return [tableView dynamicColumnsMenu];
 }
 
 @end

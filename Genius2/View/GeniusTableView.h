@@ -6,7 +6,10 @@
 @interface GeniusTableView : NSTableView
 {
 	NSMutableArray * _allTableColumns;
+	NSMenu * _columnsMenu;
 }
+
+- (NSMenu *) dynamicColumnsMenu;
 
 - (NSDictionary *)configurationDictionary;
 - (void)setConfigurationFromDictionary:(NSDictionary *)configDict;

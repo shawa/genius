@@ -14,6 +14,9 @@
 // Model
 #import "GeniusAtom.h"	// +defaultTextAttributes
 
+// View
+#import "GeniusTableView.h"
+
 // Widgets
 #import "IconTextFieldCell.h"
 #import "ColorView.h"
@@ -38,21 +41,25 @@
 	[[self window] setBackgroundColor:[NSColor colorWithCalibratedWhite:0.78 alpha:1.0]];
 }
 
-- (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu
+- (void) _setupTableViewDataCell:(NSCell *)cell
 {
 	// Set up line break mode for table columns
-	// And print "[Image]" in strings with image characters
-	ImageStringFormatter * stringFormatter = [ImageStringFormatter new];
+	[cell setLineBreakMode:NSLineBreakByTruncatingTail];
 
+	// Print "[Image]" in strings with image characters
+	static ImageStringFormatter * sStringFormatter = nil;
+	if (sStringFormatter == nil)
+		sStringFormatter = [ImageStringFormatter new];
+    [cell setFormatter:stringFormatter];
+}
+
+- (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu
+{
 	NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:@"atomA"];
-	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];
-    [[tableColumn dataCell] setFormatter:stringFormatter];
+	[self _setupTableViewDataCell:[tableColumn dataCell]];
 
 	tableColumn = [tableView tableColumnWithIdentifier:@"atomB"];
-	[[tableColumn dataCell] setLineBreakMode:NSLineBreakByTruncatingTail];	
-    [[tableColumn dataCell] setFormatter:stringFormatter];
-	
-	[stringFormatter release];
+	[self _setupTableViewDataCell:[tableColumn dataCell]];
 
     // Set up icon text field cells for colored grade indication
     tableColumn = [tableView tableColumnWithIdentifier:@"grade"];
@@ -63,6 +70,15 @@
 	
 	// Set up double-click action to handle uneditable rich text cells
 	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];	
+
+	// Wire View -> Columns menu to the custom table view's dynamic one
+	NSString * viewTitle = NSLocalizedString(@"View", nil);
+	NSMenuItem * viewMenuItem = [[NSApp mainMenu] itemWithTitle:viewTitle];
+	
+	NSString * columnsTitle = NSLocalizedString(@"Columns", nil);
+	NSMenuItem * columnsMenuItem = [[viewMenuItem submenu] itemWithTitle:columnsTitle];
+
+	[columnsMenuItem setSubmenu:[(GeniusTableView *)tableView dynamicColumnsMenu]];
 }
 
 - (void) setupSplitView:(NSSplitView *)splitView
@@ -149,6 +165,10 @@
 	return [NSFont systemFontSize];
 }
 
+@end
+
+
+@implementation GeniusWindowController (Actions)
 
 // Edit menu
 
@@ -171,26 +191,41 @@
 		[ic showWindow:sender];
 }
 
+// Toolbar
+
+- (IBAction) toggleFontPanel:(id)sender
+{
+	NSFontPanel * fontPanel = [NSFontPanel sharedFontPanel];
+	if ([fontPanel isVisible])
+		[fontPanel performClose:sender];
+	else
+	{
+		[[self document] showRichTextEditor:sender];
+		[fontPanel makeKeyAndOrderFront:sender];
+	}
+}
+
+- (IBAction) toggleColorPanel:(id)sender
+{
+	NSColorPanel * colorPanel = [NSColorPanel sharedColorPanel];
+	if ([colorPanel isVisible])
+		[colorPanel performClose:sender];
+	else
+	{
+		[[self document] showRichTextEditor:sender];
+		[colorPanel makeKeyAndOrderFront:sender];
+	}
+}
+
 @end
 
 
-/*@implementation GeniusWindowController (NSSplitViewDelegate)
+/*@implementation GeniusWindowController (NSMenuValidation)
 
-- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
+- (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
 {
-	if ([[sender subviews] indexOfObject:subview] == 1)
-		return YES;
-	return NO;
-}
-
-- (float)splitView:(NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
-{
-	return 0.0;
-}*/
-
-/*- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
-{
-	return proposedMax - 100.0;
+	
+	return [super validateMenuItem:menuItem];
 }
 
 @end*/

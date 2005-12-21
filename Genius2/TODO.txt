@@ -4,8 +4,11 @@ grading / hook up level indicator
 info button
 quiz handling of blank strings / lex similarity return only
 hook up text import
-check for leaks
 timer feature
+hook up View -> Sort By menu
+
+toolbar prefs etc
+check for leaks
 
 P2:
 BUG: reveal rich text first resize
