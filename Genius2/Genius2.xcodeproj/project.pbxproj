@@ -39,6 +39,8 @@
 		234E539A08FC635B005FCF83 /* GeniusPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E539908FC635B005FCF83 /* GeniusPreferences.m */; };
 		234E546008FC6AED005FCF83 /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 234E545F08FC6AED005FCF83 /* QuizBackdropWindow.m */; };
 		2350E9220945D280000ADFF1 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2350E9210945D280000ADFF1 /* Genius.icns */; };
+		237E96850961C84400972B28 /* colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 237E96830961C84400972B28 /* colors.tiff */; };
+		237E96860961C84500972B28 /* fonts.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 237E96840961C84400972B28 /* fonts.tiff */; };
 		238127B40941E30B0001CF4D /* ImageStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 238127B30941E30B0001CF4D /* ImageStringFormatter.m */; };
 		23835E9C08F96C550066323F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23835E9A08F96C550066323F /* GeniusDocument.nib */; };
 		23835F1A08F970380066323F /* GeniusValueTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 23835F1008F970380066323F /* GeniusValueTransformers.m */; };
@@ -166,6 +168,8 @@
 		234E545E08FC6AED005FCF83 /* QuizBackdropWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizBackdropWindow.h; sourceTree = "<group>"; };
 		234E545F08FC6AED005FCF83 /* QuizBackdropWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizBackdropWindow.m; sourceTree = "<group>"; };
 		2350E9210945D280000ADFF1 /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
+		237E96830961C84400972B28 /* colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = colors.tiff; sourceTree = "<group>"; };
+		237E96840961C84400972B28 /* fonts.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = fonts.tiff; sourceTree = "<group>"; };
 		238127B20941E30B0001CF4D /* ImageStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageStringFormatter.h; sourceTree = "<group>"; };
 		238127B30941E30B0001CF4D /* ImageStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageStringFormatter.m; sourceTree = "<group>"; };
 		23835E9B08F96C550066323F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GeniusDocument.nib; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 		231A11BA08FF1EA5004A16ED /* toolbar-images */ = {
 			isa = PBXGroup;
 			children = (
+				237E96830961C84400972B28 /* colors.tiff */,
+				237E96840961C84400972B28 /* fonts.tiff */,
 				231A11BB08FF1EA5004A16ED /* info.tiff */,
 				231A11BC08FF1EA5004A16ED /* Inspector.png */,
 				231A11BD08FF1EA5004A16ED /* play.tiff */,
@@ -576,6 +582,8 @@
 				238C5A790934BF6B00926AF1 /* Relax.html in Resources */,
 				23443B0909436AD50070D478 /* Samples in Resources */,
 				2350E9220945D280000ADFF1 /* Genius.icns in Resources */,
+				237E96850961C84400972B28 /* colors.tiff in Resources */,
+				237E96860961C84500972B28 /* fonts.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,86 +735,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		238C58440933C1FB00926AF1 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PREBINDING = NO;
-				PRODUCT_NAME = Genius;
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Development;
-		};
-		238C58450933C1FB00926AF1 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PREBINDING = NO;
-				PRODUCT_NAME = Genius;
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		238C58460933C1FB00926AF1 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PREBINDING = NO;
-				PRODUCT_NAME = Genius;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		238C58480933C1FB00926AF1 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Development;
-		};
-		238C58490933C1FB00926AF1 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Deployment;
-		};
-		238C584A0933C1FB00926AF1 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
-		};
 		23ED4B1E0955F0CE001DEC99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -872,26 +800,20 @@
 		238C58430933C1FB00926AF1 /* Build configuration list for PBXNativeTarget "Genius" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				238C58440933C1FB00926AF1 /* Development */,
-				238C58450933C1FB00926AF1 /* Deployment */,
-				238C58460933C1FB00926AF1 /* Default */,
 				23ED4B1E0955F0CE001DEC99 /* Debug */,
 				23ED4B260955F1B6001DEC99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 		238C58470933C1FB00926AF1 /* Build configuration list for PBXProject "Genius2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				238C58480933C1FB00926AF1 /* Development */,
-				238C58490933C1FB00926AF1 /* Deployment */,
-				238C584A0933C1FB00926AF1 /* Default */,
 				23ED4B200955F0CE001DEC99 /* Debug */,
 				23ED4B270955F1B6001DEC99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

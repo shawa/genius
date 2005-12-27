@@ -50,7 +50,7 @@
 	static ImageStringFormatter * sStringFormatter = nil;
 	if (sStringFormatter == nil)
 		sStringFormatter = [ImageStringFormatter new];
-    [cell setFormatter:stringFormatter];
+    [cell setFormatter:sStringFormatter];
 }
 
 - (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu
@@ -78,7 +78,7 @@
 	NSString * columnsTitle = NSLocalizedString(@"Columns", nil);
 	NSMenuItem * columnsMenuItem = [[viewMenuItem submenu] itemWithTitle:columnsTitle];
 
-	[columnsMenuItem setSubmenu:[(GeniusTableView *)tableView dynamicColumnsMenu]];
+	[columnsMenuItem setSubmenu:[(GeniusTableView *)tableView toggleColumnsMenu]];
 }
 
 - (void) setupSplitView:(NSSplitView *)splitView

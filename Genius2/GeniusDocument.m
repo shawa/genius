@@ -118,7 +118,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 }
 
 
-// Get rid of CoreData's Binary/SQL/XML popup
+// Get rid of CoreData's Binary/SQL/XML popup in the save panel
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
 {
 	[savePanel setAccessoryView:nil];

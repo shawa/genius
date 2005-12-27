@@ -1,13 +1,13 @@
 P1:
-genius file extension
+delete fault
+toolbar prefs etc
+
 grading / hook up level indicator
 info button
 quiz handling of blank strings / lex similarity return only
 hook up text import
 timer feature
-hook up View -> Sort By menu
 
-toolbar prefs etc
 check for leaks
 
 P2:
@@ -16,9 +16,11 @@ fix up export
 end editing doesn't refresh textview
 polish column behavior
 LastOpenFiles
+Spotlight support
 ER: up down arrows
 
 P3:
+drop image on item
 ER: new first item
 ER: option-drag copies
 keyboard nav
@@ -28,6 +30,7 @@ formatting error on quiz options
 P4:
 BUG: get rid of search field pop-up
 BUG: cursor around "Learn More..."
+View -> Sort By menu
 
 
 // version 3.0

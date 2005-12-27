@@ -126,7 +126,7 @@
 }
 
 
-- (BOOL) importGeniusV1FileFromURL:(NSURL *)aURL
+- (BOOL) importGeniusV1_5FileAtURL:(NSURL *)aURL
 {
 	NSData * data = [NSData dataWithContentsOfURL:aURL];
 	if (data == nil)

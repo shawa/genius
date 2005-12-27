@@ -12,6 +12,6 @@
 
 @interface GeniusDocument (GeniusV1FileImporter)
 
-- (BOOL) importGeniusV1FileFromURL:(NSURL *)aURL;
+- (BOOL) importGeniusV1_5FileAtURL:(NSURL *)aURL;
 
 @end

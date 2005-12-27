@@ -44,11 +44,11 @@
 #pragma mark -
 // table view header contextual menu
 
-- (NSMenu *) dynamicColumnsMenu
+- (NSMenu *) toggleColumnsMenu
 {
-	if (_columnsMenu == nil)
+	if (_toggleColumnsMenu == nil)
 	{
-		_columnsMenu = [[NSMenu alloc] initWithTitle:@""];
+		_toggleColumnsMenu = [[NSMenu alloc] initWithTitle:@""];
 	
 		// Patch in menu items
 		NSSet * nonHiddenTableColumnSet = [NSSet setWithArray:[self tableColumns]];
@@ -62,14 +62,14 @@
 			if ([title isEqualToString:@""])
 				continue;
 
-			NSMenuItem * menuItem = [_columnsMenu addItemWithTitle:title action:@selector(toggleTableColumnShown:) keyEquivalent:@""];
+			NSMenuItem * menuItem = [_toggleColumnsMenu addItemWithTitle:title action:@selector(toggleTableColumnShown:) keyEquivalent:@""];
 			[menuItem setTarget:self];
 			[menuItem setTag:i];
 			[menuItem setState:([nonHiddenTableColumnSet containsObject:tableColumn] ? NSOnState : NSOffState)]; 
 		}
 	}
 	
-	return _columnsMenu;
+	return _toggleColumnsMenu;
 }
 
 - (IBAction) toggleTableColumnShown:(NSMenuItem *)sender
@@ -190,7 +190,7 @@
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent
 {
 	GeniusTableView * tableView = (GeniusTableView *)[self tableView];
-	return [tableView dynamicColumnsMenu];
+	return [tableView toggleColumnsMenu];
 }
 
 @end

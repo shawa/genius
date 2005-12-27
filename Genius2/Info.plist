@@ -11,48 +11,12 @@
 			<array>
 				<string>genius</string>
 			</array>
-			<key>CFBundleTypeName</key>
-			<string>GeniusV1</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>GeniusDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>XML</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>binary</string>
-			</array>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>application/octet-stream</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Binary</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
 			<string>GeniusDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sql</string>
-			</array>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>application/octet-stream</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>SQL</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -61,32 +25,6 @@
 			<string>GeniusDocument</string>
 			<key>NSPersistentStoreTypeKey</key>
 			<string>SQLite</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>xml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string></string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/xml</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>XML</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>????</string>
-			</array>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>GeniusDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>XML</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

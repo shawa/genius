@@ -25,19 +25,37 @@
 
 - (id)makeDocumentWithContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-	// Handle opening Genius 1.x files
-	if ([typeName isEqualToString:@"GeniusV1"])
+	if ([typeName isEqualToString:@"GeniusDocument"])
 	{
-		id document = [super makeUntitledDocumentOfType:typeName error:outError];
+		if (outError)
+			*outError = nil;
+			
+		// Try Genius v2.0 format
+		id document = [super makeDocumentWithContentsOfURL:absoluteURL ofType:typeName error:outError];
 		if (document)
-			[document importGeniusV1FileFromURL:absoluteURL];
-		
-		return document;
+			return document;
+			
+		if (outError && *outError)
+		{
+			if ([[*outError domain] isEqual:NSCocoaErrorDomain] && [*outError code] == NSFileReadCorruptFileError)
+			{
+				// Try Genius v1.x format
+				id document = [super makeUntitledDocumentOfType:typeName error:outError];
+				if (document == nil)
+					return nil;
+					
+				BOOL result = [document importGeniusV1_5FileAtURL:absoluteURL];
+				if (result)
+				{
+					*outError = nil;
+					return document;
+				}
+			}
+		}
 	}
-
-	return [super makeDocumentWithContentsOfURL:absoluteURL ofType:typeName error:outError];
+			
+	return nil;
 }
-
 
 /*- (IBAction) importFile:(id)sender
 {
