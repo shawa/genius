@@ -44,6 +44,7 @@ extern NSString * GeniusItemLastModifiedDateKey;
 - (GeniusAssociation *) associationBA;
 
 - (void) resetAssociations;
+- (BOOL) isAssociationsReset;
 
 - (float) grade;
 - (NSString *) displayGrade;

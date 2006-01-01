@@ -589,6 +589,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>23795BBE0968763400A41998</string>
+		<string>23795BBF0968763400A41998</string>
+		<string>2302F62B0901A7C000585123</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>23795BB30968760A00A41998</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>23E0F8540901AD1400807121</string>
 		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -613,7 +621,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GeniusAssociation.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -671,7 +679,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>23E0F8540901AD1400807121</string>
-				<string>237957C30967DD6500A41998</string>
+				<string>23795B77096870D200A41998</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -713,8 +721,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {320, 232}}</string>
-											<string>{{320, 0}, {442, 232}}</string>
+											<string>{{0, 0}, {376, 207}}</string>
+											<string>{{376, 0}, {386, 207}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -729,8 +737,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {762, 232}}</string>
-											<string>{{0, 232}, {762, 348}}</string>
+											<string>{{0, 0}, {762, 207}}</string>
+											<string>{{0, 207}, {762, 373}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -777,14 +785,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>23795A080968448800A41998</string>
+				<string>23795BAD0968760A00A41998</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>23795A090968448800A41998</string>
-				<string>23795A0A0968448800A41998</string>
-				<string>23795A0B0968448800A41998</string>
-				<string>23795A0C0968448800A41998</string>
-				<string>23795A0D0968448800A41998</string>
-				<string>23795A0E0968448800A41998</string>
+				<string>23795BAE0968760A00A41998</string>
+				<string>23795BAF0968760A00A41998</string>
+				<string>23795BB00968760A00A41998</string>
+				<string>23795BB10968760A00A41998</string>
+				<string>23795BB20968760A00A41998</string>
+				<string>23795BB30968760A00A41998</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debug</string>
@@ -816,7 +824,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusAssociationEnumerator.m</string>
+										<string>GeniusWindowToolbar.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -874,8 +882,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>237958480967E83700A41998</string>
-				<string>237958490967E83700A41998</string>
+				<string>23795B890968729E00A41998</string>
+				<string>23795B8A0968729E00A41998</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -940,7 +948,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2302F62B0901A7C000585123</string>
-				<string>23795A0F0968448800A41998</string>
+				<string>23795BB50968760A00A41998</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>WindowString</key>
@@ -985,8 +993,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {491, 168}}</string>
-											<string>{{0, 173}, {491, 270}}</string>
+											<string>{{0, 0}, {367, 168}}</string>
+											<string>{{0, 173}, {367, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -1035,9 +1043,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>237957C40967DD6500A41998</string>
+				<string>23795B78096870D200A41998</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>237957C50967DD6500A41998</string>
+				<string>23795B79096870D200A41998</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>

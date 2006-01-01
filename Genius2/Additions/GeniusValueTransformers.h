@@ -17,3 +17,8 @@
 @interface GeniusEnabledBooleanToTextColorTransformer : NSValueTransformer
 
 @end
+
+
+@interface GeniusBooleanToStringTransformer : NSValueTransformer
+
+@end

@@ -500,20 +500,22 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	else if ([menuItem action] == @selector(makePlainText:))
 	{
 		NSArray * selectedObjects = [itemArrayController selectedObjects];
-		if ([selectedObjects count] == 0)
-			return NO;
-			
 		NSEnumerator * objectEnumerator = [selectedObjects objectEnumerator];
 		GeniusItem * item;
 		while ((item = [objectEnumerator nextObject]))
 			if ([item usesDefaultTextAttributes] == NO)
-				return YES;
-		
+				return YES;		
 		return NO;
 	}
 	else if ([menuItem action] == @selector(resetItemScore:))
 	{
-		return [itemArrayController selectionIndex] != NSNotFound;
+		NSArray * selectedObjects = [itemArrayController selectedObjects];
+		NSEnumerator * objectEnumerator = [selectedObjects objectEnumerator];
+		GeniusItem * item;
+		while ((item = [objectEnumerator nextObject]))
+			if ([item isAssociationsReset] == NO)
+				return YES;		
+		return NO;
 	}
 	// Study menu
 	else if ([menuItem action] == @selector(setQuizDirectionModeAction:))

@@ -156,11 +156,12 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 
 - (void) swapAtoms
 {
-	GeniusAtom * atomA = [self valueForKey:GeniusItemAtomAKey];
-	GeniusAtom * atomB = [self valueForKey:GeniusItemAtomBKey];
-
+	GeniusAtom * atomA = [[self valueForKey:GeniusItemAtomAKey] retain];
+	GeniusAtom * atomB = [[self valueForKey:GeniusItemAtomBKey] retain];
 	[self setValue:atomB forKey:GeniusItemAtomAKey];
 	[self setValue:atomA forKey:GeniusItemAtomBKey];
+	[atomA release];
+	[atomB release];
 
 	[self touchLastModifiedDate];
 	
@@ -223,6 +224,17 @@ NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
 {
 	NSMutableSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
 	[associationSet makeObjectsPerformSelector:@selector(reset)];
+}
+
+- (BOOL) isAssociationsReset
+{
+	NSMutableSet * associationSet = [self valueForKey:GeniusItemAssociationsKey];
+	NSEnumerator * associationEnumerator = [associationSet objectEnumerator];
+	GeniusAssociation * association;
+	while ((association = [associationEnumerator nextObject]))
+		if ([association isReset] == NO)
+			return NO;
+	return YES;
 }
 
 

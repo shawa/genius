@@ -117,8 +117,8 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 
 - (BOOL) isReset
 {
-	return (/*[self valueForKey:GeniusAssociationLastDataPointDateKey] == nil
-		&&*/ [self valueForKey:GeniusAssociationDueDateKey] == nil);
+	return ([self valueForKey:GeniusAssociationDataPointArrayDataKey] == nil
+		&& [self valueForKey:GeniusAssociationDueDateKey] == nil);
 }
 
 @end

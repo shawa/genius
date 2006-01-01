@@ -19,6 +19,9 @@
 	transformer = [[[GeniusEnabledBooleanToTextColorTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusEnabledBooleanToTextColorTransformer"];
 
+	transformer = [[[GeniusBooleanToStringTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusBooleanToStringTransformer"];
+
 
 	[GeniusPreferences registerDefaults];
 }

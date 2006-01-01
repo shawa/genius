@@ -1,5 +1,6 @@
 P1:
 grading / hook up level indicator
+swap columns crashes
 
 quiz handling of blank strings / lex similarity return only
 hook up text import

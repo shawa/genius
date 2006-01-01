@@ -84,3 +84,26 @@
 }
 
 @end
+
+
+@implementation GeniusBooleanToStringTransformer
+
++ (Class) transformedValueClass
+{
+	return [NSString self];
+}
+
++ (BOOL) allowsReverseTransformation
+{
+	return NO;
+}
+
+- (id) transformedValue:(id)value
+{
+	if (value == nil)
+		return nil;
+	
+	return ([value boolValue] ? NSLocalizedString(@"YES", nil) : NSLocalizedString(@"NO", nil));
+}
+
+@end
