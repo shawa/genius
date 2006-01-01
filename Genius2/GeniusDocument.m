@@ -129,12 +129,17 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 }
 
 
-- (NSWindow *) mainWindow
+- (NSWindowController *) mainWindowController
 {
 	NSArray * windowControllers = [self windowControllers];
 	if ([windowControllers count] == 0)
 		return nil;
-	return [[windowControllers objectAtIndex:0] window];
+	return [windowControllers objectAtIndex:0];
+}
+
+- (NSWindow *) mainWindow
+{
+	return [[self mainWindowController] window];
 }
 
 
@@ -189,7 +194,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 		return;
 
 	if ([sender clickedColumn] == 1 || [sender clickedColumn] == 2)
-		[self showRichTextEditor:sender];
+		[(GeniusWindowController *)[self mainWindowController] showRichTextEditor:sender];
 
 	// Select all in the appropriate text view
 /*	NSTextView * textView;
@@ -587,21 +592,6 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
     [itemArrayController insertObjects:newObjects atArrangedObjectIndexes:indexSet];
     [itemArrayController setSelectedObjects:newObjects];
     [newObjects release];
-}
-
-
-// View menu
-
-- (IBAction) showRichTextEditor:(id)sender
-{
-	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
-	int i;
-	for (i=0; i<4; i++)
-	{
-		[bottomView setFrameSize:NSMakeSize([splitView frame].size.width, 128.0)];
-		[splitView adjustSubviews];
-		[splitView displayIfNeeded];
-	}
 }
 
 

@@ -74,6 +74,20 @@
 	[tempView release];
 }
 
+- (void) uncollapseSubviewAt:(int)offset
+{
+	NSView * tempView = [[self subviews] objectAtIndex:offset];
+
+	id key = [NSValue valueWithPointer:tempView];
+	NSView * origSubview = [_collapsedSubviewsDict objectForKey:key];
+	if (origSubview == nil)
+		return;
+		
+	// Swap in subview
+	[self replaceSubview:tempView with:origSubview];
+	[_collapsedSubviewsDict removeObjectForKey:key];
+}
+
 
 /*- (BOOL)isSubviewCollapsed:(NSView *)subview
 {

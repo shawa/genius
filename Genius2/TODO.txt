@@ -1,24 +1,21 @@
 P1:
 grading / hook up level indicator
-swap columns crashes
-
 quiz handling of blank strings / lex similarity return only
 hook up text import
-timer feature
 
 check for leaks
 performance
 
 P2:
-toolbar prefs etc
-BUG: reveal rich text first resize
+progress cosmetic in toolbar
 fix up export
 end editing doesn't refresh textview
 save visible columns
 LastOpenFiles
-ER: up down arrows
+formatting error on quiz options
 
 P3:
+toolbar prefs etc
 info button
 drop image on item
 ER: new first item
@@ -26,7 +23,7 @@ ER: option-drag copies
 keyboard nav
 polish column behavior
 window and table position autosaving
-formatting error on quiz options
+ER: up/down arrows
 
 P4:
 BUG: get rid of search field pop-up
@@ -34,9 +31,13 @@ BUG: cursor around "Learn More..."
 View -> Sort By menu
 
 
+// PUNT
+swap columns crashes
+Spotlight support
+
+
 // version 3.0
 iTunes-style all-in-one window
-Spotlight support
 tri-directional
 printing
 export to iPod

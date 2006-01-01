@@ -16,7 +16,7 @@ NSString * GeniusPreferencesQuizUseFullScreenKey = @"UseFullScreen";
 NSString * GeniusPreferencesQuizUseVisualErrorsKey = @"QuizUseVisualErrors";
 NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
 
-//static NSString * GeniusPreferencesQuizLengthModeKey = @"QuizLengthMode";
+NSString * GeniusPreferencesQuizChooseModeKey = @"QuizChooseMode";
 NSString * GeniusPreferencesQuizNumItemsKey = @"QuizNumItems";
 NSString * GeniusPreferencesQuizFixedTimeMinKey = @"QuizFixedTimeMin";
 NSString * GeniusPreferencesQuizReviewLearnFloatKey = @"QuizReviewLearnFloat";

@@ -92,13 +92,19 @@ enum {
 	// Setup quiz options
 	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
 
-	int requestedNumItems = [ud integerForKey:GeniusPreferencesQuizNumItemsKey];
-	if (requestedNumItems > 0)
+	int chooseMode = [ud integerForKey:GeniusPreferencesQuizChooseModeKey];
+	if (chooseMode == GeniusPreferencesQuizNumItemsChooseMode)
+	{
+		int requestedNumItems = [ud integerForKey:GeniusPreferencesQuizNumItemsKey];
 		[model setCount:requestedNumItems];
-
-	int fixedTimeMinutes = [ud integerForKey:GeniusPreferencesQuizFixedTimeMinKey];
-	if (fixedTimeMinutes > 0)
+	}
+	else if (chooseMode == GeniusPreferencesQuizFixedTimeChooseMode)
+	{
+		int fixedTimeMinutes = [ud integerForKey:GeniusPreferencesQuizFixedTimeMinKey];
 		_quizUntilDate = [NSDate dateWithTimeIntervalSinceNow:(60 * fixedTimeMinutes)];
+
+		[model setCount:0];
+	}
 
 	float reviewLearnFloat = [ud floatForKey:GeniusPreferencesQuizReviewLearnFloatKey];
 	[model setReviewLearnFloat:reviewLearnFloat];

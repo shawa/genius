@@ -29,6 +29,7 @@
 - (void) dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[_splitView release];
 	[super dealloc];
 }
 
@@ -88,7 +89,8 @@
 	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
 	[(ColorView *)bottomView setFrameColor:[NSColor colorWithCalibratedWhite:0.65 alpha:1.0]];
 
-	[(CollapsableSplitView *)splitView collapseSubviewAt:1];
+	_splitView = [splitView retain];
+	[_splitView collapseSubviewAt:1];
 }
 
 - (void) setupAtomTextView:(NSTextView *)textView
@@ -178,6 +180,23 @@
 }
 
 
+// View menu
+
+- (IBAction) showRichTextEditor:(id)sender
+{
+	[_splitView uncollapseSubviewAt:1];
+	
+	NSView * bottomView = [[_splitView subviews] objectAtIndex:1];
+	int i;
+	for (i=0; i<3; i++)
+	{
+		[bottomView setFrameSize:NSMakeSize([_splitView frame].size.width, 128.0)];
+		[_splitView adjustSubviews];
+		[_splitView displayIfNeeded];
+	}
+}
+
+
 // Item menu
 
 - (IBAction) toggleInspector:(id)sender
@@ -200,7 +219,7 @@
 		[fontPanel performClose:sender];
 	else
 	{
-		[[self document] showRichTextEditor:sender];
+		[self showRichTextEditor:sender];
 		[fontPanel makeKeyAndOrderFront:sender];
 	}
 }
@@ -212,7 +231,7 @@
 		[colorPanel performClose:sender];
 	else
 	{
-		[[self document] showRichTextEditor:sender];
+		[self showRichTextEditor:sender];
 		[colorPanel makeKeyAndOrderFront:sender];
 	}
 }

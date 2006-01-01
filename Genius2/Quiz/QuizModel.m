@@ -271,10 +271,6 @@ static float PoissonValue(int x, float m)
 }
 
 
-- (void) foo
-{
-        // If the fire date has already expired, clear it
 #warning If the fire date has already expired, clear it
-}
 
 @end

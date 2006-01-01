@@ -185,7 +185,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>23795C0809687E9500A41998</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>TODO.txt</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>23795C0909687E9500A41998</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>TODO.txt</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>23795D530968893200A41998</string>
+						<key>history</key>
+						<array>
+							<string>23795C0409687E8400A41998</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {513, 481}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>48 52 513 522 0 0 1280 832 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -287,7 +328,7 @@
 									<real>239</real>
 								</array>
 								<key>RubberWindowFrame</key>
-								<string>60 435 690 397 0 0 1280 832 </string>
+								<string>61 435 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -362,7 +403,7 @@
 									<real>239</real>
 								</array>
 								<key>RubberWindowFrame</key>
-								<string>60 435 690 397 0 0 1280 832 </string>
+								<string>61 435 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -403,7 +444,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {429, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>60 435 690 397 0 0 1280 832 </string>
+								<string>61 435 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -425,7 +466,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {429, 351}}</string>
 								<key>RubberWindowFrame</key>
-								<string>60 435 690 397 0 0 1280 832 </string>
+								<string>61 435 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -595,12 +636,13 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>23795BB30968760A00A41998</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>23795C0809687E9500A41998</string>
+		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>23E0F8540901AD1400807121</string>
-		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>60 435 690 397 0 0 1280 832 </string>
+	<string>61 435 690 397 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -824,7 +866,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusWindowToolbar.m</string>
+										<string>QuizController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -833,7 +875,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {781, 212}}</string>
 										<key>RubberWindowFrame</key>
-										<string>441 301 781 470 0 0 1280 832 </string>
+										<string>284 236 781 470 0 0 1280 832 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -859,7 +901,7 @@
 								<key>Frame</key>
 								<string>{{0, 217}, {781, 212}}</string>
 								<key>RubberWindowFrame</key>
-								<string>441 301 781 470 0 0 1280 832 </string>
+								<string>284 236 781 470 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -888,7 +930,7 @@
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>441 301 781 470 0 0 1280 832 </string>
+			<string>284 236 781 470 0 0 1280 832 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
@@ -1054,7 +1096,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

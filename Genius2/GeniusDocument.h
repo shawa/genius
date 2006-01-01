@@ -43,9 +43,6 @@
 - (IBAction) delete:(id)sender;
 - (IBAction) duplicate:(id)sender;
 
-// View menu
-- (IBAction) showRichTextEditor:(id)sender;
-
 // Item menu
 - (IBAction) newItem:(id)sender;
 

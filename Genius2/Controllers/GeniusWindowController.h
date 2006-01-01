@@ -9,8 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 
+@class CollapsableSplitView;
+
 @interface GeniusWindowController : NSWindowController {
 	NSSearchField * _searchField;
+	CollapsableSplitView * _splitView;
 }
 
 - (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu;
@@ -28,6 +31,9 @@
 
 // Edit menu
 - (IBAction) selectSearchField:(id)sender;
+
+// View menu
+- (IBAction) showRichTextEditor:(id)sender;
 
 // Item menu
 - (IBAction) toggleInspector:(id)sender;

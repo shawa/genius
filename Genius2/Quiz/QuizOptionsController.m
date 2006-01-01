@@ -62,8 +62,9 @@
 
 - (IBAction)didChangeQuizModeRadioMatrix:(id)sender
 {
-	// Begin editing in corresponding text field
 	NSTextField * textField = [self _radioMatrixCorrespondingTextField];
+	
+	// Begin editing in corresponding text field
 	[[self window] makeFirstResponder:textField];
 	[textField selectText:self];
 }

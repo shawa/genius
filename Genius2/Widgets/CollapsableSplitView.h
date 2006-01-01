@@ -28,4 +28,6 @@
 	you will not be able to programmatically uncollapse in those cases.
 */
 
+- (void) uncollapseSubviewAt:(int)offset;
+
 @end
