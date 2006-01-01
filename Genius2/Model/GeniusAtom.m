@@ -6,14 +6,16 @@
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
+#import <Cocoa/Cocoa.h>
+
 #import "GeniusAtom.h"
 
 
+//NSString * GeniusAtomNameKey = @"name";
+
+static NSString * GeniusAtomStringRTDDataKey = @"stringRTFDData";
 NSString * GeniusAtomStringKey = @"string";
 NSString * GeniusAtomRTFDDataKey = @"rtfdData";
-
-NSString * GeniusAtomStringRTDDataKey = @"stringRTFDData";
-NSString * GeniusAtomDirtyKey = @"dirty";
 
 
 @implementation GeniusAtom 
@@ -45,21 +47,21 @@ NSString * GeniusAtomDirtyKey = @"dirty";
 
 #pragma mark -
 
-+ (NSSet *)userModifiableKeySet {
++ (NSSet *)_userModifiableKeySet {
     static NSSet *userModifiableKeySet = nil;
     if (userModifiableKeySet == nil) {
         userModifiableKeySet = [[NSSet alloc] initWithObjects:
-            GeniusAtomStringKey, @"stringRTFDData", nil];
+            GeniusAtomStringKey, GeniusAtomStringRTDDataKey, nil];
     }
     return userModifiableKeySet;
 }
 
 - (void)didChangeValueForKey:(NSString *)key
 {
-	if ([[GeniusAtom userModifiableKeySet] containsObject:key])
+	if ([[GeniusAtom _userModifiableKeySet] containsObject:key])
 	{
-		[self willChangeValueForKey:GeniusAtomDirtyKey];
-		[self didChangeValueForKey:GeniusAtomDirtyKey];
+		if (_delegate && [_delegate respondsToSelector:@selector(atomHasChanged:)])
+			[_delegate atomHasChanged:self];
 	}
 	
 	[super didChangeValueForKey:key];
@@ -146,7 +148,7 @@ NSString * GeniusAtomDirtyKey = @"dirty";
 
 - (void) setStringRTFDData:(NSData *)rtfdData
 {
-	[self willChangeValueForKey:@"stringRTFDData"];
+	[self willChangeValueForKey:GeniusAtomStringRTDDataKey];
 //	_isImageOnly = NO;
 
 	// rtfdData -> attrString
@@ -172,7 +174,7 @@ NSString * GeniusAtomDirtyKey = @"dirty";
 	[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
 	[self didChangeValueForKey:GeniusAtomStringKey];
 
-	[self didChangeValueForKey:@"stringRTFDData"];
+	[self didChangeValueForKey:GeniusAtomStringRTDDataKey];
 }
 
 
@@ -196,6 +198,12 @@ NSString * GeniusAtomDirtyKey = @"dirty";
 	}
 	[self didAccessValueForKey:GeniusAtomRTFDDataKey];
 	return rtfdData;
+}
+
+
+- (void) setDelegate:(id)delegate
+{
+	_delegate = delegate;
 }
 
 @end

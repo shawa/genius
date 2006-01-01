@@ -114,6 +114,9 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 {
 	//NSLog(@"-[GeniusDocument dealloc]");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
+	[_documentInfo release];
+	
 	[super dealloc];
 }
 
@@ -185,7 +188,8 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	if ([sender clickedRow] == -1 || [sender clickedColumn] == -1)
 		return;
 
-	[self showRichTextEditor:sender];
+	if ([sender clickedColumn] == 1 || [sender clickedColumn] == 2)
+		[self showRichTextEditor:sender];
 
 	// Select all in the appropriate text view
 /*	NSTextView * textView;
@@ -250,27 +254,50 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 - (GeniusDocumentInfo *) documentInfo
 {
-	GeniusDocumentInfo * documentInfo = nil;
-		
-	// Attempt to fetch pre-existing documentInfo
-	NSFetchRequest * request = [[[NSFetchRequest alloc] init] autorelease];
-	NSManagedObjectContext * context = [self managedObjectContext];
-	NSEntityDescription * entity = [NSEntityDescription entityForName:@"GeniusDocumentInfo" inManagedObjectContext:context];
-	[request setEntity:entity];
-	NSError * error = nil;
-	NSArray * array = [context executeFetchRequest:request error:&error];
-	if (array)
+	if (_documentInfo == nil)
+	{			
+		// Attempt to fetch pre-existing documentInfo
+		NSFetchRequest * request = [[[NSFetchRequest alloc] init] autorelease];
+		NSManagedObjectContext * context = [self managedObjectContext];
+		NSEntityDescription * entity = [NSEntityDescription entityForName:@"GeniusDocumentInfo" inManagedObjectContext:context];
+		[request setEntity:entity];
+		NSError * error = nil;
+		NSArray * array = [context executeFetchRequest:request error:&error];
+		if (array)
+		{
+			int count = [array count]; // may be 0
+			if (count == 1)
+				_documentInfo = [[array objectAtIndex:0] retain];
+		}
+
+		// Otherwise create new documentInfo
+		if (_documentInfo == nil)
+			_documentInfo = [[NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context] retain];
+	}
+	
+	return _documentInfo;
+}
+
+
+- (float) overallPercent
+{
+	float sum = 0.0;
+	NSArray * arrangedObjects = [itemArrayController arrangedObjects];
+	NSEnumerator * itemEnumerator = [arrangedObjects objectEnumerator];
+	GeniusItem * item;
+	while ((item = [itemEnumerator nextObject]))
 	{
-		int count = [array count]; // may be 0
-		if (count == 1)
-			documentInfo = [array objectAtIndex:0];
+		float grade = [item grade];
+		if (grade != -1.0)
+			sum += grade;
 	}
 
-	// Otherwise create new documentInfo
-	if (documentInfo == nil)
-		documentInfo = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context];
-	
-	return documentInfo;
+	return sum / [arrangedObjects count] * 100.0;
+}
+
+- (void) setOverallPercent:(float)value
+{
+	// do nothing
 }
 
 @end
@@ -363,16 +390,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
     if ([identifier isEqualToString:@"grade"])
     {
         GeniusItem * item = [[itemArrayController arrangedObjects] objectAtIndex:rowIndex];		
-        float grade = [[item valueForKey:@"grade"] floatValue];
-
-        NSImage * image = nil;
-        if (grade == -1)
-            image = [NSImage imageNamed:@"status-red"];
-        else if (grade < 0.9)
-            image = [NSImage imageNamed:@"status-yellow"];
-        else
-            image = [NSImage imageNamed:@"status-green"];
-		
+		NSImage * image = [item gradeIcon];
         [aCell setImage:image];
     }
 }
@@ -663,11 +681,11 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	int tag = [sender tag];
 	[[self documentInfo] setQuizDirectionMode:tag];
 	
-	NSArray * arrangedObjects = [itemArrayController arrangedObjects];
+/*	NSArray * arrangedObjects = [itemArrayController arrangedObjects];
 	NSEnumerator * objectEnumerator = [arrangedObjects objectEnumerator];
 	GeniusItem * item;
 	while ((item = [objectEnumerator nextObject]))
-		[item flushCache];
+		[item flushCache];*/
 	
 	[tableView reloadData];
 }

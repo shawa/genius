@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2302F580090190EC00585123 /* GeniusAssociationDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2302F57F090190EC00585123 /* GeniusAssociationDataPoint.m */; };
 		231A115708FF1CFB004A16ED /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113608FF1CFB004A16ED /* GeniusAppDelegate.m */; };
 		231A115808FF1CFB004A16ED /* GeniusDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113808FF1CFB004A16ED /* GeniusDocumentController.m */; };
 		231A115908FF1CFB004A16ED /* GeniusHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113A08FF1CFB004A16ED /* GeniusHelpController.m */; };
@@ -25,7 +24,6 @@
 		231A11C308FF1EA5004A16ED /* play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BD08FF1EA5004A16ED /* play.tiff */; };
 		231A11C408FF1EA5004A16ED /* Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BE08FF1EA5004A16ED /* Plus.png */; };
 		231A11C508FF1EA5004A16ED /* preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BF08FF1EA5004A16ED /* preferences.tiff */; };
-		23380CC608E58CE200862CBC /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CBE08E58CE200862CBC /* GeniusAssociation.m */; };
 		23380CC708E58CE200862CBC /* GeniusAtom.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC008E58CE200862CBC /* GeniusAtom.m */; };
 		23380CC808E58CE200862CBC /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC208E58CE200862CBC /* GeniusItem.m */; };
 		23380CE408E58DFF00862CBC /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CD708E58DFF00862CBC /* IconTextFieldCell.m */; };
@@ -62,6 +60,8 @@
 		23B7855E08F9E9C4007CD679 /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7855D08F9E9C4007CD679 /* GeniusAssociationEnumerator.m */; };
 		23B7867108F9F7C5007CD679 /* Inspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B7866C08F9F7C5007CD679 /* Inspector.nib */; };
 		23B7867208F9F7C5007CD679 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B7866E08F9F7C5007CD679 /* Preferences.nib */; };
+		23D5867D0961EA4A0024FFCF /* GeniusAssociationDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2302F57F090190EC00585123 /* GeniusAssociationDataPoint.m */; };
+		23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CBE08E58CE200862CBC /* GeniusAssociation.m */; };
 		23D76E3E08F0D14B0072EE07 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23D76E3D08F0D14B0072EE07 /* TODO.txt */; };
 		23DC37B408FD51A600CF4BAE /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC37B308FD51A600CF4BAE /* ColorView.m */; };
 		23FD30EF0876DB9000B75A2F /* GeniusDocument.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 23FD30EE0876DB9000B75A2F /* GeniusDocument.xcdatamodel */; };
@@ -217,7 +217,7 @@
 		32DBCF750370BD2300C91783 /* Genius2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genius2_Prefix.pch; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -597,7 +597,6 @@
 				8D15AC310486D014006FF6A4 /* GeniusDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				23FD30EF0876DB9000B75A2F /* GeniusDocument.xcdatamodel in Sources */,
-				23380CC608E58CE200862CBC /* GeniusAssociation.m in Sources */,
 				23380CC708E58CE200862CBC /* GeniusAtom.m in Sources */,
 				23380CC808E58CE200862CBC /* GeniusItem.m in Sources */,
 				23380CE408E58DFF00862CBC /* IconTextFieldCell.m in Sources */,
@@ -625,11 +624,12 @@
 				231A116208FF1CFB004A16ED /* GeniusScrollView.m in Sources */,
 				231A116308FF1CFB004A16ED /* GeniusTableView.m in Sources */,
 				231A11C008FF1EA5004A16ED /* GeniusWindowToolbar.m in Sources */,
-				2302F580090190EC00585123 /* GeniusAssociationDataPoint.m in Sources */,
 				238C58B20933EBFB00926AF1 /* QuizOptionsController.m in Sources */,
 				238C5BBD0934D67E00926AF1 /* NSTextViewWithLinks.m in Sources */,
 				238127B40941E30B0001CF4D /* ImageStringFormatter.m in Sources */,
 				23443C4E0943827D0070D478 /* IntegerFormatter.m in Sources */,
+				23D5867D0961EA4A0024FFCF /* GeniusAssociationDataPoint.m in Sources */,
+				23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

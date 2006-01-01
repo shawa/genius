@@ -51,10 +51,14 @@ const kQuizModelDefaultRequestedCount = 10;
 		NSMutableArray * fragments = [NSMutableArray arrayWithObject:@"(parentItem.isEnabled == YES)"]; // AND (parentItem.atomA.string != NIL) AND (parentItem.atomB.string != NIL)"];
 
 		int quizDirectionMode = [[_document documentInfo] quizDirectionMode];
-		if (quizDirectionMode == GeniusQuizUnidirectionalMode)
+/*		if (quizDirectionMode == GeniusQuizUnidirectionalMode)
 			[fragments addObject:@"(sourceAtomKey == \"atomA\" AND targetAtomKey == \"atomB\")"];
 		else
-			[fragments addObject:@"((sourceAtomKey == \"atomA\" AND targetAtomKey == \"atomB\") OR (sourceAtomKey == \"atomB\" AND targetAtomKey == \"atomA\"))"];
+			[fragments addObject:@"((sourceAtomKey == \"atomA\" AND targetAtomKey == \"atomB\") OR (sourceAtomKey == \"atomB\" AND targetAtomKey == \"atomA\"))"];*/
+		if (quizDirectionMode == GeniusQuizUnidirectionalMode)
+			[fragments addObject:@"(sourceAtom == parentItem.atomA AND targetAtom == parentItem.atomB)"];
+		else
+			[fragments addObject:@"((sourceAtom == parentItem.atomA AND targetAtom == parentItem.atomB) OR (sourceAtom == parentItem.atomB AND targetAtom == parentItem.atomA))"];
 
 		if (_requestedMinScore != 1.0)
 			[fragments addObject:[NSString stringWithFormat:@"(predictedScore >= %f)", _requestedMinScore]];
@@ -175,7 +179,7 @@ static float PoissonValue(int x, float m)
     GeniusAssociation * association;
     while ((association = [associationEnumerator nextObject]))
     {
-		float predictedScore = [[association valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
+		float predictedScore = [association predictedScore]; // valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
         b = predictedScore * 10.0;
 		if (predictedScore == -1.0)
 			b = 0;

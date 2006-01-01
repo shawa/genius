@@ -56,7 +56,6 @@ static id sLevelIndicator = nil;
 	NSToolbarFlexibleSpaceItemIdentifier,
 		GeniusToolbarFontsItemIdentifier,
 		GeniusToolbarColorsItemIdentifier,
-		GeniusToolbarInfoItemIdentifier,
 	NSToolbarFlexibleSpaceItemIdentifier,
 		GeniusToolbarLevelIndicatorItemIdentifier,
 		GeniusToolbarQuizItemIdentifier, 

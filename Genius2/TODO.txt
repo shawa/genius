@@ -1,29 +1,29 @@
 P1:
-delete fault
-toolbar prefs etc
-
 grading / hook up level indicator
-info button
+
 quiz handling of blank strings / lex similarity return only
 hook up text import
 timer feature
 
 check for leaks
+performance
 
 P2:
+toolbar prefs etc
 BUG: reveal rich text first resize
 fix up export
 end editing doesn't refresh textview
-polish column behavior
+save visible columns
 LastOpenFiles
-Spotlight support
 ER: up down arrows
 
 P3:
+info button
 drop image on item
 ER: new first item
 ER: option-drag copies
 keyboard nav
+polish column behavior
 window and table position autosaving
 formatting error on quiz options
 
@@ -35,6 +35,7 @@ View -> Sort By menu
 
 // version 3.0
 iTunes-style all-in-one window
+Spotlight support
 tri-directional
 printing
 export to iPod

@@ -7,9 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
-
-#import "GeniusAtom.h"
-#import "GeniusAssociation.h"
+#import <Cocoa/Cocoa.h>
 
 
 extern NSString * GeniusItemAtomAKey;
@@ -24,29 +22,32 @@ extern NSString * GeniusItemLastTestedDateKey;
 extern NSString * GeniusItemLastModifiedDateKey;
 
 
-@interface GeniusItem :  NSManagedObject <NSCopying>
+@class GeniusAssociation;
+
+@interface GeniusItem :  NSManagedObject
 {
-	NSString * _displayGrade;
+	GeniusAssociation * _associationAB;
+	GeniusAssociation * _associationBA;
 }
-
-- (GeniusAssociation *) associationAB;
-- (GeniusAssociation *) associationBA;
-
-
-- (void) touchLastModifiedDate;
-- (void) touchLastTestedDate;
-
-- (NSString *) displayGrade;
-
-
-- (void) swapAtoms;
 
 - (BOOL) usesDefaultTextAttributes;
 - (void) clearTextAttributes;
 
+- (void) swapAtoms;
+
+@end
+
+
+@interface GeniusItem (ScoreKeeping)
+
+- (GeniusAssociation *) associationAB;
+- (GeniusAssociation *) associationBA;
+
 - (void) resetAssociations;
 
-- (void) flushCache;
+- (float) grade;
+- (NSString *) displayGrade;
+- (NSImage *) gradeIcon;
 
 @end
 

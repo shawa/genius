@@ -17,7 +17,7 @@
 - (id) initWithDate:(NSDate *)date value:(float)value;
 
 - (NSDate *) date;
-- (float) value;
+- (BOOL) value;
 
 @end
 

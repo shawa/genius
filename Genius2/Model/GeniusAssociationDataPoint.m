@@ -50,9 +50,9 @@
 	return _date;
 }
 
-- (float) value
+- (BOOL) value
 {
-	return _value;
+	return _value >= 0.5;
 }
 
 @end

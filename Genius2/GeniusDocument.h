@@ -18,6 +18,8 @@
     IBOutlet id atomATextView;
     IBOutlet id atomBTextView;
 	
+	GeniusDocumentInfo * _documentInfo;
+	
 	NSArray * _itemsDuringDrag;
 }
 
@@ -26,6 +28,8 @@
 - (NSArrayController *) itemArrayController;
 
 - (GeniusDocumentInfo *) documentInfo;	// used by GeniusDocument.nib and QuizModel
+
+- (float) overallPercent;	// 0-100.0
 
 @end
 

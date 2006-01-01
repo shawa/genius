@@ -8,6 +8,7 @@
 
 #import "QuizController.h"
 
+#import "GeniusAtom.h"
 #import "GeniusAssociationEnumerator.h"
 #import "QuizOptionsController.h"
 
