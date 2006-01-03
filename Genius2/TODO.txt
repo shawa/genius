@@ -2,7 +2,7 @@ P1:
 hook up level indicator
 quiz handling of blank strings / lex similarity return only
 hook up text import
-document dirty bit for document info
+document dirty bit for document info		*?
 
 check for leaks
 performance
@@ -10,21 +10,20 @@ performance
 P2:
 level cosmetic in toolbar
 fix up export
-end editing doesn't refresh textview
 LastOpenFiles
 formatting error on quiz options
 
 P3:
 toolbar prefs etc
 ER: new first item
-polish column behavior
 
 P4:
-BUG: get rid of search field pop-up
+BUG: get rid of search field pop-up			*?
 
 
 // PUNT
 swap columns crashes
+polish column behavior
 Spotlight support
 drop image on item
 ER: option-drag copies

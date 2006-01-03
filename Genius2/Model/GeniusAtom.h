@@ -12,6 +12,8 @@
 extern NSString * GeniusAtomStringKey;
 extern NSString * GeniusAtomRTFDDataKey;
 
+extern NSString * GeniusAtomStringRTDDataKey;	// for GeniusWindowController
+
 
 /*
 	An atom models one or more representations of a memorizable unit of information

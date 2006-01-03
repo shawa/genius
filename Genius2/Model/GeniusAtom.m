@@ -13,9 +13,9 @@
 
 //NSString * GeniusAtomNameKey = @"name";
 
-static NSString * GeniusAtomStringRTDDataKey = @"stringRTFDData";
 NSString * GeniusAtomStringKey = @"string";
 NSString * GeniusAtomRTFDDataKey = @"rtfdData";
+NSString * GeniusAtomStringRTDDataKey = @"stringRTFDData";
 
 
 @implementation GeniusAtom 
@@ -146,9 +146,18 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 
 #pragma mark -
 
+- (void) setString:(NSString *)string
+{
+	[self willChangeValueForKey:GeniusAtomStringKey];
+	[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
+	[self didChangeValueForKey:GeniusAtomStringKey];
+
+	[self willChangeValueForKey:GeniusAtomStringRTDDataKey];
+	[self didChangeValueForKey:GeniusAtomStringRTDDataKey];
+}
+
 - (void) setStringRTFDData:(NSData *)rtfdData
 {
-	[self willChangeValueForKey:GeniusAtomStringRTDDataKey];
 //	_isImageOnly = NO;
 
 	// rtfdData -> attrString
@@ -174,6 +183,7 @@ NSString * GeniusAtomRTFDDataKey = @"rtfdData";
 	[self setPrimitiveValue:string forKey:GeniusAtomStringKey];
 	[self didChangeValueForKey:GeniusAtomStringKey];
 
+	[self willChangeValueForKey:GeniusAtomStringRTDDataKey];
 	[self didChangeValueForKey:GeniusAtomStringRTDDataKey];
 }
 

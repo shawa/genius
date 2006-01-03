@@ -136,7 +136,7 @@
 	if (noSelectionPlaceholderData)
 		options = [NSDictionary dictionaryWithObject:noSelectionPlaceholderData forKey:NSNoSelectionPlaceholderBindingOption];
 
-	NSString * fullKeyPath = [NSString stringWithFormat:@"%@.%@", keyPath, @"stringRTFDData"];
+	NSString * fullKeyPath = [NSString stringWithFormat:@"%@.%@", keyPath, GeniusAtomStringRTDDataKey];
 	[textView bind:NSDataBinding toObject:observableController withKeyPath:fullKeyPath options:options];	
 }
 

@@ -204,10 +204,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>23DB88AB096A90B200487E23</string>
+						<string>23DB88F5096A943E00487E23</string>
 						<key>history</key>
 						<array>
-							<string>23DB8894096A8FE000487E23</string>
+							<string>23DB88F4096A943E00487E23</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -224,46 +224,6 @@
 				<false/>
 				<key>RubberWindowFrame</key>
 				<string>48 52 513 522 0 0 1280 832 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>23DB8878096A8EBC00487E23</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>GeniusDocument.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>23DB8879096A8EBC00487E23</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>GeniusDocument.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>23DB88AC096A90B200487E23</string>
-						<key>history</key>
-						<array>
-							<string>23DB8874096A8E9900487E23</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {795, 700}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>355 44 795 741 0 0 1280 832 </string>
 			</dict>
 		</dict>
 	</array>
@@ -677,9 +637,8 @@
 		<string>23DB86EC096A798B00487E23</string>
 		<string>23E0F8540901AD1400807121</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
-		<string>23DB8878096A8EBC00487E23</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
 		<string>23DB889C096A904000487E23</string>
 	</array>
 	<key>WindowString</key>
@@ -902,14 +861,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusTableView.m</string>
+										<string>GeniusDocument.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -930,6 +887,8 @@
 							<string>212pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

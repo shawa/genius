@@ -176,6 +176,8 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 			}
 		}
 	}
+	
+	[atomATextView display];
 }
 
 - (void) _tableViewDoubleAction:(id)sender
