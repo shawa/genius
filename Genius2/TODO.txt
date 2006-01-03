@@ -1,39 +1,37 @@
 P1:
-grading / hook up level indicator
+hook up level indicator
 quiz handling of blank strings / lex similarity return only
 hook up text import
+document dirty bit for document info
 
 check for leaks
 performance
 
 P2:
-progress cosmetic in toolbar
+level cosmetic in toolbar
 fix up export
 end editing doesn't refresh textview
-save visible columns
 LastOpenFiles
 formatting error on quiz options
 
 P3:
 toolbar prefs etc
-info button
-drop image on item
 ER: new first item
-ER: option-drag copies
-keyboard nav
 polish column behavior
-window and table position autosaving
-ER: up/down arrows
 
 P4:
 BUG: get rid of search field pop-up
-BUG: cursor around "Learn More..."
-View -> Sort By menu
 
 
 // PUNT
 swap columns crashes
 Spotlight support
+drop image on item
+ER: option-drag copies
+window and table position autosaving
+ER: up/down arrows
+keyboard nav
+View -> Sort By menu
 
 
 // version 3.0

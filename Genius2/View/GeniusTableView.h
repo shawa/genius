@@ -19,7 +19,7 @@
 
 @interface NSObject (GeniusTableViewDelegate)
 
-- (NSArray *)tableViewDefaultHiddenTableColumnIdentifiers:(NSTableView *)aTableView;
+- (NSArray *)tableViewDefaultTableColumnIdentifiers:(NSTableView *)aTableView;
 - (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn;
 - (void) tableView:(NSTableView *)aTableView didShowTableColumn:(NSTableColumn *)tableColumn;
 

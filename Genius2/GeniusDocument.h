@@ -7,12 +7,10 @@
 @interface GeniusDocument : NSPersistentDocument
 {
     IBOutlet id itemArrayController;
-    IBOutlet id documentInfoController;
 
     IBOutlet id levelIndicator;
     IBOutlet id searchField;
     IBOutlet id tableView;
-    IBOutlet id tableColumnMenu;
     IBOutlet id splitView;
 	
     IBOutlet id atomATextView;

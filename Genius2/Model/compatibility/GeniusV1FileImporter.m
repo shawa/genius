@@ -16,6 +16,8 @@
 #import "GeniusAssociation.h"
 #import "GeniusAssociationDataPoint.h"
 
+#import "GeniusPreferences.h"
+
 
 @implementation GeniusDocument (GeniusV1FileImporter)
 
@@ -173,7 +175,10 @@
 
 /*        NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
         if (learnVsReviewNumber)
-            [notebook setValue:learnVsReviewNumber forKey:@"learnVsReviewFloat"];*/
+		{
+			NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+			[ud setObject:learnVsReviewNumber forKey:GeniusPreferencesQuizReviewLearnFloatKey];
+		}*/
 
 		// Document Body
 		NSArray * pairs = [unarchiver decodeObjectForKey:@"pairs"];	// GeniusV1Pair objects

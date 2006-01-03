@@ -10,16 +10,18 @@
 #import <Cocoa/Cocoa.h>
 
 
+// In table column order
+extern NSString * GeniusItemIsEnabledKey;
 extern NSString * GeniusItemAtomAKey;
 extern NSString * GeniusItemAtomBKey;
-
-extern NSString * GeniusItemIsEnabledKey;
 extern NSString * GeniusItemMyGroupKey;
 extern NSString * GeniusItemMyTypeKey;
-extern NSString * GeniusItemMyNotesKey;
 extern NSString * GeniusItemMyRatingKey;
+extern NSString * GeniusItemDisplayGradeKey;
 extern NSString * GeniusItemLastTestedDateKey;
 extern NSString * GeniusItemLastModifiedDateKey;
+
+extern NSString * GeniusItemMyNotesKey;
 
 
 @class GeniusAssociation;

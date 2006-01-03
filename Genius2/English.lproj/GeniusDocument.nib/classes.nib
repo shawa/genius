@@ -19,12 +19,10 @@
             OUTLETS = {
                 atomATextView = id; 
                 atomBTextView = id; 
-                documentInfoController = id; 
                 itemArrayController = id; 
                 levelIndicator = id; 
                 searchField = id; 
                 splitView = id; 
-                tableColumnMenu = id; 
                 tableView = id; 
             }; 
             SUPERCLASS = NSPersistentDocument; 

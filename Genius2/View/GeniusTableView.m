@@ -5,7 +5,28 @@
 @end
 
 
+static NSString * GeniusTableViewVisibleColumnIdentifiersConfigKey = @"VisibleColumnIdentifiers";
+
 @implementation GeniusTableView
+
+- (NSArray *) _currentIdentifiers
+{
+	NSMutableArray * allIdentifiers = [NSMutableArray array];
+	NSArray * tableColumns = [self tableColumns];
+	NSEnumerator * tableColumnEnumerator = [tableColumns objectEnumerator];
+	NSTableColumn * tableColumn;
+	while ((tableColumn = [tableColumnEnumerator nextObject]))
+	{
+		NSString * identifier = [tableColumn identifier];
+		if (identifier)
+			[allIdentifiers addObject:identifier];
+	}
+	return allIdentifiers;
+}
+
+- (void) _setVisibleTableColumnsWithIdentifiers:(NSArray *)visibleIdentifiers
+{
+}
 
 - (void) awakeFromNib
 {
@@ -15,13 +36,17 @@
 	NSEnumerator * tableColumnEnumerator = [tableColumns objectEnumerator];
 	NSTableColumn * tableColumn;
 	while ((tableColumn = [tableColumnEnumerator nextObject]))
+	{
 		[_allTableColumns addObject:tableColumn];
+	}
 
 	// Remove non-default table columns
 	id delegate = [self delegate];
-	if (delegate && [delegate respondsToSelector:@selector(tableViewDefaultHiddenTableColumnIdentifiers:)])
+	if (delegate && [delegate respondsToSelector:@selector(tableViewDefaultTableColumnIdentifiers:)])
 	{
-		NSArray * hiddenIdentifiers = [delegate tableViewDefaultHiddenTableColumnIdentifiers:self];
+		NSMutableArray * hiddenIdentifiers = (NSMutableArray *)[self _currentIdentifiers];
+		NSArray * visibleIdentifiers = [delegate tableViewDefaultTableColumnIdentifiers:self];
+		[hiddenIdentifiers removeObjectsInArray:visibleIdentifiers];
 
 		NSEnumerator * identifierEnumerator = [hiddenIdentifiers objectEnumerator];
 		NSString * identifier;
@@ -30,7 +55,6 @@
 			tableColumn = [self tableColumnWithIdentifier:identifier];
 			[self removeTableColumn:tableColumn];
 		}
-
 	}
 	
 	// Swap in custom header view to handle contextual menu
@@ -72,14 +96,33 @@
 	return _toggleColumnsMenu;
 }
 
+
++ (int) _positionOfObject:(id)object forInsertIntoArray:(NSArray *)array usingOrder:(NSArray *)orderArray
+{
+	int index = [orderArray indexOfObject:object];
+	if (index == NSNotFound)
+		return [array count];
+	
+	int i;
+	for (i=index-1; i>=0; i--)
+	{
+		id anObject = [orderArray objectAtIndex:i];
+		int pos = [array indexOfObject:anObject];
+		if (pos != NSNotFound)
+			return pos+1;
+	}
+	
+	return 0;
+}
+
 - (IBAction) toggleTableColumnShown:(NSMenuItem *)sender
 {
-	int tag = [sender tag];
-	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:tag];
+	int index = [sender tag];
+	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:index];
 
 	id delegate = [self delegate];
 	
-	int state = [sender state];			
+	int state = [sender state];		
 	if (state == NSOnState)
 	{
 		[self removeTableColumn:tableColumn];	// hide
@@ -89,8 +132,11 @@
 	}
 	else
 	{
-		// XXX: TO DO: add in order
 		[self addTableColumn:tableColumn];		// show
+
+		// move to correct position
+		int pos = [GeniusTableView _positionOfObject:tableColumn forInsertIntoArray:[self tableColumns] usingOrder:_allTableColumns];
+		[self moveColumn:[self numberOfColumns]-1 toColumn:pos];
 
 		if (delegate && [delegate respondsToSelector:@selector(tableView:didShowTableColumn:)])
 			[delegate tableView:self didShowTableColumn:tableColumn];
@@ -104,42 +150,39 @@
 
 #pragma mark -
 
-- (NSArray *) _hiddenTableColumnIdentifiers
-{
-	NSMutableArray * tableColumnIdentifiers = [NSMutableArray array];
-	NSSet * nonHiddenTableColumnSet = [NSSet setWithArray:[self tableColumns]];	// only non-hidden
-	NSEnumerator * tableColumnEnumerator = [_allTableColumns objectEnumerator];	// both hidden and non-hidden
-	NSTableColumn * tableColumn;
-	while ((tableColumn = [tableColumnEnumerator nextObject]))
-	{
-		if ([nonHiddenTableColumnSet containsObject:tableColumn] == NO)
-		{
-			NSString * identifier = [tableColumn identifier];
-			if (identifier)
-				[tableColumnIdentifiers addObject:identifier];
-		}
-	}
-	return tableColumnIdentifiers;
-}
-
 - (NSDictionary *)configurationDictionary
 {
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-		[self _hiddenTableColumnIdentifiers], @"hiddenIdentifiers", NULL];
+		[self _currentIdentifiers], GeniusTableViewVisibleColumnIdentifiersConfigKey, NULL];
 }
 
 - (void)setConfigurationFromDictionary:(NSDictionary *)configDict
 {
-	NSArray * hiddenIdentifiers = [configDict objectForKey:@"hiddenIdentifiers"];
-	if (hiddenIdentifiers)
-	{
-		// XXX: doesn't add relevant columns
-		NSEnumerator * identifierEnumerator = [hiddenIdentifiers objectEnumerator];
-		NSString * identifier;
-		while ((identifier = [identifierEnumerator nextObject]))
+	NSArray * currentIdentifiers = [self _currentIdentifiers];
+	NSArray * visibleIdentifiers = [configDict objectForKey:GeniusTableViewVisibleColumnIdentifiersConfigKey];
+	if (visibleIdentifiers)
+	{		
+		int i, count = [_allTableColumns count];
+		for (i=0; i<count; i++)
 		{
-			NSTableColumn * tableColumn = [self tableColumnWithIdentifier:identifier];
-			[self removeTableColumn:tableColumn];
+			NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:i];
+			NSString * identifier = [tableColumn identifier];
+			if (identifier)
+			{
+				BOOL isVisible = [currentIdentifiers containsObject:identifier];
+				BOOL shouldBeVisible = [visibleIdentifiers containsObject:identifier];
+				
+				if (shouldBeVisible && !isVisible)		// add
+				{
+					[self addTableColumn:tableColumn];
+					[self moveColumn:[self numberOfColumns]-1 toColumn:i];
+					[self sizeToFit];
+				}
+				else if (isVisible && !shouldBeVisible) // remove
+				{
+					[self removeTableColumn:tableColumn];
+				}
+			}
 		}
 	}
 }

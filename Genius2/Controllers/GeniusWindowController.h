@@ -9,14 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 
-@class CollapsableSplitView;
+@class CollapsableSplitView, GeniusTableView;
 
 @interface GeniusWindowController : NSWindowController {
 	NSSearchField * _searchField;
 	CollapsableSplitView * _splitView;
+	GeniusTableView * _tableView;
+	NSMenu * _defaultColumnsMenu;
 }
 
-- (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu;
+- (void) setupTableView:(NSTableView *)tableView;
 - (void) setupSplitView:(NSSplitView *)splitView;
 - (void) setupAtomTextView:(NSTextView *)textView;
 - (void) bindTextView:(NSTextView *)textView toController:(id)observableController withKeyPath:(NSString *)keyPath;

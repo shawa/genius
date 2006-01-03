@@ -30,6 +30,8 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[_splitView release];
+	[_tableView release];
+	[_defaultColumnsMenu release];
 	[super dealloc];
 }
 
@@ -40,6 +42,8 @@
 {
 	// Tweak window appearance
 	[[self window] setBackgroundColor:[NSColor colorWithCalibratedWhite:0.78 alpha:1.0]];
+	
+	[[self window] setDelegate:self];
 }
 
 - (void) _setupTableViewDataCell:(NSCell *)cell
@@ -54,7 +58,7 @@
     [cell setFormatter:sStringFormatter];
 }
 
-- (void) setupTableView:(NSTableView *)tableView withHeaderViewMenu:(NSMenu *)headerViewMenu
+- (void) setupTableView:(NSTableView *)tableView
 {
 	NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:@"atomA"];
 	[self _setupTableViewDataCell:[tableColumn dataCell]];
@@ -71,15 +75,17 @@
 	
 	// Set up double-click action to handle uneditable rich text cells
 	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];	
-
-	// Wire View -> Columns menu to the custom table view's dynamic one
-	NSString * viewTitle = NSLocalizedString(@"View", nil);
-	NSMenuItem * viewMenuItem = [[NSApp mainMenu] itemWithTitle:viewTitle];
 	
-	NSString * columnsTitle = NSLocalizedString(@"Columns", nil);
-	NSMenuItem * columnsMenuItem = [[viewMenuItem submenu] itemWithTitle:columnsTitle];
-
-	[columnsMenuItem setSubmenu:[(GeniusTableView *)tableView toggleColumnsMenu]];
+	_tableView = [tableView retain];
+	
+	_defaultColumnsMenu = [[_tableView toggleColumnsMenu] copy];
+	NSEnumerator * menuItemEnumerator = [[_defaultColumnsMenu itemArray] objectEnumerator];
+	NSMenuItem * menuItem;
+	while ((menuItem = [menuItemEnumerator nextObject]))
+	{
+		[menuItem setTarget:nil];
+		[menuItem setState:NSOffState]; 
+	}
 }
 
 - (void) setupSplitView:(NSSplitView *)splitView
@@ -235,6 +241,41 @@
 		[colorPanel makeKeyAndOrderFront:sender];
 	}
 }
+
+@end
+
+
+@implementation GeniusWindowController (NSWindowDelegate)
+
+- (NSMenuItem *) _columnsMenuItem
+{
+	// Wire View -> Columns menu to the custom table view's dynamic one
+	NSString * viewTitle = NSLocalizedString(@"View", nil);
+	NSMenuItem * viewMenuItem = [[NSApp mainMenu] itemWithTitle:viewTitle];
+	
+	NSString * columnsTitle = NSLocalizedString(@"Columns", nil);
+	NSMenuItem * columnsMenuItem = [[viewMenuItem submenu] itemWithTitle:columnsTitle];
+
+	return columnsMenuItem;
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)aNotification
+{
+	NSMenuItem * columnsMenuItem = [self _columnsMenuItem];
+	[columnsMenuItem setSubmenu:[_tableView toggleColumnsMenu]];
+}
+
+- (void)windowDidResignMain:(NSNotification *)aNotification
+{
+	NSMenuItem * columnsMenuItem = [self _columnsMenuItem];
+	[columnsMenuItem setSubmenu:_defaultColumnsMenu];
+}
+
+/*- (void)windowDidResignKey:(NSNotification *)aNotification
+{
+	if ([[NSApp keyWindow] isKindOfClass:[NSPanel class]])
+		[self _dismissFieldEditor];
+}*/
 
 @end
 

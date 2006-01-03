@@ -69,7 +69,6 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 /* Hook up object controllers */
 	[itemArrayController setManagedObjectContext:[self managedObjectContext]];
-	[documentInfoController setContent:[self documentInfo]];
 
 /* Window */	
 	// Set up toolbar
@@ -77,7 +76,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	// [[searchField cell] setMenu:nil];
 
 /* Table View */	
-	[(GeniusWindowController *)windowController setupTableView:tableView withHeaderViewMenu:tableColumnMenu];
+	[(GeniusWindowController *)windowController setupTableView:tableView];
 
 	NSDictionary * configDict = [[self documentInfo] tableViewConfigurationDictionary];	
 	[(GeniusTableView *)tableView setConfigurationFromDictionary:configDict];
@@ -106,26 +105,17 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	[(GeniusWindowController *)windowController bindTextView:atomBTextView toController:itemArrayController withKeyPath:@"selection.atomB"];
 
 /* Misc. */
-	[[self undoManager] removeAllActions]; // -documentInfo created a new managed object, which sets the dirty bit
+//	[[self undoManager] removeAllActions]; // -documentInfo created a new managed object, which sets the dirty bit
 //	[tableView editColumn:kGeniusDocumentAtomAColumnIndex row:1 withEvent:nil select:YES];
 }
 
 - (void)dealloc
 {
-	//NSLog(@"-[GeniusDocument dealloc]");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	[_documentInfo release];
 	
 	[super dealloc];
-}
-
-
-// Get rid of CoreData's Binary/SQL/XML popup in the save panel
-- (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
-{
-	[savePanel setAccessoryView:nil];
-	return YES;
 }
 
 
@@ -277,7 +267,9 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 		// Otherwise create new documentInfo
 		if (_documentInfo == nil)
+		{
 			_documentInfo = [[NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context] retain];
+		}
 	}
 	
 	return _documentInfo;
@@ -304,17 +296,6 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 {
 	// do nothing
 }
-
-@end
-
-
-@implementation GeniusDocument (NSWindowDelegate)
-
-/*- (void)windowDidResignKey:(NSNotification *)aNotification
-{
-	if ([[NSApp keyWindow] isKindOfClass:[NSPanel class]])
-		[self _dismissFieldEditor];
-}*/
 
 @end
 
@@ -405,9 +386,10 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 @implementation GeniusDocument (GeniusTableViewDelegate)
 
-- (NSArray *)tableViewDefaultHiddenTableColumnIdentifiers:(NSTableView *)aTableView
+- (NSArray *)tableViewDefaultTableColumnIdentifiers:(NSTableView *)aTableView
 {
-	return [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
+	return [NSArray arrayWithObjects:GeniusItemIsEnabledKey, GeniusItemAtomAKey, GeniusItemAtomBKey, GeniusItemMyRatingKey, GeniusItemDisplayGradeKey, nil];
+//	return [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
 }
 
 - (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn

@@ -15,18 +15,19 @@
 #import "GeniusDocumentInfo.h"	-quizDirectionMode
 
 
-static NSString * GeniusItemAssociationsKey = @"associations";
-
+NSString * GeniusItemIsEnabledKey = @"isEnabled";
 NSString * GeniusItemAtomAKey = @"atomA";
 NSString * GeniusItemAtomBKey = @"atomB";
-
-NSString * GeniusItemIsEnabledKey = @"isEnabled";
 NSString * GeniusItemMyGroupKey = @"myGroup";
 NSString * GeniusItemMyTypeKey = @"myType";
-NSString * GeniusItemMyNotesKey = @"myNotes";
 NSString * GeniusItemMyRatingKey = @"myRating";
+NSString * GeniusItemDisplayGradeKey = @"displayGrade";
 NSString * GeniusItemLastTestedDateKey = @"lastTestedDate";
 NSString * GeniusItemLastModifiedDateKey = @"lastModifiedDate";
+
+NSString * GeniusItemMyNotesKey = @"myNotes";
+
+static NSString * GeniusItemAssociationsKey = @"associations";
 
 
 @interface GeniusItem (Internal)
