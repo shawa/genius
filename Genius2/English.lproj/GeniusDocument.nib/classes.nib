@@ -2,6 +2,7 @@
     IBClasses = (
         {CLASS = CollapsableSplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }, 
         {CLASS = ColorView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = CustomizableTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
         {
             ACTIONS = {newItem = id; resetItemScore = id; toggleTableColumnShown = id; }; 
             CLASS = FirstResponder; 
@@ -28,8 +29,13 @@
             SUPERCLASS = NSPersistentDocument; 
         }, 
         {CLASS = GeniusScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
-        {CLASS = GeniusTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            CLASS = GeniusTableView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = CustomizableTableView; 
+        }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
         {CLASS = NSPersistentDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }
     ); 
     IBVersion = 1; 

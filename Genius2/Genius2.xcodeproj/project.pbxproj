@@ -63,6 +63,7 @@
 		23D5867D0961EA4A0024FFCF /* GeniusAssociationDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2302F57F090190EC00585123 /* GeniusAssociationDataPoint.m */; };
 		23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CBE08E58CE200862CBC /* GeniusAssociation.m */; };
 		23D76E3E08F0D14B0072EE07 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23D76E3D08F0D14B0072EE07 /* TODO.txt */; };
+		23DB8994096A97EB00487E23 /* CustomizableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DB8992096A97EB00487E23 /* CustomizableTableView.m */; };
 		23DC37B408FD51A600CF4BAE /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC37B308FD51A600CF4BAE /* ColorView.m */; };
 		23FD30EF0876DB9000B75A2F /* GeniusDocument.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 23FD30EE0876DB9000B75A2F /* GeniusDocument.xcdatamodel */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
@@ -204,6 +205,8 @@
 		23B7866D08F9F7C5007CD679 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Inspector.nib; sourceTree = "<group>"; };
 		23B7866F08F9F7C5007CD679 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
 		23D76E3D08F0D14B0072EE07 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		23DB8991096A97EB00487E23 /* CustomizableTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CustomizableTableView.h; sourceTree = "<group>"; };
+		23DB8992096A97EB00487E23 /* CustomizableTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CustomizableTableView.m; sourceTree = "<group>"; };
 		23DC37B208FD51A600CF4BAE /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
 		23DC37B308FD51A600CF4BAE /* ColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorView.m; sourceTree = "<group>"; };
 		23FD30EE0876DB9000B75A2F /* GeniusDocument.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GeniusDocument.xcdatamodel; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */,
 				23A883BA08FEF52F00CFE9A3 /* CollapsableSplitView.h */,
 				23A883BB08FEF52F00CFE9A3 /* CollapsableSplitView.m */,
+				23DB8991096A97EB00487E23 /* CustomizableTableView.h */,
+				23DB8992096A97EB00487E23 /* CustomizableTableView.m */,
 				23380CD608E58DFF00862CBC /* IconTextFieldCell.h */,
 				23380CD708E58DFF00862CBC /* IconTextFieldCell.m */,
 				23DC37B208FD51A600CF4BAE /* ColorView.h */,
@@ -630,6 +635,7 @@
 				23443C4E0943827D0070D478 /* IntegerFormatter.m in Sources */,
 				23D5867D0961EA4A0024FFCF /* GeniusAssociationDataPoint.m in Sources */,
 				23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */,
+				23DB8994096A97EB00487E23 /* CustomizableTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,8 +23,6 @@
 
 - (void) setTableViewConfigurationDictionary:(NSDictionary *)configDict
 {
-	NSLog(@"setTableViewConfigurationDictionary:%@", [configDict description]);
-	
 	NSData * data = [NSArchiver archivedDataWithRootObject:configDict];
 	[self setValue:data forKey:@"tableViewConfigurationDictionaryData"];
 }

@@ -74,7 +74,7 @@
     //[cell setFormatter:numberFormatter];
 	
 	// Set up double-click action to handle uneditable rich text cells
-	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];	
+//	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];		// XXX
 	
 	_tableView = [tableView retain];
 	
@@ -174,6 +174,21 @@
 }
 
 @end
+
+
+/*@implementation GeniusWindowController (NSResponder)
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+	BOOL result = NO;
+	if ([[self document] respondsToSelector:@selector(performKeyDown:)])
+		result = [[self document] performKeyDown:theEvent];
+		
+	if (result == NO)
+		[super keyDown:theEvent];
+}
+
+@end*/
 
 
 @implementation GeniusWindowController (Actions)

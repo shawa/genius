@@ -10,32 +10,32 @@ performance
 P2:
 level cosmetic in toolbar
 fix up export
-LastOpenFiles
 formatting error on quiz options
+toolbar prefs etc
 
 P3:
-toolbar prefs etc
 ER: new first item
+LastOpenFiles
+
 
 P4:
 BUG: get rid of search field pop-up			*?
-
+polish column resizing
 
 // PUNT
 swap columns crashes
-polish column behavior
-Spotlight support
 drop image on item
 ER: option-drag copies
 window and table position autosaving
 ER: up/down arrows
 keyboard nav
-View -> Sort By menu
+View -> Sort By menu						*?
 
 
 // version 3.0
 iTunes-style all-in-one window
 tri-directional
+Spotlight support
 printing
 export to iPod
 file sharing

@@ -29,6 +29,11 @@
 @end
 
 
+@interface NSObject (NSWindowControllerEventForwarding)
+- (BOOL)performKeyDown:(NSEvent *)theEvent;
+@end
+
+
 @interface GeniusWindowController (Actions)
 
 // Edit menu

@@ -78,8 +78,9 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 /* Table View */	
 	[(GeniusWindowController *)windowController setupTableView:tableView];
 
-	NSDictionary * configDict = [[self documentInfo] tableViewConfigurationDictionary];	
-	[(GeniusTableView *)tableView setConfigurationFromDictionary:configDict];
+	NSDictionary * configDict = [[self documentInfo] tableViewConfigurationDictionary];
+	if (configDict)
+		[(GeniusTableView *)tableView setConfigurationFromDictionary:configDict];
 
 	// Configure list font size
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
@@ -386,12 +387,11 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 @end
 
 
-@implementation GeniusDocument (GeniusTableViewDelegate)
+@implementation GeniusDocument (CustomizableTableViewDelegate)
 
 - (NSArray *)tableViewDefaultTableColumnIdentifiers:(NSTableView *)aTableView
 {
 	return [NSArray arrayWithObjects:GeniusItemIsEnabledKey, GeniusItemAtomAKey, GeniusItemAtomBKey, GeniusItemMyRatingKey, GeniusItemDisplayGradeKey, nil];
-//	return [NSArray arrayWithObjects:GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, nil];
 }
 
 - (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn
@@ -411,6 +411,25 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
 }
 
+
+- (BOOL) tableView:(NSTableView *)aTableView shouldChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn
+{
+	NSString * identifier = [aTableColumn identifier];
+	if ([identifier isEqual:GeniusItemAtomAKey] || [identifier isEqual:GeniusItemAtomBKey])
+		return YES;
+	return NO;
+}
+
+- (void) tableView:(NSTableView *)aTableView didChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn
+{
+	NSDictionary * configDict = [(GeniusTableView *)aTableView configurationDictionary];
+	[[self documentInfo] setTableViewConfigurationDictionary:configDict];	
+}
+
+@end
+
+
+@implementation GeniusDocument (GeniusTableViewDelegate)
 
 - (BOOL)performKeyDown:(NSEvent *)theEvent
 {	
