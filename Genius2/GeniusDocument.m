@@ -73,7 +73,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 /* Window */	
 	// Set up toolbar
 	[(GeniusWindowController *)windowController setupToolbarWithLevelIndicator:levelIndicator searchField:searchField];
-	// [[searchField cell] setMenu:nil];
+	//[[searchField cell] setSearchMenuTemplate:nil];
 
 /* Table View */	
 	[(GeniusWindowController *)windowController setupTableView:tableView];
@@ -120,7 +120,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 }
 
 
-- (NSWindowController *) mainWindowController
+- (NSWindowController *) windowController
 {
 	NSArray * windowControllers = [self windowControllers];
 	if ([windowControllers count] == 0)
@@ -128,15 +128,15 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	return [windowControllers objectAtIndex:0];
 }
 
-- (NSWindow *) mainWindow
+- (NSWindow *) window
 {
-	return [[self mainWindowController] window];
+	return [[self windowController] window];
 }
 
 
 - (void) _dismissFieldEditor
 {
-	NSWindow * window = [self mainWindow];
+	NSWindow * window = [self window];
 	if ([window makeFirstResponder:window] == NO)
 		[window endEditingFor:nil];
 }
@@ -187,7 +187,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 		return;
 
 	if ([sender clickedColumn] == 1 || [sender clickedColumn] == 2)
-		[(GeniusWindowController *)[self mainWindowController] showRichTextEditor:sender];
+		[(GeniusWindowController *)[self windowController] showRichTextEditor:sender];
 
 	// Select all in the appropriate text view
 /*	NSTextView * textView;
@@ -195,7 +195,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 		textView = atomATextView;
 	else if ([sender clickedColumn] == 2)	// XXX
 		textView = atomBTextView;
-	[[self mainWindow] makeFirstResponder:textView];
+	[[self window] makeFirstResponder:textView];
 	[textView selectAll:sender];*/
 }
 
@@ -271,7 +271,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 		// Otherwise create new documentInfo
 		if (_documentInfo == nil)
 		{
-			_documentInfo = [[NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context] retain];
+			_documentInfo = nil; //[[NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context] retain];
 		}
 	}
 	
@@ -608,7 +608,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 	[itemArrayController addObject:newObject];
 
 	// Auto-select first text field
-	if ([[self mainWindow] isKeyWindow])
+	if ([[self window] isKeyWindow])
 	{
 		int rowIndex = [[itemArrayController arrangedObjects] indexOfObject:newObject];
 		[tableView editColumn:kGeniusDocumentAtomAColumnIndex row:rowIndex withEvent:nil select:YES];
@@ -644,7 +644,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 	NSAlert * alert = [NSAlert alertWithMessageText:messageText defaultButton:defaultButtonTitle
 		alternateButton:alternateButtonTitle otherButton:nil informativeTextWithFormat:informativeText];
-	[alert beginSheetModalForWindow:[self mainWindow] modalDelegate:self didEndSelector:@selector(_makePlainTextAlertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+	[alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_makePlainTextAlertDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
 - (void)_makePlainTextAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo;

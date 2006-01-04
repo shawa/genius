@@ -21,7 +21,7 @@
 	NSArray * _itemsDuringDrag;
 }
 
-- (NSWindow *) mainWindow;
+- (NSWindow *) window;
 
 - (NSArrayController *) itemArrayController;
 

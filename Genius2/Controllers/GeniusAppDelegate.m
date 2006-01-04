@@ -7,6 +7,8 @@
 
 #import "GeniusPreferences.h"
 
+#import "GeniusDocument.h"
+
 
 @implementation GeniusAppDelegate
 
@@ -100,6 +102,46 @@
         [ud setObject:currentVersion forKey:@"LastVersionRun"];
         [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
     }
+}
+
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
+{
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	// OpenFiles
+	NSDocumentController * dc = [NSDocumentController sharedDocumentController];
+    NSArray * openFiles = [ud objectForKey:@"OpenFiles"];
+	if (openFiles && [openFiles count] > 0)
+	{
+		NSString * path;
+		NSEnumerator * pathEnumerator = [openFiles objectEnumerator];
+		while ((path = [pathEnumerator nextObject]))
+		{
+			NSURL * url = [NSURL fileURLWithPath:path];
+			[dc openDocumentWithContentsOfURL:url display:YES error:NULL];
+		}
+		return NO;
+	}
+
+	return YES;
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
+	// Get all document paths
+	NSMutableArray * documentPaths = [NSMutableArray array];
+	NSArray * documents = [NSApp orderedDocuments];
+	NSEnumerator * documentEnumerator = [documents reverseObjectEnumerator];
+	NSDocument * document;
+	while ((document = [documentEnumerator nextObject]))
+	{
+		NSString * path = [document fileName];
+		if (path)
+			[documentPaths addObject:path];
+	}
+
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:documentPaths forKey:@"OpenFiles"];
 }
 
 @end

@@ -6,16 +6,31 @@
 
 @implementation GeniusDocumentController
 
-/*- (id)openUntitledDocumentAndDisplay:(BOOL)displayDocument error:(NSError **)outError
+- (id)openDocumentWithContentsOfURL:(NSURL *)absoluteURL display:(BOOL)displayDocument error:(NSError **)outError
 {
-	GeniusDocument * document = [super openUntitledDocumentAndDisplay:displayDocument error:outError];
-	if (document)
+    NSDocument * oldDoc = [self currentDocument];
+    BOOL shouldCloseExistingWindow = (oldDoc && [[self documents] count] == 1 && [oldDoc isDocumentEdited] == NO
+		&& [[[(GeniusDocument *)oldDoc itemArrayController] content] count] == 0);
+
+	NSDocument * newDoc = [super openDocumentWithContentsOfURL:absoluteURL display:displayDocument error:outError];
+	if (newDoc == nil)
+		return nil;
+	
+	// Close existing untitled window if necessary
+	if (shouldCloseExistingWindow)
 	{
-		[document newItem:nil];
-		[[document undoManager] removeAllActions];
+		NSArray * windowControllers = [newDoc windowControllers];
+		if (windowControllers && [windowControllers count] > 0)
+		{
+			NSWindow * oldWindow = [(GeniusDocument *)oldDoc window];
+			NSWindow * newWindow = [[windowControllers objectAtIndex:0] window];
+			[newWindow setFrame:[oldWindow frame] display:YES];
+			[oldWindow close];
+		}
 	}
-	return document;
-}*/
+
+	return newDoc;
+}
 
 
 /*

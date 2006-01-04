@@ -15,14 +15,13 @@ toolbar prefs etc
 
 P3:
 ER: new first item
-LastOpenFiles
-
 
 P4:
-BUG: get rid of search field pop-up			*?
 polish column resizing
 
+
 // PUNT
+BUG: get rid of search field pop-up menu	*?
 swap columns crashes
 drop image on item
 ER: option-drag copies
