@@ -34,7 +34,7 @@
 
 
 /*
-	XXX: "How can I support reading one type and (internally) automatically converting to another?"
+	"How can I support reading one type and (internally) automatically converting to another?"
 	file:///Developer/ADC%20Reference%20Library/documentation/Cocoa/Conceptual/Documents/Tasks/FAQ.html#//apple_ref/doc/uid/20000954-1081265-BAJFDEGD
 */
 

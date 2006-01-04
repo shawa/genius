@@ -329,7 +329,10 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 
 - (NSString *) tabularText
 {
-	NSArray * keyPaths = [NSArray arrayWithObjects:@"atomA.string", @"atomB.string", nil];
+	NSArray * keyPaths = [NSArray arrayWithObjects:@"atomA.string", @"atomB.string",
+		GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemMyRatingKey,
+		@"associationAB.predictedScore", @"associationBA.predictedScore",
+		GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, GeniusItemMyNotesKey, nil];
 
     NSMutableString * outputString = [NSMutableString string];
     int i, count = [keyPaths count];

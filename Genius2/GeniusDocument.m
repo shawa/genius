@@ -271,7 +271,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 		// Otherwise create new documentInfo
 		if (_documentInfo == nil)
 		{
-			_documentInfo = nil; //[[NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context] retain];
+			_documentInfo = [[NSEntityDescription insertNewObjectForEntityForName:@"GeniusDocumentInfo" inManagedObjectContext:context] retain];
 		}
 	}
 	

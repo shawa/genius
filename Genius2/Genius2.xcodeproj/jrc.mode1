@@ -190,7 +190,7 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>2331FD5D096B6DD600990AA3</string>
+				<string>2360D8F1096C46E000FD1110</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>TODO.txt</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
@@ -198,16 +198,16 @@
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>2331FD5E096B6DD600990AA3</string>
+						<string>2360D8F2096C46E000FD1110</string>
 						<key>PBXProjectModuleLabel</key>
 						<string>TODO.txt</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2331FE9C096B7E4600990AA3</string>
+						<string>2360D8F3096C46E000FD1110</string>
 						<key>history</key>
 						<array>
-							<string>2331FD4E096B6D4800990AA3</string>
+							<string>2360D8EE096C46DA00FD1110</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -223,7 +223,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>176 83 513 522 0 0 1280 832 </string>
+				<string>24 63 513 522 0 0 1280 832 </string>
 			</dict>
 		</dict>
 	</array>
@@ -336,6 +336,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -379,14 +381,12 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>6</integer>
-											<integer>3</integer>
-											<integer>2</integer>
+											<integer>1</integer>
 											<integer>0</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 8}, {239, 332}}</string>
+									<string>{{0, 0}, {239, 332}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -454,8 +454,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -494,11 +492,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2331FD57096B6DD600990AA3</string>
-				<string>2331FD58096B6DD600990AA3</string>
+				<string>2360D89A096C101D00FD1110</string>
+				<string>2360D89B096C101D00FD1110</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2331FD59096B6DD600990AA3</string>
+				<string>2360D89C096C101D00FD1110</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -632,17 +630,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2331FE3E096B7BF600990AA3</string>
-		<string>2331FE34096B7BE900990AA3</string>
-		<string>2331FE35096B7BE900990AA3</string>
-		<string>2302F62B0901A7C000585123</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>2331FE32096B7BE900990AA3</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>23E0F8540901AD1400807121</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Volumes/Users/jrc/Documents/Active/Code/Genius2/Genius2.xcodeproj</string>
-		<string>2331FD5D096B6DD600990AA3</string>
+		<string>2360D8F1096C46E000FD1110</string>
 	</array>
 	<key>WindowString</key>
 	<string>67 435 690 397 0 0 1280 832 </string>
@@ -683,8 +675,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -724,7 +714,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>23E0F8540901AD1400807121</string>
-				<string>2331FD60096B6DD600990AA3</string>
+				<string>2360D8DC096C46A700FD1110</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -864,12 +854,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusInspectorController.m</string>
+										<string>GeniusDocumentController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -890,8 +882,6 @@
 							<string>212pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -927,8 +917,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>2331FDF6096B7AB000990AA3</string>
-				<string>2331FDF7096B7AB000990AA3</string>
+				<string>2360D8A6096C10D800FD1110</string>
+				<string>2360D8A7096C10D800FD1110</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1088,9 +1078,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>2331FD61096B6DD600990AA3</string>
+				<string>2360D89D096C101D00FD1110</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>2331FD62096B6DD600990AA3</string>
+				<string>2360D89E096C101D00FD1110</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>

@@ -1,22 +1,20 @@
 P1:
-hook up level indicator
+hook up level indicator - level cosmetic in toolbar
 quiz handling of blank strings / lex similarity return only
-hook up text import
 document dirty bit for document info		*?
 
+P2:
+hook up text import
 check for leaks
 performance
+example
 
-P2:
-level cosmetic in toolbar
-fix up export
+P3:
 formatting error on quiz options
 toolbar prefs etc
 
-P3:
-ER: new first item
-
 P4:
+ER: new first item
 polish column resizing
 
 
