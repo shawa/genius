@@ -327,12 +327,18 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 
 @implementation GeniusItem (TextImportExport)
 
-- (NSString *) tabularText
++ (NSArray *) keyPathOrderForTextRepresentation
 {
-	NSArray * keyPaths = [NSArray arrayWithObjects:@"atomA.string", @"atomB.string",
+	return [NSArray arrayWithObjects:@"atomA.string", @"atomB.string",
 		GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemMyRatingKey,
 		@"associationAB.predictedScore", @"associationBA.predictedScore",
 		GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, GeniusItemMyNotesKey, nil];
+}
+
+
+- (NSString *) tabularText
+{
+	NSArray * keyPaths = [GeniusItem keyPathOrderForTextRepresentation];
 
     NSMutableString * outputString = [NSMutableString string];
     int i, count = [keyPaths count];
@@ -365,6 +371,78 @@ static NSString * GeniusItemAssociationsKey = @"associations";
     while ((item = [itemEnumerator nextObject]))
         [outputString appendFormat:@"%@\n", [item tabularText]];
     return outputString;
+}
+
+
++ (NSArray *) _linesFromString:(NSString *)string
+{
+    NSMutableArray * lines = [NSMutableArray array];
+    unsigned int startIndex, lineEndIndex, contentsEndIndex = 0;
+    unsigned int length = [string length];
+    NSRange range = NSMakeRange(0, 0);
+    while (contentsEndIndex < length)
+    {
+        [string getLineStart:&startIndex end:&lineEndIndex contentsEnd:&contentsEndIndex forRange:range];
+        unsigned int rangeLength = contentsEndIndex - startIndex;
+        if (rangeLength > 0)    // don't include empty lines
+        {
+            NSString * line = [string substringWithRange:NSMakeRange(startIndex, rangeLength)];
+            [lines addObject:line];
+        }
+        range.location = lineEndIndex;
+    }
+    return lines;
+}
+
++ (NSArray *) itemsFromTabularText:(NSString *)string order:(NSArray *)keyPaths
+{
+    //Can't use lines = [string componentsSeparatedByString:@"\n"];
+    // because it doesn't handle carriage returns.
+    NSArray * lines = [self _linesFromString:string];
+
+    NSMutableArray * items = [NSMutableArray array];
+    NSEnumerator * lineEnumerator = [lines objectEnumerator];
+    NSString * line;
+    while ((line = [lineEnumerator nextObject]))
+    {
+        GeniusItem * item = [[GeniusItem alloc] initWithTabularText:line order:keyPaths];
+        [items addObject:item];
+        [item release];
+    }
+    return (NSArray *)items;	
+}
+
+- (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths
+{
+    NSDocumentController * dc = [NSDocumentController sharedDocumentController];
+    GeniusDocument * document = (GeniusDocument *)[dc currentDocument];
+	
+	NSManagedObjectContext * context = [document managedObjectContext];
+	self = [NSEntityDescription insertNewObjectForEntityForName:@"GeniusItem" inManagedObjectContext:context];
+
+    NSArray * fields = [line componentsSeparatedByString:@"\t"];
+    int i, count=MIN([fields count], [keyPaths count]);
+    for (i=0; i<count; i++)
+    {
+        NSString * field = [fields objectAtIndex:i];
+        NSString * keyPath = [keyPaths objectAtIndex:i];
+
+        // Unescape any embedded special characters
+        NSMutableString * decodedString = [NSMutableString stringWithString:field];
+        [decodedString replaceOccurrencesOfString:@"\\t" withString:@"\t" options:NSLiteralSearch range:NSMakeRange(0, [decodedString length])];
+        [decodedString replaceOccurrencesOfString:@"\\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, [decodedString length])];
+
+		if ([keyPath isEqual:GeniusItemMyRatingKey])
+			[self setValue:[NSNumber numberWithInt:[decodedString intValue]] forKeyPath:keyPath];
+		else if ([keyPath isEqual:@"associationAB.predictedScore"] || [keyPath isEqual:@"associationBA.predictedScore"])
+			; // XXX: do nothing
+		else if ([keyPath isEqual:GeniusItemLastTestedDateKey] || [keyPath isEqual:GeniusItemLastModifiedDateKey])
+			[self setValue:[NSDate dateWithString:decodedString] forKeyPath:keyPath];
+		else
+			[self setValue:decodedString forKeyPath:keyPath];
+    }
+    
+    return self;	
 }
 
 @end

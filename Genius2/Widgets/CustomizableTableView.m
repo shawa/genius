@@ -56,6 +56,32 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 	while ((tableColumn = [tableColumnEnumerator nextObject]))
 		[(NSMutableArray *)_allTableColumns addObject:tableColumn];
 
+	_configDict = nil;
+	
+	// Swap in custom header view to handle contextual menu
+	NSTableHeaderView * oldHeaderView = [self headerView];
+	CustomTableHeaderView * headerView = [[CustomTableHeaderView alloc] initWithFrame:[oldHeaderView frame]];
+	[self setHeaderView:headerView];
+	[headerView release];
+
+
+    [self setDoubleAction:@selector(_doubleClick:)];   // Make editable
+    [self setTarget:self];
+
+	// Defer this so that [NSDocument windowControllerDidLoadNib:] can fix up the non-default columns
+	[self performSelector:@selector(_finishSetup) withObject:nil afterDelay:0.0];
+}
+
+- (void) _finishSetup
+{
+	NSEnumerator * menuItemEnumerator = [[[self toggleColumnsMenu] itemArray] objectEnumerator];
+	NSMenuItem * menuItem;
+	while ((menuItem = [menuItemEnumerator nextObject]))
+	{
+		[menuItem setTarget:self];
+		[menuItem setState:NSOnState];
+	}
+
 	// Remove non-default table columns
 	id delegate = [self delegate];
 	if (delegate && [delegate respondsToSelector:@selector(tableViewDefaultTableColumnIdentifiers:)])
@@ -69,22 +95,22 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 		NSString * identifier;
 		while ((identifier = [identifierEnumerator nextObject]))
 		{
-			tableColumn = [self tableColumnWithIdentifier:identifier];
-			[self removeTableColumn:tableColumn];
+			NSTableColumn * tableColumn = [self tableColumnWithIdentifier:identifier];
+			if (tableColumn)
+			{
+				[self removeTableColumn:tableColumn];
+
+				int index = [_toggleColumnsMenu indexOfItemWithRepresentedObject:tableColumn];
+				if (index != NSNotFound)
+				{
+					NSMenuItem * menuItem = [_toggleColumnsMenu itemAtIndex:index];
+					[menuItem setState:NSOffState];
+				}
+			}
 		}
 	}
 	
-	_configDict = nil;
-	
-	// Swap in custom header view to handle contextual menu
-	NSTableHeaderView * oldHeaderView = [self headerView];
-	CustomTableHeaderView * headerView = [[CustomTableHeaderView alloc] initWithFrame:[oldHeaderView frame]];
-	[self setHeaderView:headerView];
-	[headerView release];
-
-
-    [self setDoubleAction:@selector(_doubleClick:)];   // Make editable
-    [self setTarget:self];
+	[self sizeToFit];
 }
 
 
@@ -166,8 +192,6 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 		_toggleColumnsMenu = [[NSMenu alloc] initWithTitle:@""];
 	
 		// Patch in menu items
-		NSArray * currentTableColumns = [self tableColumns];
-
 		int i, count = [_allTableColumns count];				// both hidden and non-hidden
 		for (i=0; i<count; i++)
 		{
@@ -178,9 +202,11 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 				continue;
 
 			NSMenuItem * menuItem = [_toggleColumnsMenu addItemWithTitle:title action:@selector(_toggleTableColumnShown:) keyEquivalent:@""];
-			[menuItem setTag:i];
-			[menuItem setTarget:self];
-			[menuItem setState:([currentTableColumns containsObject:tableColumn] ? NSOnState : NSOffState)]; 
+			[menuItem setRepresentedObject:tableColumn];
+			[menuItem setState:NSOffState]; 
+
+			//[menuItem setAction:NULL];
+			//[menuItem setTarget:nil];
 		}
 	}
 	
@@ -189,11 +215,7 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 
 - (IBAction) _toggleTableColumnShown:(NSMenuItem *)sender
 {
-	int index = [sender tag];
-	NSTableColumn * tableColumn = [_allTableColumns objectAtIndex:index];
-
-	id delegate = [self delegate];
-	
+	NSTableColumn * tableColumn = [sender representedObject];
 	int state = [sender state];		
 	if (state == NSOnState)
 	{
@@ -205,17 +227,18 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 
 		// move to correct position
 		int pos = [CustomizableTableView _positionOfObject:tableColumn forInsertIntoArray:[self tableColumns] usingOrder:_allTableColumns];
-		[self moveColumn:[self numberOfColumns]-1 toColumn:pos];
-			
+		[self moveColumn:[self numberOfColumns]-1 toColumn:pos];			
+
 		[self sizeToFit];
 	}
 	
-	[sender setState:(state == NSOffState ? NSOnState : NSOffState)];	
+	[sender setState:(!state)];
 
 	// note that delegate may call -configurationDictionary so this needs to come first
 	[[self _configDict] setObject:[self _currentIdentifiers] forKey:CustomizableTableViewVisibleColumnIdentifiersConfigKey];
 
 	// notify delegate
+	id delegate = [self delegate];
 	if (state == NSOnState)
 	{
 		if (delegate && [delegate respondsToSelector:@selector(tableView:didHideTableColumn:)])

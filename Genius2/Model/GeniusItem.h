@@ -57,7 +57,12 @@ extern NSString * GeniusItemMyNotesKey;
 
 @interface GeniusItem (TextImportExport)
 
++ (NSArray *) keyPathOrderForTextRepresentation;
+
 - (NSString *) tabularText;
 + (NSString *) tabularTextFromItems:(NSArray *)items;
+
++ (NSArray *) itemsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
+- (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths;
 
 @end

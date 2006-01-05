@@ -359,7 +359,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
         string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-        NSArray * items = [GeniusItem itemsFromTabularText:string];
+        NSArray * items = [GeniusItem itemsFromTabularText:string order:[GeniusItem keyPathOrderForTextRepresentation]];
         //[self setFilterString:@""];
         [itemArrayController addObjects:items];
     }
@@ -376,7 +376,7 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
     NSString * identifier = [aTableColumn identifier];
-    if ([identifier isEqualToString:@"grade"])
+    if ([identifier isEqualToString:GeniusItemDisplayGradeKey])
     {
         GeniusItem * item = [[itemArrayController arrangedObjects] objectAtIndex:rowIndex];		
 		NSImage * image = [item gradeIcon];

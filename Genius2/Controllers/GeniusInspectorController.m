@@ -77,6 +77,14 @@
     [self setMainWindow:[NSApp mainWindow]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidBecomeMainNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowResigned:) name:NSWindowDidResignMainNotification object:nil];
+
+	NSDateFormatter * df = [NSDateFormatter new];
+	[df setFormatterBehavior:NSDateFormatterBehavior10_4];
+	[df setDateStyle:NSDateFormatterMediumStyle];
+	[df setTimeStyle:NSDateFormatterMediumStyle];
+	[lastModifiedDateField setFormatter:df];
+	[lastTestedDateField setFormatter:df];
+	[df release];
 }
 
 - (void)mainWindowChanged:(NSNotification *)notification {

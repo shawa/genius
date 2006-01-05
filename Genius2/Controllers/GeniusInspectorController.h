@@ -6,10 +6,12 @@
 {
 	IBOutlet id documentController;
 	IBOutlet id tabView;
-	IBOutlet id atomATextView;
+/*	IBOutlet id atomATextView;
 	IBOutlet id atomAController;
 	IBOutlet id atomBTextView;
-	IBOutlet id atomBController;
+	IBOutlet id atomBController;*/
+	IBOutlet id lastModifiedDateField;
+	IBOutlet id lastTestedDateField;
 }
 
 + (id) sharedInspectorController;

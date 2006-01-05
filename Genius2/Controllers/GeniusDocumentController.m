@@ -2,6 +2,7 @@
 
 #import "GeniusDocument.h"
 #import "GeniusV1FileImporter.h"
+#import "GeniusItem.h"
 
 
 @implementation GeniusDocumentController
@@ -72,9 +73,33 @@
 	return nil;
 }
 
-/*- (IBAction) importFile:(id)sender
+
+- (IBAction) importFile:(id)sender
 {
-	// TO DO
-}*/
+    NSDocumentController * dc = [NSDocumentController sharedDocumentController];
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    [openPanel setTitle:NSLocalizedString(@"Import Text File", nil)];
+    [openPanel setPrompt:NSLocalizedString(@"Import", nil)];
+
+    [dc runModalOpenPanel:openPanel forTypes:[NSArray arrayWithObject:@"txt"]];
+
+    NSString * path = [openPanel filename];
+    if (path == nil)
+        return;
+    
+    NSString * text = [NSString stringWithContentsOfFile:path];
+    if (text == nil)
+        return;
+    
+    [dc newDocument:self];
+    GeniusDocument * document = (GeniusDocument *)[dc currentDocument];
+    
+    NSArray * items = [GeniusItem itemsFromTabularText:text order:[GeniusItem keyPathOrderForTextRepresentation]];
+    if (items)
+    {
+        [[document itemArrayController] setContent:items];
+        //[document reloadInterfaceFromModel];
+    }
+}
 
 @end

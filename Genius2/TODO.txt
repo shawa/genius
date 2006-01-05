@@ -4,10 +4,11 @@ quiz handling of blank strings / lex similarity return only
 document dirty bit for document info		*?
 
 P2:
-hook up text import
+drag and drop to text
+
 check for leaks
 performance
-example
+examples
 
 P3:
 formatting error on quiz options
@@ -19,6 +20,7 @@ polish column resizing
 
 
 // PUNT
+improve text import
 BUG: get rid of search field pop-up menu	*?
 swap columns crashes
 drop image on item

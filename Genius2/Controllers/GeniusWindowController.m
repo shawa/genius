@@ -13,6 +13,7 @@
 
 // Model
 #import "GeniusAtom.h"	// +defaultTextAttributes
+#import "GeniusItem.h"	// GeniusItemAtomAKey, GeniusItemAtomBKey, GeniusItemDisplayGradeKey, ...
 
 // View
 #import "GeniusTableView.h"
@@ -46,8 +47,10 @@
 	[[self window] setDelegate:self];
 }
 
-- (void) _setupTableViewDataCell:(NSCell *)cell
+- (void) _setupCellForAtomTableColumn:(NSTableColumn *)tableColumn
 {
+	NSCell * cell = [tableColumn dataCell];
+	
 	// Set up line break mode for table columns
 	[cell setLineBreakMode:NSLineBreakByTruncatingTail];
 
@@ -58,16 +61,32 @@
     [cell setFormatter:sStringFormatter];
 }
 
+- (void) _setupCellForDateTableColumn:(NSTableColumn *)tableColumn
+{
+	NSCell * cell = [tableColumn dataCell];
+
+	// Set up date formatter
+	static NSDateFormatter * sDateFormatter = nil;
+	if (sDateFormatter == nil)
+	{
+		sDateFormatter = [NSDateFormatter new];
+		[sDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+		[sDateFormatter setDateStyle:NSDateFormatterShortStyle];
+		[sDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	}
+    [cell setFormatter:sDateFormatter];
+}
+
 - (void) setupTableView:(NSTableView *)tableView
 {
-	NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:@"atomA"];
-	[self _setupTableViewDataCell:[tableColumn dataCell]];
+	NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:GeniusItemAtomAKey];
+	[self _setupCellForAtomTableColumn:tableColumn];
 
-	tableColumn = [tableView tableColumnWithIdentifier:@"atomB"];
-	[self _setupTableViewDataCell:[tableColumn dataCell]];
+	tableColumn = [tableView tableColumnWithIdentifier:GeniusItemAtomBKey];
+	[self _setupCellForAtomTableColumn:tableColumn];
 
     // Set up icon text field cells for colored grade indication
-    tableColumn = [tableView tableColumnWithIdentifier:@"grade"];
+    tableColumn = [tableView tableColumnWithIdentifier:GeniusItemDisplayGradeKey];
     IconTextFieldCell * cell = [IconTextFieldCell new];
     [tableColumn setDataCell:cell];
     //NSNumberFormatter * numberFormatter = [[tableColumn dataCell] formatter];
@@ -75,17 +94,22 @@
 	
 	// Set up double-click action to handle uneditable rich text cells
 //	[tableView setDoubleAction:@selector(_tableViewDoubleAction:)];		// XXX
+
+    tableColumn = [tableView tableColumnWithIdentifier:GeniusItemLastTestedDateKey];
+	[self _setupCellForDateTableColumn:tableColumn];
+
+    tableColumn = [tableView tableColumnWithIdentifier:GeniusItemLastModifiedDateKey];
+	[self _setupCellForDateTableColumn:tableColumn];
+
 	
 	_tableView = [tableView retain];
 	
 	_defaultColumnsMenu = [[_tableView toggleColumnsMenu] copy];
-	NSEnumerator * menuItemEnumerator = [[_defaultColumnsMenu itemArray] objectEnumerator];
+/*	NSEnumerator * menuItemEnumerator = [[_defaultColumnsMenu itemArray] objectEnumerator];
 	NSMenuItem * menuItem;
 	while ((menuItem = [menuItemEnumerator nextObject]))
 	{
-		[menuItem setTarget:nil];
-		[menuItem setState:NSOffState]; 
-	}
+	}*/
 }
 
 - (void) setupSplitView:(NSSplitView *)splitView

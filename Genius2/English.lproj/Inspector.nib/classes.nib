@@ -10,11 +10,9 @@
             CLASS = GeniusInspectorController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                atomAController = id; 
-                atomATextView = id; 
-                atomBController = id; 
-                atomBTextView = id; 
                 documentController = id; 
+                lastModifiedDateField = id; 
+                lastTestedDateField = id; 
                 tabView = id; 
             }; 
             SUPERCLASS = NSWindowController; 
