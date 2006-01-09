@@ -24,6 +24,9 @@
 	transformer = [[[GeniusBooleanToStringTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusBooleanToStringTransformer"];
 
+	transformer = [[[GeniusFloatValueTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"GeniusFloatValueTransformer"];
+
 
 	[GeniusPreferences registerDefaults];
 }

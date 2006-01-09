@@ -25,6 +25,9 @@
 
 const int kGeniusDocumentAtomAColumnIndex = 1;
 
+static NSString * GeniusDocumentCorrectCountABKey = @"correctCountAB";
+static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
+
 @interface GeniusDocument (Private)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
 @end
@@ -391,7 +394,8 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 
 - (NSArray *)tableViewDefaultTableColumnIdentifiers:(NSTableView *)aTableView
 {
-	return [NSArray arrayWithObjects:GeniusItemIsEnabledKey, GeniusItemAtomAKey, GeniusItemAtomBKey, GeniusItemMyRatingKey, GeniusItemDisplayGradeKey, nil];
+	return [NSArray arrayWithObjects:GeniusItemIsEnabledKey, GeniusItemAtomAKey, GeniusItemAtomBKey,
+		GeniusDocumentCorrectCountABKey, GeniusItemDisplayGradeKey, nil];
 }
 
 - (void) tableView:(NSTableView *)aTableView didHideTableColumn:(NSTableColumn *)tableColumn
@@ -675,13 +679,19 @@ const int kGeniusDocumentAtomAColumnIndex = 1;
 {
 	int tag = [sender tag];
 	[[self documentInfo] setQuizDirectionMode:tag];
-	
-/*	NSArray * arrangedObjects = [itemArrayController arrangedObjects];
-	NSEnumerator * objectEnumerator = [arrangedObjects objectEnumerator];
-	GeniusItem * item;
-	while ((item = [objectEnumerator nextObject]))
-		[item flushCache];*/
-	
+
+	if (tag == GeniusQuizBidirectionalMode)
+	{
+		NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:GeniusDocumentCorrectCountBAKey];
+		int index = [[tableView toggleColumnsMenu] indexOfItemWithRepresentedObject:tableColumn];
+		if (index != NSNotFound)
+		{
+			NSMenuItem * menuItem = [[tableView toggleColumnsMenu] itemAtIndex:index];
+			if ([menuItem state] == NSOffState)
+				[tableView toggleTableColumnShown:menuItem];
+		}
+	}
+
 	[tableView reloadData];
 }
 

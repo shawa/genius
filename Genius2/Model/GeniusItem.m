@@ -263,9 +263,9 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 	GeniusAssociation * association;
 	while ((association = [associationEnumerator nextObject]))
 	{
-		float predictedScore = [association predictedScore]; // valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
-		if (predictedScore != -1.0)
-			sum += predictedScore;
+		float predictedValue = [association predictedValue]; // valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
+		if (predictedValue != -1.0)
+			sum += predictedValue;
 	}
 	
 	float grade;
@@ -331,7 +331,7 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 {
 	return [NSArray arrayWithObjects:@"atomA.string", @"atomB.string",
 		GeniusItemMyGroupKey, GeniusItemMyTypeKey, GeniusItemMyRatingKey,
-		@"associationAB.predictedScore", @"associationBA.predictedScore",
+		@"associationAB.predictedValue", @"associationBA.predictedValue",
 		GeniusItemLastTestedDateKey, GeniusItemLastModifiedDateKey, GeniusItemMyNotesKey, nil];
 }
 
@@ -434,7 +434,7 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 
 		if ([keyPath isEqual:GeniusItemMyRatingKey])
 			[self setValue:[NSNumber numberWithInt:[decodedString intValue]] forKeyPath:keyPath];
-		else if ([keyPath isEqual:@"associationAB.predictedScore"] || [keyPath isEqual:@"associationBA.predictedScore"])
+		else if ([keyPath isEqual:@"associationAB.predictedValue"] || [keyPath isEqual:@"associationBA.predictedValue"])
 			; // XXX: do nothing
 		else if ([keyPath isEqual:GeniusItemLastTestedDateKey] || [keyPath isEqual:GeniusItemLastModifiedDateKey])
 			[self setValue:[NSDate dateWithString:decodedString] forKeyPath:keyPath];

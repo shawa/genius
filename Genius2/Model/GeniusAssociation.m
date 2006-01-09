@@ -12,9 +12,13 @@
 #import "GeniusItem.h"	// GeniusItemLastTestedDateKey
 
 
-//NSString * GeniusAssociationPredictedScoreKey = @"predictedScore";
 NSString * GeniusAssociationDueDateKey = @"dueDate";
 NSString * GeniusAssociationDataPointArrayDataKey = @"dataPointArrayData";
+NSString * GeniusAssociationHandicapKey = @"handicap";
+
+static NSString * GeniusAssociationDataPointsKey = @"dataPoints";
+static NSString * GeniusAssociationCorrectCountKey = @"correctCount";
+NSString * GeniusAssociationPredictedValueKey = @"predictedValue";
 
 NSString * GeniusAssociationParentItemKey = @"parentItem";
 NSString * GeniusAssociationSourceAtomKey = @"sourceAtom";
@@ -22,6 +26,14 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 
 
 @implementation GeniusAssociation
+
++ (void)initialize
+{
+    [self setKeys:[NSArray arrayWithObjects:GeniusAssociationDataPointsKey, GeniusAssociationHandicapKey,nil]
+		triggerChangeNotificationsForDependentKey:GeniusAssociationCorrectCountKey];
+    [self setKeys:[NSArray arrayWithObjects:GeniusAssociationDataPointsKey, GeniusAssociationHandicapKey,nil]
+		triggerChangeNotificationsForDependentKey:GeniusAssociationPredictedValueKey];
+}
 
 - (GeniusAtom *) sourceAtom
 {
@@ -46,18 +58,67 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 
 - (NSArray *) dataPoints
 {
+	[self willAccessValueForKey:GeniusAssociationDataPointsKey];
+	NSArray * dataPoints = nil; 
     NSData * data = [self valueForKey:GeniusAssociationDataPointArrayDataKey];	// persistent
-	if (data == nil)
-		return nil;
-    return [NSUnarchiver unarchiveObjectWithData:data];	
+	if (data)
+		dataPoints = [NSUnarchiver unarchiveObjectWithData:data];	
+	[self didAccessValueForKey:GeniusAssociationDataPointsKey];
+	return dataPoints;
 }
 
 - (void) setDataPoints:(NSArray *)dataPoints
 {
+	[self willChangeValueForKey:GeniusAssociationDataPointsKey];
     NSData * data = nil;
 	if (dataPoints)
 		data = [NSArchiver archivedDataWithRootObject:dataPoints];
     [self setValue:data forKey:GeniusAssociationDataPointArrayDataKey];	
+	[self didChangeValueForKey:GeniusAssociationDataPointsKey];
+}
+
+
+- (unsigned int) correctCount
+{
+	[self willAccessValueForKey:GeniusAssociationCorrectCountKey];
+	
+	unsigned int correctCount = 0;
+	NSArray * dataPoints = [self dataPoints];
+	NSEnumerator * dataPointEnumerator = [dataPoints objectEnumerator];
+	GeniusAssociationDataPoint * dataPoint;
+	while ((dataPoint = [dataPointEnumerator nextObject]))
+		if ([dataPoint value] == YES)
+			correctCount++;
+			
+	NSNumber * handicapNumber = [self valueForKey:GeniusAssociationHandicapKey];
+	correctCount += [handicapNumber unsignedIntValue];
+
+	[self didAccessValueForKey:GeniusAssociationCorrectCountKey];
+	
+	return correctCount;
+}
+
+- (void) setCorrectCount:(NSNumber *)countNumber
+{
+	int count = [countNumber intValue];
+	if (count < 0)
+		count = 0;
+		
+	[self willChangeValueForKey:GeniusAssociationCorrectCountKey];
+	
+	unsigned int oldCount = [[self dataPoints] count];
+	int delta = count - oldCount;
+	if (delta < 0)
+	{
+		[self setDataPoints:nil];
+		[self setValue:[NSNumber numberWithUnsignedInt:count] forKey:GeniusAssociationHandicapKey];
+	}
+	else if (delta > 0)
+	{
+		[self setValue:[NSNumber numberWithUnsignedInt:delta] forKey:GeniusAssociationHandicapKey];
+	}
+	
+	[self didChangeValueForKey:GeniusAssociationCorrectCountKey];
 }
 
 
@@ -82,14 +143,24 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 }
 
 
-- (float) predictedScore
++ (float) _handicapToPercentValue:(unsigned int)handicap
+{
+	float result = handicap * 0.2;
+	return MIN(result, 1.0);
+}
+
+- (float) predictedValue
 {
 	NSArray * dataPoints = [self dataPoints];
-	int n = [dataPoints count];
-	if (n == 0)
-		return -1.0;
+	float result = [GeniusAssociationDataPoint predictedValueWithDataPoints:dataPoints];
+	unsigned int handicap = [[self valueForKey:GeniusAssociationHandicapKey] unsignedIntValue];
+	if (result == -1.0 && handicap > 0)
+		result = 0.0;
+	result += [GeniusAssociation _handicapToPercentValue:handicap];
 	
-	return [GeniusAssociationDataPoint predictedGradeWithDataPoints:dataPoints];
+	if (result == -1.0)
+		return -1.0;
+	return MIN(result, 1.0);
 }
 
 

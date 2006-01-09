@@ -26,25 +26,27 @@
 	NSNumber * scoreNumber = [oldV1Assoc scoreNumber];
 	if (scoreNumber)
 	{
-		unsigned int score = [scoreNumber unsignedIntValue];
+/*		unsigned int score = [scoreNumber unsignedIntValue];
 
 		// Make up a fake set of data points from the single "score" value of Genius 1.x		
 		NSMutableArray * dataPoints = [NSMutableArray array];
 
 		int n = score; // MAX(18, score);
-		NSDate * firstDate = [[NSDate date] addTimeInterval:-[GeniusAssociationDataPoint timeIntervalForScore:n-1] - 60*60*24*7*8];
+		NSDate * firstDate = [[NSDate date] addTimeInterval:-[GeniusAssociationDataPoint timeIntervalForCount:n-1] - 60*60*24*7*8];
 		int i;
 		for (i=0; i<n; i++)
 		{
 			// Create new data point
-			NSDate * date = [firstDate addTimeInterval:[GeniusAssociationDataPoint timeIntervalForScore:i]];
+			NSDate * date = [firstDate addTimeInterval:[GeniusAssociationDataPoint timeIntervalForCount:i]];
 			GeniusAssociationDataPoint * dataPoint = [[GeniusAssociationDataPoint alloc] initWithDate:date value:(float)YES];
 			[dataPoints addObject:dataPoint];
 			[dataPoint release];
 		}
 
 		NSData * data = [NSArchiver archivedDataWithRootObject:dataPoints];
-		[association setValue:data forKey:GeniusAssociationDataPointArrayDataKey];
+		[association setValue:data forKey:GeniusAssociationDataPointArrayDataKey];*/
+		
+		[association setValue:scoreNumber forKey:GeniusAssociationHandicapKey];
 	}
 
 	NSDate * dueDate = [oldV1Assoc dueDate];

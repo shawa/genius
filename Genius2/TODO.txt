@@ -4,7 +4,6 @@ quiz handling of blank strings / lex similarity return only
 document dirty bit for document info		*?
 
 P2:
-drag and drop to text
 
 check for leaks
 performance
@@ -12,10 +11,10 @@ examples
 
 P3:
 toolbar prefs etc
+drag and drop to text
 
 P4:
 ER: new first item
-polish column resizing
 
 
 // PUNT

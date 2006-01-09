@@ -9,9 +9,10 @@
 #import <CoreData/CoreData.h>
 
 
-//extern NSString * GeniusAssociationPredictedScoreKey;
 extern NSString * GeniusAssociationDueDateKey;
 extern NSString * GeniusAssociationDataPointArrayDataKey;
+
+extern NSString * GeniusAssociationPredictedValueKey;
 
 
 @class GeniusAtom;
@@ -29,9 +30,18 @@ extern NSString * GeniusAssociationDataPointArrayDataKey;
 
 @interface GeniusAssociation (Results)
 
+// used by inspector nib
+- (NSArray *) dataPoints;
+- (void) setDataPoints:(NSArray *)dataPoints;
+
+// used by document nib
+- (unsigned int) correctCount;
+- (void) setCorrectCount:(NSNumber *)countNumber;
+
+
 - (void) addResult:(BOOL)value;
 
-- (float) predictedScore;
+- (float) predictedValue;
 
 // XXX: used only by GeniusAssociationEnumerator
 - (unsigned int) resultCount;
@@ -47,3 +57,6 @@ extern NSString * GeniusAssociationDataPointArrayDataKey;
 extern NSString * GeniusAssociationParentItemKey;
 extern NSString * GeniusAssociationSourceAtomKey;
 extern NSString * GeniusAssociationTargetAtomKey;
+
+// for GeniusV1FileImporter
+extern NSString * GeniusAssociationHandicapKey;

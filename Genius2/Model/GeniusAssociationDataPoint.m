@@ -115,8 +115,11 @@
 }
 
 
-+ (float) predictedGradeWithDataPoints:(NSArray *)dataPoints
++ (float) predictedValueWithDataPoints:(NSArray *)dataPoints
 {
+	int n = [dataPoints count];
+	if (n == 0)
+		return -1.0;
 	NSArray * paddedDataPoints = [self _padDataPoints:dataPoints];
 //	NSLog(@"%@", [paddedDataPoints description]);
 	return [self _calculateLeastSquaresFit:paddedDataPoints];
@@ -140,14 +143,14 @@
 	13: 38.7 y
 	14: 193.4 y
 */
-+ (NSTimeInterval) timeIntervalForScore:(unsigned int)score
++ (NSTimeInterval) timeIntervalForCount:(unsigned int)count
 {
 	const int maxN = 10;
 	
-	int n = MIN(score,maxN);
+	int n = MIN(count,maxN);
 	NSTimeInterval interval = pow(5.0,n);
 	
-	int extraN = score - maxN;
+	int extraN = count - maxN;
 	if (extraN > 0)
 		interval += extraN * pow(5.0, maxN);
 	

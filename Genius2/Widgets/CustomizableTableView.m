@@ -201,7 +201,7 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 			if ([title isEqualToString:@""])
 				continue;
 
-			NSMenuItem * menuItem = [_toggleColumnsMenu addItemWithTitle:title action:@selector(_toggleTableColumnShown:) keyEquivalent:@""];
+			NSMenuItem * menuItem = [_toggleColumnsMenu addItemWithTitle:title action:@selector(toggleTableColumnShown:) keyEquivalent:@""];
 			[menuItem setRepresentedObject:tableColumn];
 			[menuItem setState:NSOffState]; 
 
@@ -213,7 +213,7 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 	return _toggleColumnsMenu;
 }
 
-- (IBAction) _toggleTableColumnShown:(NSMenuItem *)sender
+- (IBAction) toggleTableColumnShown:(NSMenuItem *)sender
 {
 	NSTableColumn * tableColumn = [sender representedObject];
 	int state = [sender state];		
@@ -249,6 +249,20 @@ static NSString * CustomizableTableViewColumnHeaderDictConfigKey = @"ColumnHeade
 		if (delegate && [delegate respondsToSelector:@selector(tableView:didShowTableColumn:)])
 			[delegate tableView:self didShowTableColumn:tableColumn];
 	}
+}
+
+- (NSTableColumn *) tableColumnWithIdentifier:(NSString *)identifier
+{
+	NSTableColumn * tableColumn = [super tableColumnWithIdentifier:identifier];
+	if (tableColumn)
+		return tableColumn;
+
+	NSEnumerator * tableColumnEnumerator = [_allTableColumns objectEnumerator];
+	while ((tableColumn = [tableColumnEnumerator nextObject]))
+		if ([[tableColumn identifier] isEqual:identifier])
+			return tableColumn;
+
+	return nil;
 }
 
 @end

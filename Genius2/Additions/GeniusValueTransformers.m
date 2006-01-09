@@ -107,3 +107,28 @@
 }
 
 @end
+
+
+@implementation GeniusFloatValueTransformer
+
++ (Class) transformedValueClass
+{
+	return [NSNumber self];
+}
+
++ (BOOL) allowsReverseTransformation
+{
+	return NO;
+}
+
+- (id) transformedValue:(id)value
+{
+	if (value == nil)
+		return nil;
+	float x = [value floatValue];
+	if (x == -1.0)
+		return @"--";
+	return [NSNumber numberWithFloat:x];
+}
+
+@end

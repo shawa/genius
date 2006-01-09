@@ -22,3 +22,8 @@
 @interface GeniusBooleanToStringTransformer : NSValueTransformer
 
 @end
+
+
+@interface GeniusFloatValueTransformer : NSValueTransformer
+
+@end

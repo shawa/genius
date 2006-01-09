@@ -67,9 +67,9 @@
 
 - (void) _rescheduleCurrentAssociation	// XXX: does this belong here or GeniusAssociation ?
 {
-    unsigned int deltaSec = [GeniusAssociationDataPoint timeIntervalForScore:1];
+    unsigned int deltaSec = [GeniusAssociationDataPoint timeIntervalForCount:1];
 	if ([[_currentAssociation lastDataPoint] value] >= 0.5)
-		deltaSec = [GeniusAssociationDataPoint timeIntervalForScore:[_currentAssociation resultCount]];
+		deltaSec = [GeniusAssociationDataPoint timeIntervalForCount:[_currentAssociation resultCount]];
 	
     NSDate * dueDate = [[NSDate date] addTimeInterval:deltaSec];
     [_currentAssociation setValue:dueDate forKey:GeniusAssociationDueDateKey];

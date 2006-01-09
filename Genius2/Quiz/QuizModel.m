@@ -61,7 +61,7 @@ const kQuizModelDefaultRequestedCount = 10;
 			[fragments addObject:@"((sourceAtom == parentItem.atomA AND targetAtom == parentItem.atomB) OR (sourceAtom == parentItem.atomB AND targetAtom == parentItem.atomA))"];
 
 		if (_requestedMinScore != 1.0)
-			[fragments addObject:[NSString stringWithFormat:@"(predictedScore >= %f)", _requestedMinScore]];
+			[fragments addObject:[NSString stringWithFormat:@"(predictedValue >= %f)", _requestedMinScore]];
 		
 		NSMutableString * query = [NSMutableString string];
 		int i, count = [fragments count];
@@ -158,8 +158,8 @@ static float PoissonValue(int x, float m)
 {
     #if DEBUG
 		// Calculate minimum and maximum scores        
-		float minScore = [[associations valueForKeyPath:@"@min.predictedScore"] floatValue];
-		float maxScore = [[associations valueForKeyPath:@"@max.predictedScore"] floatValue];		
+		float minScore = [[associations valueForKeyPath:@"@min.predictedValue"] floatValue];
+		float maxScore = [[associations valueForKeyPath:@"@max.predictedValue"] floatValue];		
         NSLog(@"minScore=%f, maxScore=%f", minScore, maxScore);
 	NSLog(@"[associations count]=%d, _requestedCount=%d", [associations count], _requestedCount);
     #endif
@@ -179,9 +179,9 @@ static float PoissonValue(int x, float m)
     GeniusAssociation * association;
     while ((association = [associationEnumerator nextObject]))
     {
-		float predictedScore = [association predictedScore]; // valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
-        b = predictedScore * 10.0;
-		if (predictedScore == -1.0)
+		float predictedValue = [association predictedValue]; // valueForKey:GeniusAssociationPredictedScoreKey] floatValue];
+        b = predictedValue * 10.0;
+		if (predictedValue == -1.0)
 			b = 0;
 		
         NSMutableArray * bucket = [buckets objectAtIndex:b];

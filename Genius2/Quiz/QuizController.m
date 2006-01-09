@@ -78,7 +78,7 @@ enum {
 		NSString * informativeString = NSLocalizedString(@"Make sure the items you want to study are filled in and enabled, or add more items.", nil);
 
 		NSAlert * alert = [NSAlert alertWithMessageText:messageString defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:informativeString];
-		[alert beginSheetModalForWindow:[document mainWindow] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+		[alert beginSheetModalForWindow:[document window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
 		return nil;
 	}
 

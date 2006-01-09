@@ -13,6 +13,8 @@
 - (void)setConfigurationFromDictionary:(NSDictionary *)configDict;
 
 - (NSMenu *) toggleColumnsMenu;
+- (IBAction) toggleTableColumnShown:(NSMenuItem *)sender;
+- (NSTableColumn *) tableColumnWithIdentifier:(NSString *)identifier;
 
 @end
 

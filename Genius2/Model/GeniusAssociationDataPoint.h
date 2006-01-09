@@ -24,8 +24,8 @@
 
 @interface GeniusAssociationDataPoint (GradePrediction)
 
-+ (float) predictedGradeWithDataPoints:(NSArray *)dataPoints;
++ (float) predictedValueWithDataPoints:(NSArray *)dataPoints;
 
-+ (NSTimeInterval) timeIntervalForScore:(unsigned int)score;	// XXX: used by GeniusAssociationEnumerator
++ (NSTimeInterval) timeIntervalForCount:(unsigned int)count;	// XXX: used by GeniusAssociationEnumerator
 
 @end
