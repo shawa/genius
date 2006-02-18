@@ -25,11 +25,13 @@
 
 const int kGeniusDocumentAtomAColumnIndex = 1;
 
+static NSString * GeniusDocumentOverallPercentKey = @"overallPercent";
 static NSString * GeniusDocumentCorrectCountABKey = @"correctCountAB";
 static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 
 @interface GeniusDocument (Private)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
+- (void) touchOverallPercent;
 @end
 
 
@@ -40,6 +42,10 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
     self = [super init];
     if (self != nil) {
         // initialization code
+
+
+		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+		[nc addObserver:self selector:@selector(_itemScoreHasChangedNotification:) name:GeniusItemScoreHasChangedNotification object:nil];
     }
 	
     return self;
@@ -85,12 +91,8 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	if (configDict)
 		[(GeniusTableView *)tableView setConfigurationFromDictionary:configDict];
 
-	// Configure list font size
-	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
-	[self _handleUserDefaultsDidChange:nil];
-
 	// Set up handler to automatically make new item if user presses Return in last row
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleTextDidEndEditing:) name:NSTextDidEndEditingNotification object:nil];
 
 	// Set up drag-and-drop
@@ -144,25 +146,6 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 		[window endEditingFor:nil];
 }
 
-
-- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
-{
-	[self _dismissFieldEditor];
-	
-	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-
-	// Handle font size
-	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
-	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:mode];
-
-	float rowHeight = [GeniusWindowController rowHeightForSizeMode:mode];
-	[tableView setRowHeight:rowHeight];
-
-	NSEnumerator * tableColumnEnumerator = [[tableView tableColumns] objectEnumerator];
-	NSTableColumn * tableColumn;
-	while ((tableColumn = [tableColumnEnumerator nextObject]))
-		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
-}
 
 // Make new item if user presses Return in last row
 - (void) _handleTextDidEndEditing:(NSNotification *)aNotification
@@ -298,9 +281,21 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	return sum / [arrangedObjects count] * 100.0;
 }
 
+- (void) touchOverallPercent
+{
+	[self willChangeValueForKey:GeniusDocumentOverallPercentKey];
+	[self didChangeValueForKey:GeniusDocumentOverallPercentKey];
+}
+
 - (void) setOverallPercent:(float)value
 {
+	[self touchOverallPercent];
 	// do nothing
+}
+
+- (void) _itemScoreHasChangedNotification:(NSNotification *)notification
+{
+	[self touchOverallPercent];
 }
 
 @end

@@ -75,6 +75,9 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 		data = [NSArchiver archivedDataWithRootObject:dataPoints];
     [self setValue:data forKey:GeniusAssociationDataPointArrayDataKey];	
 	[self didChangeValueForKey:GeniusAssociationDataPointsKey];
+
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+	[nc postNotificationName:GeniusItemScoreHasChangedNotification object:[self valueForKey:GeniusAssociationParentItemKey]];
 }
 
 
@@ -108,7 +111,7 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 	
 	unsigned int oldCount = [[self dataPoints] count];
 	int delta = count - oldCount;
-	if (delta < 0)
+	if (delta <= 0)
 	{
 		[self setDataPoints:nil];
 		[self setValue:[NSNumber numberWithUnsignedInt:count] forKey:GeniusAssociationHandicapKey];
@@ -119,6 +122,9 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 	}
 	
 	[self didChangeValueForKey:GeniusAssociationCorrectCountKey];
+
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+	[nc postNotificationName:GeniusItemScoreHasChangedNotification object:[self valueForKey:GeniusAssociationParentItemKey]];
 }
 
 

@@ -10,6 +10,7 @@
 
 #import "GeniusDocument.h"
 #import "GeniusInspectorController.h"
+#import "GeniusPreferences.h"
 
 // Model
 #import "GeniusAtom.h"	// +defaultTextAttributes
@@ -21,7 +22,7 @@
 // Widgets
 #import "IconTextFieldCell.h"
 #import "ColorView.h"
-#import "CollapsableSplitView.h"
+#import "KFSplitView.h"
 #import "ImageStringFormatter.h"
 
 
@@ -45,6 +46,11 @@
 	[[self window] setBackgroundColor:[NSColor colorWithCalibratedWhite:0.78 alpha:1.0]];
 	
 	[[self window] setDelegate:self];
+
+	// Configure list font size
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
+	[self _handleUserDefaultsDidChange:nil];
 }
 
 - (void) _setupCellForAtomTableColumn:(NSTableColumn *)tableColumn
@@ -114,13 +120,15 @@
 
 - (void) setupSplitView:(NSSplitView *)splitView
 {
-	[splitView setDelegate:self];
+	//[splitView setDelegate:self];
 
 	NSView * bottomView = [[splitView subviews] objectAtIndex:1];
 	[(ColorView *)bottomView setFrameColor:[NSColor colorWithCalibratedWhite:0.65 alpha:1.0]];
 
 	_splitView = [splitView retain];
-	[_splitView collapseSubviewAt:1];
+	//[_splitView collapseSubviewAt:1];
+	[_splitView setSubview:bottomView isCollapsed:YES];
+	[_splitView resizeSubviewsWithOldSize:[_splitView bounds].size];
 }
 
 - (void) setupAtomTextView:(NSTextView *)textView
@@ -197,6 +205,28 @@
 	return [NSFont systemFontSize];
 }
 
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
+{	
+	// _dismissFieldEditor
+	NSWindow * window = [self window];
+	if ([window makeFirstResponder:window] == NO)
+		[window endEditingFor:nil];
+	
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	// Handle font size
+	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
+	float fontSize = [GeniusWindowController listTextFontSizeForSizeMode:mode];
+
+	float rowHeight = [GeniusWindowController rowHeightForSizeMode:mode];
+	[_tableView setRowHeight:rowHeight];
+
+	NSEnumerator * tableColumnEnumerator = [[_tableView tableColumns] objectEnumerator];
+	NSTableColumn * tableColumn;
+	while ((tableColumn = [tableColumnEnumerator nextObject]))
+		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
+}
+
 @end
 
 
@@ -229,16 +259,19 @@
 
 - (IBAction) showRichTextEditor:(id)sender
 {
-	[_splitView uncollapseSubviewAt:1];
-	
 	NSView * bottomView = [[_splitView subviews] objectAtIndex:1];
-	int i;
+
+	//[_splitView uncollapseSubviewAt:1];
+	[_splitView setSubview:bottomView isCollapsed:NO];
+	[_splitView resizeSubviewsWithOldSize:[_splitView bounds].size];
+	
+/*	int i;
 	for (i=0; i<3; i++)
 	{
 		[bottomView setFrameSize:NSMakeSize([_splitView frame].size.width, 128.0)];
 		[_splitView adjustSubviews];
 		[_splitView displayIfNeeded];
-	}
+	}*/
 }
 
 
@@ -328,3 +361,24 @@
 }
 
 @end*/
+
+
+@implementation GeniusWindowController (NSSplitViewDelegate)
+
+- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview
+{
+	return YES;
+}
+
+- (float)splitView:(NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
+{
+	return proposedMin;
+}
+
+- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+{
+	NSSize size = [sender frame].size;	
+	return size.height - 100.0;
+}
+
+@end

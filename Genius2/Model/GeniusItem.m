@@ -446,3 +446,6 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 }
 
 @end
+
+
+NSString * GeniusItemScoreHasChangedNotification = @"GeniusItemScoreHasChangedNotification";

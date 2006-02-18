@@ -1,23 +1,22 @@
 P1:
-hook up level indicator - level cosmetic in toolbar
+level indicator doesnt draw
 quiz handling of blank strings / lex similarity return only
 document dirty bit for document info		*?
 
 P2:
+bi columns after save
 
 check for leaks
 performance
 examples
 
 P3:
-toolbar prefs etc
-drag and drop to text
-
-P4:
 ER: new first item
 
 
 // PUNT
+drag and drop to text
+level indicator is clickable
 improve text import
 BUG: get rid of search field pop-up menu	*?
 swap columns crashes

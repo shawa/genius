@@ -9,13 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 
-@class CollapsableSplitView, GeniusTableView;
+@class KFSplitView, GeniusTableView;
 
 @interface GeniusWindowController : NSWindowController {
 	NSSearchField * _searchField;
-	CollapsableSplitView * _splitView;
+	KFSplitView * _splitView;
 	GeniusTableView * _tableView;
-	NSMenu * _defaultColumnsMenu;
+	NSLevelIndicator * _levelIndicator;
+	NSMenu * _defaultColumnsMenu;	// only used when window is inactive
 }
 
 - (void) setupTableView:(NSTableView *)tableView;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2314A9B109A78AA7006138BA /* KFSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2314A9AF09A78AA7006138BA /* KFSplitView.m */; };
 		231A115708FF1CFB004A16ED /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113608FF1CFB004A16ED /* GeniusAppDelegate.m */; };
 		231A115808FF1CFB004A16ED /* GeniusDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113808FF1CFB004A16ED /* GeniusDocumentController.m */; };
 		231A115908FF1CFB004A16ED /* GeniusHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113A08FF1CFB004A16ED /* GeniusHelpController.m */; };
@@ -52,7 +53,6 @@
 		238C5A790934BF6B00926AF1 /* Relax.html in Resources */ = {isa = PBXBuildFile; fileRef = 238C5A770934BF6B00926AF1 /* Relax.html */; };
 		238C5BBD0934D67E00926AF1 /* NSTextViewWithLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */; };
 		239CEE7E08F9FFFE00B79606 /* Quiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 239CEE7C08F9FFFE00B79606 /* Quiz.nib */; };
-		23A883BC08FEF52F00CFE9A3 /* CollapsableSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A883BB08FEF52F00CFE9A3 /* CollapsableSplitView.m */; };
 		23B7832808F9D6BB007CD679 /* QuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7832708F9D6BB007CD679 /* QuizController.m */; };
 		23B7837E08F9D7F9007CD679 /* GeniusV1FileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7837908F9D7F9007CD679 /* GeniusV1FileImporter.m */; };
 		23B7837F08F9D7F9007CD679 /* GeniusV1Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7837B08F9D7F9007CD679 /* GeniusV1Item.m */; };
@@ -62,9 +62,9 @@
 		23B7867208F9F7C5007CD679 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B7866E08F9F7C5007CD679 /* Preferences.nib */; };
 		23D5867D0961EA4A0024FFCF /* GeniusAssociationDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2302F57F090190EC00585123 /* GeniusAssociationDataPoint.m */; };
 		23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CBE08E58CE200862CBC /* GeniusAssociation.m */; };
-		23D76E3E08F0D14B0072EE07 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23D76E3D08F0D14B0072EE07 /* TODO.txt */; };
 		23DB8994096A97EB00487E23 /* CustomizableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DB8992096A97EB00487E23 /* CustomizableTableView.m */; };
 		23DC37B408FD51A600CF4BAE /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DC37B308FD51A600CF4BAE /* ColorView.m */; };
+		23EC9E4F097FDCDC00F4D9A2 /* Document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23EC9E4E097FDCDC00F4D9A2 /* Document.icns */; };
 		23FD30EF0876DB9000B75A2F /* GeniusDocument.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 23FD30EE0876DB9000B75A2F /* GeniusDocument.xcdatamodel */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
@@ -120,6 +120,8 @@
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2302F57E090190EC00585123 /* GeniusAssociationDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAssociationDataPoint.h; sourceTree = "<group>"; };
 		2302F57F090190EC00585123 /* GeniusAssociationDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociationDataPoint.m; sourceTree = "<group>"; };
+		2314A9AE09A78AA7006138BA /* KFSplitView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KFSplitView.h; sourceTree = "<group>"; };
+		2314A9AF09A78AA7006138BA /* KFSplitView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = KFSplitView.m; sourceTree = "<group>"; };
 		231A113508FF1CFB004A16ED /* GeniusAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAppDelegate.h; sourceTree = "<group>"; };
 		231A113608FF1CFB004A16ED /* GeniusAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegate.m; sourceTree = "<group>"; };
 		231A113708FF1CFB004A16ED /* GeniusDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusDocumentController.h; sourceTree = "<group>"; };
@@ -190,8 +192,6 @@
 		238C5BBB0934D67E00926AF1 /* NSTextViewWithLinks.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTextViewWithLinks.h; sourceTree = "<group>"; };
 		238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSTextViewWithLinks.m; sourceTree = "<group>"; };
 		239CEE7D08F9FFFE00B79606 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Quiz.nib; sourceTree = "<group>"; };
-		23A883BA08FEF52F00CFE9A3 /* CollapsableSplitView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CollapsableSplitView.h; sourceTree = "<group>"; };
-		23A883BB08FEF52F00CFE9A3 /* CollapsableSplitView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CollapsableSplitView.m; sourceTree = "<group>"; };
 		23B7832608F9D6BB007CD679 /* QuizController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizController.h; sourceTree = "<group>"; };
 		23B7832708F9D6BB007CD679 /* QuizController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizController.m; sourceTree = "<group>"; };
 		23B7837808F9D7F9007CD679 /* GeniusV1FileImporter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusV1FileImporter.h; sourceTree = "<group>"; };
@@ -209,6 +209,7 @@
 		23DB8992096A97EB00487E23 /* CustomizableTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CustomizableTableView.m; sourceTree = "<group>"; };
 		23DC37B208FD51A600CF4BAE /* ColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorView.h; sourceTree = "<group>"; };
 		23DC37B308FD51A600CF4BAE /* ColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorView.m; sourceTree = "<group>"; };
+		23EC9E4E097FDCDC00F4D9A2 /* Document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Document.icns; sourceTree = "<group>"; };
 		23FD30EE0876DB9000B75A2F /* GeniusDocument.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GeniusDocument.xcdatamodel; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* GeniusDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* GeniusDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocument.h; sourceTree = "<group>"; };
@@ -356,10 +357,10 @@
 		23380CD508E58DFF00862CBC /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				2314A9AE09A78AA7006138BA /* KFSplitView.h */,
+				2314A9AF09A78AA7006138BA /* KFSplitView.m */,
 				238C5BBB0934D67E00926AF1 /* NSTextViewWithLinks.h */,
 				238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */,
-				23A883BA08FEF52F00CFE9A3 /* CollapsableSplitView.h */,
-				23A883BB08FEF52F00CFE9A3 /* CollapsableSplitView.m */,
 				23DB8991096A97EB00487E23 /* CustomizableTableView.h */,
 				23DB8992096A97EB00487E23 /* CustomizableTableView.m */,
 				23380CD608E58DFF00862CBC /* IconTextFieldCell.h */,
@@ -481,6 +482,7 @@
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				2349703A08F0B0850004234D /* Localizable.strings */,
 				2350E9210945D280000ADFF1 /* Genius.icns */,
+				23EC9E4E097FDCDC00F4D9A2 /* Document.icns */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -568,7 +570,6 @@
 				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				2349703C08F0B0850004234D /* Localizable.strings in Resources */,
-				23D76E3E08F0D14B0072EE07 /* TODO.txt in Resources */,
 				23835E9C08F96C550066323F /* GeniusDocument.nib in Resources */,
 				23B7867108F9F7C5007CD679 /* Inspector.nib in Resources */,
 				23B7867208F9F7C5007CD679 /* Preferences.nib in Resources */,
@@ -589,6 +590,7 @@
 				2350E9220945D280000ADFF1 /* Genius.icns in Resources */,
 				237E96850961C84400972B28 /* colors.tiff in Resources */,
 				237E96860961C84500972B28 /* fonts.tiff in Resources */,
+				23EC9E4F097FDCDC00F4D9A2 /* Document.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +621,6 @@
 				234E539A08FC635B005FCF83 /* GeniusPreferences.m in Sources */,
 				234E546008FC6AED005FCF83 /* QuizBackdropWindow.m in Sources */,
 				23DC37B408FD51A600CF4BAE /* ColorView.m in Sources */,
-				23A883BC08FEF52F00CFE9A3 /* CollapsableSplitView.m in Sources */,
 				231A115708FF1CFB004A16ED /* GeniusAppDelegate.m in Sources */,
 				231A115808FF1CFB004A16ED /* GeniusDocumentController.m in Sources */,
 				231A115908FF1CFB004A16ED /* GeniusHelpController.m in Sources */,
@@ -636,6 +637,7 @@
 				23D5867D0961EA4A0024FFCF /* GeniusAssociationDataPoint.m in Sources */,
 				23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */,
 				23DB8994096A97EB00487E23 /* CustomizableTableView.m in Sources */,
+				2314A9B109A78AA7006138BA /* KFSplitView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,21 +749,20 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_PEDANTIC = NO;
-				GCC_WARN_SHADOW = NO;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
@@ -775,6 +776,10 @@
 		23ED4B200955F0CE001DEC99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Debug;
 		};
@@ -785,8 +790,11 @@
 					ppc,
 					i386,
 				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Genius;
@@ -797,6 +805,10 @@
 		23ED4B270955F1B6001DEC99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
 		};

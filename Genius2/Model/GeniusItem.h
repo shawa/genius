@@ -66,3 +66,7 @@ extern NSString * GeniusItemMyNotesKey;
 - (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths;
 
 @end
+
+
+// for GeniusDocument
+extern NSString * GeniusItemScoreHasChangedNotification;
