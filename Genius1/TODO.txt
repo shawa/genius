@@ -13,7 +13,6 @@ Easy
 ER: Geniusfiles.info link.
 ER: Importing multiple lines in Notes
 ER: Enter exits editing.
-ER: Sound on/off
 BUG: Shouldn't be able to reorder items if columns are sorted
 FEATURE: Random mode (Tom H.)
 ER: Review/Study slider UI

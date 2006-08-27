@@ -17,6 +17,7 @@
                 toggleABScoreColumn = id; 
                 toggleBAScoreColumn = id; 
                 toggleGroupColumn = id; 
+                toggleSoundEffects = id; 
                 toggleTypeColumn = id; 
             }; 
             CLASS = FirstResponder; 

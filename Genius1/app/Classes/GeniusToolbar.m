@@ -56,7 +56,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
             NSString * label = NSLocalizedString(@"Study", nil);
             [toolbarItem setLabel:label];
 
-            NSImage * image = [NSImage imageNamed:@"NSApplicationIcon"];
+            NSImage * image = [NSImage imageNamed:@"play"];
             [toolbarItem setImage:image];
             
             [toolbarItem setTarget:self];
@@ -76,7 +76,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
             NSString * label = NSLocalizedString(@"Info", nil);
             [toolbarItem setLabel:label];
 
-            NSImage * image = [NSImage imageNamed:@"get-info-32"];
+            NSImage * image = [NSImage imageNamed:@"Inspector"];
             [toolbarItem setImage:image];
             
             [toolbarItem setTarget:infoDrawer];

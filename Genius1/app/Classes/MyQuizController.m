@@ -1,7 +1,7 @@
 #import "MyQuizController.h"
 #include <unistd.h> // getpid
 #import "GeniusWelcomePanel.h"
-#import "GeniusStringAnalysis.h"
+#import "NSStringSimiliarity.h"
 #import "GeniusStringDiff.h"
 
 
@@ -102,6 +102,8 @@
 
 - (void) runQuiz:(GeniusAssociationEnumerator *)enumerator cumulativeTime:(NSTimeInterval *)cumulativeTimePtr
 {
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
     // Show "Take a moment to slow down..." panel
     BOOL result = [[GeniusWelcomePanel sharedWelcomePanel] runModal];
     if (result == NO)
@@ -153,8 +155,9 @@
             [entryField setStringValue:origString];
             [entryField selectText:self];
             
-            [_newSound stop];
-            [_newSound play];
+			[_newSound stop];
+			if ([ud boolForKey:@"useSoundEffects"])
+				[_newSound play];
         }
         else
         {
@@ -190,7 +193,8 @@
             #endif
             if (similarity == 1.0)
 			{
-                [_rightSound play];    
+				if ([ud boolForKey:@"useSoundEffects"])
+					[_rightSound play];    
 				[_enumerator associationRight:_currentAssociation];
 				
 				goto skip_review;
@@ -213,13 +217,15 @@
             {
                 // correct
                 [yesButton setKeyEquivalent:@"\r"];
-                [_rightSound play];    
+				if ([ud boolForKey:@"useSoundEffects"])
+					[_rightSound play];    
             }
             else if (similarity == 0.0)
             {
                 // incorrect
                 [noButton setKeyEquivalent:@"\r"];
-                [_wrongSound play];
+				if ([ud boolForKey:@"useSoundEffects"])
+					[_wrongSound play];
             }
             else
             {

@@ -20,8 +20,13 @@
 
 - (IBAction) showTipJar:(id)sender
 {
-    NSURL * url = [NSURL URLWithString:@"http://homepage.mac.com/jrc/Software/"];
+    NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/"];
     [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction) toggleSoundEffects:(id)sender
+{
+	// just to keep the menu item enabled
 }
 
 - (IBAction) showHelpWindow:(id)sender
@@ -48,6 +53,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	// -registerDefaults: doesn't work here for some reason
+/*	NSDictionary * registrationDict = [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSNumber numberWithInt:NSOnState], @"useSoundEffects", nil];
+	[ud registerDefaults:registrationDict];*/
+	[ud setBool:YES forKey:@"useSoundEffects"];
 	
 	// LastVersionRun
     NSBundle * mainBundle = [NSBundle mainBundle];
@@ -97,8 +108,6 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-	NSLog(@"applicationWillTerminate:");
-	
 	// Get all document paths
 	NSMutableArray * documentPaths = [NSMutableArray array];
 	NSArray * documents = [NSApp orderedDocuments];

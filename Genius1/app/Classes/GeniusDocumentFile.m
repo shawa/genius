@@ -20,9 +20,9 @@
 
     NSEvent * event = [NSApp currentEvent];
     if (event && ([event modifierFlags] & NSAlternateKeyMask))
-        [archiver setOutputFormat:kCFPropertyListBinaryFormat_v1_0];
-    else
         [archiver setOutputFormat:NSPropertyListXMLFormat_v1_0];
+    else
+		[archiver setOutputFormat:kCFPropertyListBinaryFormat_v1_0];
     
     [archiver encodeInt:1 forKey:@"formatVersion"];
     [archiver encodeObject:[self visibleColumnIdentifiers] forKey:@"visibleColumnIdentifiers"];
