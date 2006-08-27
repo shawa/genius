@@ -1,10 +1,7 @@
-//
-//  GeniusPair.h
 //  Genius
 //
-//  Created by John R Chang on Thu Nov 20 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import <Foundation/Foundation.h>
 #import "GeniusItem.h"

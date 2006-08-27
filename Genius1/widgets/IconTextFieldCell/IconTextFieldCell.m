@@ -1,9 +1,9 @@
 //
 //  IconTextFieldCell.m
-//  Genius
 //
 //  Created by John R Chang on Mon Jan 12 2004.
-//  Copyright (c) 2004 __MyCompanyName__. All rights reserved.
+//  This code is Creative Commons Public Domain.  You may use it for any purpose whatsoever.
+//  http://creativecommons.org/licenses/publicdomain/
 //
 
 #import "IconTextFieldCell.h"

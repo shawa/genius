@@ -1,10 +1,7 @@
+//  Genius
 //
-//  GeniusStringDiff.m
-//  test
-//
-//  Created by John R Chang on 2004-12-01.
-//  Copyright 2004 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusStringDiff.h"
 

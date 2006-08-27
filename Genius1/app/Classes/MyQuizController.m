@@ -1,7 +1,12 @@
+//  Genius
+//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
+
 #import "MyQuizController.h"
 #include <unistd.h> // getpid
 #import "GeniusWelcomePanel.h"
-#import "NSStringSimiliarity.h"
+#import "NSString+Similiarity.h"
 #import "GeniusStringDiff.h"
 
 

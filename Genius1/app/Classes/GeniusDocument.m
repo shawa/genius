@@ -1,10 +1,7 @@
+//  Genius
 //
-//  GeniusDocument.m
-//  Vocab-O-Matic
-//
-//  Created by John R Chang on Sat Oct 18 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusDocument.h"
 #import "GeniusDocumentPrivate.h"

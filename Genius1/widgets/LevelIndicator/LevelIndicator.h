@@ -2,11 +2,16 @@
 //  LevelIndicator.h
 //
 //  Created by John R Chang on Fri Oct 08 2004.
-//  This code is distributed under Creative Commons Attribution 2.0.
-//  http://creativecommons.org/licenses/by/2.0/
+//  This code is Creative Commons Public Domain.  You may use it for any purpose whatsoever.
+//  http://creativecommons.org/licenses/publicdomain/
 //
 
+/*
+	NOTE: Obsolete in Mac OS X 10.4 Tiger and later.  See AppKit/NSLevelIndicator.h
+*/
+
 #import <Cocoa/Cocoa.h>
+
 
 @interface LevelIndicator : NSView
 {
