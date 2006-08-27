@@ -1,10 +1,7 @@
-// 
-//  GeniusAssociation.m
-//  Genius2
+//  Genius
 //
-//  Created by John R Chang on 2005-09-24.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusAssociation.h"
 
@@ -157,6 +154,8 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 
 - (float) predictedValue
 {
+	[self willAccessValueForKey:GeniusAssociationPredictedValueKey];
+
 	NSArray * dataPoints = [self dataPoints];
 	float result = [GeniusAssociationDataPoint predictedValueWithDataPoints:dataPoints];
 	unsigned int handicap = [[self valueForKey:GeniusAssociationHandicapKey] unsignedIntValue];
@@ -164,6 +163,8 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 		result = 0.0;
 	result += [GeniusAssociation _handicapToPercentValue:handicap];
 	
+	[self willAccessValueForKey:GeniusAssociationPredictedValueKey];
+
 	if (result == -1.0)
 		return -1.0;
 	return MIN(result, 1.0);

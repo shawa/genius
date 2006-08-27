@@ -1,10 +1,7 @@
+//  Genius
 //
-//  QuizModel.m
-//  Genius2
-//
-//  Created by John R Chang on 2005-10-09.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "QuizModel.h"
 
@@ -60,7 +57,7 @@ const kQuizModelDefaultRequestedCount = 10;
 		else
 			[fragments addObject:@"((sourceAtom == parentItem.atomA AND targetAtom == parentItem.atomB) OR (sourceAtom == parentItem.atomB AND targetAtom == parentItem.atomA))"];
 
-		if (_requestedMinScore != 1.0)
+		if (_requestedMinScore != -1.0)
 			[fragments addObject:[NSString stringWithFormat:@"(predictedValue >= %f)", _requestedMinScore]];
 		
 		NSMutableString * query = [NSMutableString string];

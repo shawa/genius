@@ -27,7 +27,6 @@
 		231A11C508FF1EA5004A16ED /* preferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 231A11BF08FF1EA5004A16ED /* preferences.tiff */; };
 		23380CC708E58CE200862CBC /* GeniusAtom.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC008E58CE200862CBC /* GeniusAtom.m */; };
 		23380CC808E58CE200862CBC /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CC208E58CE200862CBC /* GeniusItem.m */; };
-		23380CE408E58DFF00862CBC /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23380CD708E58DFF00862CBC /* IconTextFieldCell.m */; };
 		23443B0909436AD50070D478 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
 		23443B0A09436AD90070D478 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
 		23443C4E0943827D0070D478 /* IntegerFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23443C4C0943827D0070D478 /* IntegerFormatter.m */; };
@@ -43,7 +42,6 @@
 		238127B40941E30B0001CF4D /* ImageStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 238127B30941E30B0001CF4D /* ImageStringFormatter.m */; };
 		23835E9C08F96C550066323F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23835E9A08F96C550066323F /* GeniusDocument.nib */; };
 		23835F1A08F970380066323F /* GeniusValueTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 23835F1008F970380066323F /* GeniusValueTransformers.m */; };
-		23835F1B08F970380066323F /* NSStringSimiliarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 23835F1208F970380066323F /* NSStringSimiliarity.m */; };
 		2383601508F9A1680066323F /* QuizModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2383601408F9A1680066323F /* QuizModel.m */; };
 		238C58610933E10B00926AF1 /* QuizOptions.nib in Resources */ = {isa = PBXBuildFile; fileRef = 238C585F0933E10A00926AF1 /* QuizOptions.nib */; };
 		238C58B20933EBFB00926AF1 /* QuizOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C58B10933EBFB00926AF1 /* QuizOptionsController.m */; };
@@ -52,6 +50,10 @@
 		238C5A760934BF6200926AF1 /* Help.html in Resources */ = {isa = PBXBuildFile; fileRef = 238C5A740934BF6200926AF1 /* Help.html */; };
 		238C5A790934BF6B00926AF1 /* Relax.html in Resources */ = {isa = PBXBuildFile; fileRef = 238C5A770934BF6B00926AF1 /* Relax.html */; };
 		238C5BBD0934D67E00926AF1 /* NSTextViewWithLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */; };
+		239791290AA2099800139CDF /* NSString+Similiarity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 239791270AA2099800139CDF /* NSString+Similiarity.h */; };
+		2397912A0AA2099800139CDF /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 239791280AA2099800139CDF /* NSString+Similiarity.m */; };
+		2397915D0AA20A1600139CDF /* IconTextFieldCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2397915B0AA20A1600139CDF /* IconTextFieldCell.h */; };
+		2397915E0AA20A1600139CDF /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2397915C0AA20A1600139CDF /* IconTextFieldCell.m */; };
 		239CEE7E08F9FFFE00B79606 /* Quiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 239CEE7C08F9FFFE00B79606 /* Quiz.nib */; };
 		23B7832808F9D6BB007CD679 /* QuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7832708F9D6BB007CD679 /* QuizController.m */; };
 		23B7837E08F9D7F9007CD679 /* GeniusV1FileImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7837908F9D7F9007CD679 /* GeniusV1FileImporter.m */; };
@@ -74,34 +76,6 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		4A9504D0FFE6A4CB11CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PREBINDING = NO;
-				ZERO_LINK = NO;
-			};
-			name = Development;
-		};
-		4A9504D1FFE6A4CB11CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				PREBINDING = NO;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		2303020F09436A27003919FC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -110,6 +84,8 @@
 			dstSubfolderSpec = 16;
 			files = (
 				23443B0A09436AD90070D478 /* Samples in CopyFiles */,
+				239791290AA2099800139CDF /* NSString+Similiarity.h in CopyFiles */,
+				2397915D0AA20A1600139CDF /* IconTextFieldCell.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +130,6 @@
 		23380CC008E58CE200862CBC /* GeniusAtom.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAtom.m; sourceTree = "<group>"; };
 		23380CC108E58CE200862CBC /* GeniusItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusItem.h; sourceTree = "<group>"; };
 		23380CC208E58CE200862CBC /* GeniusItem.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusItem.m; sourceTree = "<group>"; };
-		23380CD608E58DFF00862CBC /* IconTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconTextFieldCell.h; sourceTree = "<group>"; };
-		23380CD708E58DFF00862CBC /* IconTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconTextFieldCell.m; sourceTree = "<group>"; };
 		23443B0409436AD50070D478 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Samples; path = UserDocs/Samples; sourceTree = "<group>"; };
 		23443C4B0943827D0070D478 /* IntegerFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegerFormatter.h; sourceTree = "<group>"; };
 		23443C4C0943827D0070D478 /* IntegerFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegerFormatter.m; sourceTree = "<group>"; };
@@ -178,8 +152,6 @@
 		23835E9B08F96C550066323F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GeniusDocument.nib; sourceTree = "<group>"; };
 		23835F0F08F970380066323F /* GeniusValueTransformers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusValueTransformers.h; sourceTree = "<group>"; };
 		23835F1008F970380066323F /* GeniusValueTransformers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusValueTransformers.m; sourceTree = "<group>"; };
-		23835F1108F970380066323F /* NSStringSimiliarity.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSStringSimiliarity.h; sourceTree = "<group>"; };
-		23835F1208F970380066323F /* NSStringSimiliarity.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSStringSimiliarity.m; sourceTree = "<group>"; };
 		2383601308F9A1680066323F /* QuizModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizModel.h; sourceTree = "<group>"; };
 		2383601408F9A1680066323F /* QuizModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizModel.m; sourceTree = "<group>"; };
 		238C58600933E10A00926AF1 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/QuizOptions.nib; sourceTree = "<group>"; };
@@ -191,6 +163,10 @@
 		238C5A780934BF6B00926AF1 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = English; path = English.lproj/Relax.html; sourceTree = "<group>"; };
 		238C5BBB0934D67E00926AF1 /* NSTextViewWithLinks.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTextViewWithLinks.h; sourceTree = "<group>"; };
 		238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSTextViewWithLinks.m; sourceTree = "<group>"; };
+		239791270AA2099800139CDF /* NSString+Similiarity.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString+Similiarity.h"; sourceTree = "<group>"; };
+		239791280AA2099800139CDF /* NSString+Similiarity.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSString+Similiarity.m"; sourceTree = "<group>"; };
+		2397915B0AA20A1600139CDF /* IconTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconTextFieldCell.h; sourceTree = "<group>"; };
+		2397915C0AA20A1600139CDF /* IconTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconTextFieldCell.m; sourceTree = "<group>"; };
 		239CEE7D08F9FFFE00B79606 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Quiz.nib; sourceTree = "<group>"; };
 		23B7832608F9D6BB007CD679 /* QuizController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizController.h; sourceTree = "<group>"; };
 		23B7832708F9D6BB007CD679 /* QuizController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizController.m; sourceTree = "<group>"; };
@@ -363,10 +339,9 @@
 				238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */,
 				23DB8991096A97EB00487E23 /* CustomizableTableView.h */,
 				23DB8992096A97EB00487E23 /* CustomizableTableView.m */,
-				23380CD608E58DFF00862CBC /* IconTextFieldCell.h */,
-				23380CD708E58DFF00862CBC /* IconTextFieldCell.m */,
 				23DC37B208FD51A600CF4BAE /* ColorView.h */,
 				23DC37B308FD51A600CF4BAE /* ColorView.m */,
+				2397915A0AA20A1600139CDF /* IconTextFieldCell */,
 				238127B20941E30B0001CF4D /* ImageStringFormatter.h */,
 				238127B30941E30B0001CF4D /* ImageStringFormatter.m */,
 				23443C4B0943827D0070D478 /* IntegerFormatter.h */,
@@ -388,8 +363,7 @@
 			children = (
 				23835F0F08F970380066323F /* GeniusValueTransformers.h */,
 				23835F1008F970380066323F /* GeniusValueTransformers.m */,
-				23835F1108F970380066323F /* NSStringSimiliarity.h */,
-				23835F1208F970380066323F /* NSStringSimiliarity.m */,
+				239791260AA2099800139CDF /* NSString+Similiarity */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -414,6 +388,24 @@
 			);
 			name = "Quiz Classes";
 			path = Quiz;
+			sourceTree = "<group>";
+		};
+		239791260AA2099800139CDF /* NSString+Similiarity */ = {
+			isa = PBXGroup;
+			children = (
+				239791270AA2099800139CDF /* NSString+Similiarity.h */,
+				239791280AA2099800139CDF /* NSString+Similiarity.m */,
+			);
+			path = "NSString+Similiarity";
+			sourceTree = "<group>";
+		};
+		2397915A0AA20A1600139CDF /* IconTextFieldCell */ = {
+			isa = PBXGroup;
+			children = (
+				2397915B0AA20A1600139CDF /* IconTextFieldCell.h */,
+				2397915C0AA20A1600139CDF /* IconTextFieldCell.m */,
+			);
+			path = IconTextFieldCell;
 			sourceTree = "<group>";
 		};
 		23B7837708F9D7F9007CD679 /* compatibility */ = {
@@ -518,20 +510,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PREBINDING = NO;
-				PRODUCT_NAME = Genius;
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			name = Genius;
@@ -546,12 +524,6 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 238C58470933C1FB00926AF1 /* Build configuration list for PBXProject "Genius2" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504D0FFE6A4CB11CA0CBA /* Development */,
-				4A9504D1FFE6A4CB11CA0CBA /* Deployment */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Genius2 */;
 			projectDirPath = "";
@@ -606,10 +578,8 @@
 				23FD30EF0876DB9000B75A2F /* GeniusDocument.xcdatamodel in Sources */,
 				23380CC708E58CE200862CBC /* GeniusAtom.m in Sources */,
 				23380CC808E58CE200862CBC /* GeniusItem.m in Sources */,
-				23380CE408E58DFF00862CBC /* IconTextFieldCell.m in Sources */,
 				2349721B08F0C06D0004234D /* GeniusDocumentInfo.m in Sources */,
 				23835F1A08F970380066323F /* GeniusValueTransformers.m in Sources */,
-				23835F1B08F970380066323F /* NSStringSimiliarity.m in Sources */,
 				2383601508F9A1680066323F /* QuizModel.m in Sources */,
 				23B7832808F9D6BB007CD679 /* QuizController.m in Sources */,
 				23B7837E08F9D7F9007CD679 /* GeniusV1FileImporter.m in Sources */,
@@ -638,6 +608,8 @@
 				23D5869A0961EBAB0024FFCF /* GeniusAssociation.m in Sources */,
 				23DB8994096A97EB00487E23 /* CustomizableTableView.m in Sources */,
 				2314A9B109A78AA7006138BA /* KFSplitView.m in Sources */,
+				2397912A0AA2099800139CDF /* NSString+Similiarity.m in Sources */,
+				2397915E0AA20A1600139CDF /* IconTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

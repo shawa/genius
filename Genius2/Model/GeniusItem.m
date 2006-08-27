@@ -1,10 +1,7 @@
-// 
-//  GeniusItem.m
-//  Genius2
+//  Genius
 //
-//  Created by John R Chang on 2005-09-23.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusItem.h"
 

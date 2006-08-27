@@ -1,10 +1,7 @@
+//  Genius
 //
-//  GeniusScrollView.h
-//  Genius2
-//
-//  Created by John R Chang on 2005-10-14.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import <Cocoa/Cocoa.h>
 

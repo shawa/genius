@@ -1,3 +1,8 @@
+//  Genius
+//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
+
 #import "GeniusAppDelegate.h"
 
 #import "GeniusValueTransformers.h"
@@ -42,7 +47,7 @@
 
 - (IBAction) openTipJarSite:(id)sender
 {
-    NSURL * url = [NSURL URLWithString:@"http://homepage.mac.com/jrc/Software/"];
+    NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/#tipjar"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
@@ -76,6 +81,12 @@
     [sHelpController showWindow:sender];
 }
 
+- (IBAction) openGeniusWebSite:(id)sender
+{
+    NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (IBAction) openSupportSite:(id)sender
 {
     NSURL * url = [NSURL URLWithString:@"http://groups.yahoo.com/group/genius-talk/"];
@@ -90,19 +101,27 @@
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
     srandom(time(NULL) * getpid());
-}
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	_isNewVersion = NO;
 
 	// LastVersionRun
     NSBundle * mainBundle = [NSBundle mainBundle];
     NSString * currentVersion = [mainBundle objectForInfoDictionaryKey:(id)kCFBundleVersionKey];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * lastVersion = [ud stringForKey:@"LastVersionRun"];
-    if ((lastVersion == nil) || ([currentVersion compare:lastVersion] > NSOrderedSame))
-    {
+    if ((lastVersion == nil) || ([currentVersion isEqual:lastVersion] == NO))
+	{
+		_isNewVersion = YES;
+
         [ud setObject:currentVersion forKey:@"LastVersionRun"];
+        [ud setObject:nil forKey:@"OpenFiles"];
+	}
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+	if (_isNewVersion)
+	{
         [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
     }
 }
@@ -114,7 +133,7 @@
 	// OpenFiles
 	NSDocumentController * dc = [NSDocumentController sharedDocumentController];
     NSArray * openFiles = [ud objectForKey:@"OpenFiles"];
-	if (openFiles && [openFiles count] > 0)
+	if (openFiles && [openFiles count] > 0 && _isNewVersion == NO)
 	{
 		NSString * path;
 		NSEnumerator * pathEnumerator = [openFiles objectEnumerator];

@@ -1,20 +1,21 @@
 P1:
-level indicator doesnt draw
 quiz handling of blank strings / lex similarity return only
-document dirty bit for document info		*?
+document dirty bit for document info
+drop the new scoring system
 
 P2:
-bi columns after save
-
-check for leaks
-performance
-examples
+level indicator doesnt draw
+remember table view columns
 
 P3:
-ER: new first item
 
 
 // PUNT
+examples
+check for leaks
+performance
+
+ER: new first item
 drag and drop to text
 level indicator is clickable
 improve text import

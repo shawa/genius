@@ -1,10 +1,7 @@
+//  Genius
 //
-//  GeniusWindowController.m
-//  Genius2
-//
-//  Created by John R Chang on 2005-10-14.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusWindowController.h"
 
@@ -24,6 +21,11 @@
 #import "ColorView.h"
 #import "KFSplitView.h"
 #import "ImageStringFormatter.h"
+
+
+@interface GeniusWindowController (Private)
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
+@end
 
 
 @implementation GeniusWindowController

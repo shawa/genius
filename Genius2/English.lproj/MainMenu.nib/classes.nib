@@ -8,6 +8,7 @@
                 makePlainText = id; 
                 newItem = id; 
                 openFileSharingSite = id; 
+                openGeniusWebSite = id; 
                 openSupportSite = id; 
                 openTipJarSite = id; 
                 resetItemScore = id; 

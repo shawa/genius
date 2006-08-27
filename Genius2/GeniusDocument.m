@@ -1,8 +1,7 @@
-//  GeniusDocument.m
-//  Genius2
+//  Genius
 //
-//  Created by John R Chang on 2005-07-02.
-//  Copyright __MyCompanyName__ 2005 . All rights reserved.
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusDocument.h"
 
@@ -30,7 +29,6 @@ static NSString * GeniusDocumentCorrectCountABKey = @"correctCountAB";
 static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 
 @interface GeniusDocument (Private)
-- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
 - (void) touchOverallPercent;
 @end
 
@@ -111,12 +109,13 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	[(GeniusWindowController *)windowController bindTextView:atomBTextView toController:itemArrayController withKeyPath:@"selection.atomB"];
 
 /* Misc. */
-//	[[self undoManager] removeAllActions]; // -documentInfo created a new managed object, which sets the dirty bit
+	[[self undoManager] removeAllActions]; // -documentInfo created a new managed object, which sets the dirty bit
 //	[tableView editColumn:kGeniusDocumentAtomAColumnIndex row:1 withEvent:nil select:YES];
 }
 
 - (void)dealloc
-{
+{	
+	NSLog(@"dealloc");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	[_documentInfo release];

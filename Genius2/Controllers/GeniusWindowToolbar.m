@@ -1,10 +1,7 @@
-//
-//  GeniusWindowToolbar.m
 //  Genius
 //
-//  Created by John R Chang on 2005-10-14.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
+//  This code is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.
+//  http://creativecommons.org/licenses/by-nc-sa/2.5/
 
 #import "GeniusWindowToolbar.h"
 
@@ -35,7 +32,9 @@ NSString * GeniusToolbarPreferencesItemIdentifier = @"Preferences";
 	[toolbar setAllowsUserCustomization:YES];
 	[toolbar setAutosavesConfiguration:YES];
 	
+#if 0
 	_levelIndicator = [levelIndicator retain];	// XXX
+#endif
 	_searchField = searchField;
 	
     [[self window] setToolbar:toolbar];
@@ -161,8 +160,13 @@ NSString * GeniusToolbarPreferencesItemIdentifier = @"Preferences";
             [toolbarItem setLabel:label];
             [toolbarItem setPaletteLabel:label];
             
-            [toolbarItem setView:_levelIndicator];
-			[toolbarItem setMinSize:NSMakeSize(64.0,NSHeight([_levelIndicator frame]))];
+			NSRect rect = NSMakeRect(0,0, 64.0, 16.0);
+			NSLevelIndicator * indicator = [[NSLevelIndicator alloc] initWithFrame:rect];
+			[[indicator cell] setLevelIndicatorStyle:NSContinuousCapacityLevelIndicatorStyle];
+			[indicator bind:NSValueBinding toObject:[self document] withKeyPath:@"overallPercent" options:nil];
+			
+            [toolbarItem setView:indicator];
+			[toolbarItem setMinSize:NSMakeSize(64.0,NSHeight([indicator frame]))];
 			//[toolbarItem setMaxSize:NSMakeSize(64.0,NSHeight([_levelIndicator frame]))];
         }
         else if ([itemIdentifier isEqual:GeniusToolbarSearchItemIdentifier])
