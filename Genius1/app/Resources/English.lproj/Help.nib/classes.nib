@@ -4,7 +4,7 @@
         {
             CLASS = GeniusHelpWindowController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {textView = id; }; 
+            OUTLETS = {webView = id; }; 
             SUPERCLASS = NSWindowController; 
         }
     ); 
