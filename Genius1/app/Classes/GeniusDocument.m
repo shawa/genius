@@ -24,6 +24,7 @@
 #import "GeniusAssociationEnumerator.h"
 #import "MyQuizController.h"
 #import "NSArrayGeniusAdditions.h"
+#import "GeniusPreferences.h"
 
 
 @interface IsPairImportantTransformer : NSValueTransformer
@@ -55,6 +56,7 @@
 
 
 @interface GeniusDocument (VeryPrivate)
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs;
 - (void) _updateStatusText;
 - (void) _updateLevelIndicator;
@@ -152,6 +154,11 @@
     //[cell release];
     
     [tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTabularTextPboardType, nil]];    
+
+	// Configure list font size
+	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
+	[self _handleUserDefaultsDidChange:nil];
         
     if (_shouldShowImportWarningOnSave)
         [self updateChangeCount:NSChangeDone];
@@ -266,6 +273,61 @@
 
 
 @implementation GeniusDocument (VeryPrivate)
+
++ (float) listTextFontSizeForSizeMode:(int)mode
+{
+	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
+
+	switch (mode)
+	{
+		case 0:
+			return [NSFont smallSystemFontSize];
+		case 1:
+			return [NSFont systemFontSize];
+		case 2:
+			return 16.0;
+	}
+	
+	return [NSFont systemFontSize];
+}
+
++ (float) rowHeightForSizeMode:(int)mode
+{
+	switch (mode)
+	{
+		case 0:
+			return [NSFont smallSystemFontSize] + 4.0;
+		case 1:
+			return [NSFont systemFontSize] + 5.0;
+		case 2:
+			return 16.0 + 6.0;
+	}
+	
+	return [NSFont systemFontSize];
+}
+
+- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
+{	
+	// _dismissFieldEditor
+    NSWindow * window = [[[self windowControllers] objectAtIndex:0] window];
+	if ([window makeFirstResponder:window] == NO)
+		[window endEditingFor:nil];
+	
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+
+	// Handle font size
+	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
+	float fontSize = [GeniusDocument listTextFontSizeForSizeMode:mode];
+
+	float rowHeight = [GeniusDocument rowHeightForSizeMode:mode];
+	[tableView setRowHeight:rowHeight];
+
+	NSEnumerator * tableColumnEnumerator = [[tableView tableColumns] objectEnumerator];
+	NSTableColumn * tableColumn;
+	while ((tableColumn = [tableColumnEnumerator nextObject]))
+		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
+}
+
 
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs
 {
@@ -676,11 +738,11 @@
         return;
     }
 
-    // Hide document window
+/*    // Hide document window
     NSWindowController * windowController = [[self windowControllers] lastObject];
     NSWindow * documentWindow = [windowController window];
-    [documentWindow orderOut:self];
-    
+    [documentWindow orderOut:self];*/  
+	
     // Start quiz
     NSTimeInterval studyTime;
     MyQuizController * quizController = [[MyQuizController alloc] initWithWindowNibName:@"Quiz"];
@@ -690,7 +752,7 @@
     // Show document window
     [self _updateStatusText];
 	[self _updateLevelIndicator];
-    [windowController showWindow:self];
+//    [windowController showWindow:self];
 }
 
 - (IBAction)quizAutoPick:(id)sender
@@ -1226,6 +1288,16 @@ static NSTableColumn * sDuringEditTableColumn = nil;
         if ([[string lowercaseString] hasPrefix:[uncompletedString lowercaseString]])
             return string;
     return nil;
+}
+
+@end
+
+
+@implementation GeniusDocument (NSWindowDelegate)
+
+- (void)windowWillClose:(NSNotification *)aNotification
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

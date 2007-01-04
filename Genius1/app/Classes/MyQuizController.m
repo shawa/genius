@@ -21,6 +21,11 @@
 #import "NSString+Similiarity.h"
 #import "GeniusStringDiff.h"
 
+#import "GeniusPreferences.h"
+
+
+const NSTimeInterval kQuizBackdropAnimationEaseInTimeInterval = 0.3;
+const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 
 @implementation MyQuizController
 
@@ -119,8 +124,6 @@
 
 - (void) runQuiz:(GeniusAssociationEnumerator *)enumerator cumulativeTime:(NSTimeInterval *)cumulativeTimePtr
 {
-	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-
     // Show "Take a moment to slow down..." panel
     BOOL result = [[GeniusWelcomePanel sharedWelcomePanel] runModal];
     if (result == NO)
@@ -131,7 +134,37 @@
     /*NSTimer * studyTimer = [[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(_handleStudyTimer:) userInfo:nil repeats:YES] retain];
     [[NSRunLoop currentRunLoop] addTimer:studyTimer forMode:NSModalPanelRunLoopMode];*/
 
+
+	// Hide other document windows
+	NSEnumerator * documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
+	NSDocument * document;
+	while ((document = [documentEnumerator nextObject]))
+	{
+		NSEnumerator * windowControllerEnumerator = [[document windowControllers] objectEnumerator];
+		NSWindowController * windowController;
+		while ((windowController = [windowControllerEnumerator nextObject]))
+			[[windowController window] orderOut:nil];
+	}
+	
+	// Put up backdrop window
+	_screenWindow = nil;
+	NSAnimation * animation = nil;
+	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+	if ([ud boolForKey:GeniusPreferencesQuizUseFullScreenKey])
+	{
+		_screenWindow = [QuizBackdropWindow new];
+
+		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
+		[animation setDelegate:self];
+		[animation addProgressMark:0.025];
+		[_screenWindow setAlphaValue:0.0];
+		[_screenWindow orderFront:self];
+
+		[animation startAnimation];
+	}
+
     [[self window] center];
+
 
     _enumerator = [enumerator retain];
     
@@ -154,8 +187,8 @@
         [answerTextView setNeedsDisplay:YES];
 
 
-		NSString * origString = [answerItem stringValue];
-		if (origString == nil)
+		NSString * targetString = [answerItem stringValue];
+		if (targetString == nil)
 			continue;
 
         // Prepare window for questioning
@@ -169,11 +202,11 @@
             [newAssociationView setHidden:NO];
 
             [entryField setEnabled:YES];
-            [entryField setStringValue:origString];
+            [entryField setStringValue:targetString];
             [entryField selectText:self];
             
 			[_newSound stop];
-			if ([ud boolForKey:@"useSoundEffects"])
+			if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
 				[_newSound play];
         }
         else
@@ -202,46 +235,64 @@
             [getRightView setHidden:NO];
 
 
-			NSString * userString = [entryField stringValue];
+			NSString * inputString = [entryField stringValue];
 			
-            float similarity = [origString isSimilarToString:userString];
-            #if DEBUG
-                NSLog(@"similarity = %f", similarity);
-            #endif
-            if (similarity == 1.0)
+			float correctness = 0.0;
+			int matchingMode = [ud integerForKey:GeniusPreferencesQuizMatchingModeKey];
+			switch (matchingMode)
 			{
-				if ([ud boolForKey:@"useSoundEffects"])
+				case GeniusPreferencesQuizExactMatchingMode:
+					correctness = (float)[targetString isEqualToString:inputString];
+					break;
+				case GeniusPreferencesQuizCaseInsensitiveMatchingMode:
+					correctness = (float)([targetString localizedCaseInsensitiveCompare:inputString] == NSOrderedSame);
+					break;
+				case GeniusPreferencesQuizSimilarMatchingMode:
+					correctness = [targetString isSimilarToString:inputString];
+					break;
+				default:
+					NSAssert(NO, @"matchingMode");
+			}
+			
+            #if DEBUG
+                NSLog(@"correctness = %f", correctness);
+            #endif
+            if (correctness == 1.0)
+			{
+				if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
 					[_rightSound play];    
 				[_enumerator associationRight:_currentAssociation];
 				
 				goto skip_review;
 			}
 
-			// Get annotated diff string
-			NSAttributedString * attrString = [GeniusStringDiff attributedStringHighlightingDifferencesFromString:userString toString:origString];
+			if ([ud boolForKey:GeniusPreferencesQuizUseVisualErrorsKey])
+			{
+				// Get annotated diff string
+				NSAttributedString * attrString = [GeniusStringDiff attributedStringHighlightingDifferencesFromString:inputString toString:targetString];
 
-			NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
-			NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-			[parStyle setAlignment:NSCenterTextAlignment];
-			[mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
-			[parStyle release];
+				NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
+				NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+				[parStyle setAlignment:NSCenterTextAlignment];
+				[mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
+				[parStyle release];
 
-			[entryField setAttributedStringValue:mutAttrString];
-			[mutAttrString release];
+				[entryField setAttributedStringValue:mutAttrString];
+				[mutAttrString release];
+			}
 
-
-            if (similarity > 0.5)
+            if (correctness > 0.5)
             {
                 // correct
                 [yesButton setKeyEquivalent:@"\r"];
-				if ([ud boolForKey:@"useSoundEffects"])
+				if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
 					[_rightSound play];    
             }
-            else if (similarity == 0.0)
+            else if (correctness == 0.0)
             {
                 // incorrect
                 [noButton setKeyEquivalent:@"\r"];
-				if ([ud boolForKey:@"useSoundEffects"])
+				if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
 					[_wrongSound play];
             }
             else
@@ -269,6 +320,24 @@ skip_review:
     [studyTimer release];*/
     
     [self close];
+
+	// Take down backdrop window
+	if (_screenWindow)
+	{
+		[animation setAnimationCurve:NSAnimationEaseOut];
+		[animation setDuration:kQuizBackdropAnimationEaseOutTimeInterval];
+		[animation startAnimation];
+		[_screenWindow close];
+		[animation release];
+	}
+
+	// Show other document windows
+	documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
+	while ((document = [documentEnumerator nextObject]))
+	{
+		NSArray * windowControllers = [document windowControllers];
+		[windowControllers makeObjectsPerformSelector:@selector(showWindow:) withObject:nil];
+	}
 }
 
 
@@ -347,6 +416,18 @@ skip_review:
 - (void)windowWillClose:(NSNotification *)aNotification
 {
     [NSApp abortModal];
+}
+
+@end
+
+
+@implementation MyQuizController (NSAnimationDelegate)
+
+- (void)animation:(NSAnimation*)animation didReachProgressMark:(NSAnimationProgress)progress
+{
+	float alpha = [animation currentValue] * 0.5;
+	[_screenWindow setAlphaValue:alpha];
+	[animation addProgressMark:0.1];
 }
 
 @end

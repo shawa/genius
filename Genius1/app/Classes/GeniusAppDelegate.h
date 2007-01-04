@@ -22,7 +22,7 @@
 
 }
 
-- (IBAction) showTipJar:(id)sender;
+- (IBAction) openTipJarSite:(id)sender;
 
 - (IBAction)importFile:(id)sender;
 

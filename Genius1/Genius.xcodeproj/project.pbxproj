@@ -52,10 +52,6 @@
 		23227D1C0725BD7600D09B7F /* Storage Files.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23227D080725BD7600D09B7F /* Storage Files.icns */; };
 		23227D260725BDA100D09B7F /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D1F0725BDA100D09B7F /* Add.tiff */; };
 		23227D270725BDA100D09B7F /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D200725BDA100D09B7F /* Add_Pressed.tiff */; };
-		23227D290725BDA100D09B7F /* status-green.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D220725BDA100D09B7F /* status-green.tiff */; };
-		23227D2A0725BDA100D09B7F /* status-red.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D230725BDA100D09B7F /* status-red.tiff */; };
-		23227D2B0725BDA100D09B7F /* status-yellow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D240725BDA100D09B7F /* status-yellow.tiff */; };
-		23286A750AA2077200EC1FFF /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
 		23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 23286A740AA2077200EC1FFF /* NSString+Similiarity.m */; };
 		23516AB8075EE2CE0020D17E /* GeniusStringDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */; };
 		23516AB9075EE2CE0020D17E /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */; };
@@ -71,6 +67,9 @@
 		2366405F0AA2056100888E37 /* SimpleProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640530AA2056100888E37 /* SimpleProgressIndicator.h */; };
 		236640600AA2056100888E37 /* SimpleProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640540AA2056100888E37 /* SimpleProgressIndicator.m */; };
 		237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 237DA3DE07395DD6006B7D4B /* Localizable.strings */; };
+		23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
+		23A0B4A20B353D4D00801B1A /* GeniusPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F819330B3533080041656E /* GeniusPreferences.h */; };
+		23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
 		23AA22930AA305E6009AF327 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23AA22920AA305E6009AF327 /* Genius.icns */; };
 		23AA229B0AA30E31009AF327 /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		23B358C4073C0FEC00B89026 /* Release History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
@@ -80,6 +79,11 @@
 		23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B358E4073C5B7D00B89026 /* PreQuiz.nib */; };
 		23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B00B0AA1CD560069E6D3 /* play.tiff */; };
 		23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B2310AA1E65D0069E6D3 /* Inspector.png */; };
+		23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F818E20B35312B0041656E /* GeniusPreferencesController.m */; };
+		23F818E70B3531390041656E /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23F818E50B3531390041656E /* Preferences.nib */; };
+		23F819360B3533080041656E /* GeniusPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819340B3533080041656E /* GeniusPreferences.m */; };
+		23F819720B35349D0041656E /* QuizBackdropWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F819700B35349D0041656E /* QuizBackdropWindow.h */; };
+		23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819710B35349D0041656E /* QuizBackdropWindow.m */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -146,9 +150,6 @@
 		23227D080725BD7600D09B7F /* Storage Files.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Storage Files.icns"; sourceTree = "<group>"; };
 		23227D1F0725BDA100D09B7F /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
 		23227D200725BDA100D09B7F /* Add_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add_Pressed.tiff; sourceTree = "<group>"; };
-		23227D220725BDA100D09B7F /* status-green.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-green.tiff"; sourceTree = "<group>"; };
-		23227D230725BDA100D09B7F /* status-red.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-red.tiff"; sourceTree = "<group>"; };
-		23227D240725BDA100D09B7F /* status-yellow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-yellow.tiff"; sourceTree = "<group>"; };
 		23286A730AA2077200EC1FFF /* NSString+Similiarity.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString+Similiarity.h"; sourceTree = "<group>"; };
 		23286A740AA2077200EC1FFF /* NSString+Similiarity.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSString+Similiarity.m"; sourceTree = "<group>"; };
 		23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusStringDiff.h; sourceTree = "<group>"; };
@@ -172,6 +173,13 @@
 		23B358E5073C5B7D00B89026 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PreQuiz.nib; sourceTree = "<group>"; };
 		23D0B00B0AA1CD560069E6D3 /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = play.tiff; path = "../Genius2/Controllers/toolbar-images/play.tiff"; sourceTree = SOURCE_ROOT; };
 		23D0B2310AA1E65D0069E6D3 /* Inspector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Inspector.png; sourceTree = "<group>"; };
+		23F818E10B35312B0041656E /* GeniusPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusPreferencesController.h; sourceTree = "<group>"; };
+		23F818E20B35312B0041656E /* GeniusPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferencesController.m; sourceTree = "<group>"; };
+		23F818E60B3531390041656E /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
+		23F819330B3533080041656E /* GeniusPreferences.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusPreferences.h; sourceTree = "<group>"; };
+		23F819340B3533080041656E /* GeniusPreferences.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferences.m; sourceTree = "<group>"; };
+		23F819700B35349D0041656E /* QuizBackdropWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QuizBackdropWindow.h; sourceTree = "<group>"; };
+		23F819710B35349D0041656E /* QuizBackdropWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QuizBackdropWindow.m; sourceTree = "<group>"; };
 		23FE373C07494CC00029DD61 /* Information.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Information.tiff; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -259,6 +267,8 @@
 		23227CB50725BD2600D09B7F /* widgets */ = {
 			isa = PBXGroup;
 			children = (
+				23F819700B35349D0041656E /* QuizBackdropWindow.h */,
+				23F819710B35349D0041656E /* QuizBackdropWindow.m */,
 				23227CB80725BD2600D09B7F /* image */,
 				23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */,
 				23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */,
@@ -296,6 +306,7 @@
 				2318E4200725C29F00726F95 /* Help.rtf */,
 				23B358E4073C5B7D00B89026 /* PreQuiz.nib */,
 				23227CFB0725BD7600D09B7F /* Quiz.nib */,
+				23F818E50B3531390041656E /* Preferences.nib */,
 				237DA3DE07395DD6006B7D4B /* Localizable.strings */,
 				23227CF70725BD7600D09B7F /* InfoPlist.strings */,
 				23AA22920AA305E6009AF327 /* Genius.icns */,
@@ -313,9 +324,6 @@
 				23227D200725BDA100D09B7F /* Add_Pressed.tiff */,
 				23D0B2310AA1E65D0069E6D3 /* Inspector.png */,
 				23FE373C07494CC00029DD61 /* Information.tiff */,
-				23227D220725BDA100D09B7F /* status-green.tiff */,
-				23227D230725BDA100D09B7F /* status-red.tiff */,
-				23227D240725BDA100D09B7F /* status-yellow.tiff */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -380,12 +388,24 @@
 			path = UserDocs;
 			sourceTree = "<group>";
 		};
+		23F818E00B35312B0041656E /* prefs */ = {
+			isa = PBXGroup;
+			children = (
+				23F819330B3533080041656E /* GeniusPreferences.h */,
+				23F819340B3533080041656E /* GeniusPreferences.m */,
+				23F818E10B35312B0041656E /* GeniusPreferencesController.h */,
+				23F818E20B35312B0041656E /* GeniusPreferencesController.m */,
+			);
+			path = prefs;
+			sourceTree = "<group>";
+		};
 		2A37F4AAFDCFA73011CA2CEA /* Genius */ = {
 			isa = PBXGroup;
 			children = (
 				23227C850725BD1300D09B7F /* Classes */,
 				23227CA40725BD2000D09B7F /* model */,
 				23227CB50725BD2600D09B7F /* widgets */,
+				23F818E00B35312B0041656E /* prefs */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				23227CEB0725BD7600D09B7F /* Resources */,
 				23B358BB073C0FA700B89026 /* User Documentation */,
@@ -439,7 +459,10 @@
 				236640550AA2056100888E37 /* IconTextFieldCell.h in Headers */,
 				236640570AA2056100888E37 /* LevelIndicator.h in Headers */,
 				2366405F0AA2056100888E37 /* SimpleProgressIndicator.h in Headers */,
-				23286A750AA2077200EC1FFF /* NSString+Similiarity.h in Headers */,
+				23F819720B35349D0041656E /* QuizBackdropWindow.h in Headers */,
+				23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */,
+				23A0B4A20B353D4D00801B1A /* GeniusPreferences.h in Headers */,
+				23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,9 +524,6 @@
 				23227D1C0725BD7600D09B7F /* Storage Files.icns in Resources */,
 				23227D260725BDA100D09B7F /* Add.tiff in Resources */,
 				23227D270725BDA100D09B7F /* Add_Pressed.tiff in Resources */,
-				23227D290725BDA100D09B7F /* status-green.tiff in Resources */,
-				23227D2A0725BDA100D09B7F /* status-red.tiff in Resources */,
-				23227D2B0725BDA100D09B7F /* status-yellow.tiff in Resources */,
 				2318E41F0725C29B00726F95 /* Help.nib in Resources */,
 				2318E4220725C29F00726F95 /* Help.rtf in Resources */,
 				237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */,
@@ -519,6 +539,7 @@
 				2366405C0AA2056100888E37 /* progress_left.tiff in Resources */,
 				2366405D0AA2056100888E37 /* progress_right.tiff in Resources */,
 				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
+				23F818E70B3531390041656E /* Preferences.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +568,9 @@
 				236640580AA2056100888E37 /* LevelIndicator.m in Sources */,
 				236640600AA2056100888E37 /* SimpleProgressIndicator.m in Sources */,
 				23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */,
+				23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */,
+				23F819360B3533080041656E /* GeniusPreferences.m in Sources */,
+				23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +647,14 @@
 				23B358E5073C5B7D00B89026 /* English */,
 			);
 			name = PreQuiz.nib;
+			sourceTree = "<group>";
+		};
+		23F818E50B3531390041656E /* Preferences.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23F818E60B3531390041656E /* English */,
+			);
+			name = Preferences.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -737,18 +769,21 @@
 		23D0AFE90AA1C7F50069E6D3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		23D0AFEA0AA1C7F50069E6D3 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
 		23D0AFEB0AA1C7F50069E6D3 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
 		};

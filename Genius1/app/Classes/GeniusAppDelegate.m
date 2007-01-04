@@ -24,14 +24,29 @@
 #import "GeniusDocumentFile.h"
 #include <unistd.h> // getpid
 
+#import "GeniusPreferences.h"
+#import "GeniusPreferencesController.h"
+
 
 @implementation GeniusAppDelegate
 
-- (IBAction) showTipJar:(id)sender
++ (void) initialize
+{
+	[GeniusPreferences registerDefaults];
+}
+
+- (IBAction) openTipJarSite:(id)sender
 {
     NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/#tipjar"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
+
+- (IBAction) showPreferences:(id)sender
+{
+	GeniusPreferencesController * pc = [GeniusPreferencesController sharedPreferencesController];
+	[pc runModal];
+}
+
 
 - (IBAction) showWebSite:(id)sender
 {

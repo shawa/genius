@@ -19,6 +19,7 @@
 #import "GeniusItem.h"
 #import "GeniusPair.h"
 #import "GeniusAssociationEnumerator.h"
+#import "QuizBackdropWindow.h"
 
 @interface MyQuizController : NSWindowController
 {
@@ -40,6 +41,7 @@
     NSSound * _newSound;
     NSSound * _rightSound;
     NSSound * _wrongSound;
+	QuizBackdropWindow * _screenWindow;
 
     GeniusItem * _visibleCueItem;       // used by key-value binding
     GeniusItem * _visibleAnswerItem;    // used by key-value binding
