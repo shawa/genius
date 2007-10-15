@@ -85,6 +85,7 @@
 		23F819720B35349D0041656E /* QuizBackdropWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F819700B35349D0041656E /* QuizBackdropWindow.h */; };
 		23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819710B35349D0041656E /* QuizBackdropWindow.m */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
+		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +184,7 @@
 		23FE373C07494CC00029DD61 /* Information.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Information.tiff; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -402,6 +404,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* Genius */ = {
 			isa = PBXGroup;
 			children = (
+				832389FE0CC39B1C00782903 /* TODO.txt */,
 				23227C850725BD1300D09B7F /* Classes */,
 				23227CA40725BD2000D09B7F /* model */,
 				23227CB50725BD2600D09B7F /* widgets */,
@@ -540,6 +543,7 @@
 				2366405D0AA2056100888E37 /* progress_right.tiff in Resources */,
 				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
 				23F818E70B3531390041656E /* Preferences.nib in Resources */,
+				832389FF0CC39B1C00782903 /* TODO.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
