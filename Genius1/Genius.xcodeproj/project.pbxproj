@@ -172,7 +172,7 @@
 		23B358BC073C0FA700B89026 /* Release History.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Release History.rtf"; sourceTree = "<group>"; };
 		23B358C9073C101800B89026 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		23B358E5073C5B7D00B89026 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PreQuiz.nib; sourceTree = "<group>"; };
-		23D0B00B0AA1CD560069E6D3 /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = play.tiff; path = "../Genius2/Controllers/toolbar-images/play.tiff"; sourceTree = SOURCE_ROOT; };
+		23D0B00B0AA1CD560069E6D3 /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = play.tiff; sourceTree = "<group>"; };
 		23D0B2310AA1E65D0069E6D3 /* Inspector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Inspector.png; sourceTree = "<group>"; };
 		23F818E10B35312B0041656E /* GeniusPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusPreferencesController.h; sourceTree = "<group>"; };
 		23F818E20B35312B0041656E /* GeniusPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferencesController.m; sourceTree = "<group>"; };
