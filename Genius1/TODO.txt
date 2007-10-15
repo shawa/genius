@@ -36,3 +36,6 @@ FEATURE: during quiz item swapping, back and forth, etc. (requested by Jeremy B.
 FEATURE: document statistics / grade
 FEATURE: hands-off interaction mode (Erika M.)
 ER: Dim screen during quiz mode (requested by Peter R.)
+
+
+
