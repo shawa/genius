@@ -50,9 +50,7 @@
 		238C5A760934BF6200926AF1 /* Help.html in Resources */ = {isa = PBXBuildFile; fileRef = 238C5A740934BF6200926AF1 /* Help.html */; };
 		238C5A790934BF6B00926AF1 /* Relax.html in Resources */ = {isa = PBXBuildFile; fileRef = 238C5A770934BF6B00926AF1 /* Relax.html */; };
 		238C5BBD0934D67E00926AF1 /* NSTextViewWithLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C5BBC0934D67E00926AF1 /* NSTextViewWithLinks.m */; };
-		239791290AA2099800139CDF /* NSString+Similiarity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 239791270AA2099800139CDF /* NSString+Similiarity.h */; };
 		2397912A0AA2099800139CDF /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 239791280AA2099800139CDF /* NSString+Similiarity.m */; };
-		2397915D0AA20A1600139CDF /* IconTextFieldCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2397915B0AA20A1600139CDF /* IconTextFieldCell.h */; };
 		2397915E0AA20A1600139CDF /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2397915C0AA20A1600139CDF /* IconTextFieldCell.m */; };
 		239CEE7E08F9FFFE00B79606 /* Quiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 239CEE7C08F9FFFE00B79606 /* Quiz.nib */; };
 		23B7832808F9D6BB007CD679 /* QuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B7832708F9D6BB007CD679 /* QuizController.m */; };
@@ -84,8 +82,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				23443B0A09436AD90070D478 /* Samples in CopyFiles */,
-				239791290AA2099800139CDF /* NSString+Similiarity.h in CopyFiles */,
-				2397915D0AA20A1600139CDF /* IconTextFieldCell.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
