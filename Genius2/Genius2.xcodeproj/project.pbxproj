@@ -157,7 +157,7 @@
 		238C58600933E10A00926AF1 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/QuizOptions.nib; sourceTree = "<group>"; };
 		238C58B00933EBFB00926AF1 /* QuizOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizOptionsController.h; sourceTree = "<group>"; };
 		238C58B10933EBFB00926AF1 /* QuizOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizOptionsController.m; sourceTree = "<group>"; };
-		238C59D10934B8DF00926AF1 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = ../Genius1/app/Resources/English.lproj/Help.nib; sourceTree = SOURCE_ROOT; };
+		238C59D10934B8DF00926AF1 /* Help.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Help.nib; path = English.lproj/Help.nib; sourceTree = "<group>"; };
 		238C59E50934B9BE00926AF1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		238C5A750934BF6200926AF1 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = English; path = English.lproj/Help.html; sourceTree = "<group>"; };
 		238C5A780934BF6B00926AF1 /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = English; path = English.lproj/Relax.html; sourceTree = "<group>"; };
@@ -651,7 +651,7 @@
 		238C59D00934B8DF00926AF1 /* Help.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				238C59D10934B8DF00926AF1 /* English */,
+				238C59D10934B8DF00926AF1 /* Help.nib */,
 			);
 			name = Help.nib;
 			sourceTree = "<group>";
