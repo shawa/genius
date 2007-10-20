@@ -24,7 +24,7 @@
 #import "GeniusAssociationEnumerator.h"
 #import "MyQuizController.h"
 #import "NSArrayGeniusAdditions.h"
-#import "GeniusPreferences.h"
+#import "GeniusPreferencesController.h"
 
 
 @interface IsPairImportantTransformer : NSValueTransformer

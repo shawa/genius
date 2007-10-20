@@ -24,7 +24,6 @@
 #import "GeniusDocumentFile.h"
 #include <unistd.h> // getpid
 
-#import "GeniusPreferences.h"
 #import "GeniusPreferencesController.h"
 
 
@@ -32,7 +31,26 @@
 
 + (void) initialize
 {
-	[GeniusPreferences registerDefaults];
+	// Register defaults
+	NSDictionary * defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+        
+		[NSNumber numberWithBool:YES], GeniusPreferencesUseSoundEffectsKey,
+		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseFullScreenKey,
+		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseVisualErrorsKey,
+		[NSNumber numberWithInt:GeniusPreferencesQuizSimilarMatchingMode], GeniusPreferencesQuizMatchingModeKey,
+        
+		[NSNumber numberWithInt:10], GeniusPreferencesQuizNumItemsKey,
+		[NSNumber numberWithInt:20], GeniusPreferencesQuizFixedTimeMinKey,
+		[NSNumber numberWithFloat:50.0], GeniusPreferencesQuizReviewLearnFloatKey,
+        
+		NULL];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+}
+
+- (void) dealloc {
+    [preferencesController release];
+    [super dealloc];
 }
 
 - (IBAction) openTipJarSite:(id)sender
@@ -43,8 +61,10 @@
 
 - (IBAction) showPreferences:(id)sender
 {
-	GeniusPreferencesController * pc = [GeniusPreferencesController sharedPreferencesController];
-	[pc runModal];
+    if (!preferencesController) {
+        preferencesController = [[GeniusPreferencesController alloc] init];        
+    }
+    [preferencesController showWindow:self];
 }
 
 
@@ -62,7 +82,13 @@
 
 - (IBAction) toggleSoundEffects:(id)sender
 {
-	// just to keep the menu item enabled
+    /* 
+       If we weren't using bindings to set this preference we'd need the following line of code.
+       But we are using bindings so it isn't needed.  We have to bind the menu item to something
+       or it wouldn't be enabled.  So we use this dummy method here.
+    
+      [[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:GeniusPreferencesUseSoundEffectsKey];
+    */
 }
 
 - (IBAction) showHelpWindow:(id)sender
@@ -88,26 +114,20 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
 
-	// -registerDefaults: doesn't work here for some reason
-/*	NSDictionary * registrationDict = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSNumber numberWithInt:NSOnState], @"useSoundEffects", nil];
-	[ud registerDefaults:registrationDict];*/
-	[ud setBool:YES forKey:@"useSoundEffects"];
-	
 	// LastVersionRun
     NSBundle * mainBundle = [NSBundle mainBundle];
     NSString * currentVersion = [mainBundle objectForInfoDictionaryKey:(id)kCFBundleVersionKey];
-    NSString * lastVersion = [ud stringForKey:@"LastVersionRun"];
+    NSString * lastVersion = [userDefaults stringForKey:@"LastVersionRun"];
     if (!lastVersion || [currentVersion compare:lastVersion] > NSOrderedSame)
     {
         [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
-        [ud setObject:currentVersion forKey:@"LastVersionRun"];
+        [userDefaults setObject:currentVersion forKey:@"LastVersionRun"];
     }
 
 	// OpenFiles
-    NSArray * openFiles = [ud objectForKey:@"OpenFiles"];
+    NSArray * openFiles = [userDefaults objectForKey:@"OpenFiles"];
 	if (openFiles)
 	{
 		NSString * path;
@@ -156,8 +176,7 @@
 			[documentPaths addObject:path];
 	}
 
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    [ud setObject:documentPaths forKey:@"OpenFiles"];
+    [[NSUserDefaults standardUserDefaults] setObject:documentPaths forKey:@"OpenFiles"];
 }
 
 @end

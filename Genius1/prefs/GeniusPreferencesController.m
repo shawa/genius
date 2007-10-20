@@ -6,30 +6,23 @@
 #import "GeniusPreferencesController.h"
 
 
+NSString * GeniusPreferencesUseSoundEffectsKey = @"UseSoundEffects";
+
+NSString * GeniusPreferencesListTextSizeModeKey = @"ListTextSizeMode";
+NSString * GeniusPreferencesQuizUseFullScreenKey = @"UseFullScreen";
+NSString * GeniusPreferencesQuizUseVisualErrorsKey = @"QuizUseVisualErrors";
+NSString * GeniusPreferencesQuizMatchingModeKey = @"QuizMatchingMode";
+
+NSString * GeniusPreferencesQuizChooseModeKey = @"QuizChooseMode";
+NSString * GeniusPreferencesQuizNumItemsKey = @"QuizNumItems";
+NSString * GeniusPreferencesQuizFixedTimeMinKey = @"QuizFixedTimeMin";
+NSString * GeniusPreferencesQuizReviewLearnFloatKey = @"QuizReviewLearnFloat";
+
 @implementation GeniusPreferencesController
 
-// file:///Developer/ADC%20Reference%20Library/documentation/Cocoa/Conceptual/Documents/Tasks/FAQ.html#//apple_ref/doc/uid/20000954-1081485
-+ (id) sharedPreferencesController
-{
-	static GeniusPreferencesController * sController = nil;
-	if (sController == nil)
-		sController = [[GeniusPreferencesController alloc] initWithWindowNibName:@"Preferences"];
-	return sController;
-}
-
-- (void) runModal
-{
-	[NSApp runModalForWindow:[self window]];
-}
-
-@end
-
-
-@implementation GeniusPreferencesController (NSWindowDelegate)
-
-- (void)windowWillClose:(NSNotification *)aNotification
-{
-	[NSApp stopModal];
+- (id) init {
+    self = [super initWithWindowNibName: @"Preferences"];
+    return self;
 }
 
 @end

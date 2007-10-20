@@ -20,8 +20,7 @@
 #import "GeniusWelcomePanel.h"
 #import "NSString+Similiarity.h"
 #import "GeniusStringDiff.h"
-
-#import "GeniusPreferences.h"
+#import "GeniusPreferencesController.h"
 
 
 const NSTimeInterval kQuizBackdropAnimationEaseInTimeInterval = 0.3;

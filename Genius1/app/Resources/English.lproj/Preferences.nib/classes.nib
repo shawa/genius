@@ -5,6 +5,11 @@
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = GeniusPreferencesController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindowController; 
         }
     ); 
     IBVersion = 1; 

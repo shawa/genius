@@ -17,13 +17,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class GeniusPreferencesController;
 
 @interface GeniusAppDelegate : NSObject {
-
+    GeniusPreferencesController *preferencesController;
 }
 
 - (IBAction) openTipJarSite:(id)sender;
-
 - (IBAction)importFile:(id)sender;
 
 @end

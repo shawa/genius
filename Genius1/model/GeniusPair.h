@@ -50,7 +50,7 @@
 
 // Equivalent object-based methods used by key bindings
 - (NSNumber *) scoreNumber; // nil means never been quizzed
-- (void) setScoreNumber:(NSNumber *)scoreNumber;
+- (void) setScoreNumber:(id)scoreNumber;
 
 /*- (unsigned int) right;
 - (void) setRight:(unsigned int)right;
