@@ -6,6 +6,23 @@
 	objectVersion = 42;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		83D9BE670CD110E90092858D /* Genius-1.7.dmg */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "Genius-1.7.dmg" */;
+			buildPhases = (
+				83D9BED50CD122050092858D /* ShellScript */,
+				83D9BECF0CD120100092858D /* CopyFiles */,
+				83D9BE660CD110E90092858D /* ShellScript */,
+			);
+			dependencies = (
+				83D9BE690CD110EF0092858D /* PBXTargetDependency */,
+			);
+			name = "Genius-1.7.dmg";
+			productName = DiskImage;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */; };
 		2318E4100725C16D00726F95 /* GeniusHelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */; };
@@ -70,11 +87,8 @@
 		23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
 		23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
 		23AA22930AA305E6009AF327 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23AA22920AA305E6009AF327 /* Genius.icns */; };
-		23AA229B0AA30E31009AF327 /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		23B358C4073C0FEC00B89026 /* Release History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
-		23B358C8073C100400B89026 /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		23B358D1073C101900B89026 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
-		23B358D8073C101C00B89026 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
 		23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B358E4073C5B7D00B89026 /* PreQuiz.nib */; };
 		23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B00B0AA1CD560069E6D3 /* play.tiff */; };
 		23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B2310AA1E65D0069E6D3 /* Inspector.png */; };
@@ -84,19 +98,35 @@
 		23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819710B35349D0041656E /* QuizBackdropWindow.m */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
+		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
+		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
+		83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
+		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
+		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		83D9BE680CD110EF0092858D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
+			remoteInfo = Genius;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		23B358B8073C0F7D00B89026 /* CopyFiles */ = {
+		83D9BECF0CD120100092858D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstPath = "/Volumes/${PROJECT_NAME}";
+			dstSubfolderSpec = 0;
 			files = (
-				23AA229B0AA30E31009AF327 /* COPYING.txt in CopyFiles */,
-				23B358C8073C100400B89026 /* Release History.rtf in CopyFiles */,
-				23B358D8073C101C00B89026 /* Samples in CopyFiles */,
+				83D9BED70CD122380092858D /* Genius.app in CopyFiles */,
+				83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */,
+				83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */,
+				83D9BED40CD121DA0092858D /* Samples in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +211,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -306,6 +337,7 @@
 				23227CFB0725BD7600D09B7F /* Quiz.nib */,
 				23F818E50B3531390041656E /* Preferences.nib */,
 				237DA3DE07395DD6006B7D4B /* Localizable.strings */,
+				8347AB880CD12DB3005CBAC3 /* Info.plist */,
 				23227CF70725BD7600D09B7F /* InfoPlist.strings */,
 				23AA22920AA305E6009AF327 /* Genius.icns */,
 				23227D080725BD7600D09B7F /* Storage Files.icns */,
@@ -473,7 +505,6 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				23B358B8073C0F7D00B89026 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -496,6 +527,7 @@
 			projectDirPath = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
+				83D9BE670CD110E90092858D /* Genius-1.7.dmg */,
 			);
 		};
 /* End PBXProject section */
@@ -537,10 +569,40 @@
 				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
 				23F818E70B3531390041656E /* Preferences.nib in Resources */,
 				832389FF0CC39B1C00782903 /* TODO.txt in Resources */,
+				8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83D9BE660CD110E90092858D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -x";
+			shellScript = "# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# link in the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\n\n# unmount\nhdiutil detach /Volumes/${PROJECT_NAME}\n\n# convert to read only compressed archive.\nhdiutil convert -ov -format UDZO -o ${SYMROOT}/${PROJECT_NAME}-1.7.dmg ${TARGET_TEMP_DIR}/${PROJECT_NAME}.dmg\n\nexit 0";
+		};
+		83D9BED50CD122050092858D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -x";
+			shellScript = "# Create and attach new empty image\nhdiutil detach /Volumes/${PROJECT_NAME}\nhdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${TARGET_TEMP_DIR}/${PROJECT_NAME}.dmg\nhdiutil attach ${TARGET_TEMP_DIR}/${PROJECT_NAME}.dmg\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {
@@ -571,6 +633,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83D9BE690CD110EF0092858D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* Genius */;
+			targetProxy = 83D9BE680CD110EF0092858D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2318E41D0725C29B00726F95 /* Help.nib */ = {
@@ -783,6 +853,35 @@
 			};
 			name = Default;
 		};
+		83D9BE700CD110F30092858D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = DiskImage;
+			};
+			name = Development;
+		};
+		83D9BE710CD110F30092858D /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = DiskImage;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		83D9BE720CD110F30092858D /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = DiskImage;
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -802,6 +901,16 @@
 				23D0AFE90AA1C7F50069E6D3 /* Development */,
 				23D0AFEA0AA1C7F50069E6D3 /* Deployment */,
 				23D0AFEB0AA1C7F50069E6D3 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "Genius-1.7.dmg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83D9BE700CD110F30092858D /* Development */,
+				83D9BE710CD110F30092858D /* Deployment */,
+				83D9BE720CD110F30092858D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
