@@ -99,6 +99,28 @@
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
+		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
+		83CC1CEC0CD24A020002FFA8 /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C870725BD1300D09B7F /* GeniusAppDelegate.m */; };
+		83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */; };
+		83CC1D0E0CD24C140002FFA8 /* GeniusDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */; };
+		83CC1D0F0CD24C140002FFA8 /* GeniusDocumentFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */; };
+		83CC1D100CD24C140002FFA8 /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8E0725BD1300D09B7F /* GeniusToolbar.m */; };
+		83CC1D110CD24C140002FFA8 /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */; };
+		83CC1D120CD24C140002FFA8 /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C920725BD1300D09B7F /* MyQuizController.m */; };
+		83CC1D130CD24C140002FFA8 /* NSArrayGeniusAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */; };
+		83CC1D140CD24C140002FFA8 /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */; };
+		83CC1D150CD24C140002FFA8 /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA80725BD2000D09B7F /* GeniusItem.m */; };
+		83CC1D160CD24C140002FFA8 /* GeniusPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CAA0725BD2000D09B7F /* GeniusPair.m */; };
+		83CC1D170CD24C140002FFA8 /* ParagraphStyleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */; };
+		83CC1D180CD24C140002FFA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CE80725BD6100D09B7F /* main.m */; };
+		83CC1D190CD24C140002FFA8 /* GeniusHelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */; };
+		83CC1D1A0CD24C140002FFA8 /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */; };
+		83CC1D1B0CD24C140002FFA8 /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640470AA2056100888E37 /* IconTextFieldCell.m */; };
+		83CC1D1C0CD24C140002FFA8 /* LevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2366404A0AA2056100888E37 /* LevelIndicator.m */; };
+		83CC1D1D0CD24C140002FFA8 /* SimpleProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640540AA2056100888E37 /* SimpleProgressIndicator.m */; };
+		83CC1D1E0CD24C140002FFA8 /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 23286A740AA2077200EC1FFF /* NSString+Similiarity.m */; };
+		83CC1D1F0CD24C140002FFA8 /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F818E20B35312B0041656E /* GeniusPreferencesController.m */; };
+		83CC1D200CD24C140002FFA8 /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819710B35349D0041656E /* QuizBackdropWindow.m */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
@@ -221,10 +243,23 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
+		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
+		83CC1CD50CD2499B0002FFA8 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83CC1CD60CD2499B0002FFA8 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
+		83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAppDelegateTest.h; sourceTree = "<group>"; };
+		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		83CC1CD20CD2499B0002FFA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC330486D014006FF6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +275,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */,
 				2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
 			);
@@ -259,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				8D15AC370486D014006FF6A4 /* Genius.app */,
+				83CC1CD50CD2499B0002FFA8 /* Test.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,6 +486,7 @@
 				23B358BB073C0FA700B89026 /* User Documentation */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				83CC1CDD0CD249BF0002FFA8 /* TestCases */,
 			);
 			name = Genius;
 			sourceTree = "<group>";
@@ -470,6 +508,16 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83CC1CDD0CD249BF0002FFA8 /* TestCases */ = {
+			isa = PBXGroup;
+			children = (
+				83CC1CD60CD2499B0002FFA8 /* Test-Info.plist */,
+				83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */,
+				83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */,
+			);
+			path = TestCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +554,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		83CC1CD40CD2499B0002FFA8 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				83CC1CD00CD2499B0002FFA8 /* Resources */,
+				83CC1CD10CD2499B0002FFA8 /* Sources */,
+				83CC1CD20CD2499B0002FFA8 /* Frameworks */,
+				83CC1CD30CD2499B0002FFA8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = 83CC1CD50CD2499B0002FFA8 /* Test.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8D15AC270486D014006FF6A4 /* Genius */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23D0AFE40AA1C7F50069E6D3 /* Build configuration list for PBXNativeTarget "Genius" */;
@@ -538,11 +604,19 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
 				83D9BE670CD110E90092858D /* Genius-1.7.dmg */,
+				83CC1CD40CD2499B0002FFA8 /* Test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		83CC1CD00CD2499B0002FFA8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC2B0486D014006FF6A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -586,6 +660,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		83CC1CD30CD2499B0002FFA8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		83D9BE660CD110E90092858D /* Convert Image */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -618,6 +705,34 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		83CC1CD10CD2499B0002FFA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83CC1CEC0CD24A020002FFA8 /* GeniusAppDelegate.m in Sources */,
+				83CC1D0E0CD24C140002FFA8 /* GeniusDocument.m in Sources */,
+				83CC1D0F0CD24C140002FFA8 /* GeniusDocumentFile.m in Sources */,
+				83CC1D100CD24C140002FFA8 /* GeniusToolbar.m in Sources */,
+				83CC1D110CD24C140002FFA8 /* GeniusWelcomePanel.m in Sources */,
+				83CC1D120CD24C140002FFA8 /* MyQuizController.m in Sources */,
+				83CC1D130CD24C140002FFA8 /* NSArrayGeniusAdditions.m in Sources */,
+				83CC1D140CD24C140002FFA8 /* GeniusAssociationEnumerator.m in Sources */,
+				83CC1D150CD24C140002FFA8 /* GeniusItem.m in Sources */,
+				83CC1D160CD24C140002FFA8 /* GeniusPair.m in Sources */,
+				83CC1D170CD24C140002FFA8 /* ParagraphStyleFormatter.m in Sources */,
+				83CC1D180CD24C140002FFA8 /* main.m in Sources */,
+				83CC1D190CD24C140002FFA8 /* GeniusHelpWindowController.m in Sources */,
+				83CC1D1A0CD24C140002FFA8 /* GeniusStringDiff.m in Sources */,
+				83CC1D1B0CD24C140002FFA8 /* IconTextFieldCell.m in Sources */,
+				83CC1D1C0CD24C140002FFA8 /* LevelIndicator.m in Sources */,
+				83CC1D1D0CD24C140002FFA8 /* SimpleProgressIndicator.m in Sources */,
+				83CC1D1E0CD24C140002FFA8 /* NSString+Similiarity.m in Sources */,
+				83CC1D1F0CD24C140002FFA8 /* GeniusPreferencesController.m in Sources */,
+				83CC1D200CD24C140002FFA8 /* QuizBackdropWindow.m in Sources */,
+				83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC300486D014006FF6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -869,6 +984,81 @@
 			};
 			name = Default;
 		};
+		83CC1CD80CD2499C0002FFA8 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Development;
+		};
+		83CC1CD90CD2499C0002FFA8 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		83CC1CDA0CD2499C0002FFA8 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Test;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Default;
+		};
 		83D9BE700CD110F30092858D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -917,6 +1107,16 @@
 				23D0AFE90AA1C7F50069E6D3 /* Development */,
 				23D0AFEA0AA1C7F50069E6D3 /* Deployment */,
 				23D0AFEB0AA1C7F50069E6D3 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CC1CD80CD2499C0002FFA8 /* Development */,
+				83CC1CD90CD2499C0002FFA8 /* Deployment */,
+				83CC1CDA0CD2499C0002FFA8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

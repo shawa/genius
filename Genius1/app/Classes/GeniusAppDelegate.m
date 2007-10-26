@@ -102,6 +102,31 @@
     [GeniusDocument importFile:sender];
 }
 
+- (BOOL) isNewerVersion: (NSString*) currentVersion lastVersion:(NSString*)lastVersion
+{
+    if (!lastVersion && currentVersion)
+        return YES;
+    else if (!currentVersion && lastVersion)
+        return NO;
+    else if (!lastVersion && !currentVersion)
+        return NO;
+
+    if (([currentVersion length] == 8)  && ([lastVersion length] == 8))
+        return ([currentVersion compare:lastVersion] > NSOrderedSame);
+    
+    else if (([currentVersion length] == 8)  && ([lastVersion length] != 8))
+        return NO;
+
+    else if (([currentVersion length] != 8)  && ([lastVersion length] == 8))
+        return YES;
+
+    else if (([currentVersion length] != 8)  && ([lastVersion length] != 8))
+        return [currentVersion intValue] > [lastVersion intValue];
+    
+
+    return NO;
+}
+
 @end
 
 
@@ -120,7 +145,8 @@
     NSBundle * mainBundle = [NSBundle mainBundle];
     NSString * currentVersion = [mainBundle objectForInfoDictionaryKey:(id)kCFBundleVersionKey];
     NSString * lastVersion = [userDefaults stringForKey:@"LastVersionRun"];
-    if (!lastVersion || [currentVersion compare:lastVersion] > NSOrderedSame)
+    
+    if ([self isNewerVersion: currentVersion lastVersion: lastVersion])
     {
         [self performSelector:@selector(showHelpWindow:) withObject:self afterDelay:0.0];
         [userDefaults setObject:currentVersion forKey:@"LastVersionRun"];
