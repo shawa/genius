@@ -11,9 +11,9 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "Genius-1.7.dmg" */;
 			buildPhases = (
-				83D9BED50CD122050092858D /* ShellScript */,
+				83D9BED50CD122050092858D /* Create Image */,
 				83D9BECF0CD120100092858D /* CopyFiles */,
-				83D9BE660CD110E90092858D /* ShellScript */,
+				83D9BE660CD110E90092858D /* Convert Image */,
 			);
 			dependencies = (
 				83D9BE690CD110EF0092858D /* PBXTargetDependency */,
@@ -117,9 +117,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		83D9BECF0CD120100092858D /* CopyFiles */ = {
+		83CC19CF0CD1DD5E0002FFA8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83D9BECF0CD120100092858D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
 			dstPath = "/Volumes/${PROJECT_NAME}";
 			dstSubfolderSpec = 0;
 			files = (
@@ -505,6 +514,7 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				83CC19CF0CD1DD5E0002FFA8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -576,31 +586,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		83D9BE660CD110E90092858D /* ShellScript */ = {
+		83D9BE660CD110E90092858D /* Convert Image */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Convert Image";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -x";
-			shellScript = "# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# link in the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\n\n# unmount\nhdiutil detach /Volumes/${PROJECT_NAME}\n\n# convert to read only compressed archive.\nhdiutil convert -ov -format UDZO -o ${SYMROOT}/${PROJECT_NAME}-1.7.dmg ${TARGET_TEMP_DIR}/${PROJECT_NAME}.dmg\n\nexit 0";
+			shellPath = /bin/bash;
+			shellScript = "# unmount image\nhdiutil detach /Volumes/${PROJECT_NAME}\n\n# convert to read only compressed archive leaving the result in build root.\nhdiutil convert -ov -format UDZO -o ${BUILT_PRODUCTS_DIR}/${TARGETNAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\n\nexit 0";
 		};
-		83D9BED50CD122050092858D /* ShellScript */ = {
+		83D9BED50CD122050092858D /* Create Image */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Create Image";
 			outputPaths = (
+				"${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -x";
-			shellScript = "# Create and attach new empty image\nhdiutil detach /Volumes/${PROJECT_NAME}\nhdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${TARGET_TEMP_DIR}/${PROJECT_NAME}.dmg\nhdiutil attach ${TARGET_TEMP_DIR}/${PROJECT_NAME}.dmg\nexit 0";
+			shellPath = /bin/bash;
+			shellScript = "# check for and try to clean up leftovers\nif test -e /Volumes/${PROJECT_NAME}; then\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}; then\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius; then\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -836,6 +849,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SVNREV = development;
 			};
 			name = Development;
 		};
@@ -843,6 +857,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SVNREV = development;
 			};
 			name = Deployment;
 		};
@@ -850,6 +865,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SVNREV = development;
 			};
 			name = Default;
 		};
