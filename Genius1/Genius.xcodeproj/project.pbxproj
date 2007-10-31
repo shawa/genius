@@ -244,8 +244,8 @@
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
-		83CC1CD50CD2499B0002FFA8 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83CC1CD60CD2499B0002FFA8 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
+		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
 		83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAppDelegateTest.h; sourceTree = "<group>"; };
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				8D15AC370486D014006FF6A4 /* Genius.app */,
-				83CC1CD50CD2499B0002FFA8 /* Test.octest */,
+				83CC1CD50CD2499B0002FFA8 /* Testing.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -513,7 +513,7 @@
 		83CC1CDD0CD249BF0002FFA8 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
-				83CC1CD60CD2499B0002FFA8 /* Test-Info.plist */,
+				83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */,
 				83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */,
 				83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */,
 			);
@@ -554,9 +554,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		83CC1CD40CD2499B0002FFA8 /* Test */ = {
+		83CC1CD40CD2499B0002FFA8 /* Testing */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildConfigurationList = 83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Testing" */;
 			buildPhases = (
 				83CC1CD00CD2499B0002FFA8 /* Resources */,
 				83CC1CD10CD2499B0002FFA8 /* Sources */,
@@ -567,9 +567,9 @@
 			);
 			dependencies = (
 			);
-			name = Test;
+			name = Testing;
 			productName = Test;
-			productReference = 83CC1CD50CD2499B0002FFA8 /* Test.octest */;
+			productReference = 83CC1CD50CD2499B0002FFA8 /* Testing.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8D15AC270486D014006FF6A4 /* Genius */ = {
@@ -604,7 +604,7 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
 				83D9BE670CD110E90092858D /* Genius-1.7.dmg */,
-				83CC1CD40CD2499B0002FFA8 /* Test */,
+				83CC1CD40CD2499B0002FFA8 /* Testing */,
 			);
 		};
 /* End PBXProject section */
@@ -996,7 +996,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "TestCases/Test-Info.plist";
+				INFOPLIST_FILE = "TestCases/Testing-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1005,7 +1005,7 @@
 					SenTestingKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = Test;
+				PRODUCT_NAME = Testing;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1021,7 +1021,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "TestCases/Test-Info.plist";
+				INFOPLIST_FILE = "TestCases/Testing-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1030,7 +1030,7 @@
 					SenTestingKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = Test;
+				PRODUCT_NAME = Testing;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1044,7 +1044,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "TestCases/Test-Info.plist";
+				INFOPLIST_FILE = "TestCases/Testing-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1053,7 +1053,7 @@
 					SenTestingKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = Test;
+				PRODUCT_NAME = Testing;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1111,7 +1111,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Test" */ = {
+		83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Testing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CC1CD80CD2499C0002FFA8 /* Development */,
