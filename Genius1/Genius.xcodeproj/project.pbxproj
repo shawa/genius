@@ -21,6 +21,17 @@
 			name = "Genius-1.7.dmg";
 			productName = DiskImage;
 		};
+		83D9C9780CD8AC7D003B422F /* DeveloperDocs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83D9C9790CD8AC9C003B422F /* Build configuration list for PBXAggregateTarget "DeveloperDocs" */;
+			buildPhases = (
+				83D9C9770CD8AC7D003B422F /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = DeveloperDocs;
+			productName = DeveloperDocs;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -248,6 +259,8 @@
 		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
 		83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAppDelegateTest.h; sourceTree = "<group>"; };
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
+		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
+		83D9C9850CD8AE79003B422F /* DeveloperDocs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DeveloperDocs; path = build/Development/DeveloperDocs; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -294,6 +307,7 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				83D9C9850CD8AE79003B422F /* DeveloperDocs */,
 				8D15AC370486D014006FF6A4 /* Genius.app */,
 				83CC1CD50CD2499B0002FFA8 /* Testing.octest */,
 			);
@@ -485,8 +499,9 @@
 				23227CEB0725BD7600D09B7F /* Resources */,
 				23B358BB073C0FA700B89026 /* User Documentation */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
-				19C28FB0FE9D524F11CA2CBB /* Products */,
 				83CC1CDD0CD249BF0002FFA8 /* TestCases */,
+				83D9C97F0CD8AD8E003B422F /* Developer Docs */,
+				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = Genius;
 			sourceTree = "<group>";
@@ -518,6 +533,14 @@
 				83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */,
 			);
 			path = TestCases;
+			sourceTree = "<group>";
+		};
+		83D9C97F0CD8AD8E003B422F /* Developer Docs */ = {
+			isa = PBXGroup;
+			children = (
+				83D9C9820CD8ADD7003B422F /* doxygen.conf */,
+			);
+			name = "Developer Docs";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -605,6 +628,7 @@
 				8D15AC270486D014006FF6A4 /* Genius */,
 				83D9BE670CD110E90092858D /* Genius-1.7.dmg */,
 				83CC1CD40CD2499B0002FFA8 /* Testing */,
+				83D9C9780CD8AC7D003B422F /* DeveloperDocs */,
 			);
 		};
 /* End PBXProject section */
@@ -701,6 +725,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "# check for and try to clean up leftovers\nif test -e /Volumes/${PROJECT_NAME}; then\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}; then\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius; then\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
+		};
+		83D9C9770CD8AC7D003B422F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ \"$DOXY_HOME\" = \"\" ]; then\n\techo \"error: DOXY_HOME not set.  Can't generate documentation.\" 1>&2\n\texit -1\nfi\n\nif [ -e ${DOXY_HOME}/doxygen ]; then\n\t${DOXY_HOME}/doxygen ${PROJECT_DIR}/doxygen.conf\nelse\n\techo \"error: 'doxygen' executable not found.  Can't generate documentation. Check DOXY_HOME setting.\"  1>&2\n\texit -1\nfi\n\nexit 0\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -963,6 +1000,7 @@
 		23D0AFE90AA1C7F50069E6D3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
@@ -971,6 +1009,7 @@
 		23D0AFEA0AA1C7F50069E6D3 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
@@ -979,6 +1018,7 @@
 		23D0AFEB0AA1C7F50069E6D3 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
@@ -1088,6 +1128,35 @@
 			};
 			name = Default;
 		};
+		83D9C97A0CD8AC9C003B422F /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = DeveloperDocs;
+			};
+			name = Development;
+		};
+		83D9C97B0CD8AC9C003B422F /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = DeveloperDocs;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		83D9C97C0CD8AC9C003B422F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = DeveloperDocs;
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1127,6 +1196,16 @@
 				83D9BE700CD110F30092858D /* Development */,
 				83D9BE710CD110F30092858D /* Deployment */,
 				83D9BE720CD110F30092858D /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		83D9C9790CD8AC9C003B422F /* Build configuration list for PBXAggregateTarget "DeveloperDocs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83D9C97A0CD8AC9C003B422F /* Development */,
+				83D9C97B0CD8AC9C003B422F /* Deployment */,
+				83D9C97C0CD8AC9C003B422F /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
