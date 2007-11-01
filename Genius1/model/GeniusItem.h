@@ -27,7 +27,7 @@
     NSString * _speakableStringValue;
     NSURL * _soundURL;
     
-    //BOOL _dirty;    //// used by key-value observing
+    BOOL _dirty;    //// used by key-value observing
 }
 
 // Visual

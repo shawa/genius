@@ -26,16 +26,6 @@
     [self setKeys:[NSArray arrayWithObjects:@"stringValue", @"imageURL", @"webResourceURL", @"speakableStringValue", @"soundURL", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
 }
 
-- (id) dirty
-{
-    return @"";
-}
-
--(void) setDirty:(id)value
-{
-    NSLog(@"setDirty called with %@", value);
-}
-
 - (id) init
 {
     self = [super init];
