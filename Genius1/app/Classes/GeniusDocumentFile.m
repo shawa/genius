@@ -22,6 +22,10 @@
 
 @implementation GeniusDocument (FileFormat)
 
+//! Packs up GeniusDocument as NSData suitable for writing to disk.
+/*!
+    Includes a formatVersion value of 1 to distinguish this file format from future versions. 
+*/
 - (NSData *)dataRepresentationOfType:(NSString *)aType
 {
     NSMutableData * data = [NSMutableData data];

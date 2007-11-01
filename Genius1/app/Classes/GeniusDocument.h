@@ -50,8 +50,7 @@
 
 @end
 
-//! Informal protocol for actions configured in nib files. 
-@interface GeniusDocument (IBActions)
+@interface GeniusDocument(IBActions)
 
 // View menu
 - (IBAction)toggleGroupColumn:(id)sender;

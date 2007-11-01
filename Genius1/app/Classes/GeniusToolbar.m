@@ -26,9 +26,13 @@ NSString * GeniusToolbarNotesItemIdentifier = @"Notes";
 NSString * GeniusToolbarInfoItemIdentifier = @"Info";
 NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
+/*!
+    @category GeniusDocument(Toolbar)
+    @abstract Support for setting up the toolbar.
+*/
+@implementation GeniusDocument(Toolbar)
 
-@implementation GeniusDocument (Toolbar)
-
+//! Intstanciates the toobar and attaches it to the GeniusDocument window.
 - (void) setupToolbarForWindow:(NSWindow *)window
 {
     NSToolbar * toolbar = [[[NSToolbar alloc] initWithIdentifier:GeniusToolbarIdentifier] autorelease];
@@ -42,18 +46,20 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
 @implementation GeniusDocument (NSToolbarDelegate)
 
+//! Configures the allowed item identifiers for our toolbar.
 - (NSArray *) toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
     return [NSArray arrayWithObjects:GeniusToolbarStudyItemIdentifier, GeniusToolbarLearnReviewSliderItemIdentifier, NSToolbarSeparatorItemIdentifier,
     GeniusToolbarInfoItemIdentifier, GeniusToolbarNotesItemIdentifier, NSToolbarFlexibleSpaceItemIdentifier, GeniusToolbarSearchItemIdentifier, nil];
 }
 
+//! Configures the default item identifiers for our toolbar.
 - (NSArray *) toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
 {
     return [self toolbarAllowedItemIdentifiers:toolbar];
 }
 
-
+//! Creates a new toolbar item; returns a toolbar item of the identified kind for our toolbar.
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
     if (flag)

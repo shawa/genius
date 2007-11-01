@@ -524,9 +524,18 @@
 
 @end
 
+/*!
+    @category GeniusDocument(IBActions)
+    @abstract Collections of methods accessed directly from the GUI.
+*/
+@implementation GeniusDocument(IBActions)
 
-@implementation GeniusDocument (IBActions)
-
+//! Saves GeniusDocument
+/*! 
+    The implementation checks to see if saving the file would make it impossible to open the file again with older versions of Genius.
+    Assuming this is okay, it goes on to save the document with a call to super.
+    @todo Perhaps this would be better to have in the GeniusDocument(FileFormat) category next to loadDataRepresentation:ofType:.
+*/
 - (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
 {
     if (_shouldShowImportWarningOnSave)
@@ -548,38 +557,43 @@
 }
 
 
-// View menu
+//! Turns on/off display of the group column.
 - (IBAction)toggleGroupColumn:(id)sender
 {
     [self _toggleColumnWithIdentifier:@"customGroup"];
 }
 
+//! Turns on/off display of the type column.
 - (IBAction)toggleTypeColumn:(id)sender
 {
     [self _toggleColumnWithIdentifier:@"customType"];
 }
 
+//! Turns on/off display of the standard style score column.
 - (IBAction)toggleABScoreColumn:(id)sender
 {
     [self _toggleColumnWithIdentifier:@"scoreAB"];
 }
 
+//! Turns on/off display of the jepardy style score column.
 - (IBAction)toggleBAScoreColumn:(id)sender
 {
     [self _toggleColumnWithIdentifier:@"scoreBA"];
 }
 
-
+//! Marks document as dirty @see _markDocumentDirty:.
 - (IBAction)learnReviewSliderChanged:(id)sender
 {
     [self _markDocumentDirty:nil];
 }
 
+//! Toggles open state of info drawer at default window edge.
 - (IBAction)showInfo:(id)sender
 {
     [infoDrawer toggle:sender];
 }
 
+//! Toggles open state of notes drawer at bottom of window.
 - (IBAction)showNotes:(id)sender
 {
     if ([notesDrawer state] == NSDrawerOpenState)
@@ -589,9 +603,11 @@
 }
 
 
+//! Creates a new empty GeniusPair and inserts it in table view.
 - (IBAction)add:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
+    //! @todo check if this is really how to end editing.
     NSWindow * window = [[[self windowControllers] objectAtIndex:0] window];
     if ([window makeFirstResponder:window] == NO)
         [window endEditingFor:nil];
@@ -607,6 +623,7 @@
     
     // Insert after selection if possible; otherwise insert at document end
     int newPairIndex;
+    //! @todo drop usage of new here.
     GeniusPair * pair = [GeniusPair new];
 /*    if ([selectionIndexes count] >= 1)
     {
@@ -626,6 +643,7 @@
     [self _markDocumentDirty:nil];
 }
 
+//! Duplicates the selected items and inserts them in the document.
 - (IBAction)duplicate:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -646,6 +664,7 @@
     [self _markDocumentDirty:nil];
 }
 
+//! Initiates modal sheet to check if the user really wants to delete selected items.
 - (IBAction)delete:(id)sender
 {
     NSArray * selectedObjects = [arrayController selectedObjects];
@@ -663,6 +682,11 @@
 
     [alert beginSheetModalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:@selector(_deleteAlertDidEnd:returnCode:contextInfo:) contextInfo:selectedObjects];
 }
+
+//! Handles the results of the modal sheet initiated in @a delete:.
+/*!
+    In the event the user confirmed the delete action, then the selected GeniusPair items are nuked.
+ */
 - (void)_deleteAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     if (returnCode == 0)
@@ -672,11 +696,12 @@
     [self _markDocumentDirty:nil];
 }
 
-
+//! @todo dead code
 - (IBAction)swapItems:(id)sender
 {
 }
 
+//! Initiates modal sheet to check if the user really wants to reset selected items.
 - (IBAction)resetScore:(id)sender
 {
     NSArray * selectedObjects = [arrayController selectedObjects];
@@ -694,6 +719,13 @@
     
     [alert beginSheetModalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:@selector(_resetAlertDidEnd:returnCode:contextInfo:) contextInfo:selectedObjects];
 }
+
+//! Handles the results of the modal sheet initiated in @a resetScore:.
+/*!
+    In the event the user confirmed the reset action, then the performance statistics for all GeniusPair items
+    in the this document are nuked.
+    @todo Check if it makes that much sense to nuke the performance data? 
+*/
 - (void)_resetAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     if (returnCode == 0)
@@ -703,6 +735,7 @@
     [associations makeObjectsPerformSelector:@selector(reset)];
 }
 
+//! Sets the importance of the selected items from 1 to 5.
 - (IBAction)setItemImportance:(id)sender
 {
     NSMenuItem * menuItem = (NSMenuItem *)sender;
@@ -715,13 +748,19 @@
         [pair setImportance:importance];
 }
 
+//! Action invoked from the little find NSTextField 
 - (IBAction)search:(id)sender
 {
     [arrayController setFilterString:[sender stringValue]];
     [self tableViewSelectionDidChange:nil];
 }
 
-
+//! Actually starts the currenlty configured quiz
+/*!
+    In the event that the users choices have resulted in no items being available, the user is
+    presented with an alert panel to that effect and the quiz is not begun.  In the end the status
+    text and level indicator are updated
+*/
 - (void) _beginQuiz:(GeniusAssociationEnumerator *)enumerator
 {
     if ([enumerator remainingCount] == 0)
@@ -755,6 +794,11 @@
 //    [windowController showWindow:self];
 }
 
+//! Set up quiz mode using enabled and based probablity.
+/*! 
+    Uses the learn review slider value as input to probability based selection process.  In the event
+    that the learn revew slider is set to review, then only previously learned items will appear in the quiz.
+*/
 - (IBAction)quizAutoPick:(id)sender
 {
     NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
@@ -775,7 +819,11 @@
     [self _beginQuiz:enumerator];
 }
 
-// NOT USED
+//! Set up quiz mode using enabled and previously learned GeniusPair items.
+/*! 
+    Sets the minimum required score on the GeniusAssociationEnumerator to 0 which
+    precludes pairs with uninitialized score values.  @see score
+*/
 - (IBAction)quizReview:(id)sender
 {
     NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
@@ -787,6 +835,8 @@
     [self _beginQuiz:enumerator];
 }
 
+//! Set up quiz mode using the user selected GeniusPair items.
+/*! Excludes disabled items */
 - (IBAction)quizSelection:(id)sender
 {
     NSArray * selectedPairs = [arrayController selectedObjects];

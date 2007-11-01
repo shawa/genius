@@ -234,6 +234,13 @@ const int kGeniusPairMaximumImportance = 10;
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem;
 @end
 
+//! Relates two GeniusAssociation instances and some meta info.
+/*!
+A GeniusPair is conceptually like a two sided index card.  Through its two instances
+ of GeniusAssociation it has access two two GeniusItem intances.  One for the 'front' of
+ the card and one for the 'back'.  In addition a GeniusPair maintains information about
+ the users classification of the card, such as importance, group, type, and notes.
+ */
 @implementation GeniusPair
 
 //! Set up @a importance and @a dirty as dependent properties.
@@ -348,7 +355,10 @@ const int kGeniusPairMaximumImportance = 10;
 }
 
 //! Packs up instance with help of the provided coder.
-/*! @exception NSInternalInconsistencyException when <tt>[coder allowsKeyedCoding]</tt> returns @p NO. */ 
+/*!
+    @exception NSInternalInconsistencyException when <tt>[coder allowsKeyedCoding]</tt> returns @p NO.
+    Takes care to pack up the GeniusItem and the performance dictionaries of the GeniusAssociation objects.
+ */ 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     NSAssert([coder allowsKeyedCoding], @"allowsKeyedCoding");
@@ -509,8 +519,11 @@ const int kGeniusPairMaximumImportance = 10;
 
 @end
 
-
-@implementation GeniusPair (GeniusDocumentAdditions)
+/*!
+    @category GeniusPair(GeniusDocumentAdditions)
+    @abstract Support for simply disabling and enabling a GeniusPair.
+*/
+@implementation GeniusPair(GeniusDocumentAdditions)
 
 //! Convenience method for evaluating importance.
 /*! Compare importance to @c kGeniusPairDisabledImportance */
@@ -528,12 +541,15 @@ const int kGeniusPairMaximumImportance = 10;
 
 @end
 
-
-@implementation GeniusPair (TextImportExport)
+/*!
+    @category GeniusPair(TextImportExport)
+    @abstract Support related to copy / paste and drag & drop based on text.
+ */
+@implementation GeniusPair(TextImportExport)
 
 //! Serialize an array of GeniusPair objects as delimited text
 /*!
-Each entry is written out as a line of text.  see tabularTextByOrder:
+    Each entry is written out as a line of text.  see tabularTextByOrder:
 */
 + (NSString *) tabularTextFromPairs:(NSArray *)pairs order:(NSArray *)keyPaths
 {
@@ -547,8 +563,8 @@ Each entry is written out as a line of text.  see tabularTextByOrder:
 
 //! Serialize as tab delimited string
 /*!
-    The resultant string only includes values for the requested keyPaths.
-*/
+The resultant string only includes values for the requested keyPaths.
+ */
 - (NSString *) tabularTextByOrder:(NSArray *)keyPaths
 {
     NSMutableString * outputString = [NSMutableString string];
@@ -598,9 +614,9 @@ Each entry is written out as a line of text.  see tabularTextByOrder:
 
 //! Generates an array of GeniusPair instances from a delimited string.
 /*!
-    The provided @a string is separated into lines based.  Each line is used to create a new GeniusPair
-    instance that is initialized by the delimited line.
-*/
+The provided @a string is separated into lines based.  Each line is used to create a new GeniusPair
+ instance that is initialized by the delimited line.
+ */
 + (NSArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
 {
     //Can't use lines = [string componentsSeparatedByString:@"\n"];
@@ -621,10 +637,10 @@ Each entry is written out as a line of text.  see tabularTextByOrder:
 
 //! Initializes a GeniusPair from a tab delimited string.
 /*!
-    The provided @a line is separated into values which are interpreted based on the values provided in
-    @a keyPaths.  They should have the same number of entries, but when that isn't the extra keys or values
-    are ignored.  Values are stripped of tabs and newlines.
-*/
+The provided @a line is separated into values which are interpreted based on the values provided in
+ @a keyPaths.  They should have the same number of entries, but when that isn't the extra keys or values
+ are ignored.  Values are stripped of tabs and newlines.
+ */
 - (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths
 {
     self = [self init];

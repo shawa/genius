@@ -79,11 +79,11 @@ extern const int kGeniusPairMaximumImportance;
 
 //! Relates two GeniusAssociation instances and some meta info.
 /*!
-    A GeniusPair is conceptually like a two sided index card.  Through its two instances
-    of GeniusAssociation it has access two two GeniusItem intances.  One for the 'front' of
-    the card and one for the 'back'.  In addition a GeniusPair maintains information about
-    the users classification of the card, such as importance, group, type, and notes.
-*/
+A GeniusPair is conceptually like a two sided index card.  Through its two instances
+ of GeniusAssociation it has access two two GeniusItem intances.  One for the 'front' of
+ the card and one for the 'back'.  In addition a GeniusPair maintains information about
+ the users classification of the card, such as importance, group, type, and notes.
+ */
 @interface GeniusPair : NSObject <NSCoding, NSCopying> {
     GeniusAssociation * _associationAB; //!< Stats for standard learning mode directional relationship. 
     GeniusAssociation * _associationBA; //!< Stats for Jepardy style learning mode directional relationship.
@@ -132,7 +132,6 @@ extern const int kGeniusPairMaximumImportance;
 
 
 @interface GeniusPair (TextImportExport)
-
 + (NSString *) tabularTextFromPairs:(NSArray *)pairs order:(NSArray *)keyPaths;
 - (NSString *) tabularTextByOrder:(NSArray *)keyPaths;
 
