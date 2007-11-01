@@ -20,12 +20,16 @@
 
 @implementation GeniusItem
 
+//! sets up dummy _dirty property as dependent property of other instance properties.
+/*! @todo Track changes differently. */
 + (void)initialize
 {
     [super initialize];
     [self setKeys:[NSArray arrayWithObjects:@"stringValue", @"imageURL", @"webResourceURL", @"speakableStringValue", @"soundURL", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
 }
 
+//! Initializes new instance with all properties set to nil.
+/*! @todo Remove code that sets everything to nil because it isn't needed. */
 - (id) init
 {
     self = [super init];
@@ -37,6 +41,7 @@
     return self;
 }
 
+//! Releases instance vars and deallocates instance.
 - (void) dealloc
 {
     [_stringValue release];
@@ -47,6 +52,8 @@
     [super dealloc];
 }
 
+//! Creates and returns a copy of this instance in the new zone.
+/*! @todo Replace calls to @c copy with @c copyWithZone: for the instance variables. */
 - (id)copyWithZone:(NSZone *)zone
 {
     GeniusItem * newItem = [[[self class] allocWithZone:zone] init];
@@ -58,6 +65,8 @@
     return newItem;
 }
 
+//! Unpacks instance with help of the provided coder.
+/*! @exception NSInternalInconsistencyException when <tt>[coder allowsKeyedCoding]</tt> returns @p NO. */ 
 - (id)initWithCoder:(NSCoder *)coder
 {
     NSAssert([coder allowsKeyedCoding], @"allowsKeyedCoding");
@@ -71,6 +80,8 @@
     return self;
 }
 
+//! Packs up instance with help of the provided coder.
+/*! @exception NSInternalInconsistencyException when <tt>[coder allowsKeyedCoding]</tt> returns @p NO. */ 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     NSAssert([coder allowsKeyedCoding], @"allowsKeyedCoding");
@@ -82,6 +93,7 @@
     if (_soundURL) [coder encodeObject:_soundURL forKey:@"soundURL"];
 }
 
+//! Same as calling @c stringValue
 - (NSString *) description
 {
     return [self stringValue];
@@ -95,7 +107,7 @@
 }*/
 
 
-// Visual
+//! _stringValue getter
 - (NSString *) stringValue
 {
     return _stringValue;
@@ -109,7 +121,7 @@
     [self _setDirty];
 }*/
 
-
+//! _imageURL getter
 - (NSURL *) imageURL
 {
     return _imageURL;
@@ -124,11 +136,13 @@
 }*/
 
 
+//! _webResourceURL getter
 - (NSURL *) webResourceURL
 {
     return _webResourceURL;
 }
 
+//! @todo dead code
 /*- (void) setWebResourceURL:(NSURL *)webResourceURL
 {
     [_webResourceURL release];
@@ -138,12 +152,13 @@
 }*/
 
 
-// Audio
+//! _speakableStringValue getter
 - (NSString *) speakableStringValue
 {
     return _speakableStringValue;
 }
 
+//! @todo dead code
 /*- (void) setSpeakableStringValue:(NSString *)speakableString
 {
     [_dict setObject:speakableString forKey:@"speakableString"];
@@ -151,11 +166,13 @@
     [self _setDirty];
 }*/
 
+//! _soundURL getter
 - (NSURL *) soundURL
 {
     return _soundURL;
 }
 
+//! @todo dead code
 /*- (void) setSoundURL:(NSURL *)soundURL
 {
     [_soundURL release];

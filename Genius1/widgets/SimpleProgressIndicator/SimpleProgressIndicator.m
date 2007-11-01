@@ -10,6 +10,7 @@
 
 @implementation SimpleProgressIndicator
 
+//! Initializes and returns a newly allocated SimpleProgressIndicator object with a specified frame rectangle.
 - (id)initWithFrame:(NSRect)frameRect
 {
 	self = [super initWithFrame:frameRect];

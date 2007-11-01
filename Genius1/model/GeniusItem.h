@@ -18,20 +18,27 @@
 #import <Foundation/Foundation.h>
 
 
-/// A GeniusItem models one or more representations of a memorizable atom of information.
-/** Example atoms of information include strings, images, web links, or sounds */
+//! A GeniusItem models one or more representations of a memorizable atom of information.
+/*! Example atoms of information include strings, images, web links, or sounds. A GeniusItem represents one of these atomic types of information. */
+//! @todo Delete dead code. 
 @interface GeniusItem : NSObject <NSCoding, NSCopying> {
+    //! string atom
     NSString * _stringValue;
+    //! image atom @todo not used
     NSURL * _imageURL;
+    //! link atom @todo not used
     NSURL * _webResourceURL;
+    //! synthesized speech atom @todo not used
     NSString * _speakableStringValue;
+    //! record audio atom @todo not used
     NSURL * _soundURL;
     
-    BOOL _dirty;    //// used by key-value observing
+    /*! @todo Replace dummy property with implementation of setValue:forUndefinedKey: */
+    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty 
 }
 
 // Visual
-- (NSString *) stringValue;                     /// returns @"" if not set
+- (NSString *) stringValue;
 //- (void) setStringValue:(NSString *)string;
 
 - (NSURL *) imageURL;
@@ -41,7 +48,7 @@
 //- (void) setWebResourceURL:(NSURL *)webResourceURL;
 
 // Audio
-- (NSString *) speakableStringValue;    /// returns -stringValue if not set
+- (NSString *) speakableStringValue;
     //- (void) setSpeakableStringValue:(NSString *)speakableString;
 
 - (NSURL *) soundURL;

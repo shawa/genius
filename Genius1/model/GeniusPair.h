@@ -21,37 +21,45 @@
 @class GeniusPair;
 
 //! A directed association between two GeniusItem instances, with score-keeping data.
-/**
-Like an axon between two neurons. Never create directly; always create through GeniusPair.
-@todo Move this into its own file.
+/*!
+    A GeniusAssociation is the basic unit of memorization in Genius.  A GeniusAssociation instance
+    represents a directional relationship between a que and an answer.  If que and answer are reversed,
+    a new GeniusAssociation is needed.  This is important for scoreing and due date calculations which
+    are dependent on the user recalling the correct answer given a particular cue.
+
+    Never create directly; always create through GeniusPair.
+
+    @todo Create standalone GeniusAssociation.[h,m] files.
 */
 @interface GeniusAssociation : NSObject {
-    GeniusItem * _cueItem, * _answerItem;
-    GeniusPair * _parentPair;
+    GeniusItem * _cueItem; //!< Item acting as question or prompt.
+    GeniusItem * _answerItem;  //!< Item expected as response to the que.
+    GeniusPair * _parentPair; //!< The GeniusPair to which this GeniusAssociation belongs.
+    
+    //! performance info dictionary
+    /*! contains scoreNumber and dueDate for this GeniusAssociation. */
     NSMutableDictionary * _perfDict;
 
     // Transient
-    BOOL _dirty;    //!< used by key-value observing
+    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty
 }
 
 - (GeniusItem *) cueItem;
 - (GeniusItem *) answerItem;
-
 - (GeniusPair *) parentPair;
-
-
 - (NSDictionary *) performanceDictionary;
 
-//! Resets the score, scoreNumber, dueDate fields
 - (void) reset;
 
 - (int) score;          //!< -1 means never been quizzed
 - (void) setScore:(int)score;
 
-//! Equivalent object-based methods used by key bindings
-- (NSNumber *) scoreNumber; //!< nil means never been quizzed
+//! Equivalent object-based methods used by key bindings. @todo Remove one of score or scoreNumber and friends.
+
+- (NSNumber *) scoreNumber;
 - (void) setScoreNumber:(id)scoreNumber;
 
+//! @todo dead code.
 /*- (unsigned int) right;
 - (void) setRight:(unsigned int)right;
 
@@ -69,17 +77,23 @@ extern const int kGeniusPairMinimumImportance;
 extern const int kGeniusPairNormalImportance;
 extern const int kGeniusPairMaximumImportance;
 
+//! Relates two GeniusAssociation instances and some meta info.
 /*!
-    @class GeniusPair
-    @abstract    Relates two instances of GeniusAssociation
-    @discussion  
+    A GeniusPair is conceptually like a two sided index card.  Through its two instances
+    of GeniusAssociation it has access two two GeniusItem intances.  One for the 'front' of
+    the card and one for the 'back'.  In addition a GeniusPair maintains information about
+    the users classification of the card, such as importance, group, type, and notes.
 */
 @interface GeniusPair : NSObject <NSCoding, NSCopying> {
-    GeniusAssociation * _associationAB, * _associationBA;
+    GeniusAssociation * _associationAB; //!< Stats for standard learning mode directional relationship. 
+    GeniusAssociation * _associationBA; //!< Stats for Jepardy style learning mode directional relationship.
+    
+    //! Stores user entered properties related to this GeniusPair.
+    /*! Variable storage for info such as group, importance, and type */
     NSMutableDictionary * _userDict;
     
     // Transient
-    BOOL _dirty;    //!< used by key-value observing
+    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty
 }
 
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA;

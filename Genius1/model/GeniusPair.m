@@ -18,8 +18,8 @@
 #import "GeniusPair.h"
 
 
-NSString * GeniusAssociationScoreNumberKey = @"scoreNumber";
-NSString * GeniusAssociationDueDateKey = @"dueDate";
+NSString * GeniusAssociationScoreNumberKey = @"scoreNumber"; //!< accessor key for score in _perfDict
+NSString * GeniusAssociationDueDateKey = @"dueDate"; //!< accessor key for due date in _perfDict
 
 NSString * GeniusPairImportanceNumberKey = @"importanceNumber";
 NSString * GeniusPairCustomTypeStringKey = @"customTypeString";
@@ -33,6 +33,8 @@ NSString * GeniusPairNotesStringKey = @"notesString";
 
 @implementation GeniusAssociation
 
+//! sets up dummy _dirty property as dependent property of other instance properties.
+/*! @todo Track changes differently. */
 + (void)initialize
 {
     [super initialize];
@@ -44,7 +46,10 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     return NO;
 }*/
 
-
+//! Private initializer used by GeniusPair
+/*! Creates copy of the provided @a performanceDict.
+    @todo Check into why the performance dictionary is copied.
+*/
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict
 {
     self = [super init];
@@ -59,6 +64,7 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     return self;
 }
 
+//! Deallocates the memory occupied by the receiver after releasing ivars.
 - (void) dealloc
 {
     [_cueItem release];
@@ -69,28 +75,35 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     [super dealloc];
 }
 
-
+//! _cueItem getter
 - (GeniusItem *) cueItem
 {
     return _cueItem;
 }
 
+//! _answerItem getter
 - (GeniusItem *) answerItem
 {
     return _answerItem;
 }
 
+//! _parentPair getter
 - (GeniusPair *) parentPair
 {
     return _parentPair;
 }
 
-
+//! _perfDict getter
+/*! @todo change variable name from @a _perfDict to @a _performanceData.  Or perhaps drop @a _perfData and add a dueDate and score ivar. */
 - (NSDictionary *) performanceDictionary
 {
     return _perfDict;
 }
 
+//! Resets all performance data. (ie scoreNumber and dueDate)
+/*! Posts notifications for changing values @c GeniusAssociationScoreNumberKey and @c GeniusAssociationDueDateKey
+and deletes all entries from _perfDict.
+*/
 - (void) reset
 {
     [self willChangeValueForKey:GeniusAssociationScoreNumberKey];
@@ -100,7 +113,7 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     [self didChangeValueForKey:GeniusAssociationDueDateKey];
 }
 
-// Resets the following fields
+//! Convenience method for getting scoreNumber as an integer.
 - (int) score
 {
     NSNumber * scoreNumber = [self scoreNumber];
@@ -110,6 +123,7 @@ NSString * GeniusPairNotesStringKey = @"notesString";
         return [scoreNumber intValue];
 }
 
+//! Convenience method for setting scoreNumber as an integer.
 - (void) setScore:(int)score
 {
     NSNumber * scoreNumber;
@@ -121,7 +135,7 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     [self setScoreNumber:scoreNumber];
 }
 
-// Equivalent object-based methods used by key bindings
+//! scoreNumber getter. Returns object in @a _perfDict for GeniusAssociationScoreNumberKey
 - (NSNumber *) scoreNumber
 {
     id scoreNumber = [_perfDict objectForKey:GeniusAssociationScoreNumberKey];
@@ -130,6 +144,8 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     return nil;
 }
 
+//! scoreNumber setter. Stores @a scoreObject in @a _perfDict under GeniusAssociationScoreNumberKey 
+/*! Converts NSString to NSNumber.   Stores other objects as is. */
 - (void) setScoreNumber:(id)scoreObject
 {
     // WORKAROUND: -initWithTabularText:order: passes us strings, so NSString -> NSNumber
@@ -140,6 +156,7 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     [_perfDict setValue:scoreNumber forKey:GeniusAssociationScoreNumberKey];
 }
 
+//! @todo remove dead code
 /*- (unsigned int) right
 {
     NSNumber * rightNumber = [_perfDict objectForKey:@"right"];
@@ -166,17 +183,20 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     [self _setDirty];
 }*/
 
+//! dueDate getter. Returns object in _perfDict for GeniusAssociationDueDateKey
 - (NSDate *) dueDate
 {
     return [_perfDict objectForKey:GeniusAssociationDueDateKey];
 }
 
+//! dueDate setter. Stores @p dueDate in _perfDict under GeniusAssociationDueDateKey 
 - (void) setDueDate:(NSDate *)dueDate
 {
     [_perfDict setValue:dueDate forKey:GeniusAssociationDueDateKey];
 }
 
-
+//! Compare to @a association based on @a dueDate.
+/*! For comparison purposes a missing @a dueDate is treated the same as +[NSDate distantPast]. */
 - (NSComparisonResult) compareByDate:(GeniusAssociation *)association
 {
     NSDate * date1 = [self dueDate];
@@ -188,6 +208,8 @@ NSString * GeniusPairNotesStringKey = @"notesString";
     return [date1 compare:date2];
 }
 
+//! Compare to @a association based on @a scoreNumber.
+/*! For comparison purposes a missing @a scoreNumber is treated the same as the largest possible negative number. */
 - (NSComparisonResult) compareByScore:(GeniusAssociation *)association
 {
     NSNumber * scoreNumber1 = [self scoreNumber];
@@ -208,11 +230,13 @@ const int kGeniusPairNormalImportance = 5;
 const int kGeniusPairMaximumImportance = 10;
 
 @interface GeniusPair (Private)
+//! @todo Determine if this is a private informal protocol or just leftover.
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem;
 @end
 
 @implementation GeniusPair
 
+//! Set up @a importance and @a dirty as dependent properties.
 + (void)initialize
 {
     [super initialize];
@@ -231,6 +255,10 @@ const int kGeniusPairMaximumImportance = 10;
         return [super automaticallyNotifiesObserversForKey:theKey];
 }*/
 
+/*!
+    Collects GeniusAssociations from the GeniusPair intances found in @a pairs into an array. 
+    Excluded from the returned array are disabled items and items excluded by @a useAB and @a useBA
+*/
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA
 {
     NSMutableArray * allPairs = [NSMutableArray array];
@@ -249,7 +277,13 @@ const int kGeniusPairMaximumImportance = 10;
     return allPairs;
 }
 
-
+//! Initializes new GeniusPair and allocates storage.
+/*!
+    This @a init method allocates two GeniusAssociation objects as well as the related two GeniusItem objects and connects
+    them together.  The returned intance is setup as an observer of these four objects.  Specifically it watches for changes to
+    their 'dirty' attribute in order to track changes.
+    @todo Pick a designated initializer and organize the varous init methods as needed.
+*/
 - (id) init
 {
     self = [super init];
@@ -270,8 +304,14 @@ const int kGeniusPairMaximumImportance = 10;
     return self;
 }
 
+//! Deallocates the memory occupied by the receiver.
+/*!
+    Releases ivars and removes self as observer of the four objects created at initialization.
+    @see init
+*/
 - (void) dealloc
 {
+    //! @todo seems like these should be released after we stop observing them
     [_associationAB release];
     [_associationBA release];
     [_userDict release];
@@ -284,6 +324,8 @@ const int kGeniusPairMaximumImportance = 10;
     [super dealloc];
 }
 
+//! Unpacks instance with help of the provided coder.
+/*! @exception NSInternalInconsistencyException when <tt>[coder allowsKeyedCoding]</tt> returns @p NO. */ 
 - (id)initWithCoder:(NSCoder *)coder
 {
     NSAssert([coder allowsKeyedCoding], @"allowsKeyedCoding");
@@ -305,6 +347,8 @@ const int kGeniusPairMaximumImportance = 10;
     return self;
 }
 
+//! Packs up instance with help of the provided coder.
+/*! @exception NSInternalInconsistencyException when <tt>[coder allowsKeyedCoding]</tt> returns @p NO. */ 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     NSAssert([coder allowsKeyedCoding], @"allowsKeyedCoding");
@@ -316,6 +360,12 @@ const int kGeniusPairMaximumImportance = 10;
     [coder encodeObject:_userDict forKey:@"userDict"];
 }
 
+//! Convenience method used by <tt>copyWithZone:</tt>
+/*!
+    Intstanciates two instances of GeniusAssocation and connects them with @a itemA and @a itemB.  Retains the @a userDict
+    which is expected to carry the 'card' realted group, importance, and type information.  Finally as is the case with @c init,
+    self is set up as an observer of the two GeniusAssociation objects as well as @a itemA and @a itemB.
+*/
 - (id) _initWithItemA:(GeniusItem *)itemA itemB:(GeniusItem *)itemB userDict:(NSMutableDictionary *)userDict
 {
     self = [super init];
@@ -330,6 +380,13 @@ const int kGeniusPairMaximumImportance = 10;
 
     return self;
 }
+
+//! returns a newly allocated mutable copy.
+/*!
+    The copy created here is not perfect.  The related GeniusItem objects are copied, but the GeniusAssociation objects
+    are only partially duplicated.  Specifically the performance information such as score and due date are not copied.
+    As such the returned GeniusPair copy has none of the history information related to the original
+*/
 - (id)copyWithZone:(NSZone *)zone
 {
     GeniusItem * newItemA = [[[self itemA] copy] autorelease];
@@ -338,40 +395,44 @@ const int kGeniusPairMaximumImportance = 10;
     return [[[self class] allocWithZone:zone] _initWithItemA:newItemA itemB:newItemB userDict:newUserDict];
 }
 
-
+//! Catches changes to observed instances of GeniusItem and GeniusAssociation.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     //NSLog(@"GeniusPair observeValueForKeyPath:%@", keyPath);
     [self setValue:[NSNumber numberWithBool:YES] forKey:@"dirty"];
 }
 
+//! Returns string with description of items.
 - (NSString *) description
 {
     return [NSString stringWithFormat:@"(%@, %@)", [[self itemA] description], [[self itemB] description]];
 }
 
-
+//! Convenience method for accessing the GeniusItem representing the 'front' of the card.
 - (GeniusItem *) itemA
 {
     return [[self associationAB] cueItem];
 }
 
+//! Convenience method for accessing the GeniusItem representing the 'back' of the card.
 - (GeniusItem *) itemB
 {
     return [[self associationBA] cueItem];
 }
 
+//! associationAB getter
 - (GeniusAssociation *) associationAB
 {
     return _associationAB;
 }
 
+//! associationBA getter
 - (GeniusAssociation *) associationBA
 {
     return _associationBA;
 }
 
-
+//! Convenience method for getting @a importanceNumber as @c int.
 - (int) importance
 {
     NSNumber * importanceNumber = [_userDict objectForKey:GeniusPairImportanceNumberKey];
@@ -380,6 +441,7 @@ const int kGeniusPairMaximumImportance = 10;
     return [importanceNumber intValue];
 }
 
+//! Convenience method for setting @a importanceNumber as @c int.
 - (void) setImportance:(int)importance
 {
     NSNumber * importanceNumber = [NSNumber numberWithInt:importance];
@@ -390,12 +452,14 @@ const int kGeniusPairMaximumImportance = 10;
 }
 
 
-// Optional user-defined tags
+//! customGroupString getter
+/*! Optional user-defined tags */
 - (NSString *) customGroupString
 {
     return [_userDict objectForKey:GeniusPairCustomGroupStringKey];
 }
 
+//! customGroupString setter
 - (void) setCustomGroupString:(NSString *)customGroup
 {
     if (customGroup)
@@ -407,11 +471,13 @@ const int kGeniusPairMaximumImportance = 10;
 //    [nc postNotificationName:GeniusPairFieldHasChanged object:GeniusPairCustomGroupStringKey];
 }
 
+//! customTypeString getter
 - (NSString *) customTypeString
 {
     return [_userDict objectForKey:GeniusPairCustomTypeStringKey];
 }
 
+//! customTypeString setter
 - (void) setCustomTypeString:(NSString *)customType
 {
     if (customType)
@@ -423,11 +489,13 @@ const int kGeniusPairMaximumImportance = 10;
 //    [nc postNotificationName:GeniusPairFieldHasChanged object:GeniusPairCustomTypeStringKey];
 }
 
+//! notesString getter
 - (NSString *) notesString
 {
     return [_userDict objectForKey:GeniusPairNotesStringKey];
 }
 
+//! notesString setter
 - (void) setNotesString:(NSString *)notesString
 {
     if (notesString)
@@ -444,11 +512,15 @@ const int kGeniusPairMaximumImportance = 10;
 
 @implementation GeniusPair (GeniusDocumentAdditions)
 
+//! Convenience method for evaluating importance.
+/*! Compare importance to @c kGeniusPairDisabledImportance */
 - (BOOL) disabled
 {
     return ([self importance] == kGeniusPairDisabledImportance);
 }
 
+//! Convenience method for setting importance.
+/*! Toggles @a importance between @a kGeniusPairDisabledImportance and @a kGeniusPairNormalImportance */
 - (void) setDisabled:(BOOL)disabled
 {
     [self setImportance:(disabled ? kGeniusPairDisabledImportance : kGeniusPairNormalImportance)];
@@ -459,6 +531,10 @@ const int kGeniusPairMaximumImportance = 10;
 
 @implementation GeniusPair (TextImportExport)
 
+//! Serialize an array of GeniusPair objects as delimited text
+/*!
+Each entry is written out as a line of text.  see tabularTextByOrder:
+*/
 + (NSString *) tabularTextFromPairs:(NSArray *)pairs order:(NSArray *)keyPaths
 {
     NSMutableString * outputString = [NSMutableString string];    
@@ -469,6 +545,10 @@ const int kGeniusPairMaximumImportance = 10;
     return (NSString *)outputString;
 }
 
+//! Serialize as tab delimited string
+/*!
+    The resultant string only includes values for the requested keyPaths.
+*/
 - (NSString *) tabularTextByOrder:(NSArray *)keyPaths
 {
     NSMutableString * outputString = [NSMutableString string];
@@ -495,6 +575,7 @@ const int kGeniusPairMaximumImportance = 10;
 }
 
 
+//! Convenience method to subdivide @a string into lines.
 + (NSArray *) _linesFromString:(NSString *)string
 {
     NSMutableArray * lines = [NSMutableArray array];
@@ -515,6 +596,11 @@ const int kGeniusPairMaximumImportance = 10;
     return lines;
 }
 
+//! Generates an array of GeniusPair instances from a delimited string.
+/*!
+    The provided @a string is separated into lines based.  Each line is used to create a new GeniusPair
+    instance that is initialized by the delimited line.
+*/
 + (NSArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
 {
     //Can't use lines = [string componentsSeparatedByString:@"\n"];
@@ -533,6 +619,12 @@ const int kGeniusPairMaximumImportance = 10;
     return (NSArray *)pairs;
 }
 
+//! Initializes a GeniusPair from a tab delimited string.
+/*!
+    The provided @a line is separated into values which are interpreted based on the values provided in
+    @a keyPaths.  They should have the same number of entries, but when that isn't the extra keys or values
+    are ignored.  Values are stripped of tabs and newlines.
+*/
 - (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths
 {
     self = [self init];

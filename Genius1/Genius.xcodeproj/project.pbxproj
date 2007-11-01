@@ -120,6 +120,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		83AA1D000CDA206F009E7A1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4 /* Genius */;
+			remoteInfo = Genius;
+		};
 		83D9BE680CD110EF0092858D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -569,6 +576,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				83AA1D010CDA206F009E7A1A /* PBXTargetDependency */,
 			);
 			name = Testing;
 			productName = Test;
@@ -760,6 +768,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		83AA1D010CDA206F009E7A1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* Genius */;
+			targetProxy = 83AA1D000CDA206F009E7A1A /* PBXContainerItemProxy */;
+		};
 		83D9BE690CD110EF0092858D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* Genius */;
@@ -961,6 +974,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
@@ -970,6 +984,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
@@ -979,6 +994,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};

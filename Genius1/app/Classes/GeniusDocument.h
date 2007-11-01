@@ -50,6 +50,7 @@
 
 @end
 
+//! Informal protocol for actions configured in nib files. 
 @interface GeniusDocument (IBActions)
 
 // View menu
