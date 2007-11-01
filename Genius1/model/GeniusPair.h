@@ -18,21 +18,21 @@
 #import <Foundation/Foundation.h>
 #import "GeniusItem.h"
 
-
-// A directed association between two items, with score-keeping data.
-// Like an axon between two neurons.
 @class GeniusPair;
 
+//! A directed association between two GeniusItem instances, with score-keeping data.
+/**
+Like an axon between two neurons. Never create directly; always create through GeniusPair.
+@todo Move this into its own file.
+*/
 @interface GeniusAssociation : NSObject {
     GeniusItem * _cueItem, * _answerItem;
     GeniusPair * _parentPair;
     NSMutableDictionary * _perfDict;
 
     // Transient
-    BOOL _dirty;    // used by key-value observing
+    BOOL _dirty;    //!< used by key-value observing
 }
-
-// Never create directly; always create through GeniusPair.
 
 - (GeniusItem *) cueItem;
 - (GeniusItem *) answerItem;
@@ -42,14 +42,14 @@
 
 - (NSDictionary *) performanceDictionary;
 
+//! Resets the score, scoreNumber, dueDate fields
 - (void) reset;
-    // Resets the following fields
 
-- (int) score;          // -1 means never been quizzed
+- (int) score;          //!< -1 means never been quizzed
 - (void) setScore:(int)score;
 
-// Equivalent object-based methods used by key bindings
-- (NSNumber *) scoreNumber; // nil means never been quizzed
+//! Equivalent object-based methods used by key bindings
+- (NSNumber *) scoreNumber; //!< nil means never been quizzed
 - (void) setScoreNumber:(id)scoreNumber;
 
 /*- (unsigned int) right;
@@ -69,12 +69,17 @@ extern const int kGeniusPairMinimumImportance;
 extern const int kGeniusPairNormalImportance;
 extern const int kGeniusPairMaximumImportance;
 
+/*!
+    @class GeniusPair
+    @abstract    Relates two instances of GeniusAssociation
+    @discussion  
+*/
 @interface GeniusPair : NSObject <NSCoding, NSCopying> {
     GeniusAssociation * _associationAB, * _associationBA;
     NSMutableDictionary * _userDict;
     
     // Transient
-    BOOL _dirty;    // used by key-value observing
+    BOOL _dirty;    //!< used by key-value observing
 }
 
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA;

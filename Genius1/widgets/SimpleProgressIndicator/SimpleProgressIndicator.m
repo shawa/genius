@@ -52,10 +52,15 @@
 	[self setNeedsDisplay:YES];
 }
 
-
+/// Renders the SimpleProgressIndicator view as a partially filled white box.
+/*!
+ * The users selected text background color is used to fill in the white box.  The percentage
+ * filled is calculated as <tt>(_doubleValue - _minValue) / (_maxValue - _minValue)</tt>.
+ */
 - (void)drawRect:(NSRect)aRect
 {
-	float percent = (_doubleValue - _minValue) / (_maxValue - _minValue);
+    /// @todo Check bounds on theses values
+    float percent = (_doubleValue - _minValue) / (_maxValue - _minValue);
 	float w = percent * aRect.size.width;
 
 	[[NSColor selectedTextBackgroundColor] set];

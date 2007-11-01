@@ -111,27 +111,7 @@
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
-		83CC1CEC0CD24A020002FFA8 /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C870725BD1300D09B7F /* GeniusAppDelegate.m */; };
 		83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */; };
-		83CC1D0E0CD24C140002FFA8 /* GeniusDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */; };
-		83CC1D0F0CD24C140002FFA8 /* GeniusDocumentFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */; };
-		83CC1D100CD24C140002FFA8 /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8E0725BD1300D09B7F /* GeniusToolbar.m */; };
-		83CC1D110CD24C140002FFA8 /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */; };
-		83CC1D120CD24C140002FFA8 /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C920725BD1300D09B7F /* MyQuizController.m */; };
-		83CC1D130CD24C140002FFA8 /* NSArrayGeniusAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */; };
-		83CC1D140CD24C140002FFA8 /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */; };
-		83CC1D150CD24C140002FFA8 /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA80725BD2000D09B7F /* GeniusItem.m */; };
-		83CC1D160CD24C140002FFA8 /* GeniusPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CAA0725BD2000D09B7F /* GeniusPair.m */; };
-		83CC1D170CD24C140002FFA8 /* ParagraphStyleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */; };
-		83CC1D180CD24C140002FFA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CE80725BD6100D09B7F /* main.m */; };
-		83CC1D190CD24C140002FFA8 /* GeniusHelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */; };
-		83CC1D1A0CD24C140002FFA8 /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */; };
-		83CC1D1B0CD24C140002FFA8 /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640470AA2056100888E37 /* IconTextFieldCell.m */; };
-		83CC1D1C0CD24C140002FFA8 /* LevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2366404A0AA2056100888E37 /* LevelIndicator.m */; };
-		83CC1D1D0CD24C140002FFA8 /* SimpleProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640540AA2056100888E37 /* SimpleProgressIndicator.m */; };
-		83CC1D1E0CD24C140002FFA8 /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 23286A740AA2077200EC1FFF /* NSString+Similiarity.m */; };
-		83CC1D1F0CD24C140002FFA8 /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F818E20B35312B0041656E /* GeniusPreferencesController.m */; };
-		83CC1D200CD24C140002FFA8 /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819710B35349D0041656E /* QuizBackdropWindow.m */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
@@ -746,26 +726,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83CC1CEC0CD24A020002FFA8 /* GeniusAppDelegate.m in Sources */,
-				83CC1D0E0CD24C140002FFA8 /* GeniusDocument.m in Sources */,
-				83CC1D0F0CD24C140002FFA8 /* GeniusDocumentFile.m in Sources */,
-				83CC1D100CD24C140002FFA8 /* GeniusToolbar.m in Sources */,
-				83CC1D110CD24C140002FFA8 /* GeniusWelcomePanel.m in Sources */,
-				83CC1D120CD24C140002FFA8 /* MyQuizController.m in Sources */,
-				83CC1D130CD24C140002FFA8 /* NSArrayGeniusAdditions.m in Sources */,
-				83CC1D140CD24C140002FFA8 /* GeniusAssociationEnumerator.m in Sources */,
-				83CC1D150CD24C140002FFA8 /* GeniusItem.m in Sources */,
-				83CC1D160CD24C140002FFA8 /* GeniusPair.m in Sources */,
-				83CC1D170CD24C140002FFA8 /* ParagraphStyleFormatter.m in Sources */,
-				83CC1D180CD24C140002FFA8 /* main.m in Sources */,
-				83CC1D190CD24C140002FFA8 /* GeniusHelpWindowController.m in Sources */,
-				83CC1D1A0CD24C140002FFA8 /* GeniusStringDiff.m in Sources */,
-				83CC1D1B0CD24C140002FFA8 /* IconTextFieldCell.m in Sources */,
-				83CC1D1C0CD24C140002FFA8 /* LevelIndicator.m in Sources */,
-				83CC1D1D0CD24C140002FFA8 /* SimpleProgressIndicator.m in Sources */,
-				83CC1D1E0CD24C140002FFA8 /* NSString+Similiarity.m in Sources */,
-				83CC1D1F0CD24C140002FFA8 /* GeniusPreferencesController.m in Sources */,
-				83CC1D200CD24C140002FFA8 /* QuizBackdropWindow.m in Sources */,
 				83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1054,6 +1014,7 @@
 		83CC1CD90CD2499C0002FFA8 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Genius.app/Contents/MacOS/Genius";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1071,6 +1032,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Testing;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
