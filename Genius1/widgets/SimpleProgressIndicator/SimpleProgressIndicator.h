@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-/// An NSView which displays \a _doubleValue as a colored bar against a white background.
+
 @interface SimpleProgressIndicator : NSView
 {
 	double _doubleValue; //!< The current value to display.
@@ -15,19 +15,13 @@
 	double _maxValue; //!< The maximum expected value for \a _doubleValue.
 }
 
-//! _doubleValue getter.
 - (double)doubleValue; 
-//! _doubleValue setter.
 - (void)setDoubleValue:(double)doubleValue;
 
-//! _minValue getter.
 - (double)minValue;
-//! _minValue setter.
 - (void)setMinValue:(double)newMinimum;
 
-//! _maxValue getter.
 - (double)maxValue;
-//! _minValue setter.
 - (void)setMaxValue:(double)newMaximum;
 
 @end

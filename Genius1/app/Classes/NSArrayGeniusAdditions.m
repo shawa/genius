@@ -18,18 +18,26 @@
 #import "NSArrayGeniusAdditions.h"
 
 
-@implementation NSArray (NSArrayGeniusAdditions)
+//! Utility methods for creating randomized subsets of an array.
+@implementation NSArray(NSArrayGeniusAdditions)
+
+//! randomly returns NSOrderedAscending or NSOrderedDescending
 int RandomSortFunction(id object1, id object2, void * context)
 {
     BOOL x = random() & 0x1;
     return (x ? NSOrderedAscending : NSOrderedDescending);
 }
 
+//! Returns a randomized version of the original array.
 - (NSArray *) _arrayByRandomizing
 {
     return [self sortedArrayUsingFunction:RandomSortFunction context:nil];
 }
 
+//! Returns an array which includes items return value from @a selector.
+/*!
+    @todo Replace this with filteredArrayUsingPredicate:
+*/
 - (NSArray *) _arrayNotMatchingObjectsUsingSelector:(SEL)selector
 {
     NSEnumerator * objectEnumerator = [self objectEnumerator];

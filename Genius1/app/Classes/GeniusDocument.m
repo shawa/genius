@@ -78,7 +78,7 @@
 - (void) _setTitle:(NSString *)title forTableColumnWithIdentifier:(NSString *)identifier;
 @end
 
-
+// Standard NSDocument subclass for controlling display and editing of a Genius file.
 @implementation GeniusDocument
 
 - (id)init
@@ -264,6 +264,13 @@
     return arrayController;
 }
 
+//! Returns array of keypaths used as bindings in our NSTableView.
+/*
+ @todo Must this be created new each time?
+ @todo Perhaps this should be derived from the columns in our NSTableView?
+ @todo They are particularly not in display order if the colums are reordered.
+ @todo notesString is not a column binding.
+ */
 - (NSArray *) columnBindings    // in display order
 {
     return [NSArray arrayWithObjects:@"itemA.stringValue", @"itemB.stringValue", @"customGroupString", @"customTypeString", @"associationAB.scoreNumber", @"associationBA.scoreNumber", @"notesString", nil];
@@ -533,7 +540,7 @@
 //! Saves GeniusDocument
 /*! 
     The implementation checks to see if saving the file would make it impossible to open the file again with older versions of Genius.
-    Assuming this is okay, it goes on to save the document with a call to super.
+    Assuming this is okay, it simply passes the call to super.
     @todo Perhaps this would be better to have in the GeniusDocument(FileFormat) category next to loadDataRepresentation:ofType:.
 */
 - (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
@@ -685,7 +692,7 @@
 
 //! Handles the results of the modal sheet initiated in @a delete:.
 /*!
-    In the event the user confirmed the delete action, then the selected GeniusPair items are nuked.
+    In the event the user confirmed the delete action, then the selected GeniusPair items are deleted.
  */
 - (void)_deleteAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
@@ -723,7 +730,7 @@
 //! Handles the results of the modal sheet initiated in @a resetScore:.
 /*!
     In the event the user confirmed the reset action, then the performance statistics for all GeniusPair items
-    in the this document are nuked.
+    in the this document are deleted.
     @todo Check if it makes that much sense to nuke the performance data? 
 */
 - (void)_resetAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -784,6 +791,7 @@
 	
     // Start quiz
     NSTimeInterval studyTime;
+    //< @todo don't specify the nib name here but rather in the MyQuizController#init.
     MyQuizController * quizController = [[MyQuizController alloc] initWithWindowNibName:@"Quiz"];
     [quizController runQuiz:enumerator cumulativeTime:&studyTime];
     [quizController release];
@@ -822,7 +830,7 @@
 //! Set up quiz mode using enabled and previously learned GeniusPair items.
 /*! 
     Sets the minimum required score on the GeniusAssociationEnumerator to 0 which
-    precludes pairs with uninitialized score values.  @see score
+    precludes pairs with uninitialized score values.  @see GeniusAssociation#score
 */
 - (IBAction)quizReview:(id)sender
 {
@@ -946,7 +954,7 @@
 @end
 
 
-@implementation GeniusDocument (NSTableViewDelegate)
+@implementation GeniusDocument(NSTableViewDelegate)
 
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
@@ -979,13 +987,14 @@
 }
 
 
-// Editable table headers
+//! Allows editing of aTableColumn when its identifier is @c "columnA" or @c "columnB".
 - (BOOL) _tableView:(NSTableView *)aTableView shouldChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn
 {
     NSString * identifier = [aTableColumn identifier];
     return [identifier isEqualToString:@"columnA"] || [identifier isEqualToString:@"columnB"];
 }
 
+//! Stores the new title in #_columnHeadersDict
 - (void) _tableView:(NSTableView *)aTableView didChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn
 {
     NSString * identifier = [aTableColumn identifier];
@@ -1107,15 +1116,21 @@ static NSTableColumn * sDuringDragTableColumn = nil;
 
 @end
 
+//! NSTableView subclass that supports header cell editing.
+/*!
+    Adds suport for editing header titles when you doubclick on a colum.  To enable delegate
+    control over which column titles can be edited, the following methods are declared as an
+    informal protocol.
 
-/*
-    Adds support for the delegate methods
-        -_tableView:shouldChangeHeaderTitleOfTableColumn:
-        -_tableView:didChangeHeaderTitleOfTableColumn:
-        -delete:
+    @see NSObject(MyTableViewDelegate)
+    @todo Get rid of this feature.  Replace with a deck attributes inspector that lets you title the items as you will for a deck.
+    @todo The delete and tab keys can probably both be handled via the responder chain.
+    @todo delete this class and related code.
+
 */
 @implementation MyTableView
 
+//! Initializes new MyTableView.  Configures view for double-click.
 - (id)initWithFrame:(NSRect)frameRect
 {
     self = [super initWithFrame:frameRect];
@@ -1124,6 +1139,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     return self;
 }
 
+//! Configures view for double-click.
 - (void) awakeFromNib
 {
     [self setDoubleAction:@selector(_doubleClick:)];   // Make editable
@@ -1132,6 +1148,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
 
 static NSTableColumn * sDuringEditTableColumn = nil;
 
+//! Begins editing of header cell for the double-clicked column
 - (void) _doubleClick:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -1168,6 +1185,7 @@ static NSTableColumn * sDuringEditTableColumn = nil;
     [string release];
 }
 
+//! Notifies delegate of the change to the header cell.
 - (void)textDidEndEditing:(NSNotification *)aNotification
 {
     if (sDuringEditTableColumn == nil)
@@ -1192,8 +1210,8 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 }
 
 
-// Workaround for Global drag and drop
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal   // NSDraggingSource
+//! Workaround for Global drag and drop
+- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal
 {
     if (isLocal)
         return [super draggingSourceOperationMaskForLocal:isLocal];
@@ -1202,7 +1220,10 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 }
 
 
-// Handle delete:
+//! Handle delete key.
+/*!
+    @todo Delete can be handled via responder chain. 
+*/
 - (void)keyDown:(NSEvent *)theEvent
 {	
     if ([theEvent keyCode] == 51)       // Delete
@@ -1227,47 +1248,57 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 @end
 
 
-// Subclass to handle item filtering
+//! Subclass to handle item filtering
 @implementation GeniusArrayController
 
+//! Returns an object initialized from data in the provided @a decoder
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
+    //! @todo Remove calls to +new.
     _filterString = [NSString new];
     return self;
 }
 
+//! Releases _filterString and frees memory.
 - (void) dealloc
 {
     [_filterString release];
     [super dealloc];
 }
 
+//! _filterString getter
 - (NSString *) filterString
 {
     return _filterString;
 }
 
+//! _filterString setter.
 - (void) setFilterString:(NSString *)string
 {
     [_filterString release];
+    //! @todo don't copy this
     _filterString = [string copy];
     [self rearrangeObjects];
 }
 
+//! Returns a given array, appropriately sorted and filtered.
 - (NSArray *)arrangeObjects:(NSArray *)objects
 {
     if ([_filterString isEqualToString:@""])
         return [super arrangeObjects:objects];
     else
     {
+        //! @todo Set colum bindings as a property rather than pull them from the geniusDocument.
         NSMutableArray * keyPaths = [[geniusDocument columnBindings] mutableCopy];
-        [keyPaths addObject:@"notesString"];    // HACK
+        //! @todo notesString is is already returned from @c columnBindings
+        [keyPaths addObject:@"notesString"];
         NSMutableArray * filteredObjects = [NSMutableArray array];
         NSEnumerator * pairEnumerator = [objects objectEnumerator];
         GeniusPair * pair;
         while ((pair = [pairEnumerator nextObject]))
         {
+            //! @todo surely there is a better way to do this.  Perhaps use SearchKit?
             NSString * tabularText = [pair tabularTextByOrder:keyPaths];
             NSRange range = [tabularText rangeOfString:_filterString options:NSCaseInsensitiveSearch];
             if (range.location != NSNotFound)

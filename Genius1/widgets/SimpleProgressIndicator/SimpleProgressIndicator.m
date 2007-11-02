@@ -8,6 +8,7 @@
 
 #import "SimpleProgressIndicator.h"
 
+//! An NSView which displays \a _doubleValue as a colored bar against a white background.
 @implementation SimpleProgressIndicator
 
 //! Initializes and returns a newly allocated SimpleProgressIndicator object with a specified frame rectangle.
@@ -20,33 +21,39 @@
 	return self;
 }
 
+//! _doubleValue getter.
 - (double)doubleValue
 {
 	return _doubleValue;
 }
 
+//! _doubleValue setter.
 - (void)setDoubleValue:(double)doubleValue
 {
 	_doubleValue = doubleValue;
 	[self setNeedsDisplay:YES];
 }
 
+//! _minValue getter.
 - (double)minValue
 {
 	return _minValue;
 }
 
+//! _minValue setter.
 - (void)setMinValue:(double)newMinimum
 {
 	_minValue = newMinimum;
 	[self setNeedsDisplay:YES];
 }
 
+//! _maxValue getter.
 - (double)maxValue
 {
 	return _maxValue;
 }
 
+//! _minValue setter.
 - (void)setMaxValue:(double)newMaximum
 {
 	_maxValue = newMaximum;

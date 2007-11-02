@@ -26,9 +26,10 @@
 
 #import "GeniusPreferencesController.h"
 
-
+//! Standard Cocoa Application delegate.
 @implementation GeniusAppDelegate
 
+//! Initializes application with factory defaults.
 + (void) initialize
 {
 	// Register defaults
@@ -48,17 +49,20 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
+//! Releases @a preferencesController and frees memory.
 - (void) dealloc {
     [preferencesController release];
     [super dealloc];
 }
 
+//! Opens John R Chang's personal website at the note describing how to give him money via finder.
 - (IBAction) openTipJarSite:(id)sender
 {
     NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/#tipjar"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
+//! Instanciates a GeniusPreferencesController if needed and displays it.
 - (IBAction) showPreferences:(id)sender
 {
     if (!preferencesController) {
@@ -68,40 +72,52 @@
 }
 
 
+//! Opens John R Chang's personal website via finder.
 - (IBAction) showWebSite:(id)sender
 {
     NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
+//! Opens the yahoo genius talk website via finder.
 - (IBAction) showSupportSite:(id)sender
 {
     NSURL * url = [NSURL URLWithString:@"http://groups.yahoo.com/group/genius-talk/"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
+//! Does nothing
+/*!
+    If we weren't using bindings to set this preference we'd need the following line of code.
+    But we are using bindings so it isn't needed.  We have to bind the menu item to something
+    or it wouldn't be enabled.  So we use this dummy method here.
+
+    <tt>[[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:GeniusPreferencesUseSoundEffectsKey];</tt>
+ 
+     @todo replace this with code that enables/disables menu items explicitely.
+ */
 - (IBAction) toggleSoundEffects:(id)sender
 {
-    /* 
-       If we weren't using bindings to set this preference we'd need the following line of code.
-       But we are using bindings so it isn't needed.  We have to bind the menu item to something
-       or it wouldn't be enabled.  So we use this dummy method here.
-    
-      [[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:GeniusPreferencesUseSoundEffectsKey];
-    */
 }
 
+//! Presents basic help window @see GeniusHelpWindowController#showWindow
 - (IBAction) showHelpWindow:(id)sender
 {
     [GeniusHelpWindowController showWindow];
 }
 
-
+//! Wraps call to GeniusDocument(FileFormat)::importFile:
 - (IBAction)importFile:(id)sender
 {
     [GeniusDocument importFile:sender];
 }
 
+//! Checks current running version against previous.
+/*
+    The implementation of this method was complicated by a change in version strings.
+    from date oriented to a simple ever climbing build number.  Consult tes cases for
+    some examples.
+ */
 - (BOOL) isNewerVersion: (NSString*) currentVersion lastVersion:(NSString*)lastVersion
 {
     if (!lastVersion && currentVersion)
@@ -130,7 +146,7 @@
 @end
 
 
-@implementation GeniusAppDelegate (NSApplicationDelegate)
+@implementation GeniusAppDelegate(NSApplicationDelegate)
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {

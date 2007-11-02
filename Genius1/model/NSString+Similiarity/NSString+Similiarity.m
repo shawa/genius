@@ -11,9 +11,17 @@
 
 #import <CoreServices/CoreServices.h>
 
-
-@implementation NSString (Similiarity)
-
+//! Simple category for support of loosely matching strings based on SearchKit
+/*!
+    @category NSString(Similiarity)
+    @todo Perhaps a simple searchkit wrapper would be a better idea?
+ */
+@implementation NSString(Similiarity)
+//! Returns search kit score for @a inQuery.
+/*!
+    Only returns score for last match if there is more than one match.
+    @todo Perhaps convert this helper function to a category method?
+*/
 float ScoreForSearchAsync(SKIndexRef inIndex, CFStringRef inQuery)
 {
     // Create search
@@ -24,12 +32,13 @@ float ScoreForSearchAsync(SKIndexRef inIndex, CFStringRef inQuery)
 	SKDocumentID documentIDs[1] = {};
     float foundScores[1] = {0.0};
 	CFIndex foundCount = 0;
+    //! @todo Perhaps do while with comparison on search result?
 	while (1)
 	{
 		Boolean result = SKSearchFindMatches(search, 1, documentIDs, foundScores, 0.5, &foundCount);
 		if (result == false)
 			break;
-
+        // @todo Perhaps delete this delay
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
 	}
 	
@@ -38,7 +47,11 @@ float ScoreForSearchAsync(SKIndexRef inIndex, CFStringRef inQuery)
 	return foundScores[0];
 }
   
-
+//! Returns a value between 0 and 1 depending on the quality of match
+/*!
+    Returns 0.0 <= x <= 1.0.  0.0 == not equal (or error), 1.0 == equal.
+    Uses Search Kit.
+ */
 - (float)isSimilarToString:(NSString *)aString
 {
     // Exact-match fast case

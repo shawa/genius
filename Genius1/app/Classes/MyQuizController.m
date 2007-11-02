@@ -28,6 +28,10 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 
 @implementation MyQuizController
 
+//! Standard NSWindowController initialization.
+/*!
+    @todo move this setup into an init method which calls initWithWindowNibName:
+*/
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {
     self = [super initWithWindowNibName:windowNibName];
@@ -49,6 +53,8 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     return self;
 }
 
+//! Release sound and fonts.  Deallocate memory.
+/*! @see #initWithWindowNibName: */
 - (void) dealloc
 {
     [_newSound release];
@@ -61,7 +67,9 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     [super dealloc];
 }
 
-/*
+
+//! _visibleCueItem setter.
+/*!
     Single line items are large size and centered-justified.
     Multiple line items are small size and left-justified.
     Nil items are grey color; non-nil items are black color.
@@ -86,6 +94,12 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     [cueTextView setAlignment:alignment];
 }
 
+//! _visibleAnswerItem setter.
+/*!
+    Single line items are large size and centered-justified.
+    Multiple line items are small size and left-justified.
+    Nil items are grey color; non-nil items are black color.
+ */
 - (void) _setVisibleAnswerItem:(GeniusItem *)item
 {
     BOOL useLargeSize = YES;
@@ -109,7 +123,12 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     [answerTextView setAlignment:alignment];
 }
 
-
+//! Updates the #studyTimeField to display the running time of the quiz.
+/*!
+    This method and its associated studyTimeField may be dead code.  Aside from studyTimeField doesn't show up in code or nib files.
+    And the only call to this method shows up in a comment in #runQuiz:cumulativeTime:.
+     @todo Check where studyTimeField is ever set.
+*/
 - (void) _handleStudyTimer:(NSTimer *)timer
 {
     if (_cumulativeTimePtr)
@@ -121,6 +140,12 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     }
 }
 
+//! Runs a quiz session for the provided @a enumerator.
+/*!
+    Optionally presents a user tips panel with advice about how to work on memorization.  Depending on user preferences
+    A screen window is displayed to reduce distractions.  Other document views are hidden while running this quiz. New
+    GeniusAssociation instances which have no GeniusAssociation#scoreNumber are presented in review mode. 
+*/
 - (void) runQuiz:(GeniusAssociationEnumerator *)enumerator cumulativeTime:(NSTimeInterval *)cumulativeTimePtr
 {
     // Show "Take a moment to slow down..." panel
@@ -195,7 +220,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         if (isFirstTime)
         {
             // Prepare window for reviewing
-            [self _setVisibleAnswerItem:answerItem];   // show
+            [self _setVisibleAnswerItem:answerItem];   // show the answer for review
 
             [getRightView setHidden:YES];
             [newAssociationView setHidden:NO];
@@ -210,7 +235,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         }
         else
         {
-            [self _setVisibleAnswerItem:nil];       // hide
+            [self _setVisibleAnswerItem:nil];       // hide the answer
 
             [entryField setStringValue:@""];
             [entryField setEnabled:YES];
@@ -228,7 +253,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
                 break;
      
             // Prepare window for reviewing
-            [self _setVisibleAnswerItem:answerItem];   // show
+            [self _setVisibleAnswerItem:answerItem];   // show the answer for review
             
             [entryField setEnabled:NO];
             [getRightView setHidden:NO];
@@ -339,13 +364,13 @@ skip_review:
 	}
 }
 
-
+//! #_visibleCueItem getter
 - (GeniusItem *) visibleAnswerItem
 {
     return _visibleAnswerItem;
 }
 
-
+//! The user entered text in #entryField or hit the okay button during review.
 - (IBAction)handleEntry:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -356,6 +381,7 @@ skip_review:
     [NSApp stopModal];
 }
 
+//! The user answered correctly.
 - (IBAction)getRightYes:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -368,6 +394,7 @@ skip_review:
     [NSApp stopModal];
 }
 
+//! The user answered incorrectly.
 - (IBAction)getRightNo:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -380,6 +407,7 @@ skip_review:
     [NSApp stopModal];
 }
 
+//! The user skipped the GeniusAssociation.
 - (IBAction)getRightSkip:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -392,6 +420,11 @@ skip_review:
     [NSApp stopModal];
 }
 
+//! Handle keyboard driven input.
+/*!
+    @todo What about handling skip with a key equivalent?
+    @todo What about handling ending with a press of esc.
+*/
 - (void)keyDown:(NSEvent *)theEvent
 {
     NSString * characters = [theEvent characters];
@@ -403,6 +436,7 @@ skip_review:
         [super keyDown:theEvent];
 }
 
+//! The user can elect to end quiz by closing the window.
 - (BOOL)windowShouldClose:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -412,6 +446,7 @@ skip_review:
     return YES;
 }
 
+//! The user elected to close the quiz window.
 - (void)windowWillClose:(NSNotification *)aNotification
 {
     [NSApp abortModal];
@@ -420,13 +455,24 @@ skip_review:
 @end
 
 
-@implementation MyQuizController (NSAnimationDelegate)
+//! Support for animated fade in and out of QuizBackdropWindow
+/*!
+    @todo Fix this so the fade in effect works.
+*/
+@implementation MyQuizController(NSAnimationDelegate)
 
+//! Handles fade in and out of QuizBackdropWindow.
+/*!
+    We're set up in runQuiz:cumulativeTime: as the delegate of an NSAnimation.  We use the progress
+    of the animation to determine the current alpha transparency of the QuizBackdropWindow.
+*/
 - (void)animation:(NSAnimation*)animation didReachProgressMark:(NSAnimationProgress)progress
 {
+    NSLog(@"got to herer");
 	float alpha = [animation currentValue] * 0.5;
 	[_screenWindow setAlphaValue:alpha];
-	[animation addProgressMark:0.1];
+    //! @bug This just adds another progress mark at the same place. Which means the fade in effect is actually lost.
+	[animation addProgressMark:0.1]; 
 }
 
 @end

@@ -17,14 +17,18 @@
 
 #import "GeniusHelpWindowController.h"
 
+//! Implements basic help window that displays simple rft help document.
 @implementation GeniusHelpWindowController
 
+//! Initializes textView using contents of Help.rtf found in main bundle.
 - (void) awakeFromNib
 {
 	NSString * path = [[NSBundle mainBundle] pathForResource:@"Help" ofType:@"rtf"];
 	[textView readRTFDFromFile:path];
 }
 
+//! Convenience method to create a new GeniusHelpWindowController and display it.
+/*! @todo Fix this so it doesn't leak the GeniusHelpWindowController. */
 + (void) showWindow
 {
 	GeniusHelpWindowController * wc = [[GeniusHelpWindowController alloc] initWithWindowNibName:@"Help"];

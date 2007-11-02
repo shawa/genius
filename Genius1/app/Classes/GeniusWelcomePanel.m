@@ -20,8 +20,13 @@
 static NSString * GeniusWelcomePanelDontShowKey = @"dontShowQuizWelcome";
 
 
+//! Standard NSWindowController subclass for handling the PreQuiz nib.
+/*!
+    @todo Rename this clas to something without Panel in the name.
+*/
 @implementation GeniusWelcomePanel
 
+//! Creates if needed the singleton GeniusWelcomePanel initializes it.
 + (GeniusWelcomePanel *) sharedWelcomePanel
 {
     static GeniusWelcomePanel * sController = nil;
@@ -30,6 +35,10 @@ static NSString * GeniusWelcomePanelDontShowKey = @"dontShowQuizWelcome";
     return sController;
 }
 
+//! Presents PreQuiz window with helpful tips regarding memorization work.
+/*!
+    Presents user with opportunity to set a perference that disables this view in the future.
+*/
 - (BOOL) runModal
 {
     static BOOL sHasSeenThisSession = NO;
@@ -56,17 +65,19 @@ static NSString * GeniusWelcomePanelDontShowKey = @"dontShowQuizWelcome";
     return YES;
 }
 
+//! The user has elected not to continue with the quiz.
 - (IBAction)goBack:(id)sender
 {
     [NSApp abortModal];
 }
 
+//! The quiz should proceed.
 - (IBAction)continue:(id)sender
 {
     [NSApp stopModal];
 }
 
-
+//! The window has been closed.
 - (BOOL)windowShouldClose:(id)sender
 {
     [NSApp abortModal];

@@ -21,33 +21,40 @@
 #import "GeniusAssociationEnumerator.h"
 #import "QuizBackdropWindow.h"
 
+//! Standard NSWindowController subclass for managing a user quiz.
+/*!
+    @todo replace id in IBOutlets with a pointer to the actual class.
+*/
 @interface MyQuizController : NSWindowController
 {
-    IBOutlet id associationController;
-    IBOutlet id cueTextView;
-    IBOutlet id answerTextView;
-    IBOutlet id getRightView;
-    IBOutlet id entryField;
-    IBOutlet id yesButton;
-    IBOutlet id noButton;
-    IBOutlet id newAssociationView;
-    IBOutlet id progressIndicator;
-    IBOutlet id studyTimeField;
+    IBOutlet id associationController;  //!< NSObjectController for #_currentAssociation.
+    IBOutlet id cueTextView;            //!< Displays the cue item of #_currentAssociation.
+    IBOutlet id answerTextView;         //!< Displays the answer item of #_currentAssociation.
+    IBOutlet id getRightView;           //!< Check your answer view in learning mode.
+    IBOutlet id entryField;             //!< Text area for typing in the answer in learning mode.
+    IBOutlet id yesButton;              //!< Confirms correct answer.
+    IBOutlet id noButton;               //!< Confirms incorrect answer.
+    IBOutlet id newAssociationView;     //!< Check your answer view for review mode.
+    IBOutlet id progressIndicator;      //!< Little bar at top of quiz window showing progress.
+    IBOutlet id studyTimeField;         //!< This doesn't seem to be connected to anything.
 
-    GeniusAssociationEnumerator * _enumerator;
-    GeniusAssociation * _currentAssociation;
+    GeniusAssociationEnumerator * _enumerator; //!< Contains GeniusAssociation objects for this quiz.
+    GeniusAssociation * _currentAssociation;   //!< Currently displayed GeniusAssociation.
+    //! Time in seconds spent studying.
+    /*! @todo I don't think this or any related code is used */
     NSTimeInterval * _cumulativeTimePtr;
     
-    NSSound * _newSound;
-    NSSound * _rightSound;
-    NSSound * _wrongSound;
-	QuizBackdropWindow * _screenWindow;
+    
+    NSSound * _newSound;                //!< Played as new items are presented
+    NSSound * _rightSound;              //!< Played as correct answers are entered.
+    NSSound * _wrongSound;              //!< Played for incorrect answers.
+	QuizBackdropWindow * _screenWindow; //!< Semitransparent black backdrop window.
 
-    GeniusItem * _visibleCueItem;       // used by key-value binding
-    GeniusItem * _visibleAnswerItem;    // used by key-value binding
-    NSFont * _cueItemFont;              // used by key-value binding
-    NSFont * _answerItemFont;           // used by key-value binding
-    NSColor * _answerTextColor;         // used by key-value binding
+    GeniusItem * _visibleCueItem;       //!< Currently displayed cueItem from _currentAssociation
+    GeniusItem * _visibleAnswerItem;    //!< Currently displayed answerItem from _currentAssociation
+    NSFont * _cueItemFont;              //!< Currently used font for displaying cueItem.
+    NSFont * _answerItemFont;           //!< Currently used font for displaying answerItem.
+    NSColor * _answerTextColor;         //!< Currently used color for displaying answerItem.
 }
 
 - (void) runQuiz:(GeniusAssociationEnumerator *)enumerator cumulativeTime:(NSTimeInterval *)cumulativeTimePtr;

@@ -20,7 +20,7 @@
 @class GeniusPreferencesController;
 
 @interface GeniusAppDelegate : NSObject {
-    GeniusPreferencesController *preferencesController;
+    GeniusPreferencesController *preferencesController;  //!< Standard NSWindowController subclass for preferences window.
 }
 
 - (IBAction) openTipJarSite:(id)sender;

@@ -32,7 +32,6 @@ NSString * GeniusPairNotesStringKey = @"notesString";
 @end
 
 @implementation GeniusAssociation
-
 //! sets up dummy _dirty property as dependent property of other instance properties.
 /*! @todo Track changes differently. */
 + (void)initialize
@@ -94,15 +93,19 @@ NSString * GeniusPairNotesStringKey = @"notesString";
 }
 
 //! _perfDict getter
-/*! @todo change variable name from @a _perfDict to @a _performanceData.  Or perhaps drop @a _perfData and add a dueDate and score ivar. */
+/*!
+    @todo change variable name from GeniusAssociation#_perfDict to @c _performanceData.
+    Or perhaps drop GeniusAssociation#_perfDict and add a @c dueDate and @c score ivar.
+ */
 - (NSDictionary *) performanceDictionary
 {
     return _perfDict;
 }
 
 //! Resets all performance data. (ie scoreNumber and dueDate)
-/*! Posts notifications for changing values @c GeniusAssociationScoreNumberKey and @c GeniusAssociationDueDateKey
-and deletes all entries from _perfDict.
+/*! 
+    Posts notifications for changing values @c GeniusAssociationScoreNumberKey and @c GeniusAssociationDueDateKey
+    and deletes all entries from GeniusAssociation#_perfDict.
 */
 - (void) reset
 {
@@ -113,7 +116,8 @@ and deletes all entries from _perfDict.
     [self didChangeValueForKey:GeniusAssociationDueDateKey];
 }
 
-//! Convenience method for getting scoreNumber as an integer.
+//! Convenience method for getting GeniusAssociation#scoreNumber as an integer.
+/*! -1 means never been quizzed. */
 - (int) score
 {
     NSNumber * scoreNumber = [self scoreNumber];
@@ -123,7 +127,7 @@ and deletes all entries from _perfDict.
         return [scoreNumber intValue];
 }
 
-//! Convenience method for setting scoreNumber as an integer.
+//! Convenience method for setting #scoreNumber as an integer.
 - (void) setScore:(int)score
 {
     NSNumber * scoreNumber;
@@ -135,7 +139,8 @@ and deletes all entries from _perfDict.
     [self setScoreNumber:scoreNumber];
 }
 
-//! scoreNumber getter. Returns object in @a _perfDict for GeniusAssociationScoreNumberKey
+//! scoreNumber getter. Returns object in GeniusAssociation#_perfDict for GeniusAssociationScoreNumberKey
+/*! @todo Remove one of score or scoreNumber and friends. */
 - (NSNumber *) scoreNumber
 {
     id scoreNumber = [_perfDict objectForKey:GeniusAssociationScoreNumberKey];
@@ -144,7 +149,7 @@ and deletes all entries from _perfDict.
     return nil;
 }
 
-//! scoreNumber setter. Stores @a scoreObject in @a _perfDict under GeniusAssociationScoreNumberKey 
+//! scoreNumber setter. Stores @a scoreObject in GeniusAssociation#_perfDict under GeniusAssociationScoreNumberKey 
 /*! Converts NSString to NSNumber.   Stores other objects as is. */
 - (void) setScoreNumber:(id)scoreObject
 {
@@ -195,8 +200,8 @@ and deletes all entries from _perfDict.
     [_perfDict setValue:dueDate forKey:GeniusAssociationDueDateKey];
 }
 
-//! Compare to @a association based on @a dueDate.
-/*! For comparison purposes a missing @a dueDate is treated the same as +[NSDate distantPast]. */
+//! Compare to @a association based on #dueDate.
+/*! For comparison purposes a missing #dueDate is treated the same as +[NSDate distantPast]. */
 - (NSComparisonResult) compareByDate:(GeniusAssociation *)association
 {
     NSDate * date1 = [self dueDate];
@@ -208,8 +213,8 @@ and deletes all entries from _perfDict.
     return [date1 compare:date2];
 }
 
-//! Compare to @a association based on @a scoreNumber.
-/*! For comparison purposes a missing @a scoreNumber is treated the same as the largest possible negative number. */
+//! Compare to @a association based on #scoreNumber.
+/*! For comparison purposes a missing #scoreNumber is treated the same as the largest possible negative number. */
 - (NSComparisonResult) compareByScore:(GeniusAssociation *)association
 {
     NSNumber * scoreNumber1 = [self scoreNumber];
@@ -223,10 +228,13 @@ and deletes all entries from _perfDict.
 
 @end
 
-
+//! The GeniusItem is not used.
 const int kGeniusPairDisabledImportance = -1;
+//! The GeniusItem is minimally relevant.
 const int kGeniusPairMinimumImportance = 0;
+//! The GeniusItem is averagely relevant.
 const int kGeniusPairNormalImportance = 5;
+//! The GeniusItem is maximally relevant.
 const int kGeniusPairMaximumImportance = 10;
 
 @interface GeniusPair (Private)
@@ -243,7 +251,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
  */
 @implementation GeniusPair
 
-//! Set up @a importance and @a dirty as dependent properties.
+//! Set up #importance and #_dirty as dependent properties.
 + (void)initialize
 {
     [super initialize];
@@ -264,7 +272,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 
 /*!
     Collects GeniusAssociations from the GeniusPair intances found in @a pairs into an array. 
-    Excluded from the returned array are disabled items and items excluded by @a useAB and @a useBA
+    Excluded from the returned array are disabled items and items excluded by @a useAB and @a useBA.
 */
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA
 {
@@ -286,7 +294,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 
 //! Initializes new GeniusPair and allocates storage.
 /*!
-    This @a init method allocates two GeniusAssociation objects as well as the related two GeniusItem objects and connects
+    This #init method allocates two GeniusAssociation objects as well as the related two GeniusItem objects and connects
     them together.  The returned intance is setup as an observer of these four objects.  Specifically it watches for changes to
     their 'dirty' attribute in order to track changes.
     @todo Pick a designated initializer and organize the varous init methods as needed.
@@ -314,7 +322,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 //! Deallocates the memory occupied by the receiver.
 /*!
     Releases ivars and removes self as observer of the four objects created at initialization.
-    @see init
+    @see GeniusPair#init
 */
 - (void) dealloc
 {
@@ -442,7 +450,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     return _associationBA;
 }
 
-//! Convenience method for getting @a importanceNumber as @c int.
+//! Convenience method for getting value for GeniusPairImportanceNumberKey from _userDict as @c int.
 - (int) importance
 {
     NSNumber * importanceNumber = [_userDict objectForKey:GeniusPairImportanceNumberKey];
@@ -451,7 +459,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     return [importanceNumber intValue];
 }
 
-//! Convenience method for setting @a importanceNumber as @c int.
+//! Convenience method for setting value for GeniusPairImportanceNumberKey in _userDict as @c int.
 - (void) setImportance:(int)importance
 {
     NSNumber * importanceNumber = [NSNumber numberWithInt:importance];
@@ -533,7 +541,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 }
 
 //! Convenience method for setting importance.
-/*! Toggles @a importance between @a kGeniusPairDisabledImportance and @a kGeniusPairNormalImportance */
+/*! Toggles GeniusPair#importance between kGeniusPairDisabledImportance and kGeniusPairNormalImportance */
 - (void) setDisabled:(BOOL)disabled
 {
     [self setImportance:(disabled ? kGeniusPairDisabledImportance : kGeniusPairNormalImportance)];
@@ -563,7 +571,8 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 
 //! Serialize as tab delimited string
 /*!
-The resultant string only includes values for the requested keyPaths.
+    The resultant string only includes values for the requested keyPaths.  Used for both export
+    and searching.
  */
 - (NSString *) tabularTextByOrder:(NSArray *)keyPaths
 {
@@ -614,8 +623,9 @@ The resultant string only includes values for the requested keyPaths.
 
 //! Generates an array of GeniusPair instances from a delimited string.
 /*!
-The provided @a string is separated into lines based.  Each line is used to create a new GeniusPair
- instance that is initialized by the delimited line.
+    The provided @a string is separated into lines based.  Each line is used to create a new GeniusPair
+    instance that is initialized by the delimited line.
+    @todo Maybe this code belongs in GeniusDocument(FileFormat)
  */
 + (NSArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
 {
@@ -637,9 +647,9 @@ The provided @a string is separated into lines based.  Each line is used to crea
 
 //! Initializes a GeniusPair from a tab delimited string.
 /*!
-The provided @a line is separated into values which are interpreted based on the values provided in
- @a keyPaths.  They should have the same number of entries, but when that isn't the extra keys or values
- are ignored.  Values are stripped of tabs and newlines.
+    The provided @a line is separated into values which are interpreted based on the values provided in
+    @a keyPaths.  They should have the same number of entries, but when that isn't the extra keys or values
+    are ignored.  Values are stripped of tabs and newlines.
  */
 - (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths
 {

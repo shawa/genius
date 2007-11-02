@@ -51,11 +51,10 @@
 
 - (void) reset;
 
-- (int) score;          //!< -1 means never been quizzed
+- (int) score;
 - (void) setScore:(int)score;
 
-//! Equivalent object-based methods used by key bindings. @todo Remove one of score or scoreNumber and friends.
-
+// Equivalent object-based methods used by key bindings. 
 - (NSNumber *) scoreNumber;
 - (void) setScoreNumber:(id)scoreNumber;
 

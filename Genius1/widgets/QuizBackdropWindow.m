@@ -5,13 +5,15 @@
 
 #import "QuizBackdropWindow.h"
 
-
+//! Blinder window used during quiz mode to block out distractions from the desktop.
 @implementation QuizBackdropWindow
 
+//! Configures a full screen semi transparent black window that ignores mouse events.
 - (id)init
 {
 	NSRect screenRect = [[NSScreen mainScreen] frame];
-	self = [super initWithContentRect:screenRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];	[self setLevel:(NSModalPanelWindowLevel-1)];
+	self = [super initWithContentRect:screenRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];
+    [self setLevel:(NSModalPanelWindowLevel-1)];
 	[self setBackgroundColor:[NSColor blackColor]];
 	[self setAlphaValue:0.5];
 	[self setOpaque:NO];
@@ -25,6 +27,7 @@
 	return self;
 }
 
+//! Unregisters self as observer.  Frees up memory.
 - (void) dealloc
 {
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
@@ -34,11 +37,15 @@
 }
 
 
+//! Hides the QuizBackdropWindow when application is not active.
+/*! Handler for NSApplicationWillResignActiveNotification notification.  */
 - (void) _handleAppWillResignActive:(NSNotification *)notification
 {
 	[self orderOut:nil];
 }
 
+//! Displays QuizBackdropWindow in front of others.
+/*! Handler for NSApplicationWillBecomeActiveNotification notification.*/
 - (void) _handleAppWillBecomeActive:(NSNotification *)notification
 {
 	[self orderFront:nil];

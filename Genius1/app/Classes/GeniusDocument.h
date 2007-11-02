@@ -17,6 +17,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+// Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
 {
     IBOutlet id tableView;
@@ -73,10 +74,9 @@
 
 @end
 
-
 @interface GeniusArrayController : NSArrayController {
-    IBOutlet id geniusDocument;
-    NSString * _filterString;
+    IBOutlet id geniusDocument;  //!< Provides access to columnBindings
+    NSString * _filterString; //!< The string for which we are filtering.
 }
 
 - (NSString *) filterString;
@@ -85,14 +85,16 @@
 - (NSArray *)arrangeObjects:(NSArray *)objects;
 @end
 
-
 @interface MyTableView : NSTableView {
-    IBOutlet id documentController; // to get to the searchField
+    IBOutlet id documentController; //!< provides access to searchField of GeniusDocument
 }
 - (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal;
 @end
 
+//! Informal protocol for MyTableView delegates
 @interface NSObject (MyTableViewDelegate)
+//! Permit editing of @a aTableColumn
 - (BOOL) _tableView:(NSTableView *)aTableView shouldChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn;
+//! Notification that @a aTableColumn was actually edited
 - (void) _tableView:(NSTableView *)aTableView didChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn;
 @end

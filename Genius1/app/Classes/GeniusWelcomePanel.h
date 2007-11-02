@@ -19,7 +19,7 @@
 
 @interface GeniusWelcomePanel : NSWindowController
 {
-    IBOutlet id dontRemindSwitch;
+    IBOutlet id dontRemindSwitch; //!< Allows disabling presentation of this panel
 }
 
 + (GeniusWelcomePanel *) sharedWelcomePanel;

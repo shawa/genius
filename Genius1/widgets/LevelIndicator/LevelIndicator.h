@@ -15,10 +15,14 @@
 
 @interface LevelIndicator : NSView
 {
-    NSImage * _leftImage, * _rightImage, * _bottomImage;
-    NSImage * _backImage, * _fillImage;
-    double _minValue, _maxValue;
-    double _doubleValue;
+    NSImage * _leftImage;  //!< 3-d effect for left edge of view
+    NSImage * _rightImage;  //!< 3-d effect for right edge of view
+    NSImage * _bottomImage;  //!< 3-d effect for bottom edge of view
+    NSImage * _backImage;  //!< 3-d effect for top edge of view with background color
+    NSImage * _fillImage;  //!< 3-d effect for top edge of view with progress color
+    double _minValue; //!< The minium expected value for _doubleValue.
+    double _maxValue; //!< The maximum expected value for \a _doubleValue.
+    double _doubleValue;  //!< The current value to display.
 }
 
 - (double)doubleValue;

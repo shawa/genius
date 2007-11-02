@@ -19,7 +19,7 @@
 
 @interface GeniusHelpWindowController : NSWindowController
 {
-    IBOutlet id textView;
+    IBOutlet id textView; //!< Used to display the help file.
 }
 
 + (void) showWindow;

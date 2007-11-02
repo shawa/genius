@@ -13,8 +13,14 @@
 
 #import "LevelIndicator.h"
 
+//! An NSView which displays \a _doubleValue as a colored bar against a white background.
+/*! 
+    Similar to the SimpleProgressView but using images instead of drawing.
+    @todo Replace LevelInticator with NSLevelIndicator.
+*/
 @implementation LevelIndicator
 
+//! Initializes and returns a newly allocated LevelInicator object with a specified frame rectangle.
 - (id)initWithFrame:(NSRect)frameRect
 {
     self = [super initWithFrame:frameRect];
@@ -32,6 +38,7 @@
     return self;
 }
 
+//! Deallocates the memory occupied by the receiver.
 - (void) dealloc
 {
     [_leftImage release];
@@ -43,12 +50,13 @@
     [super dealloc];
 }
 
-
+//! _doubleValue getter.
 - (double)doubleValue
 {
     return _doubleValue;
 }
 
+//! _doubleValue setter.
 - (void)setDoubleValue:(double)doubleValue
 {
     _doubleValue = doubleValue;
@@ -56,11 +64,13 @@
     [self setNeedsDisplay:YES];
 }
 
+//! _minValue getter.
 - (double)minValue
 {
     return _minValue;
 }
 
+//! _minValue setter.
 - (void)setMinValue:(double)newMinimum
 {
     _minValue = newMinimum;
@@ -68,11 +78,13 @@
     [self setNeedsDisplay:YES];
 }
 
+//! _maxValue getter.
 - (double)maxValue
 {
     return _maxValue;
 }
 
+//! _maxValue setter.
 - (void)setMaxValue:(double)newMaximum
 {
     _maxValue = newMaximum;
@@ -80,7 +92,7 @@
     [self setNeedsDisplay:YES];
 }
 
-
+//! helper method for drawing the back and fill rectangles.
 - (void)drawBarInside:(NSRect)aRect
 {
     float percent = (_doubleValue - _minValue) / (_maxValue - _minValue);
@@ -100,6 +112,7 @@
     [_backImage drawInRect:backRect fromRect:srcRect operation:NSCompositeSourceOver fraction:1.0];
 }
 
+//! Renders the edge images and then uses #_doubleValue to calculate a percentag fill.
 - (void)drawRect:(NSRect)aRect
 {    
     NSRect bounds = [self bounds];
