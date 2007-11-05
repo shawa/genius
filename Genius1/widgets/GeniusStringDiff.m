@@ -23,7 +23,8 @@
 @end
 
 //! NSString category with helper method for punctuation insensitive comparisons.
-@implementation NSString (GeniusStringDiff)
+/*! @category NSString(GeniusStringDiff) */
+@implementation NSString(GeniusStringDiff)
 
 //! Compares self against @a string ignoring punctuation and case.
 - (BOOL) _isEqualToStringIgnoringPunctuationAndCase:(NSString *)string

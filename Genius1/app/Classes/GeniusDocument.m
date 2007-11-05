@@ -26,23 +26,34 @@
 #import "NSArrayGeniusAdditions.h"
 #import "GeniusPreferencesController.h"
 
-
+//! NSValueTransformer for displaying importance as simple boolean
 @interface IsPairImportantTransformer : NSValueTransformer
 @end
 @implementation IsPairImportantTransformer
+//! We return an NSNumber.
 + (Class)transformedValueClass { return [NSNumber class]; }
+
+//! Don't support reverse transformation.
 + (BOOL)supportsReverseTransformation { return NO; }
+
+//! Returns 1 for values greater than kGeniusPairNormalImportance.
 - (id)transformedValue:(id)value {
     int importance = [value intValue];
     return [NSNumber numberWithBool:(importance > kGeniusPairNormalImportance) ? YES : NO];
 }
 @end
 
+//! NSValueTransformer for displaying importance as simple color value
 @interface ColorFromPairImportanceTransformer : NSValueTransformer
 @end
 @implementation ColorFromPairImportanceTransformer
+//! We return an NSColor
 + (Class)transformedValueClass { return [NSColor class]; }
+
+//! Do not support writing the value back.
 + (BOOL)supportsReverseTransformation { return NO; }
+
+//! Return red for max importance, gray for 'normal', and black for everything else.
 - (id)transformedValue:(id)value {
     int importance = [value intValue];
     if (importance == kGeniusPairMaximumImportance)
@@ -451,7 +462,8 @@
 @end
 
 //! Collection of methods loosely related to coordinating model and view changes.
-@implementation GeniusDocument (KeyValueObserving)
+/*! @category GeniusDocument(KeyValueObserving) */
+@implementation GeniusDocument(KeyValueObserving)
 
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -473,7 +485,7 @@
     [self updateChangeCount:NSChangeDone];
 }
 
-//! Dumps the _customTypeStringCache and rebuilds it from _pairs.
+//! Dumps the GeniusDocument#_customTypeStringCache and rebuilds it from _pairs.
 - (void) _reloadCustomTypeCacheSet
 {
     [_customTypeStringCache removeAllObjects];
@@ -488,7 +500,7 @@
     }
 }
 
-//! Convenience method to sort the #_customTypeStringCache.
+//! Convenience method to sort the GeniusDocument#_customTypeStringCache.
 /*!
     @todo is there a reason not to do this when refreshing the cache in the first place?
 */
@@ -1097,7 +1109,8 @@ static NSTableColumn * sDuringDragTableColumn = nil;
 @end
 
 
-@implementation GeniusDocument (TableColumnManagement)
+/*! @category GeniusDocument(TableColumnManagement) */
+@implementation GeniusDocument(TableColumnManagement)
 
 //! Convenience method returning all the identifiers for which we have columns.
 + (NSArray *) _allColumnIdentifiers
@@ -1111,7 +1124,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     return [NSArray arrayWithObjects:@"disabled", @"columnA", @"columnB", @"scoreAB", nil];
 }
 
-//! Convenience method for sorting @a identifiers after the ordering in #_allColumnIdentifiers.
+//! Convenience method for sorting @a identifiers after the ordering in GeniusDocument#_allColumnIdentifiers.
 - (NSArray *) __columnIdentifiersReorderedByDefaultOrder:(NSArray *)identifiers
 {
     NSMutableArray * outIdentifiers = [NSMutableArray array];
@@ -1123,13 +1136,13 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     return outIdentifiers;
 }
 
-//! Removes @a column from #tableView.
+//! Removes @a column from GeniusDocument#tableView.
 - (void) _hideTableColumn:(NSTableColumn *)column
 {
     [tableView removeTableColumn:column];
 }
 
-//! Reinserts @a column in #tableView.
+//! Reinserts @a column in GeniusDocument#tableView.
 - (void) _showTableColumn:(NSTableColumn *)column
 {
     // Determine proper column position
@@ -1143,7 +1156,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     [tableView moveColumn:[tableView numberOfColumns]-1 toColumn:index];
 }
 
-//! Removes or adds the column identified by @a identifier to #tableView
+//! Removes or adds the column identified by @a identifier to GeniusDocument#tableView
 - (void) _toggleColumnWithIdentifier:(NSString *)identifier
 {
     NSTableColumn * column = [_tableColumns objectForKey:identifier];

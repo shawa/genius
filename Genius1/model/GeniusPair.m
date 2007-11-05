@@ -31,23 +31,12 @@ NSString * GeniusPairNotesStringKey = @"notesString";
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict;
 @end
 
-@implementation GeniusAssociation
-//! sets up dummy _dirty property as dependent property of other instance properties.
-/*! @todo Track changes differently. */
-+ (void)initialize
-{
-    [super initialize];
-    [self setKeys:[NSArray arrayWithObjects:@"scoreNumber", @"dueDate", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
-}
-
-/*+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
-{
-    return NO;
-}*/
-
 //! Private initializer used by GeniusPair
-/*! Creates copy of the provided @a performanceDict.
-    @todo Check into why the performance dictionary is copied.
+/*! @category GeniusAssociation(Private) */
+@implementation GeniusAssociation(Private)
+/*! 
+Creates copy of the provided @a performanceDict.
+@todo Check into why the performance dictionary is copied.
 */
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict
 {
@@ -62,6 +51,22 @@ NSString * GeniusPairNotesStringKey = @"notesString";
         _perfDict = [NSMutableDictionary new];
     return self;
 }
+
+@end
+
+@implementation GeniusAssociation
+//! sets up dummy _dirty property as dependent property of other instance properties.
+/*! @todo Track changes differently. */
++ (void)initialize
+{
+    [super initialize];
+    [self setKeys:[NSArray arrayWithObjects:@"scoreNumber", @"dueDate", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
+}
+
+/*+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
+{
+    return NO;
+}*/
 
 //! Deallocates the memory occupied by the receiver after releasing ivars.
 - (void) dealloc
@@ -237,7 +242,9 @@ const int kGeniusPairNormalImportance = 5;
 //! The GeniusItem is maximally relevant.
 const int kGeniusPairMaximumImportance = 10;
 
-@interface GeniusPair (Private)
+//! Leftover
+/*! @category GeniusPair(Private) */ 
+@interface GeniusPair(Private)
 //! @todo Determine if this is a private informal protocol or just leftover.
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem;
 @end
