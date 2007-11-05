@@ -20,17 +20,17 @@
 
 
 @interface GeniusAssociationEnumerator : NSObject {
-    NSMutableArray * _inputAssociations;
+    NSMutableArray * _inputAssociations;  //!< GeniusAssociation items to filter.
     
-    unsigned int _count;
-    int _minimumScore;
-    float _m_value;
+    unsigned int _count;                  //!< Minium number of items to return.
+    int _minimumScore;                    //!< Score cutoff for returned items.
+    float _m_value;                       //!< Center value for the probability based selection.
 
     // Transient state
-    int _maximumScore;
+    int _maximumScore;                    //!< Temporary value used in probability based selection.
     
-    NSMutableArray * _scheduledAssociations;
-    BOOL _hasPerformedChooseAssociations;
+    NSMutableArray * _scheduledAssociations;  //!< The selection of items returned via nextAssociation.
+    BOOL _hasPerformedChooseAssociations;     //!< Flag indicating if performChooseAssociations has been called.
 }
 
 - (id) initWithAssociations:(NSArray *)associations;

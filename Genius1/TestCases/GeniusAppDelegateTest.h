@@ -11,7 +11,7 @@
 @class GeniusAppDelegate;
 
 @interface GeniusAppDelegateTest : SenTestCase {
-    GeniusAppDelegate *appDelegate;
+    GeniusAppDelegate *appDelegate;  //!< Instance of object under test.
 }
 
 @end

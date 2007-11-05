@@ -18,8 +18,10 @@ NSString * GeniusPreferencesQuizNumItemsKey = @"QuizNumItems";
 NSString * GeniusPreferencesQuizFixedTimeMinKey = @"QuizFixedTimeMin";
 NSString * GeniusPreferencesQuizReviewLearnFloatKey = @"QuizReviewLearnFloat";
 
+//! Standard NSWindowController subclass for handling interactionn with preferences window.
 @implementation GeniusPreferencesController
 
+//! Returns instance initialized with "Preferences" nib.
 - (id) init {
     self = [super initWithWindowNibName: @"Preferences"];
     return self;

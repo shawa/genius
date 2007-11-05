@@ -25,19 +25,27 @@ static unsigned long Factorial(int n)
     return (n<=1) ? 1 : n * Factorial(n-1);
 }
 
+//! Calculates the 
 static float PoissonValue(int x, float m)
 {
     return (pow(m,x) / Factorial(x)) * pow(M_E, -m);
 }
 
 
+//! Meant to be used like an NSEnumerator to iterate over a collection of GeniusAssociation items.
+/*!
+    Supports various selection and sorting options. 
+ */
 @implementation GeniusAssociationEnumerator
 
+//! Default initializer.
+/*!
+    Provided @a asociations is copied and used as the basis for later filtering and sorting.
+*/
 - (id) initWithAssociations:(NSArray *)associations
 {
     self = [super init];
 
-            // Filter out disabled associations
     _inputAssociations = [associations mutableCopy];
     
     _count = [_inputAssociations count];
@@ -50,6 +58,7 @@ static float PoissonValue(int x, float m)
     return self;
 }
 
+//! Releases #_inputAssociations and #_scheduledAssociations and frees up memory.
 - (void) dealloc
 {
     [_inputAssociations release];
@@ -60,23 +69,35 @@ static float PoissonValue(int x, float m)
     [super dealloc];
 }
 
-
+//! _count setter.
+/*!
+    Parameter @a count is ignored if it is greater than the number of items in #_inputAssociations.
+    @todo Don't assume GeniusAssociationEnumerator#_inputAssociations is set before count if that isn't enforced.
+*/
 - (void) setCount:(unsigned int)count
 {
     _count = MIN([_inputAssociations count], count);
 }
 
+//! _minimumScore setter.
 - (void) setMinimumScore:(int)score
 {
     _minimumScore = score;
 }
 
+//! _m_value setter.
+/*! @todo Change the name of this variable to something practical.  */
 - (void) setProbabilityCenter:(float)value
 {
     _m_value = value;
 }
 
-
+//! Loops over #_inputAssociations to find relevent items.
+/*!
+    Filters out disabled GeniusAssociation items and those with a score lower than
+ the #_minimumScore.  As a side effect this method nullifies the GeniusAssociation#dueDate
+ for items that are past due.
+*/
 - (NSArray *) _getActiveAssociations
 {
     #if DEBUG
@@ -125,6 +146,7 @@ static float PoissonValue(int x, float m)
     return outAssociations;
 }
 
+//! Function used in sorting array of GeniusAssociation instances by importance attribute.
 static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * assoc1, GeniusAssociation * assoc2, void *context)
 {
     GeniusPair * pair1 = [assoc1 parentPair];
@@ -140,6 +162,12 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
         return NSOrderedSame;
 }
 
+//!  Selects items from @a associations based on GeniusAssociation#score and _m_value.
+/*!
+    Sorts the associations into buckets based on score.  Then calculates the Poisson value 
+    for each bucket based on the established #_m_value.  Finally generates a series of
+    random numbers to choose items from the buckets based on the probablility curve.
+*/
 - (NSArray *) _chooseCountAssociationsByScore:(NSArray *)associations
 {
     #if DEBUG
@@ -220,6 +248,14 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
     return outAssociations;
 }
 
+//! Helper method to initialize the set of associations for enumeration.
+/*!
+    The process of choosing involves:
+        @li Filtering out inactive associations
+        @li Randomizing the remaining ones
+        @li Sorting the results by importance
+        @li Finally choosing at least #_count items based on #_minimumScore.
+*/
 - (void) performChooseAssociations
 {
     // 1. First, filter out disabled pairs, minimum scores, and long-term dates.
@@ -250,12 +286,19 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
     _hasPerformedChooseAssociations = YES;
 }
 
-
+//! Convenience method for returning the number of items in _inputAssociations.
+/*!
+    @todo check if how this is used makes sense.  Seems like it should return the count of scheduled associations.
+*/
 - (int) remainingCount
 {
     return [_inputAssociations count]; // + [_scheduledAssociations count];
 }
-
+//! Returns the next GeniusAssociation in the enumeration.
+/*!
+    Looks for an association from the _scheduledAssociations with a passed dueDate.  If none is found
+    one of the _inputAssociations is returned.
+*/
 - (GeniusAssociation *) nextAssociation
 {
     GeniusAssociation * association;
@@ -290,6 +333,7 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
 }
 
 
+//! Updates GeniusAssociation#dueDate based on current GeniusAssociation#score provided @a association and inserts in _scheduledAssociations.
 - (void) _scheduleAssociation:(GeniusAssociation *)association
 {
     unsigned int sec = pow(5, [association score]);
@@ -312,6 +356,7 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
 }
 
 
+//! Bumps score of @a association up by one.
 - (void) associationRight:(GeniusAssociation *)association
 {
     // score++
@@ -321,6 +366,10 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
     [self _scheduleAssociation:association];
 }
 
+//! Sets score for the @a association back to zero.
+/*!
+    @todo This seems questionable.
+ */
 - (void) associationWrong:(GeniusAssociation *)association
 {
     // score = 0
@@ -329,6 +378,10 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
     [self _scheduleAssociation:association];
 }
 
+//! Sets score for the @a association
+/*!
+    @todo This seems unexpected.  Why would skipping something mean nullify the score and due date?
+*/
 - (void) associationSkip:(GeniusAssociation *)association
 {
     // score = -1

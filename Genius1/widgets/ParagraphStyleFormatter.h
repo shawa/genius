@@ -10,7 +10,7 @@
 
 
 @interface ParagraphStyleFormatter : NSFormatter {
-    NSMutableParagraphStyle * _paragraphStyle;
+    NSMutableParagraphStyle * _paragraphStyle;  //!< Used in formating our string.
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)mode;

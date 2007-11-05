@@ -1,8 +1,19 @@
 #import "RelevanceIndicator.h"
 
 
+//! NSView subclass to display a value between two other values by filling in a bar.
+/*!
+One of many similar NSView subclasses that display a value as a partially filled bar.
+ @see SimpleProgressIndicator
+ @see LevelIndicator
+*/
 @implementation RelevanceIndicator
 
+//! Standard NSView initialization method.
+/*!
+    Initializes min max and double values to practical defaults.  Initializes image with two 
+    vertical stripes.
+*/
 - (id)initWithFrame:(NSRect)frameRect
 {
     if ((self = [super initWithFrame:frameRect]) != nil) {
@@ -32,6 +43,7 @@
     return self;
 }
 
+//! releasses _patternImage and frees up memory.
 - (void) dealloc
 {
     [_patternImage release];
@@ -39,7 +51,7 @@
     [super dealloc];
 }
 
-
+//! Fills view with _patternImage in order to convey _doubleValue.
 - (void)drawRect:(NSRect)rect
 {
     NSRect boundsRect = [self bounds];
@@ -58,11 +70,13 @@
 }
 
 
+//! _minValue getter.
 - (double)minValue
 {
     return _minValue;
 }
 
+//! _minValue setter. Ignores values greater than current _minValue.
 - (void)setMinValue:(double)newMinimum
 {
     if (newMinimum > _maxValue)
@@ -74,11 +88,13 @@
 }
 
 
+//! _maxValue getter.
 - (double)maxValue
 {
     return _maxValue;
 }
 
+//! _maxValue setter. Ignores values less than current _maxValue.
 - (void)setMaxValue:(double)newMaximum
 {
     if (newMaximum < _minValue)
@@ -90,12 +106,14 @@
 }
 
 
+//! _doubleValue getter.
 - (double)doubleValue
 {
 //    SInt16 value = GetControlValue(_controlRef);
     return _doubleValue;
 }
 
+//! _doubleValue setter.
 - (void)setDoubleValue:(double)doubleValue
 {
 //    SetControlValue(_controlRef, value);

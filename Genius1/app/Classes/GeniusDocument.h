@@ -17,32 +17,32 @@
 
 #import <Cocoa/Cocoa.h>
 
-// Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
+//! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
 {
-    IBOutlet id tableView;
-    IBOutlet id arrayController;
-    IBOutlet id statusField;
-    IBOutlet id levelField;
-    IBOutlet id levelIndicator;
-    IBOutlet id infoDrawer;
-    IBOutlet id notesDrawer;
-    IBOutlet id initialWatermarkView;
+    IBOutlet id tableView;               //!< The main table showing the GeniusPair items.
+    IBOutlet id arrayController;         //!< The controller holding the displayed items.
+    IBOutlet id statusField;             //!< Shows selection count and total items.
+    IBOutlet id levelField;              //!< Displays percentage of items with any score.
+    IBOutlet id levelIndicator;          //!< Displays level information as bar.
+    IBOutlet id infoDrawer;              //!< Drawer where you can set group and type info.
+    IBOutlet id notesDrawer;             //!< Drawer at bottom of window with GeniusPair notes.
+    IBOutlet id initialWatermarkView;    //!< Help text displayed over the table in empty documents.
     
-    IBOutlet id learnReviewSlider;  // in toolbar
-    NSSearchField * _searchField;   // in toolbar
-    NSMutableDictionary * _tableColumns;
+    IBOutlet id learnReviewSlider;       //!< Slider used to setup Quiz mode between Learn and Review.
+    NSSearchField * _searchField;        //!< Text field top right used for searching through GeniusPair items.
+    NSMutableDictionary * _tableColumns; //!< Cache of all table columns for hiding and displaying them.
     
     // Data model
-    NSMutableArray * _visibleColumnIdentifiersBeforeNibLoaded;    // only used during load
-    float _learnVsReviewWeightBeforeNibLoaded;
-    NSMutableDictionary * _columnHeadersDict;
-    NSMutableArray * _pairs;
-    NSDate * _cumulativeStudyTime;
+    NSMutableArray * _visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
+    float _learnVsReviewWeightBeforeNibLoaded;                    //!< ???
+    NSMutableDictionary * _columnHeadersDict;                     //!< ???
+    NSMutableArray * _pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
+    NSDate * _cumulativeStudyTime;                                //!< Not sure this is used anymore.
 
-    BOOL _shouldShowImportWarningOnSave;
-    NSArray * _pairsDuringDrag;
-    NSMutableSet * _customTypeStringCache;
+    BOOL _shouldShowImportWarningOnSave;                          //!< Flag indicating the GeniusDocument was loaded from an older version.
+    NSArray * _pairsDuringDrag;                                   //!< Temporary array of items being dragged and dropped.
+    NSMutableSet * _customTypeStringCache;                        //!< Cache of all types used in deck.
 }
 
 - (NSMutableArray *) pairs;

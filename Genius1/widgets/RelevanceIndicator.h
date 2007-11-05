@@ -5,9 +5,10 @@
 
 @interface RelevanceIndicator : NSView
 {
-    NSImage * _patternImage;
-    double _minValue, _maxValue;
-    double _doubleValue;
+    NSImage * _patternImage; //!< Fill pattern for bar.
+    double _minValue,        //!< Minium value represented by the view.
+    double _maxValue;        //!< Maximum value represented by the view.
+    double _doubleValue;     //!< Current value to be represented by the view.
 }
 
 - (double)minValue;

@@ -81,6 +81,12 @@
 // Standard NSDocument subclass for controlling display and editing of a Genius file.
 @implementation GeniusDocument
 
+//! Basic NSDocument init method.
+/*!
+    Initializes some transformers and registers them with NSValueTransformer.
+ 
+    @todo Probably the transformers don't need to be registered every time.
+*/
 - (id)init
 {
     self = [super init];
@@ -104,6 +110,10 @@
     return self;
 }
 
+//! Releases various ivars and deallocates memory.
+/*!
+    @todo Check if this leaks anything.
+*/
 - (void) dealloc
 {
     [_pairs release];
@@ -114,7 +124,7 @@
     [super dealloc];
 }
 
-
+//! Standard NSWindowController override.
 - (NSString *)windowNibName
 {
     // Override returning the nib file name of the document
@@ -122,6 +132,7 @@
     return @"GeniusDocument";
 }
 
+//! Initializes UI based on the existing document model info.
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
     [super windowControllerDidLoadNib:aController];
@@ -167,12 +178,13 @@
     [self reloadInterfaceFromModel];
 }
 
-
+//! _pairs getter.
 - (NSMutableArray *) pairs
 {
     return _pairs;
 }
 
+//! _searchField getter.
 - (NSSearchField *) searchField
 {
     return _searchField;
@@ -180,9 +192,14 @@
 
 @end
 
+//! Ecclectic collection of misc methods.
+/*!
+    @category GeniusDocument(Private)
+    Not sure why this category exists.
+*/
+@implementation GeniusDocument(Private)
 
-@implementation GeniusDocument (Private)
-
+//! Updates UI to reflect the document.
 - (void) reloadInterfaceFromModel
 {
     // Sync with _visibleColumnIdentifiersBeforeNibLoaded
@@ -247,7 +264,7 @@
 	[self _updateLevelIndicator];
 }
 
-
+//! Convenience method for getting the identifiers for the table columns that are currently visible.
 - (NSArray *) visibleColumnIdentifiers
 {
     // NSTableColumns -> NSStrings
@@ -259,6 +276,7 @@
     return outIdentifiers;
 }
 
+//! arrayController getter.
 - (NSArrayController *) arrayController
 {
     return arrayController;
@@ -278,9 +296,14 @@
 
 @end
 
+//! The super secret stuff that not even we should be using.
+/*!
+    @category GeniusDocument(VeryPrivate)
+    I don't know what makes these worthy of being in the VeryPrivate category.
+*/
+@implementation GeniusDocument(VeryPrivate)
 
-@implementation GeniusDocument (VeryPrivate)
-
+//! The three font sizes we support through preferences.
 + (float) listTextFontSizeForSizeMode:(int)mode
 {
 	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
@@ -298,6 +321,10 @@
 	return [NSFont systemFontSize];
 }
 
+//! Returns row height that is suitable given our chosen font size.
+/*!
+    @todo not sure why the font size needs to be reflected anywhere but the card view?
+ */
 + (float) rowHeightForSizeMode:(int)mode
 {
 	switch (mode)
@@ -313,6 +340,7 @@
 	return [NSFont systemFontSize];
 }
 
+//! updates fonts and table row heights.
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
 {	
 	// _dismissFieldEditor
@@ -336,6 +364,12 @@
 }
 
 
+//! Convenience method to check which GeniusPair GeniusAssociation scores are Displayed.
+/*!
+    Hiding a score excludes its related GeniusAssociation from the quiz.
+    @todo Wouldn't this be better controlled during Quiz setup?
+    @todo Is this really that clear a UI control?
+*/
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs
 {
     NSTableColumn * associationABColumn = [_tableColumns objectForKey:@"scoreAB"];
@@ -346,6 +380,7 @@
     return [GeniusPair associationsForPairs:pairs useAB:useAB useBA:useBA];
 }
 
+//! Updates the selection summary text at bottom of window.
 - (void) _updateStatusText
 {
     NSString * status = @"";
@@ -384,6 +419,7 @@
     [statusField setStringValue:status];
 }
 
+//! Updates the progress bar at lower right of Genius window to reflect current success with a Genius Document.
 - (void) _updateLevelIndicator
 {	
 	NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
@@ -414,9 +450,10 @@
 
 @end
 
-
+//! Collection of methods loosely related to coordinating model and view changes.
 @implementation GeniusDocument (KeyValueObserving)
 
+//! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"customTypeString"])
@@ -427,6 +464,7 @@
 	[self _updateLevelIndicator];
 }
 
+//! Increments change count when document is not already edited.
 - (void) _markDocumentDirty:(NSNotification *)notification
 {
     if ([self isDocumentEdited])
@@ -435,7 +473,7 @@
     [self updateChangeCount:NSChangeDone];
 }
 
-
+//! Dumps the _customTypeStringCache and rebuilds it from _pairs.
 - (void) _reloadCustomTypeCacheSet
 {
     [_customTypeStringCache removeAllObjects];
@@ -450,6 +488,10 @@
     }
 }
 
+//! Convenience method to sort the #_customTypeStringCache.
+/*!
+    @todo is there a reason not to do this when refreshing the cache in the first place?
+*/
 - (NSArray *) _sortedCustomTypeStrings
 {
     return [[_customTypeStringCache allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -458,8 +500,11 @@
 @end
 
 
-@implementation GeniusDocument (NSTableDataSource)
+//! Support for the NSTableView.
+/*! GeniusDocument(NSTableDataSource) */
+@implementation GeniusDocument(NSTableDataSource)
 
+//! Copy paste support, writes out selected items to @a pboard as tab delimited text.
 - (BOOL)tableView:(NSTableView *)tableView writeRows:(NSArray *)rows toPasteboard:(NSPasteboard*)pboard
 {
     [pboard declareTypes:[NSArray arrayWithObjects:NSTabularTextPboardType, nil] owner:self];
@@ -481,6 +526,7 @@
     return YES;
 }
 
+//! Validates drop target. 
 - (NSDragOperation)tableView:(NSTableView *)aTableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
     if ([info draggingSource] == aTableView)    // intra-document
@@ -496,6 +542,8 @@
     }
 }
 
+//! Accept drop previously validated.
+/*! Unpacks GeniusItem instances from the paste board.  Expects tablular text.  */
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
 {
     if ([info draggingSource] == aTableView)      // intra-document
@@ -861,8 +909,15 @@
 @end
 
 
-@implementation GeniusDocument (NSMenuValidation)
+//! Enabled / Disable menu items.
+/*! @category GeniusDocument(NSMenuValidation) */
+@implementation GeniusDocument(NSMenuValidation)
 
+//! Enable / Disable menu items.
+/*!
+    Handles updates of table colum toggles, auto pick quiz mode, setting of importance, duplication, and reseting.
+    @todo Check if this can handle toggleSoundEffects menu item enable/disable.
+*/
 - (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
 {
     SEL action = [menuItem action];
@@ -1044,17 +1099,19 @@ static NSTableColumn * sDuringDragTableColumn = nil;
 
 @implementation GeniusDocument (TableColumnManagement)
 
+//! Convenience method returning all the identifiers for which we have columns.
 + (NSArray *) _allColumnIdentifiers
 {
     return [NSArray arrayWithObjects:@"disabled", @"columnA", @"columnB", @"customGroup", @"customType", @"scoreAB", @"scoreBA", nil];
 }
 
+//! Convenience method returning identifiers for the basic set of columns.
 + (NSArray *) _defaultColumnIdentifiers
 {
     return [NSArray arrayWithObjects:@"disabled", @"columnA", @"columnB", @"scoreAB", nil];
 }
 
-
+//! Convenience method for sorting @a identifiers after the ordering in #_allColumnIdentifiers.
 - (NSArray *) __columnIdentifiersReorderedByDefaultOrder:(NSArray *)identifiers
 {
     NSMutableArray * outIdentifiers = [NSMutableArray array];
@@ -1066,11 +1123,13 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     return outIdentifiers;
 }
 
+//! Removes @a column from #tableView.
 - (void) _hideTableColumn:(NSTableColumn *)column
 {
     [tableView removeTableColumn:column];
 }
 
+//! Reinserts @a column in #tableView.
 - (void) _showTableColumn:(NSTableColumn *)column
 {
     // Determine proper column position
@@ -1084,6 +1143,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     [tableView moveColumn:[tableView numberOfColumns]-1 toColumn:index];
 }
 
+//! Removes or adds the column identified by @a identifier to #tableView
 - (void) _toggleColumnWithIdentifier:(NSString *)identifier
 {
     NSTableColumn * column = [_tableColumns objectForKey:identifier];
@@ -1100,6 +1160,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
 }
 
 
+//! Convenience method for getting the @a title of a column based on that column @a identifier.
 - (NSString *) _titleForTableColumnWithIdentifier:(NSString *)identifier
 {
     NSTableColumn * column = [tableView tableColumnWithIdentifier:identifier];
@@ -1108,6 +1169,7 @@ static NSTableColumn * sDuringDragTableColumn = nil;
     return [[column headerCell] title];
 }
 
+//! Convenience method for setting the @a title of a column based on the column @a identifier.
 - (void) _setTitle:(NSString *)title forTableColumnWithIdentifier:(NSString *)identifier
 {
     NSTableColumn * column = [tableView tableColumnWithIdentifier:identifier];
@@ -1310,21 +1372,25 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 
 @end
 
+//! NSComboBox Supporting Methods.
+/*! @category GeniusDocument(NSComboBoxDataSource) */
+@implementation GeniusDocument(NSComboBoxDataSource)
 
-@implementation GeniusDocument (NSComboBoxDataSource)
-
+//! returns index of @a aString from _customTypeStringCache.
 - (unsigned int)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)aString
 {
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
     return [sortedVariantStrings indexOfObject:aString];
 }
 
+//! returns object at @a index from _customTypeStringCache.
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(int)index
 {
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
     return [sortedVariantStrings objectAtIndex:index];
 }
 
+//! returns number of items in _customTypeStringCache.
 - (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
@@ -1333,35 +1399,36 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 
 @end
 
+//! NSComboBoxCell supporting methods.
+/*! @category GeniusDocument(NSComboBoxCellDataSource) */
+@implementation GeniusDocument(NSComboBoxCellDataSource)
 
-@implementation GeniusDocument (NSComboBoxCellDataSource)
-
+//! returns value from _customTypeStringCache.
 - (id)comboBoxCell:(NSComboBoxCell *)aComboBoxCell objectValueForItemAtIndex:(int)index
 {
-    // O(n)
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
     return [sortedVariantStrings objectAtIndex:index];
 }
 
+//! count of _customTypeStringCache.
 - (int)numberOfItemsInComboBoxCell:(NSComboBoxCell *)aComboBoxCell
 {
-    // O(n)
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
     return [sortedVariantStrings count];
 }
 
+//! Returns index of @a string in _customTypeStringCache.
 - (unsigned int)comboBoxCell:(NSComboBoxCell *)aComboBoxCell indexOfItemWithStringValue:(NSString *)string
 {
     string = [aComboBoxCell stringValue];   // string comes in as (null) for some reason
     
-    // O(n)
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
     return [sortedVariantStrings indexOfObject:string];
 }
 
+//! Field completion for the custom type popup.
 - (NSString *)comboBoxCell:(NSComboBoxCell *)aComboBoxCell completedString:(NSString*)uncompletedString
 {
-    // O(n)
     NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
     NSEnumerator * stringEnumerator = [sortedVariantStrings objectEnumerator];
     NSString * string;
@@ -1373,9 +1440,10 @@ static NSTableColumn * sDuringEditTableColumn = nil;
 
 @end
 
-
+//! Implementation of some of the NSWindow delegate methods.
 @implementation GeniusDocument (NSWindowDelegate)
 
+//! Removes self from notification center
 - (void)windowWillClose:(NSNotification *)aNotification
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];

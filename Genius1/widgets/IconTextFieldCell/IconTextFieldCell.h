@@ -10,7 +10,7 @@
 
 
 @interface IconTextFieldCell : NSTextFieldCell {
-    NSImage * _image;
+    NSImage * _image; //!< The image to display at left in cell.
 }
 
 - (void)setImage:(NSImage *)image;
