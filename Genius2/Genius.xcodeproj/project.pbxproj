@@ -6,6 +6,23 @@
 	objectVersion = 42;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		83F23D380CE0AD0C0014CBD1 /* Genius-2.0.dmg */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83F23D460CE0ADA30014CBD1 /* Build configuration list for PBXAggregateTarget "Genius-2.0.dmg" */;
+			buildPhases = (
+				83F23D370CE0AD0C0014CBD1 /* Create Image */,
+				83F23D3D0CE0AD2B0014CBD1 /* CopyFiles */,
+				83F23D3B0CE0AD230014CBD1 /* Convert Image */,
+			);
+			dependencies = (
+				83F23D3A0CE0AD120014CBD1 /* PBXTargetDependency */,
+			);
+			name = "Genius-2.0.dmg";
+			productName = "Genius-2.0.dmg";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2314A9B109A78AA7006138BA /* KFSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2314A9AF09A78AA7006138BA /* KFSplitView.m */; };
 		231A115708FF1CFB004A16ED /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 231A113608FF1CFB004A16ED /* GeniusAppDelegate.m */; };
@@ -67,12 +84,24 @@
 		23EC9E4F097FDCDC00F4D9A2 /* Document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23EC9E4E097FDCDC00F4D9A2 /* Document.icns */; };
 		23FD30EF0876DB9000B75A2F /* GeniusDocument.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 23FD30EE0876DB9000B75A2F /* GeniusDocument.xcdatamodel */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		83F23D740CE0B0520014CBD1 /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
+		83F23D910CE0B1280014CBD1 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23443B0409436AD50070D478 /* Samples */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* GeniusDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* GeniusDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83F23D390CE0AD120014CBD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4 /* Genius */;
+			remoteInfo = Genius;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2303020F09436A27003919FC /* CopyFiles */ = {
@@ -82,6 +111,17 @@
 			dstSubfolderSpec = 16;
 			files = (
 				23443B0A09436AD90070D478 /* Samples in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F23D3D0CE0AD2B0014CBD1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Volumes/${PROJECT_NAME}";
+			dstSubfolderSpec = 0;
+			files = (
+				83F23D740CE0B0520014CBD1 /* Genius.app in CopyFiles */,
+				83F23D910CE0B1280014CBD1 /* Samples in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +565,7 @@
 			projectDirPath = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
+				83F23D380CE0AD0C0014CBD1 /* Genius-2.0.dmg */,
 			);
 		};
 /* End PBXProject section */
@@ -563,6 +604,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83F23D370CE0AD0C0014CBD1 /* Create Image */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Image";
+			outputPaths = (
+				"${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# check for and try to clean up leftovers\nif test -e /Volumes/${PROJECT_NAME}; then\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}; then\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius; then\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
+		};
+		83F23D3B0CE0AD230014CBD1 /* Convert Image */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Convert Image";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# unmount image\nhdiutil detach /Volumes/${PROJECT_NAME}\n\n# convert to read only compressed archive leaving the result in build root.\nhdiutil convert -ov -format UDZO -o ${BUILT_PRODUCTS_DIR}/${TARGETNAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\n\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {
@@ -610,6 +683,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83F23D3A0CE0AD120014CBD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* Genius */;
+			targetProxy = 83F23D390CE0AD120014CBD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -780,6 +861,28 @@
 			};
 			name = Release;
 		};
+		83F23D470CE0ADA30014CBD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Genius-2.0.dmg";
+			};
+			name = Debug;
+		};
+		83F23D480CE0ADA30014CBD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Genius-2.0.dmg";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -797,6 +900,15 @@
 			buildConfigurations = (
 				23ED4B200955F0CE001DEC99 /* Debug */,
 				23ED4B270955F1B6001DEC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		83F23D460CE0ADA30014CBD1 /* Build configuration list for PBXAggregateTarget "Genius-2.0.dmg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F23D470CE0ADA30014CBD1 /* Debug */,
+				83F23D480CE0ADA30014CBD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
