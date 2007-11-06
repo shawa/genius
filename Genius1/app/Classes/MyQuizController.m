@@ -377,12 +377,15 @@ skip_review:
 //! The user entered text in #entryField or hit the okay button during review.
 - (IBAction)handleEntry:(id)sender
 {
+    NSLog(@"quiz level handle key 1 is %d", [[self window] level]);
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
     BOOL succeed = [[self window] makeFirstResponder:[self window]];
     if (!succeed)
         [[self window] endEditingFor:nil];
+    NSLog(@"quiz level handle key 2 is %d", [[self window] level]);
 
     [NSApp stopModal];
+    NSLog(@"quiz level handle key 3 is %d", [[self window] level]);
 }
 
 //! The user answered correctly.
