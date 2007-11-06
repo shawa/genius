@@ -248,10 +248,12 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
             [entryField selectText:self];
             
             // Block for answering
-             result = [NSApp runModalForWindow:[self window]];
+            NSLog(@"quiz level before answering is %d", [[self window] level]);
+            result = [NSApp runModalForWindow:[self window]];
             if (result == NSRunAbortedResponse)
                 break;
-     
+            NSLog(@"quiz level after answering is %d", [[self window] level]);
+
             // Prepare window for reviewing
             [self _setVisibleAnswerItem:answerItem];   // show the answer for review
             
@@ -326,9 +328,11 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         }
                 
         // Block for reviewing
+        NSLog(@"quiz level before reviewing is %d", [[self window] level]);
         result = [NSApp runModalForWindow:[self window]];
         if (result == NSRunAbortedResponse)
             break;
+        NSLog(@"quiz level after reviewing is %d", [[self window] level]);
 
         // Handle OK
         if (isFirstTime)
@@ -468,7 +472,6 @@ skip_review:
 */
 - (void)animation:(NSAnimation*)animation didReachProgressMark:(NSAnimationProgress)progress
 {
-    NSLog(@"got to herer");
 	float alpha = [animation currentValue] * 0.5;
 	[_screenWindow setAlphaValue:alpha];
     //! @bug This just adds another progress mark at the same place. Which means the fade in effect is actually lost.

@@ -23,7 +23,7 @@
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleAppWillResignActive:) name:NSApplicationWillResignActiveNotification object:nil];
 	[nc addObserver:self selector:@selector(_handleAppWillBecomeActive:) name:NSApplicationWillBecomeActiveNotification object:nil];
-	
+	NSLog(@"initial bckgrodp level is %d", [self level]);
 	return self;
 }
 
@@ -49,6 +49,7 @@
 - (void) _handleAppWillBecomeActive:(NSNotification *)notification
 {
 	[self orderFront:nil];
+    NSLog(@"active bckgrodp level is %d", [self level]);
 }
 
 @end
