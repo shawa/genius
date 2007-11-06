@@ -21,6 +21,17 @@
 			name = "Genius-2.0.dmg";
 			productName = "Genius-2.0.dmg";
 		};
+		83F23D9D0CE0B1F00014CBD1 /* DeveloperDocs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83F23DA10CE0B2170014CBD1 /* Build configuration list for PBXAggregateTarget "DeveloperDocs" */;
+			buildPhases = (
+				83F23D9C0CE0B1F00014CBD1 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = DeveloperDocs;
+			productName = DeveloperDocs;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -232,6 +243,7 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Genius_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genius_Prefix.pch; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		83F23DA60CE0B24A0014CBD1 /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -467,6 +479,7 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				23443B0309436AC40070D478 /* UserDocs */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				83F23DA00CE0B2170014CBD1 /* Developer Docs */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = Genius;
@@ -524,6 +537,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		83F23DA00CE0B2170014CBD1 /* Developer Docs */ = {
+			isa = PBXGroup;
+			children = (
+				83F23DA60CE0B24A0014CBD1 /* doxygen.conf */,
+			);
+			name = "Developer Docs";
+			sourceTree = "<group>";
+		};
 		E1B74B1A0667B4A90069E3BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +587,7 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
 				83F23D380CE0AD0C0014CBD1 /* Genius-2.0.dmg */,
+				83F23D9D0CE0B1F00014CBD1 /* DeveloperDocs */,
 			);
 		};
 /* End PBXProject section */
@@ -634,6 +656,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "# unmount image\nhdiutil detach /Volumes/${PROJECT_NAME}\n\n# convert to read only compressed archive leaving the result in build root.\nhdiutil convert -ov -format UDZO -o ${BUILT_PRODUCTS_DIR}/${TARGETNAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\n\nexit 0";
+		};
+		83F23D9C0CE0B1F00014CBD1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ \"$DOXY_HOME\" = \"\" ]; then\n\techo \"error: DOXY_HOME not set.  Can't generate documentation.\" 1>&2\n\texit -1\nfi\n\nif [ -e ${DOXY_HOME}/doxygen ]; then\n\t${DOXY_HOME}/doxygen ${PROJECT_DIR}/doxygen.conf\nelse\n\techo \"error: 'doxygen' executable not found.  Can't generate documentation. Check DOXY_HOME setting.\"  1>&2\n\texit -1\nfi\n\nexit 0\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -825,10 +860,12 @@
 		23ED4B200955F0CE001DEC99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SVNREV = development;
 			};
 			name = Debug;
 		};
@@ -854,10 +891,12 @@
 		23ED4B270955F1B6001DEC99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SVNREV = development;
 			};
 			name = Release;
 		};
@@ -879,6 +918,28 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				PRODUCT_NAME = "Genius-2.0.dmg";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		83F23DA20CE0B2170014CBD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = DeveloperDocs;
+			};
+			name = Debug;
+		};
+		83F23DA30CE0B2170014CBD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = DeveloperDocs;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -909,6 +970,15 @@
 			buildConfigurations = (
 				83F23D470CE0ADA30014CBD1 /* Debug */,
 				83F23D480CE0ADA30014CBD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		83F23DA10CE0B2170014CBD1 /* Build configuration list for PBXAggregateTarget "DeveloperDocs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F23DA20CE0B2170014CBD1 /* Debug */,
+				83F23DA30CE0B2170014CBD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

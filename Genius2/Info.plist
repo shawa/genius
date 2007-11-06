@@ -42,7 +42,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.0a3</string>
 	<key>CFBundleVersion</key>
-	<string>20060218</string>
+	<string>${SVNREV}</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.4</string>
 	<key>NSMainNibFile</key>
