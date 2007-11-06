@@ -190,7 +190,7 @@
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32DBCF750370BD2300C91783 /* Genius2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genius2_Prefix.pch; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* Genius_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genius_Prefix.pch; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -417,7 +417,7 @@
 			path = compatibility;
 			sourceTree = "<group>";
 		};
-		2A37F4AAFDCFA73011CA2CEA /* Genius2 */ = {
+		2A37F4AAFDCFA73011CA2CEA /* Genius */ = {
 			isa = PBXGroup;
 			children = (
 				23D76E3D08F0D14B0072EE07 /* TODO.txt */,
@@ -429,7 +429,7 @@
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
-			name = Genius2;
+			name = Genius;
 			sourceTree = "<group>";
 		};
 		2A37F4ABFDCFA73011CA2CEA /* App Classes */ = {
@@ -447,7 +447,7 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF750370BD2300C91783 /* Genius2_Prefix.pch */,
+				32DBCF750370BD2300C91783 /* Genius_Prefix.pch */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -510,7 +510,7 @@
 			);
 			name = Genius;
 			productInstallPath = "$(HOME)/Applications";
-			productName = Genius2;
+			productName = Genius;
 			productReference = 8D15AC370486D014006FF6A4 /* Genius.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -519,9 +519,9 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 238C58470933C1FB00926AF1 /* Build configuration list for PBXProject "Genius2" */;
+			buildConfigurationList = 238C58470933C1FB00926AF1 /* Build configuration list for PBXProject "Genius" */;
 			hasScannedForEncodings = 1;
-			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Genius2 */;
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Genius */;
 			projectDirPath = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
@@ -721,7 +721,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
+				GCC_PREFIX_HEADER = Genius_Prefix.pch;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
@@ -762,7 +762,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Genius2_Prefix.pch;
+				GCC_PREFIX_HEADER = Genius_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Genius;
@@ -792,7 +792,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		238C58470933C1FB00926AF1 /* Build configuration list for PBXProject "Genius2" */ = {
+		238C58470933C1FB00926AF1 /* Build configuration list for PBXProject "Genius" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23ED4B200955F0CE001DEC99 /* Debug */,
