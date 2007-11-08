@@ -1,12 +1,6 @@
 {
     IBClasses = (
         {
-            ACTIONS = {openTipJarSite = id; }; 
-            CLASS = FirstResponder; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
             CLASS = GeniusPreferencesController; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSWindowController; 

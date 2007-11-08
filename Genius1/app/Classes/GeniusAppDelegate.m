@@ -55,13 +55,6 @@
     [super dealloc];
 }
 
-//! Opens John R Chang's personal website at the note describing how to give him money via finder.
-- (IBAction) openTipJarSite:(id)sender
-{
-    NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/#tipjar"];
-    [[NSWorkspace sharedWorkspace] openURL:url];
-}
-
 //! Instanciates a GeniusPreferencesController if needed and displays it.
 - (IBAction) showPreferences:(id)sender
 {
@@ -72,17 +65,17 @@
 }
 
 
-//! Opens John R Chang's personal website via finder.
+//! Opens Source Forge project website via finder.
 - (IBAction) showWebSite:(id)sender
 {
-    NSURL * url = [NSURL URLWithString:@"http://web.mac.com/jrc/Genius/"];
+    NSURL * url = [NSURL URLWithString:@"http://sourceforge.net/projects/genius"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 //! Opens the yahoo genius talk website via finder.
 - (IBAction) showSupportSite:(id)sender
 {
-    NSURL * url = [NSURL URLWithString:@"http://groups.yahoo.com/group/genius-talk/"];
+    NSURL * url = [NSURL URLWithString:@"http://groups.yahoo.com/group/genius-talk"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 

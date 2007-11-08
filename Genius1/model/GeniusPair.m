@@ -144,6 +144,12 @@ Creates copy of the provided @a performanceDict.
     [self setScoreNumber:scoreNumber];
 }
 
+//! First time items have no scoreNumber.
+- (BOOL) isFirstTime
+{
+    return ([self scoreNumber] == nil);
+}
+
 //! scoreNumber getter. Returns object in GeniusAssociation#_perfDict for GeniusAssociationScoreNumberKey
 /*! @todo Remove one of score or scoreNumber and friends. */
 - (NSNumber *) scoreNumber

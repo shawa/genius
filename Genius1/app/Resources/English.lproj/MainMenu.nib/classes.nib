@@ -28,7 +28,14 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {openTipJarSite = id; showAboutPanel = id; showHelpWindow = id; }; 
+            ACTIONS = {
+                importFile = id; 
+                showHelpWindow = id; 
+                showPreferences = id; 
+                showSupportSite = id; 
+                showWebSite = id; 
+                toggleSoundEffects = id; 
+            }; 
             CLASS = GeniusAppDelegate; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 

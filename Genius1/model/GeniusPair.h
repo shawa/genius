@@ -58,6 +58,8 @@
 - (NSNumber *) scoreNumber;
 - (void) setScoreNumber:(id)scoreNumber;
 
+- (BOOL) isFirstTime;
+
 //! @todo dead code.
 /*- (unsigned int) right;
 - (void) setRight:(unsigned int)right;

@@ -29,27 +29,19 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 @implementation MyQuizController
 
 //! Standard NSWindowController initialization.
-/*!
-    @todo move this setup into an init method which calls initWithWindowNibName:
-*/
-- (id)initWithWindowNibName:(NSString *)windowNibName
-{
-    self = [super initWithWindowNibName:windowNibName];
-
-    _cumulativeTimePtr = nil;
-
-    _newSound = [[NSSound soundNamed:@"Blow"] retain];
-    _rightSound = [[NSSound soundNamed:@"Hero"] retain];
-    _wrongSound = [[NSSound soundNamed:@"Basso"] retain];
-
-    _visibleCueItem = nil;
-    _visibleAnswerItem = nil;
-    _cueItemFont = nil;
-    _answerItemFont = nil;
-    _answerTextColor = nil;
+- (id) init {
+    self = [super initWithWindowNibName:@"Quiz"];
+    if (self != nil) {
+        _newSound = [[NSSound soundNamed:@"Blow"] retain];
+        _rightSound = [[NSSound soundNamed:@"Hero"] retain];
+        _wrongSound = [[NSSound soundNamed:@"Basso"] retain];
         
-    [self window];  // load window
-
+        _visibleCueItem = nil;
+        _visibleAnswerItem = nil;
+        _cueItemFont = nil;
+        _answerItemFont = nil;
+        _answerTextColor = nil;
+    }
     return self;
 }
 
@@ -64,6 +56,9 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     [_cueItemFont release];
     [_answerItemFont release];
 
+    [_enumerator release];
+    [_screenWindow release];
+    
     [super dealloc];
 }
 
@@ -123,42 +118,38 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     [answerTextView setAlignment:alignment];
 }
 
-//! Updates the #studyTimeField to display the running time of the quiz.
-/*!
-    This method and its associated studyTimeField may be dead code.  Aside from studyTimeField doesn't show up in code or nib files.
-    And the only call to this method shows up in a comment in #runQuiz:cumulativeTime:.
-     @todo Check where studyTimeField is ever set.
-*/
-- (void) _handleStudyTimer:(NSTimer *)timer
+//! _screenWindow getter.
+- (QuizBackdropWindow*) screenWindow
 {
-    if (_cumulativeTimePtr)
-    {
-        (*_cumulativeTimePtr)++;
-        
-        NSString * string = [NSString stringWithFormat:@"%.0lf", *_cumulativeTimePtr];
-        [studyTimeField setStringValue:string];
-    }
+    return _screenWindow;
 }
 
-//! Runs a quiz session for the provided @a enumerator.
-/*!
-    Optionally presents a user tips panel with advice about how to work on memorization.  Depending on user preferences
-    A screen window is displayed to reduce distractions.  Other document views are hidden while running this quiz. New
-    GeniusAssociation instances which have no GeniusAssociation#scoreNumber are presented in review mode. 
-*/
-- (void) runQuiz:(GeniusAssociationEnumerator *)enumerator cumulativeTime:(NSTimeInterval *)cumulativeTimePtr
+//! _screenWindow setter.
+- (void) setScreenWindow: (QuizBackdropWindow*) window
 {
-    // Show "Take a moment to slow down..." panel
-    BOOL result = [[GeniusWelcomePanel sharedWelcomePanel] runModal];
-    if (result == NO)
-        return;
+    [window retain];
+    [_screenWindow release];
+    _screenWindow = window;
+}
 
-    if (cumulativeTimePtr)
-        _cumulativeTimePtr = cumulativeTimePtr;
-    /*NSTimer * studyTimer = [[NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(_handleStudyTimer:) userInfo:nil repeats:YES] retain];
-    [[NSRunLoop currentRunLoop] addTimer:studyTimer forMode:NSModalPanelRunLoopMode];*/
+//! _enumerator setter.
+- (void) setEnumerator: (GeniusAssociationEnumerator*) anEnumerator
+{
+    [anEnumerator retain];
+    [_enumerator release];
+    _enumerator = anEnumerator;
+}
 
+//! _enumerator getter.
+- (GeniusAssociationEnumerator*) enumerator
+{
+    return _enumerator;
+}
 
+//! Puts up optional screening window and takes down other app windows.
+/*! After this is run all app windows are hidden and an optional screening window is faded into place. */
+- (void) quizSetup 
+{
 	// Hide other document windows
 	NSEnumerator * documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
 	NSDocument * document;
@@ -170,202 +161,138 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 			[[windowController window] orderOut:nil];
 	}
 	
-	// Put up backdrop window
-	_screenWindow = nil;
-	NSAnimation * animation = nil;
-	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-	if ([ud boolForKey:GeniusPreferencesQuizUseFullScreenKey])
+	// Fade in screen window with cool effect.
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesQuizUseFullScreenKey])
 	{
-		_screenWindow = [QuizBackdropWindow new];
-
+        NSAnimation * animation = nil;
+		[self setScreenWindow:[[QuizBackdropWindow alloc] init]];
+        
 		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
 		[animation setDelegate:self];
 		[animation addProgressMark:0.025];
-		[_screenWindow setAlphaValue:0.0];
-		[_screenWindow orderFront:self];
-
+		[[self screenWindow] setAlphaValue:0.0];
+		[[self screenWindow] orderFront:self];
+        
 		[animation startAnimation];
+		[animation release];
 	}
-
-    [[self window] center];
-
-
-    _enumerator = [enumerator retain];
     
-    int n = [_enumerator remainingCount];
-    [progressIndicator setMaxValue:n];
-    
-    while ((_currentAssociation = [_enumerator nextAssociation]))
-    {
-        int result;
-        
-        [associationController setContent:_currentAssociation];
+    // Initialize progress indicator
+    [progressIndicator setMaxValue:[[self enumerator] remainingCount]];
+}
 
-        GeniusItem * cueItem = [_currentAssociation cueItem];
-        [self _setVisibleCueItem:cueItem];
-        
-        GeniusItem * answerItem = [_currentAssociation answerItem];
-        [self _setVisibleAnswerItem:nil];
-
-        [cueTextView setNeedsDisplay:YES];
-        [answerTextView setNeedsDisplay:YES];
-
-
-		NSString * targetString = [answerItem stringValue];
-		if (targetString == nil)
-			continue;
-
-        // Prepare window for questioning
-        BOOL isFirstTime = ([_currentAssociation scoreNumber] == nil);
-        if (isFirstTime)
-        {
-            // Prepare window for reviewing
-            [self _setVisibleAnswerItem:answerItem];   // show the answer for review
-
-            [getRightView setHidden:YES];
-            [newAssociationView setHidden:NO];
-
-            [entryField setEnabled:YES];
-            [entryField setStringValue:targetString];
-            [entryField selectText:self];
-            
-			[_newSound stop];
-			if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
-				[_newSound play];
-        }
-        else
-        {
-            [self _setVisibleAnswerItem:nil];       // hide the answer
-
-            [entryField setStringValue:@""];
-            [entryField setEnabled:YES];
-            [getRightView setHidden:YES];
-            [yesButton setKeyEquivalent:@""];
-            [noButton setKeyEquivalent:@""];
-
-            [newAssociationView setHidden:YES];
-            
-            [entryField selectText:self];
-            
-            // Block for answering
-            NSLog(@"quiz level before answering is %d", [[self window] level]);
-            result = [NSApp runModalForWindow:[self window]];
-            if (result == NSRunAbortedResponse)
-                break;
-            NSLog(@"quiz level after answering is %d", [[self window] level]);
-
-            // Prepare window for reviewing
-            [self _setVisibleAnswerItem:answerItem];   // show the answer for review
-            
-            [entryField setEnabled:NO];
-            [getRightView setHidden:NO];
-
-
-			NSString * inputString = [entryField stringValue];
-			
-			float correctness = 0.0;
-			int matchingMode = [ud integerForKey:GeniusPreferencesQuizMatchingModeKey];
-			switch (matchingMode)
-			{
-				case GeniusPreferencesQuizExactMatchingMode:
-					correctness = (float)[targetString isEqualToString:inputString];
-					break;
-				case GeniusPreferencesQuizCaseInsensitiveMatchingMode:
-					correctness = (float)([targetString localizedCaseInsensitiveCompare:inputString] == NSOrderedSame);
-					break;
-				case GeniusPreferencesQuizSimilarMatchingMode:
-					correctness = [targetString isSimilarToString:inputString];
-					break;
-				default:
-					NSAssert(NO, @"matchingMode");
-			}
-			
-            #if DEBUG
-                NSLog(@"correctness = %f", correctness);
-            #endif
-            if (correctness == 1.0)
-			{
-				if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
-					[_rightSound play];    
-				[_enumerator associationRight:_currentAssociation];
-				
-				goto skip_review;
-			}
-
-			if ([ud boolForKey:GeniusPreferencesQuizUseVisualErrorsKey])
-			{
-				// Get annotated diff string
-				NSAttributedString * attrString = [GeniusStringDiff attributedStringHighlightingDifferencesFromString:inputString toString:targetString];
-
-				NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
-				NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-				[parStyle setAlignment:NSCenterTextAlignment];
-				[mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
-				[parStyle release];
-
-				[entryField setAttributedStringValue:mutAttrString];
-				[mutAttrString release];
-			}
-
-            if (correctness > 0.5)
-            {
-                // correct
-                [yesButton setKeyEquivalent:@"\r"];
-				if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
-					[_rightSound play];    
-            }
-            else if (correctness == 0.0)
-            {
-                // incorrect
-                [noButton setKeyEquivalent:@"\r"];
-				if ([ud boolForKey:GeniusPreferencesUseSoundEffectsKey])
-					[_wrongSound play];
-            }
-            else
-            {
-                // partial credit
-            }
-        }
-                
-        // Block for reviewing
-        NSLog(@"quiz level before reviewing is %d", [[self window] level]);
-        result = [NSApp runModalForWindow:[self window]];
-        if (result == NSRunAbortedResponse)
-            break;
-        NSLog(@"quiz level after reviewing is %d", [[self window] level]);
-
-        // Handle OK
-        if (isFirstTime)
-            [_enumerator associationWrong:_currentAssociation];
-
-skip_review:
-        [progressIndicator setDoubleValue:(n-[_enumerator remainingCount])];
-    }
-    
-    [_enumerator release];
-
-/*    [studyTimer invalidate];
-    [studyTimer release];*/
-    
-    [self close];
-
+//! Takes down optional screening window and puts up other app windows.
+- (void) quizTeardown
+{    
 	// Take down backdrop window
-	if (_screenWindow)
+	if ([self screenWindow])
 	{
+        NSAnimation * animation = nil;
+		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
+
 		[animation setAnimationCurve:NSAnimationEaseOut];
 		[animation setDuration:kQuizBackdropAnimationEaseOutTimeInterval];
 		[animation startAnimation];
-		[_screenWindow close];
 		[animation release];
-	}
 
+		[[self screenWindow] close];
+	}
+    
 	// Show other document windows
-	documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
+	NSEnumerator * documentEnumerator = [[NSApp orderedDocuments] objectEnumerator];
+    NSDocument * document;
 	while ((document = [documentEnumerator nextObject]))
 	{
 		NSArray * windowControllers = [document windowControllers];
 		[windowControllers makeObjectsPerformSelector:@selector(showWindow:) withObject:nil];
 	}
+    
+    [NSApp stopModal];
+}
+
+//! presents a single Genius Item from deck for quiz or review.  Skips items with no answer.
+- (void) runQuizOnce
+{
+    [progressIndicator setDoubleValue:([progressIndicator maxValue] - [[self enumerator] remainingCount])];
+
+    // skip associations without answer values.
+    do {
+        _currentAssociation = [[self enumerator] nextAssociation];
+    } while (_currentAssociation && [[_currentAssociation answerItem] stringValue] == nil);
+
+    if(_currentAssociation != nil)
+    {
+        [associationController setContent:_currentAssociation];
+        
+        GeniusItem * cueItem = [_currentAssociation cueItem];
+        [self _setVisibleCueItem:cueItem];
+        
+        GeniusItem * answerItem = [_currentAssociation answerItem];
+        [self _setVisibleAnswerItem:nil];
+        
+        [cueTextView setNeedsDisplay:YES];
+        [answerTextView setNeedsDisplay:YES];
+        
+        // Prepare window for reviewing
+        if ([_currentAssociation isFirstTime])
+        {
+            // Prepare window for reviewing
+            [self _setVisibleAnswerItem:answerItem];   // show the answer for review
+            
+            [getRightView setHidden:YES];
+            [newAssociationView setHidden:NO];
+            
+            [entryField setEnabled:YES];
+            [entryField setStringValue:[answerItem stringValue]];
+            [entryField selectText:self];
+            
+            [_newSound stop];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
+                [_newSound play];
+        }
+        // Prepare window for learning
+        else
+        {
+            [self _setVisibleAnswerItem:nil];       // hide the answer for learning
+            
+            [entryField setStringValue:@""];
+            [entryField setEnabled:YES];
+            [getRightView setHidden:YES];
+            [yesButton setKeyEquivalent:@""];
+            [noButton setKeyEquivalent:@""];
+            
+            [newAssociationView setHidden:YES];
+            
+            [entryField selectText:self];    
+        }  
+    }
+    // No associations left, so time to clean up.
+    else {
+        [self quizTeardown];
+    }
+}
+
+- (void)windowDidLoad
+{
+    [self quizSetup];
+    [self runQuizOnce];
+}
+//! Runs a quiz session for the provided @a enumerator.
+/*!
+    Optionally presents a user tips panel with advice about how to work on memorization.  Depending on user preferences
+    A screen window is displayed to reduce distractions.  Other document views are hidden while running this quiz. New
+    GeniusAssociation instances which have no GeniusAssociation#scoreNumber are presented in review mode. 
+*/
+- (void) runQuiz:(GeniusAssociationEnumerator *)enumerator
+{
+    [self setEnumerator:enumerator];
+
+    // Show "Take a moment to slow down..." panel
+    BOOL result = [[GeniusWelcomePanel sharedWelcomePanel] runModal];
+    if (result == NO)
+        return;
+
+    [NSApp runModalForWindow:[self window]];
 }
 
 //! #_visibleCueItem getter
@@ -377,18 +304,97 @@ skip_review:
 //! The user entered text in #entryField or hit the okay button during review.
 - (IBAction)handleEntry:(id)sender
 {
-    NSLog(@"quiz level handle key 1 is %d", [[self window] level]);
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
     BOOL succeed = [[self window] makeFirstResponder:[self window]];
     if (!succeed)
         [[self window] endEditingFor:nil];
-    NSLog(@"quiz level handle key 2 is %d", [[self window] level]);
 
-    [NSApp stopModal];
-    NSLog(@"quiz level handle key 3 is %d", [[self window] level]);
+    // Handle OK button for reviewed item.
+    if ([_currentAssociation isFirstTime])
+    {
+        [[self enumerator] associationWrong:_currentAssociation];
+        [self runQuizOnce];
+    }
+    // Handle typed entry for learning item.
+    else
+    {
+        // Now show correct answer for review and / or re-enforcement
+        GeniusItem * answerItem = [_currentAssociation answerItem];
+        [self _setVisibleAnswerItem:answerItem];
+        
+        [entryField setEnabled:NO];
+        [getRightView setHidden:NO];
+        
+        NSString * inputString = [entryField stringValue];
+        NSString * targetString = [answerItem stringValue];
+        
+        float correctness = 0.0;
+        int matchingMode = [[NSUserDefaults standardUserDefaults] integerForKey:GeniusPreferencesQuizMatchingModeKey];
+        switch (matchingMode)
+        {
+            case GeniusPreferencesQuizExactMatchingMode:
+                correctness = (float)[targetString isEqualToString:inputString];
+                break;
+            case GeniusPreferencesQuizCaseInsensitiveMatchingMode:
+                correctness = (float)([targetString localizedCaseInsensitiveCompare:inputString] == NSOrderedSame);
+                break;
+            case GeniusPreferencesQuizSimilarMatchingMode:
+                correctness = [targetString isSimilarToString:inputString];
+                break;
+            default:
+                NSAssert(NO, @"matchingMode");
+        }
+        
+    #if DEBUG
+        NSLog(@"correctness = %f", correctness);
+    #endif
+        if (correctness == 1.0)
+        {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
+                [_rightSound play];    
+            [[self enumerator] associationRight:_currentAssociation];
+            [self runQuizOnce];
+        }
+        else
+        {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesQuizUseVisualErrorsKey])
+            {
+                // Get annotated diff string
+                NSAttributedString * attrString = [GeniusStringDiff attributedStringHighlightingDifferencesFromString:inputString toString:targetString];
+                
+                NSMutableAttributedString * mutAttrString = [attrString mutableCopy];
+                NSMutableParagraphStyle * parStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+                [parStyle setAlignment:NSCenterTextAlignment];
+                [mutAttrString addAttribute:NSParagraphStyleAttributeName value:parStyle range:NSMakeRange(0, [attrString length])];
+                [parStyle release];
+                
+                [entryField setAttributedStringValue:mutAttrString];
+                [mutAttrString release];
+            }
+            
+            if (correctness > 0.5)
+            {
+                // correct
+                [yesButton setKeyEquivalent:@"\r"];
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
+                    [_rightSound play];    
+            }
+            else if (correctness == 0.0)
+            {
+                // incorrect
+                [noButton setKeyEquivalent:@"\r"];
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
+                    [_wrongSound play];
+            }
+            else
+            {
+                // partial credit
+            }
+        }
+    }
 }
 
-//! The user answered correctly.
+//! Upon user review the answer is correct.
 - (IBAction)getRightYes:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -396,12 +402,12 @@ skip_review:
     if (!succeed)
         [[self window] endEditingFor:nil];
 
-    [_enumerator associationRight:_currentAssociation];
+    [[self enumerator] associationRight:_currentAssociation];
     
-    [NSApp stopModal];
+    [self runQuizOnce];
 }
 
-//! The user answered incorrectly.
+//! Upon user review the answer is wrong.
 - (IBAction)getRightNo:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -409,12 +415,12 @@ skip_review:
     if (!succeed)
         [[self window] endEditingFor:nil];
 
-    [_enumerator associationWrong:_currentAssociation];
+    [[self enumerator] associationWrong:_currentAssociation];
 
-    [NSApp stopModal];
+    [self runQuizOnce];
 }
 
-//! The user skipped the GeniusAssociation.
+//! Upon user review the answer is skipped the item.
 - (IBAction)getRightSkip:(id)sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
@@ -422,9 +428,9 @@ skip_review:
     if (!succeed)
         [[self window] endEditingFor:nil];
 
-    [_enumerator associationSkip:_currentAssociation];
+    [[self enumerator] associationSkip:_currentAssociation];
 
-    [NSApp stopModal];
+    [self runQuizOnce];
 }
 
 //! Handle keyboard driven input.
@@ -456,7 +462,7 @@ skip_review:
 //! The user elected to close the quiz window.
 - (void)windowWillClose:(NSNotification *)aNotification
 {
-    [NSApp abortModal];
+    [self quizTeardown];
 }
 
 @end
@@ -476,7 +482,7 @@ skip_review:
 - (void)animation:(NSAnimation*)animation didReachProgressMark:(NSAnimationProgress)progress
 {
 	float alpha = [animation currentValue] * 0.5;
-	[_screenWindow setAlphaValue:alpha];
+	[[self screenWindow] setAlphaValue:alpha];
     //! @bug This just adds another progress mark at the same place. Which means the fade in effect is actually lost.
 	[animation addProgressMark:0.1]; 
 }

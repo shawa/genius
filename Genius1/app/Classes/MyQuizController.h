@@ -40,10 +40,6 @@
 
     GeniusAssociationEnumerator * _enumerator; //!< Contains GeniusAssociation objects for this quiz.
     GeniusAssociation * _currentAssociation;   //!< Currently displayed GeniusAssociation.
-    //! Time in seconds spent studying.
-    /*! @todo I don't think this or any related code is used */
-    NSTimeInterval * _cumulativeTimePtr;
-    
     
     NSSound * _newSound;                //!< Played as new items are presented
     NSSound * _rightSound;              //!< Played as correct answers are entered.
@@ -57,7 +53,7 @@
     NSColor * _answerTextColor;         //!< Currently used color for displaying answerItem.
 }
 
-- (void) runQuiz:(GeniusAssociationEnumerator *)enumerator cumulativeTime:(NSTimeInterval *)cumulativeTimePtr;
+- (void) runQuiz:(GeniusAssociationEnumerator *)enumerator;
 
 - (GeniusItem *) visibleAnswerItem;
 

@@ -23,8 +23,13 @@
     GeniusPreferencesController *preferencesController;  //!< Standard NSWindowController subclass for preferences window.
 }
 
-- (IBAction) openTipJarSite:(id)sender;
-- (IBAction)importFile:(id)sender;
+- (IBAction) showPreferences:(id)sender;
+- (IBAction) showWebSite:(id)sender;
+- (IBAction) showSupportSite:(id)sender;
+- (IBAction) toggleSoundEffects:(id)sender;
+- (IBAction) showHelpWindow:(id)sender;
+- (IBAction) importFile:(id)sender;
+
 - (BOOL) isNewerVersion: (NSString*) currentVersion lastVersion:(NSString*)lastVersion;
 
 @end

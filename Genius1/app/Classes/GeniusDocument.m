@@ -844,16 +844,8 @@
         return;
     }
 
-/*    // Hide document window
-    NSWindowController * windowController = [[self windowControllers] lastObject];
-    NSWindow * documentWindow = [windowController window];
-    [documentWindow orderOut:self];*/  
-	
-    // Start quiz
-    NSTimeInterval studyTime;
-    //< @todo don't specify the nib name here but rather in the MyQuizController#init.
-    MyQuizController * quizController = [[MyQuizController alloc] initWithWindowNibName:@"Quiz"];
-    [quizController runQuiz:enumerator cumulativeTime:&studyTime];
+    MyQuizController * quizController = [[MyQuizController alloc] init];
+    [quizController runQuiz:enumerator];
     [quizController release];
     
     // Show document window
@@ -866,6 +858,7 @@
 /*! 
     Uses the learn review slider value as input to probability based selection process.  In the event
     that the learn revew slider is set to review, then only previously learned items will appear in the quiz.
+    Tries to setup the review for 13 items.
 */
 - (IBAction)quizAutoPick:(id)sender
 {
