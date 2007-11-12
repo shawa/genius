@@ -6,15 +6,15 @@
 #import <Foundation/Foundation.h>
 
 
-// An item models one or more representations of a memorizable atom of information
 @interface GeniusV1Item : NSObject <NSCoding, NSCopying> {
-    NSString * _stringValue;
-    NSURL * _imageURL;
-    NSURL * _webResourceURL;
-    NSString * _speakableStringValue;
-    NSURL * _soundURL;
+    NSString * _stringValue;                    //!< string atom
+    NSURL * _imageURL;                          //!< image atom @todo not used
+    NSURL * _webResourceURL;                    //!< link atom @todo not used
+    NSString * _speakableStringValue;           //!< synthesized speech atom @todo not used
+    NSURL * _soundURL;                          //!< record audio atom @todo not used
     
-    BOOL _dirty;    // used by key-value observing
+    /*! @todo Replace dummy property with implementation of setValue:forUndefinedKey: */
+    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty
 }
 
 // Visual
