@@ -18,7 +18,8 @@
 #import "GeniusAssociationEnumerator.h"
 #include <math.h>   // pow
 #import "NSArrayGeniusAdditions.h"
-
+#import "GeniusPair.h"
+#import "GeniusAssociation.h"
 
 static unsigned long Factorial(int n)
 {

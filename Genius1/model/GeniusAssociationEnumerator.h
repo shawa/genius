@@ -16,8 +16,8 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GeniusPair.h"
 
+@class GeniusAssociation;
 
 @interface GeniusAssociationEnumerator : NSObject {
     NSMutableArray * _inputAssociations;  //!< GeniusAssociation items to filter.

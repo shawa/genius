@@ -16,12 +16,13 @@
 */
 
 #import "MyQuizController.h"
-#include <unistd.h> // getpid
 #import "GeniusWelcomePanel.h"
 #import "NSString+Similiarity.h"
 #import "GeniusStringDiff.h"
 #import "GeniusPreferencesController.h"
-
+#import "GeniusAssociationEnumerator.h"
+#import "GeniusPair.h"
+#import "GeniusAssociation.h"
 
 const NSTimeInterval kQuizBackdropAnimationEaseInTimeInterval = 0.3;
 const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;

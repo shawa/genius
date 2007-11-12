@@ -25,6 +25,8 @@
 #import "MyQuizController.h"
 #import "NSArrayGeniusAdditions.h"
 #import "GeniusPreferencesController.h"
+#import "GeniusPair.h"
+#import "GeniusAssociation.h"
 
 //! NSValueTransformer for displaying importance as simple boolean
 @interface IsPairImportantTransformer : NSValueTransformer

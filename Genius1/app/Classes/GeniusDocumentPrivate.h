@@ -16,8 +16,8 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GeniusDocument.h"
 
+@class GeniusDocument;
 
 @interface GeniusDocument (Private)
 

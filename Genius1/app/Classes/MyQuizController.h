@@ -16,10 +16,12 @@
 */
 
 #import <Cocoa/Cocoa.h>
-#import "GeniusItem.h"
-#import "GeniusPair.h"
-#import "GeniusAssociationEnumerator.h"
-#import "QuizBackdropWindow.h"
+
+@class GeniusItem;
+@class GeniusPair;
+@class GeniusAssociationEnumerator;
+@class QuizBackdropWindow;
+@class GeniusAssociation;
 
 //! Standard NSWindowController subclass for managing a user quiz.
 /*!

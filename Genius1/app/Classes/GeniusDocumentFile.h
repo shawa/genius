@@ -16,8 +16,8 @@
 */
 
 #import <Foundation/Foundation.h>
-#import "GeniusDocument.h"
 
+#import "GeniusDocument.h"
 
 @interface GeniusDocument (FileFormat)
 

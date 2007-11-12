@@ -18,6 +18,7 @@
 #import "GeniusDocumentFile.h"
 #import "GeniusDocumentPrivate.h"   // arrayController, columnBindings for +importFile:
 #import "GeniusPair.h"
+#import "GeniusAssociation.h"
 
 //! Methods related to reading and writing genius files.
 /*!

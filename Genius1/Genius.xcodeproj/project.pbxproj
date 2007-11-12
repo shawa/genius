@@ -110,6 +110,8 @@
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
+		83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
+		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
 		83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
@@ -241,6 +243,8 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
+		83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
+		83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
@@ -248,7 +252,7 @@
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83D9C9850CD8AE79003B422F /* DeveloperDocs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DeveloperDocs; path = build/Development/DeveloperDocs; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +339,8 @@
 				23227CA80725BD2000D09B7F /* GeniusItem.m */,
 				23227CA90725BD2000D09B7F /* GeniusPair.h */,
 				23227CAA0725BD2000D09B7F /* GeniusPair.m */,
+				83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */,
+				83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */,
 				23286A720AA2077200EC1FFF /* NSString+Similiarity */,
 			);
 			path = model;
@@ -558,6 +564,7 @@
 				23F819720B35349D0041656E /* QuizBackdropWindow.h in Headers */,
 				23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */,
 				23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */,
+				83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +770,7 @@
 				23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */,
 				23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */,
 				23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */,
+				83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
