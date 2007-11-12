@@ -1,41 +1,12 @@
-P1:
-quiz handling of blank strings / lex similarity return only
-document dirty bit for document info
-drop the new scoring system
+This code branch is dead. It seems to be an attempt to upgrade the UI and use Core data.  Unfortunately
+it is:
+ 1. Only halfway finished.
+ 2. Contains all the bugs of the original version.
+ 3. Contains several new bugs.
+ 4. Doesn't work.
+ 5. Isn't really compatible with the old version.
+ 6. Doesn't include an unit tests that might have provided a clue as to what this code is meant to do.
+ 7. Extends a questionable gui in ever more questionable directions.
 
-P2:
-level indicator doesnt draw
-remember table view columns
-
-P3:
-
-
-// PUNT
-examples
-check for leaks
-performance
-
-ER: new first item
-drag and drop to text
-level indicator is clickable
-improve text import
-BUG: get rid of search field pop-up menu	*?
-swap columns crashes
-drop image on item
-ER: option-drag copies
-window and table position autosaving
-ER: up/down arrows
-keyboard nav
-View -> Sort By menu						*?
-"formatting error" if empty
-
-
-// version 3.0
-iTunes-style all-in-one window
-tri-directional
-Spotlight support
-printing
-export to iPod
-file sharing
-built-in audio editing
-setAutosavingDelay
+There are probably other reasons to not carry forward it's development, but I'm not inclined to read the 
+source code anymore.
