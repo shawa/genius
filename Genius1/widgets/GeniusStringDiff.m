@@ -60,7 +60,7 @@
 @end
 
 
-//! Handles creaion of an string that highlights the differences between two strings.
+//! Handles creation of an string that highlights the differences between two strings.
 /*!
     Used in quiz interface to visualize the differences between what was typed and what
     was expected.

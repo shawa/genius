@@ -537,10 +537,13 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 @end
 
 
-@implementation GeniusDocument (Actions)
+/*!
+    @category GeniusDocument(Actions)
+    @abstract Collections of methods accessed directly from the GUI.
+ */
+@implementation GeniusDocument(Actions)
 
-// File menu
-
+//! Initiates modal sheet for selecting export file.
 - (IBAction)exportFile:(id)sender
 {
     NSSavePanel * savePanel = [NSSavePanel savePanel];
@@ -552,13 +555,14 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
     [savePanel beginSheetForDirectory:nil file:nil modalForWindow:[windowController window] modalDelegate:self didEndSelector:@selector(_exportFileDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
+//! Handles user response to modal sheet initiated in exportFile:.
 - (void)_exportFileDidEnd:(NSSavePanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     NSString * path = [sheet filename];
     if (path == nil)
         return;
 
-    // TO DO: Construct line of headers
+    //! @todo Construct line of headers
     
     NSArray * arrangedObjects = [itemArrayController arrangedObjects];
     NSString * tabularText = [GeniusItem tabularTextFromItems:arrangedObjects];
@@ -566,8 +570,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 }
 
 
-// Edit menu
-
+//! Deletes the selected items.
 - (IBAction)delete:(id)sender
 {
     NSArray * selectedObjects = [itemArrayController selectedObjects];
@@ -580,6 +583,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
     [itemArrayController removeObjects:selectedObjects];
 }
 
+//! copies the selected items and inserts them in the active genius document
 - (IBAction) duplicate:(id)sender
 {
 	[self _dismissFieldEditor];
@@ -596,8 +600,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 }
 
 
-// Item menu
-
+//! Creates and inserts a new Item.
 - (IBAction) newItem:(id)sender
 {
 	[self _dismissFieldEditor];
@@ -613,6 +616,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	}
 }
 
+//! Sets users rating (importance) for the selected item.
 - (IBAction) setItemRating:(NSMenuItem *)sender
 {
 	int newRating = [sender tag];
@@ -625,6 +629,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 		[item setValue:newRatingValue forKey:@"myRating"];
 }
 
+//! Makes all the b items a items and vice versa.
 - (IBAction) swapColumns:(id)sender
 {
 	NSArray * selectedObjects = [itemArrayController selectedObjects];
@@ -633,6 +638,11 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	[itemArrayController rearrangeObjects];
 }
 
+
+//! Initiates modal sheet to check if the user really wants to drop formatting.
+/*!
+    @todo make formating part of display.
+*/
 - (IBAction) makePlainText:(NSMenuItem *)sender
 {
 	NSString * messageText = NSLocalizedString(@"Convert the selected items to plain text?", nil);
@@ -645,6 +655,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	[alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(_makePlainTextAlertDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 
+//! actually removes the formatting.  @see makePlainText:
 - (void)_makePlainTextAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 {
 	if (returnCode == 0)	// Cancel	// XXX: documentation says it's supposed to be NSAlertSecondButtonReturn
@@ -657,7 +668,8 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	[atomBTextView setTypingAttributes:[NSDictionary dictionary]];	// nil doesn't have any effect
 }
 
-
+//! Erases all historical information about testing for the selected item.
+/*! @todo This isn't what reset means in the 1.7 version */
 - (IBAction) resetItemScore:(id)sender
 {
 	NSArray * selectedObjects = [itemArrayController selectedObjects];
@@ -667,8 +679,7 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 }
 
 
-// Study menu
-
+//! Enables / disables BA testing direction.
 - (IBAction) setQuizDirectionModeAction:(NSMenuItem *)sender
 {
 	int tag = [sender tag];
@@ -689,9 +700,10 @@ static NSString * GeniusDocumentCorrectCountBAKey = @"correctCountBA";
 	[tableView reloadData];
 }
 
+//! runs a quiz with default quiz model parameters.
 - (IBAction) runQuiz:(id)sender
 {
-	// XXX: let user choose initial set of items
+	//! @todo let user choose initial set of items
 
 	QuizController * quiz = [[QuizController alloc] initWithDocument:self];
 	[quiz runQuiz];

@@ -12,10 +12,6 @@
 
 @interface NSString (Similiarity)
 
-/*
-    Returns 0.0 <= x <= 1.0.  0.0 == not equal (or error), 1.0 == equal.
-    Uses Search Kit (a.k.a. AIAT, V-Twin) technology.
-*/
 - (float) isSimilarToString:(NSString *)aString;
 
 @end

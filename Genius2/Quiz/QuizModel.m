@@ -17,9 +17,10 @@
 
 const kQuizModelDefaultRequestedCount = 10;
 
-
+//! Models a user quiz.
 @implementation QuizModel
 
+//! Initialize a QuizModel with the given document as association source.
 - (id) initWithDocument:(GeniusDocument *)document
 {
 	self = [super init];
@@ -33,6 +34,7 @@ const kQuizModelDefaultRequestedCount = 10;
 	return self;
 }
 
+//! Free up memory.
 - (void) dealloc
 {
 	[_document release];
@@ -40,7 +42,7 @@ const kQuizModelDefaultRequestedCount = 10;
 	[super dealloc];
 }
 
-
+//! returns subset of associations for this document that match our quiz model.
 - (NSArray *) _allActiveAssociations
 {
 	if (_allActiveAssociations == nil)
@@ -88,6 +90,7 @@ const kQuizModelDefaultRequestedCount = 10;
 	return _allActiveAssociations;
 }
 
+//! Helper method to check if _allActiveAssociations is not empty.
 - (BOOL) hasValidItems
 {
 	NSArray * associations = [self _allActiveAssociations];
@@ -95,6 +98,8 @@ const kQuizModelDefaultRequestedCount = 10;
 }
 
 
+//! _requestedCount setter
+/*! a count of 0 means all active associations */
 - (void) setCount:(unsigned int)count
 {
 	if (count == 0)
@@ -102,6 +107,7 @@ const kQuizModelDefaultRequestedCount = 10;
 	_requestedCount = count;
 }
 
+//! _requestedReviewLearnFloat setter.
 - (void) setReviewLearnFloat:(float)value
 {
 	_requestedReviewLearnFloat = value;
@@ -112,6 +118,7 @@ const kQuizModelDefaultRequestedCount = 10;
 	_requestedMinScore = score;
 }*/
 
+//! helper to return _requestedReviewLearnFloat as number between 0 an 2.
 - (float) _probabilityCenter
 {
 	// 0% should be minimum=0 (review only)
@@ -125,6 +132,7 @@ const kQuizModelDefaultRequestedCount = 10;
 }
 
 
+//! Function used in sorting array of GeniusAssociation instances by rating attribute.
 static NSComparisonResult CompareAssociationByRating(GeniusAssociation * assoc1, GeniusAssociation * assoc2, void *context)
 {
     GeniusItem * item1 = [assoc1 valueForKey:@"parentItem"];
@@ -140,17 +148,24 @@ static NSComparisonResult CompareAssociationByRating(GeniusAssociation * assoc1,
         return NSOrderedSame;
 }
 
-
+//! Calculates the factorial of n.
 static unsigned long Factorial(int n)
 {
     return (n<=1) ? 1 : n * Factorial(n-1);
 }
 
+//! Calculates the probablity of x for a given m.
 static float PoissonValue(int x, float m)
 {
     return (pow(m,x) / Factorial(x)) * pow(M_E, -m);
 }
 
+//!  Selects items from @a associations based on GeniusAssociation#score and _m_value.
+/*!
+    Sorts the associations into buckets based on score.  Then calculates the Poisson value 
+    for each bucket based on the established #_probabilityCenter.  Finally generates a series of
+    random numbers to choose items from the buckets based on the probablility curve.
+ */
 - (NSArray *) _chooseAssociationsByWeightedCurve:(NSArray *)associations
 {
     #if DEBUG
@@ -243,6 +258,14 @@ static float PoissonValue(int x, float m)
     return outAssociations;
 }
 
+//! Helper method to initialize the set of associations for enumeration.
+/*!
+The process of choosing involves:
+ @li Filtering out inactive associations
+ @li Randomizing the remaining ones
+ @li Sorting the results by importance
+ @li Finally choosing at least QuizModel#_requestedCount items based on QuizModel#_requestedMinScore.
+ */
 - (NSArray *) _chosenAssociations
 {
 	// 1. First, filter out disabled pairs, minimum scores, and long-term dates.
@@ -261,13 +284,11 @@ static float PoissonValue(int x, float m)
 	return chosenAssociations;
 }
 
+//! Convenience method to get a enumerator on _chosenAssociations.
 - (GeniusAssociationEnumerator *) associationEnumerator
 {
 	NSArray * chosenAssociations = [self _chosenAssociations];
 	return [[[GeniusAssociationEnumerator alloc] initWithAssociations:chosenAssociations] autorelease];
 }
-
-
-#warning If the fire date has already expired, clear it
 
 @end

@@ -19,8 +19,12 @@ NSString * GeniusV1PairNotesStringKey = @"notesString";
 - (id) _initWithCueItem:(GeniusV1Item *)cueItem answerItem:(GeniusV1Item *)answerItem parentPair:(GeniusV1Pair *)parentPair performanceDict:(NSDictionary *)performanceDict;
 @end
 
-@implementation GeniusV1Association
-
+//! Private initializer used by GeniusPair
+/*! @category GeniusV1Association(Private) */
+@implementation GeniusV1Association(Private)
+/*! 
+Creates copy of the provided @a performanceDict.
+*/
 - (id) _initWithCueItem:(GeniusV1Item *)cueItem answerItem:(GeniusV1Item *)answerItem parentPair:(GeniusV1Pair *)parentPair performanceDict:(NSDictionary *)performanceDict
 {
     self = [super init];
@@ -34,6 +38,9 @@ NSString * GeniusV1PairNotesStringKey = @"notesString";
         _perfDict = [NSMutableDictionary new];
     return self;
 }
+@end
+
+@implementation GeniusV1Association
 
 - (void) dealloc
 {

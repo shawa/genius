@@ -124,8 +124,12 @@
 @end
 
 
-@implementation GeniusInspectorController (Private)
+//! Helper methods for rich text editing support.
+/*! @category GeniusInspectorController(Private) */
+@implementation GeniusInspectorController(Private)
 
+//! Helper for accessing default font.
+/*! @todo Delete this code. */
 + (NSDictionary *) _defaultTextAttributes
 {
 	return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -135,6 +139,9 @@
 		[NSParagraphStyle defaultParagraphStyle], NSParagraphStyleAttributeName, NULL];*/
 }
 
+
+//! Helper method to enable or disable rich test eding for the given text view and controller.
+/*! @todo Get rid of this */
 - (void) _setRichTextEnabled:(BOOL)flag forTextView:(NSTextView *)textView objectController:(NSObjectController *)controller
 {	
 	// Unbind

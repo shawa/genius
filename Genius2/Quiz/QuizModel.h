@@ -10,12 +10,12 @@
 
 
 @interface QuizModel : NSObject {
-	GeniusDocument * _document;
-	NSArray * _allActiveAssociations;
+	GeniusDocument * _document;        //!< The source of our associations.
+	NSArray * _allActiveAssociations;  //!< Every association in the Document.
 
-	unsigned int _requestedCount;
-	float _requestedReviewLearnFloat;
-	float _requestedMinScore;
+	unsigned int _requestedCount;      //!< The number of items for quizing.
+	float _requestedReviewLearnFloat;  //!< Slider setting for review versus test.
+	float _requestedMinScore;          //!< Cut off for items that I don't know.
 }
 
 - (id) initWithDocument:(GeniusDocument *)document;

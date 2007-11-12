@@ -25,7 +25,7 @@ static unsigned long Factorial(int n)
     return (n<=1) ? 1 : n * Factorial(n-1);
 }
 
-//! Calculates the 
+//! Calculates the probablity of x for a given m.
 static float PoissonValue(int x, float m)
 {
     return (pow(m,x) / Factorial(x)) * pow(M_E, -m);

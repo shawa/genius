@@ -36,7 +36,6 @@ NSString * GeniusPairNotesStringKey = @"notesString";
 @implementation GeniusAssociation(Private)
 /*! 
 Creates copy of the provided @a performanceDict.
-@todo Check into why the performance dictionary is copied.
 */
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict
 {

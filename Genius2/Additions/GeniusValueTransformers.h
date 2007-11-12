@@ -11,6 +11,11 @@
 @end
 
 
+@interface GeniusImageStringTransformer : NSValueTransformer
+
+@end
+
+
 @interface GeniusEnabledBooleanToTextColorTransformer : NSValueTransformer
 
 @end

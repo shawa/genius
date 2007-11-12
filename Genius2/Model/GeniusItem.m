@@ -152,6 +152,7 @@ static NSString * GeniusItemAssociationsKey = @"associations";
 
 #pragma mark -
 
+//! replaces the 'A' item with the 'B' item and vice versa.
 - (void) swapAtoms
 {
 	GeniusAtom * atomA = [[self valueForKey:GeniusItemAtomAKey] retain];

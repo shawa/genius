@@ -125,6 +125,11 @@ NSString * GeniusAssociationTargetAtomKey = @"targetAtom";
 }
 
 
+//! Adds GeniusAssociationDataPoint to this GeniusAssociation
+/*!
+    @todo See if data points created here are not being released.
+    @todo perhaps move the array copying work done here into a helper method.
+*/
 - (void) addResult:(BOOL)value
 {
 	// update dataPointArrayData

@@ -45,8 +45,23 @@
 
 
 
+//! Handles creation of an string that highlights the differences between two strings.
+/*!
+    Used in quiz interface to visualize the differences between what was typed and what
+    was expected.
+ */
 @implementation VisualStringDiff
 
+//! Helper method to determine the differences between two strings.
+/*!
+    The implementation chops @a string1 and @a string2 into words based on the space character, then writes
+    the results out into two files which it then feeds to the UNIX diff program in order to calculate the
+    differences between the two.  This method then returns the raw output of the UNIX diff command.  Have
+    a look at the side-by-side output of diff for more details.  
+
+    @todo Release @a diffTask even when running the command causes an exception.
+    @todo Remove temp files even when running the command causes an exception. 
+ */
 + (NSString *) _runDiffFromString:(NSString *)string1 toString:(NSString *)string2
 {
 	// Create temp files
@@ -99,6 +114,13 @@
 	return [diffOutput autorelease];
 }
 
+//! creates a string that highlights the differences between @a origString and @a newString.
+/*! 
+    Relies on the output of the UNIX diff command.  
+
+    @todo Rewrite this to make it legible.
+    @see #_runDiffFromString:toString:
+*/
 + (NSAttributedString *) attributedStringHighlightingDifferencesFromString:(NSString *)origString toString:(NSString *)newString
 {
 	if ([newString isEqualToString:@""])

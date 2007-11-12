@@ -7,8 +7,8 @@
 
 
 @interface GeniusAssociationDataPoint : NSObject <NSCoding> {
-	NSDate * _date;
-	float _value;
+	NSDate * _date;  //!< The date on which this info is recorded.
+	float _value;    //!< How well did they remember the item.
 }
 
 - (id) initWithDate:(NSDate *)date value:(float)value;

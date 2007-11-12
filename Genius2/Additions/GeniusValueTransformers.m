@@ -6,18 +6,22 @@
 #import "GeniusValueTransformers.h"
 
 
+//! Value transformer for binding to percentages.
 @implementation GeniusFloatPercentTransformer
 
+//! we return an NSNumber.
 + (Class) transformedValueClass
 {
 	return [NSNumber self];
 }
 
+//! Not for handling user input.
 + (BOOL) allowsReverseTransformation
 {
 	return NO;
 }
 
+//! Multiply the original value by 100 for display.
 - (id) transformedValue:(id)value
 {
 	if (value == nil)
@@ -30,7 +34,7 @@
 @end
 
 
-/*@implementation GeniusImageStringTransformer
+@implementation GeniusImageStringTransformer
 
 + (Class) transformedValueClass
 {
@@ -57,7 +61,7 @@
 	return [tmpString autorelease];
 }
 
-@end*/
+@end
 
 
 @implementation GeniusEnabledBooleanToTextColorTransformer
@@ -83,18 +87,22 @@
 @end
 
 
+//! standard binding value tranformer for diplaying boolean as "no" or "yes"
 @implementation GeniusBooleanToStringTransformer
 
+//! we return a string.
 + (Class) transformedValueClass
 {
 	return [NSString self];
 }
 
+//! for display only.
 + (BOOL) allowsReverseTransformation
 {
 	return NO;
 }
 
+//! If value can be converted to boolean, then return "YES" or "NO"
 - (id) transformedValue:(id)value
 {
 	if (value == nil)

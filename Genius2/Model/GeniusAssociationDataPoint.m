@@ -5,9 +5,10 @@
 
 #import "GeniusAssociationDataPoint.h"
 
-
+//! Models the result of a Quiz outcome.
 @implementation GeniusAssociationDataPoint
 
+//! initializes an intance with the given date and value
 - (id) initWithDate:(NSDate *)date value:(float)value
 {
 	self = [super init];
@@ -16,12 +17,17 @@
 	return self;
 }
 
+//! free up memeory.
 - (void) dealloc
 {
 	[_date release];
 	[super dealloc];
 }
 
+//! deserializes data point.
+/*!
+    @todo why not a key value coder?
+ */
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -30,23 +36,27 @@
     return self;
 }
 
+//! serializes data point.
 - (void)encodeWithCoder:(NSCoder *)coder
 {
 	[coder encodeObject:_date];
 	[coder encodeValueOfObjCType:@encode(float) at:&_value];
 }
 
-	
+
+//! Helper for formating the data point as string.
 - (NSString *) description
 {
 	return [NSString stringWithFormat:@"<%@: %.1f>", [_date description], _value];
 }
 
+//! _date getter.
 - (NSDate *) date
 {
 	return _date;
 }
 
+//! _value getter.
 - (BOOL) value
 {
 	return _value >= 0.5;
@@ -55,8 +65,11 @@
 @end
 
 
-@implementation GeniusAssociationDataPoint (GradePrediction)
+//! Helper category for guessing the next score (GeniusAssociationDataPoint#_value).
+/*! @category GeniusAssociationDataPoint(GradePrediction) */
+@implementation GeniusAssociationDataPoint(GradePrediction)
 
+//! Tries to predict todays score (GeniusAssociationDataPoint#_value) based on @a dataPoints.
 + (float) _calculateLeastSquaresFit:(NSArray *)dataPoints
 {
 	// Compute least squares fit
@@ -93,7 +106,7 @@
 	return MIN(y, 1.0);
 }
 
-
+//! Prepends/appends dataPoints with ficticious scores of 0 and 0.33.
 + (NSArray *) _padDataPoints:(NSArray *)dataPoints
 {
 	NSMutableArray * tmpDataPoints = [[dataPoints mutableCopy] autorelease];
@@ -111,7 +124,7 @@
 	return tmpDataPoints;
 }
 
-
+//! Pads @a dataPoints and returns best guess at todays score.
 + (float) predictedValueWithDataPoints:(NSArray *)dataPoints
 {
 	int n = [dataPoints count];
@@ -122,8 +135,9 @@
 	return [self _calculateLeastSquaresFit:paddedDataPoints];
 }
 
-
-/*
+//! Function that calculates a number of days based on @a count.
+/*!
+Output is something like:
 	0: 1 s
 	1: 5 s
 	2: 25 s
