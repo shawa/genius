@@ -22,7 +22,6 @@
 #import "GeniusDocument.h"
 #import "GeniusDocumentPrivate.h"   // reloadInterfaceFromModel
 #import "GeniusDocumentFile.h"
-#include <unistd.h> // getpid
 
 #import "GeniusPreferencesController.h"
 
@@ -143,7 +142,7 @@
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
-    srandom(time(NULL) * getpid());
+    srandom(time(NULL));
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
