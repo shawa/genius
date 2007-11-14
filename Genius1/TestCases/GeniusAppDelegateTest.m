@@ -6,8 +6,17 @@
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 
-#import "GeniusAppDelegateTest.h"
 #import "GeniusAppDelegate.h"
+
+#import <SenTestingKit/SenTestingKit.h>
+
+@class GeniusAppDelegate;
+
+@interface GeniusAppDelegateTest : SenTestCase {
+    GeniusAppDelegate *appDelegate;  //!< Instance of object under test.
+}
+
+@end
 
 //! Test for version comparisons
 @implementation GeniusAppDelegateTest

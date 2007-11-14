@@ -112,6 +112,8 @@
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
 		83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
 		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
+		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentTest.m */; };
+		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
 		83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
@@ -245,10 +247,11 @@
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
 		83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
 		83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
+		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentTest.m; sourceTree = "<group>"; };
+		83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusPairTest.m; sourceTree = "<group>"; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
-		83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAppDelegateTest.h; sourceTree = "<group>"; };
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83D9C9850CD8AE79003B422F /* DeveloperDocs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DeveloperDocs; path = build/Development/DeveloperDocs; sourceTree = "<group>"; };
@@ -522,8 +525,9 @@
 			isa = PBXGroup;
 			children = (
 				83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */,
-				83CC1CED0CD24A2A0002FFA8 /* GeniusAppDelegateTest.h */,
 				83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */,
+				83C26C2A0CE9F50800C5EE32 /* GeniusDocumentTest.m */,
+				83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */,
 			);
 			path = TestCases;
 			sourceTree = "<group>";
@@ -743,6 +747,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */,
+				83C26C2B0CE9F50800C5EE32 /* GeniusDocumentTest.m in Sources */,
+				83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,7 +914,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
 			};
 			name = Development;
 		};
@@ -943,41 +948,8 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
 			name = Deployment;
-		};
-		23D0AFE70AA1C7F50069E6D3 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = app/Genius_Prefix.pch;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = app/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Genius;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
 		};
 		23D0AFE90AA1C7F50069E6D3 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -986,6 +958,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
+				ZERO_LINK = NO;
 			};
 			name = Development;
 		};
@@ -994,24 +967,16 @@
 			buildSettings = {
 				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
 			name = Deployment;
 		};
-		23D0AFEB0AA1C7F50069E6D3 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
-				SVNREV = development;
-			};
-			name = Default;
-		};
 		83CC1CD80CD2499C0002FFA8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Genius.app/Contents/MacOS/Genius";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(value)",
@@ -1035,6 +1000,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Testing;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1071,33 +1037,6 @@
 			};
 			name = Deployment;
 		};
-		83CC1CDA0CD2499C0002FFA8 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(value)",
-					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "TestCases/Testing-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = Testing;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Default;
-		};
 		83D9BE700CD110F30092858D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1119,13 +1058,6 @@
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
-		};
-		83D9BE720CD110F30092858D /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = DiskImage;
-			};
-			name = Default;
 		};
 		83D9C97A0CD8AC9C003B422F /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -1149,13 +1081,6 @@
 			};
 			name = Deployment;
 		};
-		83D9C97C0CD8AC9C003B422F /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = DeveloperDocs;
-			};
-			name = Default;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1164,50 +1089,45 @@
 			buildConfigurations = (
 				23D0AFE50AA1C7F50069E6D3 /* Development */,
 				23D0AFE60AA1C7F50069E6D3 /* Deployment */,
-				23D0AFE70AA1C7F50069E6D3 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		23D0AFE80AA1C7F50069E6D3 /* Build configuration list for PBXProject "Genius" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23D0AFE90AA1C7F50069E6D3 /* Development */,
 				23D0AFEA0AA1C7F50069E6D3 /* Deployment */,
-				23D0AFEB0AA1C7F50069E6D3 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Testing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CC1CD80CD2499C0002FFA8 /* Development */,
 				83CC1CD90CD2499C0002FFA8 /* Deployment */,
-				83CC1CDA0CD2499C0002FFA8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "Genius-1.7.dmg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83D9BE700CD110F30092858D /* Development */,
 				83D9BE710CD110F30092858D /* Deployment */,
-				83D9BE720CD110F30092858D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		83D9C9790CD8AC9C003B422F /* Build configuration list for PBXAggregateTarget "DeveloperDocs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83D9C97A0CD8AC9C003B422F /* Development */,
 				83D9C97B0CD8AC9C003B422F /* Deployment */,
-				83D9C97C0CD8AC9C003B422F /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
 	};
