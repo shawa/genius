@@ -60,13 +60,6 @@ const int kGeniusPairNormalImportance = 5;
 //! The GeniusItem is maximally relevant.
 const int kGeniusPairMaximumImportance = 10;
 
-//! Leftover
-/*! @category GeniusPair(Private) */ 
-@interface GeniusPair(Private)
-//! @todo Determine if this is a private informal protocol or just leftover.
-- (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem;
-@end
-
 //! Relates two GeniusAssociation instances and some meta info.
 /*!
 A GeniusPair is conceptually like a two sided index card.  Through its two instances
@@ -83,17 +76,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     [self setKeys:[NSArray arrayWithObjects:@"disabled", nil] triggerChangeNotificationsForDependentKey:@"importance"];
     [self setKeys:[NSArray arrayWithObjects:@"importance", @"customGroupString", @"customTypeString", @"notesString", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
 }
-
-/*+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
-{
-    return NO;
-    if ([theKey isEqualToString:@"itemA"])
-        return NO;
-    else if ([theKey isEqualToString:@"itemB"])
-        return NO;
-    else
-        return [super automaticallyNotifiesObserversForKey:theKey];
-}*/
 
 /*!
     Collects GeniusAssociations from the GeniusPair intances found in @a pairs into an array. 
@@ -124,23 +106,13 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     their 'dirty' attribute in order to track changes.
     @todo Pick a designated initializer and organize the varous init methods as needed.
 */
-- (id) init
-{
+- (id) init {
     self = [super init];
-
-    GeniusItem * itemA = [GeniusItem new];
-    GeniusItem * itemB = [GeniusItem new];
-    _associationAB = [[GeniusAssociation alloc] _initWithCueItem:itemA answerItem:itemB parentPair:self performanceDict:nil];
-    _associationBA = [[GeniusAssociation alloc] _initWithCueItem:itemB answerItem:itemA parentPair:self performanceDict:nil];
-    [itemA release];
-    [itemB release];
-    _userDict = [NSMutableDictionary new];
-
-    [itemA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [itemB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationAB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationBA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-
+    if (self != nil) {
+        GeniusItem * itemA = [[[GeniusItem alloc] init] autorelease];
+        GeniusItem * itemB = [[[GeniusItem alloc] init] autorelease];
+        [self initWithItemA:itemA itemB:itemB userDict:[NSMutableDictionary dictionary]];
+    }
     return self;
 }
 
@@ -151,7 +123,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 */
 - (void) dealloc
 {
-    //! @todo seems like these should be released after we stop observing them
     [_associationAB release];
     [_associationBA release];
     [_userDict release];
@@ -209,7 +180,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     which is expected to carry the 'card' realted group, importance, and type information.  Finally as is the case with @c init,
     self is set up as an observer of the two GeniusAssociation objects as well as @a itemA and @a itemB.
 */
-- (id) _initWithItemA:(GeniusItem *)itemA itemB:(GeniusItem *)itemB userDict:(NSMutableDictionary *)userDict
+- (id) initWithItemA:(GeniusItem *)itemA itemB:(GeniusItem *)itemB userDict:(NSMutableDictionary *)userDict
 {
     self = [super init];
     _associationAB = [[GeniusAssociation alloc] _initWithCueItem:itemA answerItem:itemB parentPair:self performanceDict:nil];
@@ -235,7 +206,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     GeniusItem * newItemA = [[[self itemA] copy] autorelease];
     GeniusItem * newItemB = [[[self itemB] copy] autorelease];
     NSMutableDictionary * newUserDict = [[_userDict mutableCopy] autorelease];
-    return [[[self class] allocWithZone:zone] _initWithItemA:newItemA itemB:newItemB userDict:newUserDict];
+    return [[[self class] allocWithZone:zone] initWithItemA:newItemA itemB:newItemB userDict:newUserDict];
 }
 
 //! Catches changes to observed instances of GeniusItem and GeniusAssociation.
