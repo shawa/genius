@@ -110,6 +110,7 @@
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
+		8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */ = {isa = PBXBuildFile; fileRef = 8379CD7B0CEB410600CCFF86 /* TestFile1.genius */; };
 		83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
 		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
 		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */; };
@@ -245,6 +246,7 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
+		8379CD7B0CEB410600CCFF86 /* TestFile1.genius */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestFile1.genius; sourceTree = "<group>"; };
 		83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
 		83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
 		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFileTest.m; sourceTree = "<group>"; };
@@ -521,9 +523,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8379CD620CEB408E00CCFF86 /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8379CD7B0CEB410600CCFF86 /* TestFile1.genius */,
+			);
+			name = TestFiles;
+			sourceTree = "<group>";
+		};
 		83CC1CDD0CD249BF0002FFA8 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
+				8379CD620CEB408E00CCFF86 /* TestFiles */,
 				83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */,
 				83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */,
 				83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */,
@@ -638,6 +649,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

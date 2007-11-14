@@ -40,7 +40,7 @@
     // Data model
     NSMutableArray * _visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
     float _learnVsReviewWeightBeforeNibLoaded;                    //!< ???
-    NSMutableDictionary * _columnHeadersDict;                     //!< ???
+    NSMutableDictionary * _columnHeadersDict;                     //!< Labels used for column header names.
     NSMutableArray * _pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
     NSDate * _cumulativeStudyTime;                                //!< Not sure this is used anymore.
 
