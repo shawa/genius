@@ -112,7 +112,7 @@
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
 		83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
 		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
-		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentTest.m */; };
+		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */; };
 		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
 		83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */; };
@@ -245,9 +245,10 @@
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
+		8379CCD40CEB067B00CCFF86 /* GeniusDocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentTest.m; sourceTree = "<group>"; };
 		83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
 		83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
-		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentTest.m; sourceTree = "<group>"; };
+		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFileTest.m; sourceTree = "<group>"; };
 		83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusPairTest.m; sourceTree = "<group>"; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -526,7 +527,8 @@
 			children = (
 				83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */,
 				83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */,
-				83C26C2A0CE9F50800C5EE32 /* GeniusDocumentTest.m */,
+				8379CCD40CEB067B00CCFF86 /* GeniusDocumentTest.m */,
+				83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */,
 				83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */,
 			);
 			path = TestCases;
@@ -747,7 +749,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */,
-				83C26C2B0CE9F50800C5EE32 /* GeniusDocumentTest.m in Sources */,
+				83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */,
 				83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
