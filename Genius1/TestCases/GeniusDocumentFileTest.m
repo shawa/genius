@@ -1,5 +1,5 @@
 //
-//  GeniusDocumentTest.m
+//  GeniusDocumentFileTest.m
 //  Genius
 //
 //  Created by Chris Miner on 13.11.07.
@@ -12,14 +12,14 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 
-@interface GeniusDocumentTest : SenTestCase {
+@interface GeniusDocumentFileTest : SenTestCase {
     
 }
 
 @end
 
 //! test cases for the GeniusDocument
-@implementation GeniusDocumentTest
+@implementation GeniusDocumentFileTest
 
 //! test that adding an item works.
 - (void) testAddingItem
