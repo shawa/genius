@@ -17,7 +17,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class GeniusPair;
 @class GeniusItem;
 @class GeniusAssociation;
 
@@ -47,8 +46,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA;
 
-- (id) init;
-
+- (id) initWithItemA:(GeniusItem *)itemA itemB:(GeniusItem *)itemB userDict:(NSMutableDictionary *)userDict;
 
 - (GeniusItem *) itemA;
 - (GeniusItem *) itemB;
