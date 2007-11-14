@@ -12,7 +12,7 @@
 #import "GeniusPair.h"
 
 @interface GeniusPairTest : SenTestCase {
-    GeniusPair *geniusPair;
+    GeniusPair *geniusPair; //!< The object under test.
 }
 
 @end
@@ -20,14 +20,17 @@
 //! A collection of GeniusPair tests.
 @implementation GeniusPairTest
 
+//! Instanciate a genius instance for each test.
 - (void) setUp
 {
     geniusPair = [[GeniusPair alloc] init];
 }
 
+//! Releases genius instance from each test.
 - (void) tearDown
 {
     [geniusPair release];
+    geniusPair = nil;
 }
 
 //! Test that a new GeniusPair already has associated objects.

@@ -47,7 +47,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 }
 
 //! Release sound and fonts.  Deallocate memory.
-/*! @see #initWithWindowNibName: */
+/*! @see #init */
 - (void) dealloc
 {
     [_newSound release];
@@ -273,6 +273,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
     }
 }
 
+//! The UI is available.  Initializ the quiz.
 - (void)windowDidLoad
 {
     [self quizSetup];
