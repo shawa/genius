@@ -105,8 +105,6 @@
 		23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B2310AA1E65D0069E6D3 /* Inspector.png */; };
 		23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F818E20B35312B0041656E /* GeniusPreferencesController.m */; };
 		23F818E70B3531390041656E /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23F818E50B3531390041656E /* Preferences.nib */; };
-		23F819720B35349D0041656E /* QuizBackdropWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F819700B35349D0041656E /* QuizBackdropWindow.h */; };
-		23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F819710B35349D0041656E /* QuizBackdropWindow.m */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
@@ -239,8 +237,6 @@
 		23F818E10B35312B0041656E /* GeniusPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusPreferencesController.h; sourceTree = "<group>"; };
 		23F818E20B35312B0041656E /* GeniusPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferencesController.m; sourceTree = "<group>"; };
 		23F818E60B3531390041656E /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
-		23F819700B35349D0041656E /* QuizBackdropWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QuizBackdropWindow.h; sourceTree = "<group>"; };
-		23F819710B35349D0041656E /* QuizBackdropWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QuizBackdropWindow.m; sourceTree = "<group>"; };
 		23FE373C07494CC00029DD61 /* Information.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Information.tiff; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -354,8 +350,6 @@
 		23227CB50725BD2600D09B7F /* widgets */ = {
 			isa = PBXGroup;
 			children = (
-				23F819700B35349D0041656E /* QuizBackdropWindow.h */,
-				23F819710B35349D0041656E /* QuizBackdropWindow.m */,
 				23227CB80725BD2600D09B7F /* image */,
 				23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */,
 				23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */,
@@ -576,7 +570,6 @@
 				236640550AA2056100888E37 /* IconTextFieldCell.h in Headers */,
 				236640570AA2056100888E37 /* LevelIndicator.h in Headers */,
 				2366405F0AA2056100888E37 /* SimpleProgressIndicator.h in Headers */,
-				23F819720B35349D0041656E /* QuizBackdropWindow.h in Headers */,
 				23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */,
 				23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */,
 				83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */,
@@ -787,7 +780,6 @@
 				236640600AA2056100888E37 /* SimpleProgressIndicator.m in Sources */,
 				23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */,
 				23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */,
-				23F819730B35349D0041656E /* QuizBackdropWindow.m in Sources */,
 				83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -968,7 +960,7 @@
 			buildSettings = {
 				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				PREBINDING = NO;
 				SVNREV = development;
 				ZERO_LINK = NO;
 			};
@@ -980,7 +972,6 @@
 				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
 			};
 			name = Deployment;

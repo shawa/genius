@@ -20,7 +20,6 @@
 @class GeniusItem;
 @class GeniusPair;
 @class GeniusAssociationEnumerator;
-@class QuizBackdropWindow;
 @class GeniusAssociation;
 
 //! Standard NSWindowController subclass for managing a user quiz.
@@ -46,7 +45,7 @@
     NSSound * _newSound;                //!< Played as new items are presented
     NSSound * _rightSound;              //!< Played as correct answers are entered.
     NSSound * _wrongSound;              //!< Played for incorrect answers.
-	QuizBackdropWindow * _screenWindow; //!< Semitransparent black backdrop window.
+	NSWindow * _screenWindow;           //!< Semitransparent black backdrop window.
 
     GeniusItem * _visibleCueItem;       //!< Currently displayed cueItem from _currentAssociation
     GeniusItem * _visibleAnswerItem;    //!< Currently displayed answerItem from _currentAssociation

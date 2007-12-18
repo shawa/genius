@@ -120,17 +120,21 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 }
 
 //! _screenWindow getter.
-- (QuizBackdropWindow*) screenWindow
+- (NSWindow*) screenWindow
 {
+    if( ! _screenWindow)
+    {
+        NSRect screenRect = [[NSScreen mainScreen] frame];
+        _screenWindow = [[NSWindow alloc] initWithContentRect:screenRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];
+        [_screenWindow setLevel:(NSModalPanelWindowLevel-1)];
+        [_screenWindow setBackgroundColor:[NSColor blackColor]];
+        [_screenWindow setAlphaValue:0.5];
+        [_screenWindow setOpaque:NO];
+        [_screenWindow setHasShadow:NO];
+        [_screenWindow setIgnoresMouseEvents:YES];
+        [_screenWindow setReleasedWhenClosed:NO];
+    }
     return _screenWindow;
-}
-
-//! _screenWindow setter.
-- (void) setScreenWindow: (QuizBackdropWindow*) window
-{
-    [window retain];
-    [_screenWindow release];
-    _screenWindow = window;
 }
 
 //! _enumerator setter.
@@ -165,9 +169,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 	// Fade in screen window with cool effect.
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesQuizUseFullScreenKey])
 	{
-        NSAnimation * animation = nil;
-		[self setScreenWindow:[[QuizBackdropWindow alloc] init]];
-        
+        NSAnimation * animation = nil;        
 		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
 		[animation setDelegate:self];
 		[animation addProgressMark:0.025];
@@ -470,16 +472,16 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 @end
 
 
-//! Support for animated fade in and out of QuizBackdropWindow
+//! Support for animated fade in and out of quiz backdrop window
 /*!
     @todo Fix this so the fade in effect works.
 */
 @implementation MyQuizController(NSAnimationDelegate)
 
-//! Handles fade in and out of QuizBackdropWindow.
+//! Handles fade in and out of quiz backdrop window.
 /*!
     We're set up in runQuiz:cumulativeTime: as the delegate of an NSAnimation.  We use the progress
-    of the animation to determine the current alpha transparency of the QuizBackdropWindow.
+    of the animation to determine the current alpha transparency of the quiz backdrop window.
 */
 - (void)animation:(NSAnimation*)animation didReachProgressMark:(NSAnimationProgress)progress
 {
