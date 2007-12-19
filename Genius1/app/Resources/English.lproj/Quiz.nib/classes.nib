@@ -3,25 +3,18 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = GeniusRelevanceIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {
-            ACTIONS = {
-                getRightNo = id; 
-                getRightSkip = id; 
-                getRightYes = id; 
-                handleEntry = id; 
-                myAction = id; 
-            }; 
+            ACTIONS = {getRightNo = id; getRightSkip = id; getRightYes = id; handleEntry = id; }; 
             CLASS = MyQuizController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                answerTextView = id; 
-                associationController = id; 
-                cueTextView = id; 
-                entryField = id; 
-                getRightView = id; 
-                newAssociationView = id; 
-                noButton = id; 
-                progressIndicator = id; 
-                yesButton = id; 
+                answerTextView = NSTextView; 
+                associationController = NSObjectController; 
+                cueTextView = NSTextView; 
+                entryField = NSTextField; 
+                evaluationTabView = NSTabView; 
+                noButton = NSButton; 
+                progressIndicator = SimpleProgressIndicator; 
+                yesButton = NSButton; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 

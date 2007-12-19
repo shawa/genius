@@ -24,8 +24,6 @@
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
 
-const NSTimeInterval kQuizBackdropAnimationEaseInTimeInterval = 0.3;
-const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 
 @implementation MyQuizController
 
@@ -36,7 +34,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         _newSound = [[NSSound soundNamed:@"Blow"] retain];
         _rightSound = [[NSSound soundNamed:@"Hero"] retain];
         _wrongSound = [[NSSound soundNamed:@"Basso"] retain];
-        
+                
         _visibleCueItem = nil;
         _visibleAnswerItem = nil;
         _cueItemFont = nil;
@@ -169,10 +167,10 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 	// Fade in screen window with cool effect.
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesQuizUseFullScreenKey])
 	{
-        NSAnimation * animation = nil;        
-		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
+        NSAnimation *animation = [[NSAnimation alloc] initWithDuration:0.3 animationCurve:NSAnimationEaseIn];
 		[animation setDelegate:self];
-		[animation addProgressMark:0.025];
+        [animation addProgressMark:0.025];
+        
 		[[self screenWindow] setAlphaValue:0.0];
 		[[self screenWindow] orderFront:self];
         
@@ -190,12 +188,11 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 	// Take down backdrop window
 	if ([self screenWindow])
 	{
-        NSAnimation * animation = nil;
-		animation = [[NSAnimation alloc] initWithDuration:kQuizBackdropAnimationEaseInTimeInterval animationCurve:NSAnimationEaseIn];
-
-		[animation setAnimationCurve:NSAnimationEaseOut];
-		[animation setDuration:kQuizBackdropAnimationEaseOutTimeInterval];
-		[animation startAnimation];
+        NSAnimation *animation = [[NSAnimation alloc] initWithDuration:0.2 animationCurve:NSAnimationEaseOut];
+		[animation setDelegate:self];
+        [animation addProgressMark:0.025];
+		
+        [animation startAnimation];
 		[animation release];
 
 		[[self screenWindow] close];
@@ -241,13 +238,11 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         {
             // Prepare window for reviewing
             [self _setVisibleAnswerItem:answerItem];   // show the answer for review
-            
-            [getRightView setHidden:YES];
-            [newAssociationView setHidden:NO];
-            
             [entryField setEnabled:YES];
             [entryField setStringValue:[answerItem stringValue]];
             [entryField selectText:self];
+            
+            [evaluationTabView selectTabViewItemWithIdentifier:@"reviewMode"];
             
             [_newSound stop];
             if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
@@ -257,17 +252,11 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         else
         {
             [self _setVisibleAnswerItem:nil];       // hide the answer for learning
-            
             [entryField setStringValue:@""];
             [entryField setEnabled:YES];
-            [getRightView setHidden:YES];
-            [yesButton setKeyEquivalent:@""];
-            [noButton setKeyEquivalent:@""];
-            
-            [newAssociationView setHidden:YES];
-            
-            [entryField selectText:self];    
-        }  
+            [entryField selectText:self];
+            [evaluationTabView selectTabViewItemWithIdentifier:@"quizMode"];
+        }
     }
     // No associations left, so time to clean up.
     else {
@@ -327,8 +316,8 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
         [self _setVisibleAnswerItem:answerItem];
         
         [entryField setEnabled:NO];
-        [getRightView setHidden:NO];
-        
+
+        [evaluationTabView selectTabViewItemWithIdentifier:@"checkMode"];
         NSString * inputString = [entryField stringValue];
         NSString * targetString = [answerItem stringValue];
         
@@ -349,9 +338,9 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
                 NSAssert(NO, @"matchingMode");
         }
         
-    #if DEBUG
+#if DEBUG
         NSLog(@"correctness = %f", correctness);
-    #endif
+#endif
         if (correctness == 1.0)
         {
             if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
@@ -378,21 +367,19 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
             
             if (correctness > 0.5)
             {
-                // correct
+                // guess was pretty good, so we set default to yesButton
                 [yesButton setKeyEquivalent:@"\r"];
+                [noButton setKeyEquivalent:@""];
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
                     [_rightSound play];    
             }
-            else if (correctness == 0.0)
+            else
             {
-                // incorrect
+                // guess was not so good, so we set default to No button
+                [yesButton setKeyEquivalent:@""];
                 [noButton setKeyEquivalent:@"\r"];
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:GeniusPreferencesUseSoundEffectsKey])
                     [_wrongSound play];
-            }
-            else
-            {
-                // partial credit
             }
         }
     }
@@ -439,10 +426,9 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 
 //! Handle keyboard driven input.
 /*!
-    @todo What about handling skip with a key equivalent?
     @todo What about handling ending with a press of esc.
 */
-- (void)keyDown:(NSEvent *)theEvent
+- (void) keyDown: (NSEvent *) theEvent
 {
     NSString * characters = [theEvent characters];
     if ([characters isEqualToString:@"y"])
@@ -454,7 +440,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 }
 
 //! The user can elect to end quiz by closing the window.
-- (BOOL)windowShouldClose:(id)sender
+- (BOOL) windowShouldClose: (id) sender
 {
     // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
     BOOL succeed = [[self window] makeFirstResponder:[self window]];
@@ -464,7 +450,7 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 }
 
 //! The user elected to close the quiz window.
-- (void)windowWillClose:(NSNotification *)aNotification
+- (void) windowWillClose: (NSNotification *) aNotification
 {
     [self quizTeardown];
 }
@@ -487,7 +473,6 @@ const NSTimeInterval kQuizBackdropAnimationEaseOutTimeInterval = 0.2;
 {
 	float alpha = [animation currentValue] * 0.5;
 	[[self screenWindow] setAlphaValue:alpha];
-    //! @bug This just adds another progress mark at the same place. Which means the fade in effect is actually lost.
 	[animation addProgressMark:0.1]; 
 }
 

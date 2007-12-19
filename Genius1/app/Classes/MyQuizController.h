@@ -21,6 +21,7 @@
 @class GeniusPair;
 @class GeniusAssociationEnumerator;
 @class GeniusAssociation;
+@class SimpleProgressIndicator;
 
 //! Standard NSWindowController subclass for managing a user quiz.
 /*!
@@ -28,16 +29,16 @@
 */
 @interface MyQuizController : NSWindowController
 {
-    IBOutlet id associationController;  //!< NSObjectController for #_currentAssociation.
-    IBOutlet id cueTextView;            //!< Displays the cue item of #_currentAssociation.
-    IBOutlet id answerTextView;         //!< Displays the answer item of #_currentAssociation.
-    IBOutlet id getRightView;           //!< Check your answer view in learning mode.
-    IBOutlet id entryField;             //!< Text area for typing in the answer in learning mode.
-    IBOutlet id yesButton;              //!< Confirms correct answer.
-    IBOutlet id noButton;               //!< Confirms incorrect answer.
-    IBOutlet id newAssociationView;     //!< Check your answer view for review mode.
-    IBOutlet id progressIndicator;      //!< Little bar at top of quiz window showing progress.
-    IBOutlet id studyTimeField;         //!< This doesn't seem to be connected to anything.
+    IBOutlet NSObjectController *associationController;  //!< NSObjectController for #_currentAssociation.
+    IBOutlet NSTextView *cueTextView;            //!< Displays the cue item of #_currentAssociation.
+
+    IBOutlet NSTabView *evaluationTabView;
+    IBOutlet NSTextView *answerTextView;         //!< Displays the answer item of #_currentAssociation.
+
+    IBOutlet NSTextField *entryField;             //!< Text area for typing in the answer in learning mode.
+    IBOutlet NSButton *yesButton;              //!< Confirms correct answer.
+    IBOutlet NSButton *noButton;               //!< Confirms incorrect answer.
+    IBOutlet SimpleProgressIndicator *progressIndicator;      //!< Little bar at top of quiz window showing progress.
 
     GeniusAssociationEnumerator * _enumerator; //!< Contains GeniusAssociation objects for this quiz.
     GeniusAssociation * _currentAssociation;   //!< Currently displayed GeniusAssociation.
