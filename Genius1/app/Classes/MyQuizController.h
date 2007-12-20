@@ -21,7 +21,6 @@
 @class GeniusPair;
 @class GeniusAssociationEnumerator;
 @class GeniusAssociation;
-@class SimpleProgressIndicator;
 
 //! Standard NSWindowController subclass for managing a user quiz.
 /*!
@@ -30,18 +29,18 @@
 @interface MyQuizController : NSWindowController
 {
     IBOutlet NSObjectController *associationController;  //!< NSObjectController for #_currentAssociation.
-    IBOutlet NSTextView *cueTextView;            //!< Displays the cue item of #_currentAssociation.
+    IBOutlet NSTextView *cueTextView;                    //!< Displays the cue item of #_currentAssociation.
 
-    IBOutlet NSTabView *evaluationTabView;
-    IBOutlet NSTextView *answerTextView;         //!< Displays the answer item of #_currentAssociation.
+    IBOutlet NSTabView *evaluationTabView;               //!< swap view for the review / learn controls
+    IBOutlet NSTextView *answerTextView;                 //!< Displays the answer item of #_currentAssociation.
 
-    IBOutlet NSTextField *entryField;             //!< Text area for typing in the answer in learning mode.
-    IBOutlet NSButton *yesButton;              //!< Confirms correct answer.
-    IBOutlet NSButton *noButton;               //!< Confirms incorrect answer.
-    IBOutlet SimpleProgressIndicator *progressIndicator;      //!< Little bar at top of quiz window showing progress.
+    IBOutlet NSTextField *entryField;                    //!< Text area for typing in the answer in learning mode.
+    IBOutlet NSButton *yesButton;                        //!< Confirms correct answer.
+    IBOutlet NSButton *noButton;                         //!< Confirms incorrect answer.
+    IBOutlet NSLevelIndicator *progressIndicator;        //!< Little bar at top of quiz window showing progress.
 
-    GeniusAssociationEnumerator * _enumerator; //!< Contains GeniusAssociation objects for this quiz.
-    GeniusAssociation * _currentAssociation;   //!< Currently displayed GeniusAssociation.
+    GeniusAssociationEnumerator * _enumerator;           //!< Contains GeniusAssociation objects for this quiz.
+    GeniusAssociation * _currentAssociation;             //!< Currently displayed GeniusAssociation.
     
     NSSound * _newSound;                //!< Played as new items are presented
     NSSound * _rightSound;              //!< Played as correct answers are entered.

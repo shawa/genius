@@ -13,11 +13,12 @@
                 entryField = NSTextField; 
                 evaluationTabView = NSTabView; 
                 noButton = NSButton; 
-                progressIndicator = SimpleProgressIndicator; 
+                progressIndicator = NSLevelIndicator; 
                 yesButton = NSButton; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
+        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = SimpleProgressIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }
     ); 
     IBVersion = 1; 

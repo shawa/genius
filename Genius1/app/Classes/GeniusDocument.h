@@ -19,17 +19,16 @@
 
 @class MyTableView;
 @class GeniusArrayController;
-@class LevelIndicator;
 
 //! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
 {
-    IBOutlet MyTableView * tableView;                    //!< The main table showing the GeniusPair items.
-    IBOutlet GeniusArrayController * arrayController;    //!< The controller holding the displayed items.
+    IBOutlet MyTableView *tableView;                    //!< The main table showing the GeniusPair items.
+    IBOutlet GeniusArrayController *arrayController;    //!< The controller holding the displayed items.
     IBOutlet NSTextField  * statusField;                 //!< Shows selection count and total items.
     IBOutlet NSTextField * levelField;                   //!< Displays percentage of items with any score.
-    IBOutlet LevelIndicator * levelIndicator;            //!< Displays level information as bar.
-    IBOutlet NSDrawer * infoDrawer;                      //!< Drawer where you can set group and type info.
+    IBOutlet NSLevelIndicator *levelIndicator;         //!< Displays level information as bar.
+    IBOutlet NSDrawer *infoDrawer;                      //!< Drawer where you can set group and type info.
     IBOutlet NSDrawer * notesDrawer;                     //!< Drawer at bottom of window with GeniusPair notes.
     IBOutlet NSView * initialWatermarkView;              //!< Help text displayed over the table in empty documents.
     

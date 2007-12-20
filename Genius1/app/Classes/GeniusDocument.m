@@ -455,10 +455,6 @@
 	float percentLearned = (float)learnedAssociationCount/(float)associationCount;
 	[levelIndicator setDoubleValue:(percentLearned * 100.0)];
 	[levelField setDoubleValue:(percentLearned * 100.0)];
-
-/*	NSString * unlearnedPercentString = [NSString stringWithFormat:@"%.0f%%", (1.0-percentLearned) * 100.0];
-	NSString * xOfYString = [NSString stringWithFormat:@"%.0f of %d", percentLearned * (float)[_pairs count], [_pairs count]];
-	status = [NSString stringWithFormat:@"%@ remaining (%@ studied)", unlearnedPercentString, xOfYString];*/
 }
 
 @end
@@ -850,10 +846,8 @@
     [quizController runQuiz:enumerator];
     [quizController release];
     
-    // Show document window
     [self _updateStatusText];
 	[self _updateLevelIndicator];
-//    [windowController showWindow:self];
 }
 
 //! Set up quiz mode using enabled and based probablity.

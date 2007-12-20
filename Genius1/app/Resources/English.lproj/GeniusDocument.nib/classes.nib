@@ -28,15 +28,15 @@
             CLASS = GeniusDocument; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                arrayController = id; 
-                infoDrawer = id; 
-                initialWatermarkView = id; 
-                learnReviewSlider = id; 
-                levelField = id; 
-                levelIndicator = id; 
-                notesDrawer = id; 
-                statusField = id; 
-                tableView = id; 
+                arrayController = GeniusArrayController; 
+                infoDrawer = NSDrawer; 
+                initialWatermarkView = NSView; 
+                learnReviewSlider = NSSlider; 
+                levelField = NSTextField; 
+                levelIndicator = NSLevelIndicator; 
+                notesDrawer = NSDrawer; 
+                statusField = NSTextField; 
+                tableView = MyTableView; 
             }; 
             SUPERCLASS = NSDocument; 
         }, 
@@ -48,6 +48,7 @@
             OUTLETS = {documentController = id; }; 
             SUPERCLASS = NSTableView; 
         }, 
+        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSObject; LANGUAGE = ObjC; }
     ); 
     IBVersion = 1; 

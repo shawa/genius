@@ -85,15 +85,6 @@
 		23516AB9075EE2CE0020D17E /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */; };
 		236640550AA2056100888E37 /* IconTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640460AA2056100888E37 /* IconTextFieldCell.h */; };
 		236640560AA2056100888E37 /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640470AA2056100888E37 /* IconTextFieldCell.m */; };
-		236640570AA2056100888E37 /* LevelIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640490AA2056100888E37 /* LevelIndicator.h */; };
-		236640580AA2056100888E37 /* LevelIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2366404A0AA2056100888E37 /* LevelIndicator.m */; };
-		236640590AA2056100888E37 /* progress_back.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2366404C0AA2056100888E37 /* progress_back.tiff */; };
-		2366405A0AA2056100888E37 /* progress_bottom.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2366404D0AA2056100888E37 /* progress_bottom.tiff */; };
-		2366405B0AA2056100888E37 /* progress_fillgreen.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2366404E0AA2056100888E37 /* progress_fillgreen.tiff */; };
-		2366405C0AA2056100888E37 /* progress_left.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2366404F0AA2056100888E37 /* progress_left.tiff */; };
-		2366405D0AA2056100888E37 /* progress_right.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 236640500AA2056100888E37 /* progress_right.tiff */; };
-		2366405F0AA2056100888E37 /* SimpleProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640530AA2056100888E37 /* SimpleProgressIndicator.h */; };
-		236640600AA2056100888E37 /* SimpleProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640540AA2056100888E37 /* SimpleProgressIndicator.m */; };
 		237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 237DA3DE07395DD6006B7D4B /* Localizable.strings */; };
 		23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
 		23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
@@ -217,15 +208,6 @@
 		23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusStringDiff.m; sourceTree = "<group>"; };
 		236640460AA2056100888E37 /* IconTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconTextFieldCell.h; sourceTree = "<group>"; };
 		236640470AA2056100888E37 /* IconTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconTextFieldCell.m; sourceTree = "<group>"; };
-		236640490AA2056100888E37 /* LevelIndicator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LevelIndicator.h; sourceTree = "<group>"; };
-		2366404A0AA2056100888E37 /* LevelIndicator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LevelIndicator.m; sourceTree = "<group>"; };
-		2366404C0AA2056100888E37 /* progress_back.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = progress_back.tiff; sourceTree = "<group>"; };
-		2366404D0AA2056100888E37 /* progress_bottom.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = progress_bottom.tiff; sourceTree = "<group>"; };
-		2366404E0AA2056100888E37 /* progress_fillgreen.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = progress_fillgreen.tiff; sourceTree = "<group>"; };
-		2366404F0AA2056100888E37 /* progress_left.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = progress_left.tiff; sourceTree = "<group>"; };
-		236640500AA2056100888E37 /* progress_right.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = progress_right.tiff; sourceTree = "<group>"; };
-		236640530AA2056100888E37 /* SimpleProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SimpleProgressIndicator.h; sourceTree = "<group>"; };
-		236640540AA2056100888E37 /* SimpleProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SimpleProgressIndicator.m; sourceTree = "<group>"; };
 		237DA3DC07395DC4006B7D4B /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23AA22920AA305E6009AF327 /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
 		23AA229A0AA30E31009AF327 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING.txt; sourceTree = SOURCE_ROOT; };
@@ -356,8 +338,6 @@
 				23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */,
 				23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */,
 				236640450AA2056100888E37 /* IconTextFieldCell */,
-				236640480AA2056100888E37 /* LevelIndicator */,
-				236640520AA2056100888E37 /* SimpleProgressIndicator */,
 			);
 			path = widgets;
 			sourceTree = "<group>";
@@ -426,37 +406,6 @@
 				236640470AA2056100888E37 /* IconTextFieldCell.m */,
 			);
 			path = IconTextFieldCell;
-			sourceTree = "<group>";
-		};
-		236640480AA2056100888E37 /* LevelIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				236640490AA2056100888E37 /* LevelIndicator.h */,
-				2366404A0AA2056100888E37 /* LevelIndicator.m */,
-				2366404B0AA2056100888E37 /* LevelIndicator_images */,
-			);
-			path = LevelIndicator;
-			sourceTree = "<group>";
-		};
-		2366404B0AA2056100888E37 /* LevelIndicator_images */ = {
-			isa = PBXGroup;
-			children = (
-				2366404C0AA2056100888E37 /* progress_back.tiff */,
-				2366404D0AA2056100888E37 /* progress_bottom.tiff */,
-				2366404E0AA2056100888E37 /* progress_fillgreen.tiff */,
-				2366404F0AA2056100888E37 /* progress_left.tiff */,
-				236640500AA2056100888E37 /* progress_right.tiff */,
-			);
-			path = LevelIndicator_images;
-			sourceTree = "<group>";
-		};
-		236640520AA2056100888E37 /* SimpleProgressIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				236640530AA2056100888E37 /* SimpleProgressIndicator.h */,
-				236640540AA2056100888E37 /* SimpleProgressIndicator.m */,
-			);
-			path = SimpleProgressIndicator;
 			sourceTree = "<group>";
 		};
 		23B358BB073C0FA700B89026 /* User Documentation */ = {
@@ -568,8 +517,6 @@
 				2318E4110725C16D00726F95 /* GeniusHelpWindowController.h in Headers */,
 				23516AB8075EE2CE0020D17E /* GeniusStringDiff.h in Headers */,
 				236640550AA2056100888E37 /* IconTextFieldCell.h in Headers */,
-				236640570AA2056100888E37 /* LevelIndicator.h in Headers */,
-				2366405F0AA2056100888E37 /* SimpleProgressIndicator.h in Headers */,
 				23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */,
 				23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */,
 				83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */,
@@ -674,11 +621,6 @@
 				23FE373F07494CC00029DD61 /* Information.tiff in Resources */,
 				23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */,
 				23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */,
-				236640590AA2056100888E37 /* progress_back.tiff in Resources */,
-				2366405A0AA2056100888E37 /* progress_bottom.tiff in Resources */,
-				2366405B0AA2056100888E37 /* progress_fillgreen.tiff in Resources */,
-				2366405C0AA2056100888E37 /* progress_left.tiff in Resources */,
-				2366405D0AA2056100888E37 /* progress_right.tiff in Resources */,
 				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
 				23F818E70B3531390041656E /* Preferences.nib in Resources */,
 				832389FF0CC39B1C00782903 /* TODO.txt in Resources */,
@@ -776,8 +718,6 @@
 				2318E4100725C16D00726F95 /* GeniusHelpWindowController.m in Sources */,
 				23516AB9075EE2CE0020D17E /* GeniusStringDiff.m in Sources */,
 				236640560AA2056100888E37 /* IconTextFieldCell.m in Sources */,
-				236640580AA2056100888E37 /* LevelIndicator.m in Sources */,
-				236640600AA2056100888E37 /* SimpleProgressIndicator.m in Sources */,
 				23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */,
 				23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */,
 				83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */,
