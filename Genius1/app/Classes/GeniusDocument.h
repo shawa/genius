@@ -25,27 +25,28 @@
 {
     IBOutlet MyTableView *tableView;                    //!< The main table showing the GeniusPair items.
     IBOutlet GeniusArrayController *arrayController;    //!< The controller holding the displayed items.
-    IBOutlet NSTextField  * statusField;                 //!< Shows selection count and total items.
-    IBOutlet NSTextField * levelField;                   //!< Displays percentage of items with any score.
+    IBOutlet NSTextField  *statusField;                 //!< Shows selection count and total items.
+    IBOutlet NSTextField *levelField;                   //!< Displays percentage of items with any score.
     IBOutlet NSLevelIndicator *levelIndicator;         //!< Displays level information as bar.
     IBOutlet NSDrawer *infoDrawer;                      //!< Drawer where you can set group and type info.
-    IBOutlet NSDrawer * notesDrawer;                     //!< Drawer at bottom of window with GeniusPair notes.
-    IBOutlet NSView * initialWatermarkView;              //!< Help text displayed over the table in empty documents.
+    IBOutlet NSDrawer *notesDrawer;                     //!< Drawer at bottom of window with GeniusPair notes.
+    IBOutlet NSView *initialWatermarkView;              //!< Help text displayed over the table in empty documents.
+    IBOutlet NSWindow *deckPreferences;
     
-    IBOutlet NSSlider * learnReviewSlider;               //!< Slider used to setup Quiz mode between Learn and Review.
-    NSSearchField * _searchField;                        //!< Text field top right used for searching through GeniusPair items.
-    NSMutableDictionary * _tableColumns;                 //!< Cache of all table columns for hiding and displaying them.
+    IBOutlet NSSlider *learnReviewSlider;               //!< Slider used to setup Quiz mode between Learn and Review.
+    NSSearchField *_searchField;                        //!< Text field top right used for searching through GeniusPair items.
+    NSMutableDictionary *_tableColumns;                 //!< Cache of all table columns for hiding and displaying them.
     
     // Data model
-    NSMutableArray * _visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
+    NSMutableArray *_visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
     float _learnVsReviewWeightBeforeNibLoaded;                    //!< ???
-    NSMutableDictionary * _columnHeadersDict;                     //!< Labels used for column header names.
-    NSMutableArray * _pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
-    NSDate * _cumulativeStudyTime;                                //!< Not sure this is used anymore.
+    NSMutableDictionary *_columnHeadersDict;                     //!< Labels used for column header names.
+    NSMutableArray *_pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
+    NSDate *_cumulativeStudyTime;                                //!< Not sure this is used anymore.
 
     BOOL _shouldShowImportWarningOnSave;                          //!< Flag indicating the GeniusDocument was loaded from an older version.
-    NSArray * _pairsDuringDrag;                                   //!< Temporary array of items being dragged and dropped.
-    NSMutableSet * _customTypeStringCache;                        //!< Cache of all types used in deck.
+    NSArray *_pairsDuringDrag;                                   //!< Temporary array of items being dragged and dropped.
+    NSMutableSet *_customTypeStringCache;                        //!< Cache of all types used in deck.
 }
 
 - (NSMutableArray *) pairs;
@@ -57,23 +58,26 @@
 @interface GeniusDocument(IBActions)
 
 // View menu
-- (IBAction)toggleGroupColumn:(id)sender;
-- (IBAction)toggleTypeColumn:(id)sender;
-- (IBAction)toggleABScoreColumn:(id)sender;
-- (IBAction)toggleBAScoreColumn:(id)sender;
-- (IBAction)showInfo:(id)sender;
+- (IBAction) toggleGroupColumn: (id) sender;
+- (IBAction) toggleTypeColumn: (id) sender;
+- (IBAction) toggleABScoreColumn: (id) sender;
+- (IBAction) toggleBAScoreColumn: (id) sender;
+- (IBAction) showInfo: (id) sender;
 
-- (IBAction)add:(id)sender;
-- (IBAction)duplicate:(id)sender;
-//- (IBAction)swapItems:(id)sender;
-- (IBAction)resetScore:(id)sender;
-- (IBAction)setItemImportance:(id)sender;
+- (IBAction) showDeckPreferences: (id) sender;
+- (IBAction) endDeckPreferences: (id) sender;
 
-- (IBAction)search:(id)sender;
+- (IBAction) add: (id) sender;
+- (IBAction) duplicate: (id) sender;
 
-- (IBAction)quizAutoPick:(id)sender;
-- (IBAction)quizReview:(id)sender;
-- (IBAction)quizSelection:(id)sender;
+- (IBAction) resetScore: (id) sender;
+- (IBAction) setItemImportance: (id) sender;
+
+- (IBAction) search: (id) sender;
+
+- (IBAction) quizAutoPick: (id) sender;
+- (IBAction) quizReview: (id) sender;
+- (IBAction) quizSelection: (id) sender;
 
 @end
 
@@ -92,12 +96,4 @@
     IBOutlet id documentController; //!< provides access to searchField of GeniusDocument
 }
 - (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal;
-@end
-
-//! Informal protocol for MyTableView delegates
-@interface NSObject (MyTableViewDelegate)
-//! Permit editing of @a aTableColumn
-- (BOOL) _tableView:(NSTableView *)aTableView shouldChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn;
-//! Notification that @a aTableColumn was actually edited
-- (void) _tableView:(NSTableView *)aTableView didChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn;
 @end

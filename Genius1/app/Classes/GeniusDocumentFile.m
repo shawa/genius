@@ -92,8 +92,16 @@
         if (visibleColumnIdentifiers)
             [_visibleColumnIdentifiersBeforeNibLoaded setArray:visibleColumnIdentifiers];
         NSDictionary * columnHeadersDict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
-        if (columnHeadersDict)
-            [_columnHeadersDict setDictionary:columnHeadersDict];
+        
+        if (columnHeadersDict) {
+            NSString *title;
+            if ((title == [columnHeadersDict valueForKey:@"columnA"]) != nil)
+                [_columnHeadersDict setValue:title forKey:@"columnA"];
+
+            if ((title == [columnHeadersDict valueForKey:@"columnB"]) != nil)
+                [_columnHeadersDict setValue:title forKey:@"columnB"];
+        }
+
 
         [_pairs setArray:[unarchiver decodeObjectForKey:@"pairs"]];
 

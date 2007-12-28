@@ -16,6 +16,7 @@
             ACTIONS = {
                 add = id; 
                 duplicate = id; 
+                endDeckPreferences = id; 
                 exportFile = id; 
                 learnReviewSliderChanged = id; 
                 quizAutoPick = id; 
@@ -29,6 +30,7 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 arrayController = GeniusArrayController; 
+                deckPreferences = NSWindow; 
                 infoDrawer = NSDrawer; 
                 initialWatermarkView = NSView; 
                 learnReviewSlider = NSSlider; 

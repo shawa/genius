@@ -109,7 +109,13 @@
         // If an error occurs here, send a [self release] message and return nil.
         _visibleColumnIdentifiersBeforeNibLoaded = [[GeniusDocument _defaultColumnIdentifiers] mutableCopy];
         _learnVsReviewWeightBeforeNibLoaded = 50.0;
+
         _columnHeadersDict = [NSMutableDictionary new];
+        [_columnHeadersDict setValue:@"Question" forKey:@"columnA"];
+        [_columnHeadersDict setValue:@"Answer" forKey:@"columnB"];
+        [self addObserver:self forKeyPath:@"columnHeadersDict.columnA" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+        [self addObserver:self forKeyPath:@"columnHeadersDict.columnB" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+
         _pairs = [NSMutableArray new];
 
         _tableColumns = [NSMutableDictionary new];
@@ -248,16 +254,6 @@
         [initialWatermarkView removeFromSuperview];
         initialWatermarkView = nil;
         
-        // Sync with _columnHeadersDict, i.e. custom table headers
-        NSString * title;
-        title = [_columnHeadersDict objectForKey:@"columnA"];
-        if (title)
-            [self _setTitle:title forTableColumnWithIdentifier:@"columnA"];
-
-        title = [_columnHeadersDict objectForKey:@"columnB"];
-        if (title)
-            [self _setTitle:title forTableColumnWithIdentifier:@"columnB"];
-
         [tableView reloadData];
         
         // Sync with _pairs    
@@ -466,6 +462,7 @@
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    NSLog(@"_cmd: %s keyPath %@ change %@", _cmd, keyPath, change);
     if ([keyPath isEqualToString:@"customTypeString"])
         [self _reloadCustomTypeCacheSet];
     
@@ -652,6 +649,19 @@
     [self _markDocumentDirty:nil];
 }
 
+//! shows panel for setting field labels
+- (IBAction) showDeckPreferences:(id)sender
+{
+    [NSApp beginSheet:deckPreferences modalForWindow:[self windowForSheet] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+}
+
+//! Puts away deck preferences sheet.
+- (IBAction) endDeckPreferences: (id) sender
+{
+    [deckPreferences orderOut:self];
+    [NSApp endSheet:deckPreferences returnCode:1];
+}
+
 //! Toggles open state of info drawer at default window edge.
 - (IBAction)showInfo:(id)sender
 {
@@ -683,24 +693,11 @@
     [_searchField setStringValue:@""];
     [self search:_searchField];
 
-    //NSIndexSet * selectionIndexes = [arrayController selectionIndexes];
     [tableView deselectAll:self];
     
     // Insert after selection if possible; otherwise insert at document end
-    int newPairIndex;
-    //! @todo drop usage of new here.
-    GeniusPair * pair = [GeniusPair new];
-/*    if ([selectionIndexes count] >= 1)
-    {
-        newPairIndex = [selectionIndexes lastIndex] + 1;
-        [arrayController insertObject:pair atArrangedObjectIndex:newPairIndex];
-    }
-    else*/
-    {
-        newPairIndex = [tableView numberOfRows];
-        [arrayController addObject:pair];
-    }
-    [pair release];
+    int newPairIndex = [tableView numberOfRows];
+    [arrayController addObject:[[[GeniusPair alloc] init] autorelease]];
     
     [tableView selectRow:newPairIndex byExtendingSelection:NO];
     [tableView editColumn:1 row:newPairIndex withEvent:nil select:YES];
@@ -759,11 +756,6 @@
     
     [arrayController removeObjects:contextInfo];
     [self _markDocumentDirty:nil];
-}
-
-//! @todo dead code
-- (IBAction)swapItems:(id)sender
-{
 }
 
 //! Initiates modal sheet to check if the user really wants to reset selected items.
@@ -1043,58 +1035,6 @@
 }
 
 
-//! Allows editing of aTableColumn when its identifier is @c "columnA" or @c "columnB".
-- (BOOL) _tableView:(NSTableView *)aTableView shouldChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn
-{
-    NSString * identifier = [aTableColumn identifier];
-    return [identifier isEqualToString:@"columnA"] || [identifier isEqualToString:@"columnB"];
-}
-
-//! Stores the new title in #_columnHeadersDict
-- (void) _tableView:(NSTableView *)aTableView didChangeHeaderTitleOfTableColumn:(NSTableColumn *)aTableColumn
-{
-    NSString * identifier = [aTableColumn identifier];
-    if ([identifier isEqualToString:@"columnA"])
-    {
-        NSString * titleA = [self _titleForTableColumnWithIdentifier:identifier];
-        [_columnHeadersDict setObject:titleA forKey:identifier];
-    }
-    else if ([identifier isEqualToString:@"columnB"])
-    {
-        NSString * titleB = [self _titleForTableColumnWithIdentifier:identifier];
-        [_columnHeadersDict setObject:titleB forKey:identifier];
-    }
-    
-    [self _markDocumentDirty:nil];
-}
-
-
-// Selectively movable table columns
-/*static int sDuringDragOldColumnIndex = -1;
-static NSTableColumn * sDuringDragTableColumn = nil;
-
-- (void)tableView:(NSTableView *)aTableView mouseDownInHeaderOfTableColumn:(NSTableColumn*)tableColumn
-{
-    BOOL allowsColumnReordering = [self _tableView:aTableView shouldChangeHeaderTitleOfTableColumn:tableColumn];
-    [tableView setAllowsColumnReordering:allowsColumnReordering];
-    if (allowsColumnReordering == NO)
-        return;
-
-    sDuringDragOldColumnIndex = [[tableView tableColumns] indexOfObject:tableColumn];
-    sDuringDragTableColumn = tableColumn;
-}
-
-- (void)tableViewColumnDidMove:(NSNotification *)aNotification
-{
-    int newColumnIndex = [[tableView tableColumns] indexOfObject:sDuringDragTableColumn];
-    BOOL okToMove = [self _tableView:tableView shouldChangeHeaderTitleOfTableColumn:sDuringDragTableColumn] && (newColumnIndex == 1 || newColumnIndex == 2);
-    if (okToMove == NO)
-    {
-        // Move back
-        [tableView moveColumn:newColumnIndex toColumn:sDuringDragOldColumnIndex];
-    }
-}*/
-
 @end
 
 
@@ -1182,97 +1122,13 @@ static NSTableColumn * sDuringDragTableColumn = nil;
 
 //! NSTableView subclass that supports header cell editing.
 /*!
-    Adds suport for editing header titles when you doubclick on a colum.  To enable delegate
-    control over which column titles can be edited, the following methods are declared as an
-    informal protocol.
-
+    Adds support for delete key and tabbing into the search field.
+ 
     @see NSObject(MyTableViewDelegate)
-    @todo Get rid of this feature.  Replace with a deck attributes inspector that lets you title the items as you will for a deck.
     @todo The delete and tab keys can probably both be handled via the responder chain.
     @todo delete this class and related code.
-
 */
 @implementation MyTableView
-
-//! Initializes new MyTableView.  Configures view for double-click.
-- (id)initWithFrame:(NSRect)frameRect
-{
-    self = [super initWithFrame:frameRect];
-    [self setDoubleAction:@selector(_doubleClick:)];   // Make editable
-    [self setTarget:self];
-    return self;
-}
-
-//! Configures view for double-click.
-- (void) awakeFromNib
-{
-    [self setDoubleAction:@selector(_doubleClick:)];   // Make editable
-    [self setTarget:self];
-}
-
-static NSTableColumn * sDuringEditTableColumn = nil;
-
-//! Begins editing of header cell for the double-clicked column
-- (void) _doubleClick:(id)sender
-{
-    // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
-    BOOL succeed = [[self window] makeFirstResponder:[self window]];
-    if (!succeed)
-        [[self window] endEditingFor:nil];
-
-    int columnIndex = [sender clickedColumn];
-    NSTableColumn * tableColumn = [[sender tableColumns] objectAtIndex:columnIndex];
-    
-    if ([self delegate] == nil)
-        return;
-    if ([[self delegate] respondsToSelector:@selector(_tableView:shouldChangeHeaderTitleOfTableColumn:)])
-    {
-        BOOL shouldChange = (unsigned long)[[self delegate] performSelector:@selector(_tableView:shouldChangeHeaderTitleOfTableColumn:) withObject:self withObject:tableColumn];
-        if (shouldChange == NO)
-            return;
-    }
-        
-    NSTableHeaderCell * cell = [tableColumn headerCell];
-    NSString * string = [[cell title] copy];
-    [cell setEditable:YES];
-    [cell setTitle:@""];    
-    
-    NSTableHeaderView * headerView = [sender headerView];
-    NSText * editor = [[headerView window] fieldEditor:YES forObject:cell];
-    NSRect rect = [headerView headerRectOfColumn:columnIndex];
-
-    sDuringEditTableColumn = tableColumn;
-    [cell editWithFrame:rect inView:headerView editor:editor delegate:self event:nil];
-    
-    [editor setString:string];
-    [editor selectAll:self];
-    [string release];
-}
-
-//! Notifies delegate of the change to the header cell.
-- (void)textDidEndEditing:(NSNotification *)aNotification
-{
-    if (sDuringEditTableColumn == nil)
-    {
-        [super textDidEndEditing:aNotification];
-        return;
-    }
-        
-    NSText * aTextObject = [aNotification object];
-    NSString * string = [[aTextObject string] copy];
-    
-    NSTableHeaderCell * cell = [sDuringEditTableColumn headerCell];
-    [cell endEditing:aTextObject];
-    
-    [cell setTitle:string];
-    
-    if ([self delegate] && [[self delegate] respondsToSelector:@selector(_tableView:didChangeHeaderTitleOfTableColumn:)])
-        [[self delegate] performSelector:@selector(_tableView:didChangeHeaderTitleOfTableColumn:) withObject:self withObject:sDuringEditTableColumn];
-        
-    [string release];
-    sDuringEditTableColumn = nil;
-}
-
 
 //! Workaround for Global drag and drop
 - (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal
@@ -1282,7 +1138,6 @@ static NSTableColumn * sDuringEditTableColumn = nil;
     else
         return NSDragOperationCopy;
 }
-
 
 //! Handle delete key.
 /*!

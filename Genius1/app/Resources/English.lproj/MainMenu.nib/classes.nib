@@ -11,6 +11,7 @@
                 quizSelection = id; 
                 resetScore = id; 
                 setItemImportance = id; 
+                showDeckPreferences = id; 
                 showInfo = id; 
                 showNotes = id; 
                 showPreferences = id; 
