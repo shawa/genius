@@ -95,10 +95,10 @@
         
         if (columnHeadersDict) {
             NSString *title;
-            if ((title == [columnHeadersDict valueForKey:@"columnA"]) != nil)
+            if ((title = [columnHeadersDict valueForKey:@"columnA"]) != nil)
                 [_columnHeadersDict setValue:title forKey:@"columnA"];
 
-            if ((title == [columnHeadersDict valueForKey:@"columnB"]) != nil)
+            if ((title = [columnHeadersDict valueForKey:@"columnB"]) != nil)
                 [_columnHeadersDict setValue:title forKey:@"columnB"];
         }
 
@@ -118,7 +118,7 @@
 
         [unarchiver finishDecoding];
         [unarchiver release];
-        
+        [self updateChangeCount:NSChangeCleared];
         return YES;
     }
     else
@@ -160,6 +160,7 @@
         _shouldShowImportWarningOnSave = YES;
         NSLog(@"1.0");
 
+        [self updateChangeCount:NSChangeCleared];
         return YES;
     }
         
