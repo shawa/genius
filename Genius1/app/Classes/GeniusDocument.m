@@ -104,9 +104,6 @@
 {
     self = [super init];
     if (self) {
-    
-        // Add your subclass-specific initialization here.
-        // If an error occurs here, send a [self release] message and return nil.
         _visibleColumnIdentifiersBeforeNibLoaded = [[GeniusDocument _defaultColumnIdentifiers] mutableCopy];
         _learnVsReviewWeightBeforeNibLoaded = 50.0;
 
@@ -462,7 +459,6 @@
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"_cmd: %s keyPath %@ change %@", _cmd, keyPath, change);
     if ([keyPath isEqualToString:@"customTypeString"])
         [self _reloadCustomTypeCacheSet];
     
@@ -474,9 +470,6 @@
 //! Increments change count when document is not already edited.
 - (void) _markDocumentDirty:(NSNotification *)notification
 {
-    if ([self isDocumentEdited])
-        return;
-
     [self updateChangeCount:NSChangeDone];
 }
 
