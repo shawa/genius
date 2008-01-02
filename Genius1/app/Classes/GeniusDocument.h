@@ -27,7 +27,7 @@
     IBOutlet GeniusArrayController *arrayController;    //!< The controller holding the displayed items.
     IBOutlet NSTextField  *statusField;                 //!< Shows selection count and total items.
     IBOutlet NSTextField *levelField;                   //!< Displays percentage of items with any score.
-    IBOutlet NSLevelIndicator *levelIndicator;         //!< Displays level information as bar.
+    IBOutlet NSLevelIndicator *levelIndicator;          //!< Displays level information as bar.
     IBOutlet NSDrawer *infoDrawer;                      //!< Drawer where you can set group and type info.
     IBOutlet NSDrawer *notesDrawer;                     //!< Drawer at bottom of window with GeniusPair notes.
     IBOutlet NSView *initialWatermarkView;              //!< Help text displayed over the table in empty documents.
@@ -39,7 +39,7 @@
     
     // Data model
     NSMutableArray *_visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
-    float _learnVsReviewWeightBeforeNibLoaded;                    //!< ???
+    float _learnVsReviewWeightBeforeNibLoaded;                   //!< ???
     NSMutableDictionary *_columnHeadersDict;                     //!< Labels used for column header names.
     NSMutableArray *_pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
     NSDate *_cumulativeStudyTime;                                //!< Not sure this is used anymore.
