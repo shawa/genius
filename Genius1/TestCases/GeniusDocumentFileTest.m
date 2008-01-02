@@ -53,7 +53,7 @@
     STAssertEqualObjects([columns objectAtIndex:3], @"scoreAB", nil);
     
     NSDictionary * headers = [document valueForKey:@"columnHeadersDict"];
-    STAssertEquals([headers count], 0U, nil);
+    STAssertEquals([headers count], 2U, nil);
     
     NSArray *pairs = [document pairs];
     STAssertEquals([pairs count], 1U, nil);
