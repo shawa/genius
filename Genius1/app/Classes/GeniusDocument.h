@@ -31,7 +31,7 @@
     IBOutlet NSDrawer *infoDrawer;                      //!< Drawer where you can set group and type info.
     IBOutlet NSDrawer *notesDrawer;                     //!< Drawer at bottom of window with GeniusPair notes.
     IBOutlet NSView *initialWatermarkView;              //!< Help text displayed over the table in empty documents.
-    IBOutlet NSWindow *deckPreferences;
+    IBOutlet NSWindow *deckPreferences;                 //!< Sheet for enter card side titles.
     
     IBOutlet NSSlider *learnReviewSlider;               //!< Slider used to setup Quiz mode between Learn and Review.
     NSSearchField *_searchField;                        //!< Text field top right used for searching through GeniusPair items.
