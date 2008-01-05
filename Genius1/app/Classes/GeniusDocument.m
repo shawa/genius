@@ -107,21 +107,19 @@
         _visibleColumnIdentifiersBeforeNibLoaded = [[GeniusDocument _defaultColumnIdentifiers] mutableCopy];
         _learnVsReviewWeightBeforeNibLoaded = 50.0;
 
-        _columnHeadersDict = [NSMutableDictionary new];
+        _columnHeadersDict = [[NSMutableDictionary alloc] init];
         [_columnHeadersDict setValue:@"Question" forKey:@"columnA"];
         [_columnHeadersDict setValue:@"Answer" forKey:@"columnB"];
         [self addObserver:self forKeyPath:@"columnHeadersDict.columnA" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
         [self addObserver:self forKeyPath:@"columnHeadersDict.columnB" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 
-        _pairs = [NSMutableArray new];
-
-        _tableColumns = [NSMutableDictionary new];
+        _tableColumns = [[NSMutableDictionary alloc] init];
 
         _shouldShowImportWarningOnSave = NO;
-        _customTypeStringCache = [NSMutableSet new];
+        _customTypeStringCache = [[NSMutableSet alloc] init];
                 
-        [NSValueTransformer setValueTransformer:[[IsPairImportantTransformer new] autorelease] forName:@"IsPairImportantTransformer"];
-        [NSValueTransformer setValueTransformer:[[ColorFromPairImportanceTransformer new] autorelease] forName:@"ColorFromPairImportanceTransformer"];
+        [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
+        [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
     }
     return self;
 }
@@ -134,8 +132,10 @@
 {
     [_pairs release];
     [_visibleColumnIdentifiersBeforeNibLoaded release];
-    [_columnHeadersDict release];
     [_tableColumns release];
+    [_columnHeadersDict release];
+    [_searchField release];
+    [_customTypeStringCache release];
     
     [super dealloc];
 }
@@ -169,7 +169,7 @@
     }
         
     // Set up icon text field cells for colored score indication
-    IconTextFieldCell * cell = [IconTextFieldCell new];
+    IconTextFieldCell * cell = [[[IconTextFieldCell alloc] init] autorelease];
 
     NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:@"scoreAB"];
     NSNumberFormatter * numberFormatter = [[tableColumn dataCell] formatter];
@@ -178,8 +178,6 @@
     tableColumn = [tableView tableColumnWithIdentifier:@"scoreBA"];
     [tableColumn setDataCell:cell];
 
-    //[cell release];
-    
     [tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTabularTextPboardType, nil]];    
 
 	// Configure list font size
@@ -197,7 +195,20 @@
 //! _pairs getter.
 - (NSMutableArray *) pairs
 {
+    if (_pairs == nil)
+        _pairs = [[NSMutableArray alloc] init];
     return _pairs;
+}
+
+//! _pairs setter.  observes contents of @a values
+- (void) setPairs: (NSMutableArray*) values
+{
+    [_pairs makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
+    [values makeObjectsPerformSelector:@selector(addObserver:) withObject:self];        
+
+    [values retain];
+    [_pairs release];
+    _pairs = values;
 }
 
 //! _searchField getter.
@@ -246,7 +257,7 @@
 
     [learnReviewSlider setFloatValue:_learnVsReviewWeightBeforeNibLoaded];
 
-    if ([_pairs count])
+    if ([[self pairs] count])
     {
         [initialWatermarkView removeFromSuperview];
         initialWatermarkView = nil;
@@ -254,15 +265,7 @@
         [tableView reloadData];
         
         // Sync with _pairs    
-        NSEnumerator * pairEnumerator = [_pairs objectEnumerator];
-        GeniusPair * pair;
-        while ((pair = [pairEnumerator nextObject]))
-        {
-            [pair addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-            [pair addObserver:self forKeyPath:@"customTypeString" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-        }
-
-        [arrayController setContent:_pairs];    // reload
+        [arrayController setContent:[self pairs]];    // reload
         [self _reloadCustomTypeCacheSet];
     }
 
@@ -390,7 +393,7 @@
 - (void) _updateStatusText
 {
     NSString * status = @"";
-    int rowCount = [_pairs count];
+    int rowCount = [[self pairs] count];
     if (rowCount == 0)
     {
         [statusField setStringValue:status];
@@ -428,7 +431,7 @@
 //! Updates the progress bar at lower right of Genius window to reflect current success with a Genius Document.
 - (void) _updateLevelIndicator
 {	
-	NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
+	NSArray * associations = [self _enabledAssociationsForPairs:[self pairs]];
 	int associationCount = [associations count];
 
 	if (associationCount == 0)
@@ -478,7 +481,7 @@
 {
     [_customTypeStringCache removeAllObjects];
     
-    NSEnumerator * pairEnumerator = [_pairs objectEnumerator];
+    NSEnumerator * pairEnumerator = [[self pairs] objectEnumerator];
     GeniusPair * pair;
     while ((pair = [pairEnumerator nextObject]))
     {
@@ -690,7 +693,8 @@
     
     // Insert after selection if possible; otherwise insert at document end
     int newPairIndex = [tableView numberOfRows];
-    [arrayController addObject:[[[GeniusPair alloc] init] autorelease]];
+    GeniusPair *pair = [[[GeniusPair alloc] init] autorelease];
+    [arrayController addObject:pair];
     
     [tableView selectRow:newPairIndex byExtendingSelection:NO];
     [tableView editColumn:1 row:newPairIndex withEvent:nil select:YES];
@@ -742,12 +746,12 @@
 /*!
     In the event the user confirmed the delete action, then the selected GeniusPair items are deleted.
  */
-- (void)_deleteAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)_deleteAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(NSArray *)selectedObjects
 {
     if (returnCode == 0)
         return;
     
-    [arrayController removeObjects:contextInfo];
+    [arrayController removeObjects:selectedObjects];
     [self _markDocumentDirty:nil];
 }
 
@@ -843,7 +847,7 @@
 */
 - (IBAction)quizAutoPick:(id)sender
 {
-    NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
+    NSArray * associations = [self _enabledAssociationsForPairs:[self pairs]];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
     [enumerator setCount:13];    
     /*
@@ -868,7 +872,7 @@
 */
 - (IBAction)quizReview:(id)sender
 {
-    NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
+    NSArray * associations = [self _enabledAssociationsForPairs:[self pairs]];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
     [enumerator setCount:13];
     [enumerator setMinimumScore:0];
@@ -883,7 +887,7 @@
 {
     NSArray * selectedPairs = [arrayController selectedObjects];
     if ([selectedPairs count] == 0)
-        selectedPairs = _pairs;
+        selectedPairs = [self pairs];
 
     NSArray * associations = [self _enabledAssociationsForPairs:selectedPairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
@@ -1168,7 +1172,7 @@
 {
     self = [super initWithCoder:decoder];
     //! @todo Remove calls to +new.
-    _filterString = [NSString new];
+    _filterString = @"";
     return self;
 }
 
@@ -1296,6 +1300,10 @@
 //! Removes self from notification center
 - (void)windowWillClose:(NSNotification *)aNotification
 {
+    [[self pairs] makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
+    [_tableColumns removeAllObjects];
+    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnA"];
+    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnB"];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

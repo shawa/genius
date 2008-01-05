@@ -35,6 +35,8 @@ A GeniusAssociation is the basic unit of memorization in Genius.  A GeniusAssoci
     BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty
 }
 
+- (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict;
+
 - (GeniusItem *) cueItem;
 - (GeniusItem *) answerItem;
 - (GeniusPair *) parentPair;

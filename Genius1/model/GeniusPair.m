@@ -23,34 +23,6 @@ NSString * GeniusPairCustomTypeStringKey = @"customTypeString";
 NSString * GeniusPairCustomGroupStringKey = @"customGroupString";
 NSString * GeniusPairNotesStringKey = @"notesString";
 
-
-@interface GeniusAssociation (Private)
-- (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict;
-@end
-
-//! Private initializer used by GeniusPair
-/*! @category GeniusAssociation(Private) */
-@implementation GeniusAssociation(Private)
-/*! 
-Creates copy of the provided @a performanceDict.
-*/
-- (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict
-{
-    self = [super init];
-    _cueItem = [cueItem retain];
-    _answerItem = [answerItem retain];
-    _parentPair = [parentPair retain];
-    
-    if (performanceDict)
-        _perfDict = [performanceDict mutableCopy];
-    else
-        _perfDict = [NSMutableDictionary new];
-    return self;
-}
-
-@end
-
-
 //! The GeniusItem is not used.
 const int kGeniusPairDisabledImportance = -1;
 //! The GeniusItem is minimally relevant.
@@ -123,15 +95,14 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 */
 - (void) dealloc
 {
-    [_associationAB release];
-    [_associationBA release];
-    [_userDict release];
-
     [[self itemA] removeObserver:self forKeyPath:@"dirty"];
     [[self itemB] removeObserver:self forKeyPath:@"dirty"];
     [_associationAB removeObserver:self forKeyPath:@"dirty"];
     [_associationBA removeObserver:self forKeyPath:@"dirty"];
 
+    [_associationAB release];
+    [_associationBA release];
+    [_userDict release];
     [super dealloc];
 }
 
@@ -207,6 +178,20 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     GeniusItem * newItemB = [[[self itemB] copy] autorelease];
     NSMutableDictionary * newUserDict = [[_userDict mutableCopy] autorelease];
     return [[[self class] allocWithZone:zone] initWithItemA:newItemA itemB:newItemB userDict:newUserDict];
+}
+
+//! registers an observer for the relevent fields of this object
+- (void) addObserver: (id) observer
+{
+    [self addObserver:observer forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"customTypeString" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+}
+
+//! un-registers an observer for the relevent fields of this object
+- (void) removeObserver: (id) observer
+{
+    [self removeObserver:observer forKeyPath:@"dirty"];
+    [self removeObserver:observer forKeyPath:@"customTypeString"];
 }
 
 //! Catches changes to observed instances of GeniusItem and GeniusAssociation.

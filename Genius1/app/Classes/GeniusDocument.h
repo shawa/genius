@@ -50,6 +50,7 @@
 }
 
 - (NSMutableArray *) pairs;
+- (void) setPairs: (NSMutableArray*) values;
 
 - (NSSearchField *) searchField;    // in toolbar
 

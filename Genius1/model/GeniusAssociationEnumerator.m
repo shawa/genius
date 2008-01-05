@@ -54,8 +54,7 @@ static float PoissonValue(int x, float m)
     _m_value = 1.0;
     
     _hasPerformedChooseAssociations = NO;
-    //_selectedAssociationDicts = [NSMutableArray new];
-    _scheduledAssociations = [NSMutableArray new];
+    _scheduledAssociations = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -64,7 +63,6 @@ static float PoissonValue(int x, float m)
 {
     [_inputAssociations release];
 
-    //[_selectedAssociationDicts release];
     [_scheduledAssociations release];
 
     [super dealloc];

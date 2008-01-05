@@ -114,7 +114,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
             NSString * label = NSLocalizedString(@"Search", nil);
             [toolbarItem setLabel:label];
             
-            _searchField = [NSSearchField new];
+            _searchField = [[NSSearchField alloc] init];
             [_searchField setTarget:self];
             [_searchField setAction:@selector(search:)];
             [toolbarItem setMinSize:NSMakeSize(128.0, 22.0)];

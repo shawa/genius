@@ -213,10 +213,10 @@ Relies on the output of the UNIX diff command.
 		[mergedWords addObject:origWord];
 	}
 
-	//NSLog(@"mergedWords=%@", [mergedWords description]);	// DEBUG
-	//NSLog(@"highlightIndexSet=%@", [highlightIndexSet description]);	// DEBUG
+	//NSLog(@"mergedWords=%@", [mergedWords description]);
+	//NSLog(@"highlightIndexSet=%@", [highlightIndexSet description]);
 
-	NSMutableAttributedString * outAttrString = [NSMutableAttributedString new];
+	NSMutableAttributedString * outAttrString = [[NSMutableAttributedString alloc] init];
 	i = 0, count = [mergedWords count];
 	while (i<count)
 	{

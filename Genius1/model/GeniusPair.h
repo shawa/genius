@@ -48,6 +48,9 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 
 - (id) initWithItemA:(GeniusItem *)itemA itemB:(GeniusItem *)itemB userDict:(NSMutableDictionary *)userDict;
 
+- (void) addObserver: (id) observer;
+- (void) removeObserver: (id) observer;
+
 - (GeniusItem *) itemA;
 - (GeniusItem *) itemB;
 

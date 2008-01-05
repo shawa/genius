@@ -21,6 +21,23 @@ NSString * GeniusAssociationDueDateKey = @"dueDate"; //!< accessor key for due d
     [self setKeys:[NSArray arrayWithObjects:@"scoreNumber", @"dueDate", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
 }
 
+/*! 
+Creates copy of the provided @a performanceDict.
+*/
+- (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict
+{
+    self = [super init];
+    _cueItem = [cueItem retain];
+    _answerItem = [answerItem retain];
+    _parentPair = parentPair;           // not retained since we're the dependent entity
+    
+    if (performanceDict)
+        _perfDict = [performanceDict mutableCopy];
+    else
+        _perfDict = [[NSMutableDictionary alloc] init];
+    return self;
+}
+
 /*+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
 {
     return NO;
@@ -31,8 +48,6 @@ NSString * GeniusAssociationDueDateKey = @"dueDate"; //!< accessor key for due d
 {
     [_cueItem release];
     [_answerItem release];
-    [_parentPair release];
-    
     [_perfDict release];
     [super dealloc];
 }

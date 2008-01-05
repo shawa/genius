@@ -48,7 +48,7 @@
     [archiver encodeInt:1 forKey:@"formatVersion"];
     [archiver encodeObject:[self visibleColumnIdentifiers] forKey:@"visibleColumnIdentifiers"];
     [archiver encodeObject:_columnHeadersDict forKey:@"columnHeadersDict"];
-    [archiver encodeObject:_pairs forKey:@"pairs"];
+    [archiver encodeObject:[self pairs] forKey:@"pairs"];
     [archiver encodeObject:_cumulativeStudyTime forKey:@"cumulativeStudyTime"];
     NSNumber * learnReviewNumber = [NSNumber numberWithFloat:[learnReviewSlider floatValue]];
     [archiver encodeObject:learnReviewNumber forKey:@"learnVsReviewNumber"];
@@ -102,8 +102,7 @@
                 [_columnHeadersDict setValue:title forKey:@"columnB"];
         }
 
-
-        [_pairs setArray:[unarchiver decodeObjectForKey:@"pairs"]];
+        [self setPairs:[unarchiver decodeObjectForKey:@"pairs"]];
 
         NSDate * cumulativeStudyTime = [unarchiver decodeObjectForKey:@"cumulativeStudyTime"];
         if (cumulativeStudyTime)
@@ -132,9 +131,10 @@
             return NO;
         NSEnumerator * itemDictEnumerator = [itemDicts objectEnumerator];
         NSDictionary * itemDict;
+        NSMutableArray * array = [NSMutableArray array];
         while ((itemDict = [itemDictEnumerator nextObject]))
         {
-            GeniusPair * pair = [GeniusPair new];
+            GeniusPair * pair = [[GeniusPair alloc] init];
             
             NSString * question = [itemDict objectForKey:@"question"];
             [[pair itemA] setValue:question forKey:@"stringValue"];
@@ -148,9 +148,9 @@
             NSDate * dueDate = [itemDict objectForKey:@"fireDate"];
             [[pair associationAB] setDueDate:dueDate];
             
-            [_pairs addObject:pair];
+            [array addObject:pair];
         }
-        
+        [self setPairs:array];
         /*!
             @todo This information is probably best tracked through formatVersion.  A missing
             formatVersion means this GeniusDocument was loaded from an older version, and we should
@@ -199,7 +199,7 @@
             [string appendString:@"\t"];
     }*/ //! @todo Consider adding headers to the exported file.
     
-    NSString * string = [GeniusPair tabularTextFromPairs:_pairs order:[self columnBindings]];
+    NSString * string = [GeniusPair tabularTextFromPairs:[self pairs] order:[self columnBindings]];
     [string writeToFile:path atomically:NO];
 }
 
