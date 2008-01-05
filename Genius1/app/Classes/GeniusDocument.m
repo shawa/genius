@@ -75,11 +75,6 @@
 - (void) _updateLevelIndicator;
 @end
 
-@interface GeniusDocument (KeyValueObserving)
-- (void) _reloadCustomTypeCacheSet;
-- (NSArray *) _sortedCustomTypeStrings;
-@end
-
 @interface GeniusDocument (TableColumnManagement)
 + (NSArray *) _defaultColumnIdentifiers;
 - (void) _hideTableColumn:(NSTableColumn *)column;
@@ -103,24 +98,26 @@
 {
     self = [super init];
     if (self) {
+        // Expect not to be loading a 1.0 format file
+        _shouldShowImportWarningOnSave = NO;
+
+        // 50 - 50 value for the learn review setting.
+        probabilityCenter = [[NSNumber alloc] initWithFloat:50.0F];
+
+        // custom  card titles
+        _columnHeadersDict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:@"Question", @"columnA", @"Answer", @"columnB", nil] retain];
+
+        //! @todo look into if this is needed
         _visibleColumnIdentifiersBeforeNibLoaded = [[GeniusDocument _defaultColumnIdentifiers] mutableCopy];
 
-        probabilityCenter = [[NSNumber numberWithFloat:50.0F] retain];
-        [self addObserver:self forKeyPath:@"probabilityCenter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-
-        _columnHeadersDict = [[NSMutableDictionary alloc] init];
-        [_columnHeadersDict setValue:@"Question" forKey:@"columnA"];
-        [_columnHeadersDict setValue:@"Answer" forKey:@"columnB"];
-        [self addObserver:self forKeyPath:@"columnHeadersDict.columnA" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-        [self addObserver:self forKeyPath:@"columnHeadersDict.columnB" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-
         _tableColumns = [[NSMutableDictionary alloc] init];
-
-        _shouldShowImportWarningOnSave = NO;
         _customTypeStringCache = [[NSMutableSet alloc] init];
-                
+        
         [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
         [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
+
+        // setup change tracking
+        [self addObserver:self];
     }
     return self;
 }
@@ -456,9 +453,28 @@
 /*! @category GeniusDocument(KeyValueObserving) */
 @implementation GeniusDocument(KeyValueObserving)
 
+//! registers observer for relevant keys.
+- (void) addObserver: (id) observer
+{
+    [self addObserver:observer forKeyPath:@"probabilityCenter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    [self addObserver:observer forKeyPath:@"columnHeadersDict.columnA" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    [self addObserver:observer forKeyPath:@"columnHeadersDict.columnB" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    [self addObserver:observer forKeyPath:@"pairs" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+}
+
+//! un-registers up observer for relevant keys.
+- (void) removeObserver: (id) observer
+{
+    [self removeObserver:self forKeyPath:@"probabilityCenter"];
+    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnA"];
+    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnB"];
+    [self removeObserver:self forKeyPath:@"pairs"];
+}
+
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    NSLog(@"keyPath: %@ ofObject: %@ change: %@", keyPath, object, change);
     if ([keyPath isEqualToString:@"customTypeString"])
         [self _reloadCustomTypeCacheSet];
     
@@ -567,7 +583,6 @@
         [arrayController addObjects:pairs];
     }
         
-    [self updateChangeCount:NSChangeDone];
     return YES;
 }
 
@@ -683,8 +698,6 @@
     
     [tableView selectRow:newPairIndex byExtendingSelection:NO];
     [tableView editColumn:1 row:newPairIndex withEvent:nil select:YES];
-    
-    [self updateChangeCount:NSChangeDone];
 }
 
 //! Duplicates the selected items and inserts them in the document.
@@ -704,8 +717,6 @@
     [arrayController insertObjects:newObjects atArrangedObjectIndexes:indexSet];
     [arrayController setSelectedObjects:newObjects];
     [newObjects release];
-    
-    [self updateChangeCount:NSChangeDone];
 }
 
 //! Initiates modal sheet to check if the user really wants to delete selected items.
@@ -737,7 +748,6 @@
         return;
     
     [arrayController removeObjects:selectedObjects];
-    [self updateChangeCount:NSChangeDone];
 }
 
 //! Initiates modal sheet to check if the user really wants to reset selected items.
@@ -1286,10 +1296,11 @@
 //! Removes self from notification center
 - (void)windowWillClose:(NSNotification *)aNotification
 {
-    [[self pairs] makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
     [_tableColumns removeAllObjects];
-    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnA"];
-    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnB"];
+
+    [self removeObserver:self];
+    [[self pairs] makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
+
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

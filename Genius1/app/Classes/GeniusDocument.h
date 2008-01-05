@@ -89,12 +89,20 @@
 
 - (NSString *) filterString;
 - (void) setFilterString:(NSString *)string;
-
 - (NSArray *)arrangeObjects:(NSArray *)objects;
 @end
 
-@interface MyTableView : NSTableView {
+@interface MyTableView : NSTableView
+{
     IBOutlet id documentController; //!< provides access to searchField of GeniusDocument
 }
+
 - (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal;
+@end
+
+@interface GeniusDocument (KeyValueObserving)
+- (void) addObserver: (id) observer;
+- (void) removeObserver: (id) observer;
+- (void) _reloadCustomTypeCacheSet;
+- (NSArray *) _sortedCustomTypeStrings;
 @end

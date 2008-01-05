@@ -19,6 +19,7 @@
 #import "GeniusDocumentPrivate.h"   // arrayController, columnBindings for +importFile:
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
+#import "GeniusDocument.h"
 
 //! Methods related to reading and writing genius files.
 /*!
@@ -65,18 +66,25 @@
 */
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
 {
+    BOOL result = NO;
+    
+    [self removeObserver:self];
+    
     NSKeyedUnarchiver * unarchiver = nil;
     NS_DURING
+        // if this fails then we are opening a 1.0 file 
         unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     NS_HANDLER
     NS_ENDHANDLER
 
+    // 1.5 format or higher
     if (unarchiver)
     {
         // Read Genius 1.5 file format (formatVersion==1)
         NSLog(@"1.5");
         
         int formatVersion = [unarchiver decodeIntForKey:@"formatVersion"];
+        //  greater than one for genius 2.0
         if (formatVersion > 1)
         {
 			NSString * title = NSLocalizedString(@"This document was saved by a newer version of Genius.", nil);
@@ -85,87 +93,97 @@
 		
             NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:cancelTitle alternateButton:nil otherButton:nil informativeTextWithFormat:message];
             [alert runModal];
-            return NO;
+            result = NO;
         }
-
-        NSArray * visibleColumnIdentifiers = [unarchiver decodeObjectForKey:@"visibleColumnIdentifiers"];
-        if (visibleColumnIdentifiers)
-            [_visibleColumnIdentifiersBeforeNibLoaded setArray:visibleColumnIdentifiers];
-        NSDictionary * columnHeadersDict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
-        
-        if (columnHeadersDict) {
-            NSString *title;
-            if ((title = [columnHeadersDict valueForKey:@"columnA"]) != nil)
-                [_columnHeadersDict setValue:title forKey:@"columnA"];
-
-            if ((title = [columnHeadersDict valueForKey:@"columnB"]) != nil)
-                [_columnHeadersDict setValue:title forKey:@"columnB"];
-        }
-
-        [self setPairs:[unarchiver decodeObjectForKey:@"pairs"]];
-
-        NSDate * cumulativeStudyTime = [unarchiver decodeObjectForKey:@"cumulativeStudyTime"];
-        if (cumulativeStudyTime)
+        // handle 1.5 format
+        else
         {
-            [_cumulativeStudyTime release];
-            _cumulativeStudyTime = [cumulativeStudyTime retain];
-        }
-        
-        NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
-        if (learnVsReviewNumber) {
-            [self setValue:learnVsReviewNumber forKey:@"probabilityCenter"];
-        }
+            NSArray * visibleColumnIdentifiers = [unarchiver decodeObjectForKey:@"visibleColumnIdentifiers"];
+            if (visibleColumnIdentifiers)
+                [_visibleColumnIdentifiersBeforeNibLoaded setArray:visibleColumnIdentifiers];
 
-        [unarchiver finishDecoding];
-        [unarchiver release];
-        [self updateChangeCount:NSChangeCleared];
-        return YES;
+            NSDictionary * columnHeadersDict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
+            if (columnHeadersDict) {
+                NSString *title;
+                if ((title = [columnHeadersDict valueForKey:@"columnA"]) != nil)
+                    [_columnHeadersDict setObject:title forKey:@"columnA"];
+
+                if ((title = [columnHeadersDict valueForKey:@"columnB"]) != nil)
+                    [_columnHeadersDict setObject:title forKey:@"columnB"];
+            }
+
+            [self setPairs:[unarchiver decodeObjectForKey:@"pairs"]];
+
+            NSDate * cumulativeStudyTime = [unarchiver decodeObjectForKey:@"cumulativeStudyTime"];
+            if (cumulativeStudyTime)
+            {
+                [_cumulativeStudyTime release];
+                _cumulativeStudyTime = [cumulativeStudyTime retain];
+            }
+            
+            NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
+            if (learnVsReviewNumber) {
+                [self takeValue:learnVsReviewNumber forKey:@"probabilityCenter"];
+            }
+
+            [unarchiver finishDecoding];
+            [unarchiver release];
+
+            result = YES;
+        }
     }
+    // 1.0 format
     else
     {
         // Import Genius 1.0 file format
         NSLog(@"1.0");
         
-        NSDictionary * rootDict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:kCFPropertyListMutableContainersAndLeaves format:NULL errorDescription:NULL];
-        if (rootDict == nil)
-            return NO;
-        NSDictionary * itemDicts = [rootDict objectForKey:@"items"];
-        if (itemDicts == nil)
-            return NO;
-        NSEnumerator * itemDictEnumerator = [itemDicts objectEnumerator];
-        NSDictionary * itemDict;
-        NSMutableArray * array = [NSMutableArray array];
-        while ((itemDict = [itemDictEnumerator nextObject]))
+        NSDictionary * rootDict = [NSPropertyListSerialization propertyListFromData:data
+                                                                   mutabilityOption:kCFPropertyListMutableContainersAndLeaves
+                                                                             format:NULL
+                                                                   errorDescription:NULL];
+        if ((rootDict != nil) && ([rootDict objectForKey:@"items"] != nil))
         {
-            GeniusPair * pair = [[GeniusPair alloc] init];
-            
-            NSString * question = [itemDict objectForKey:@"question"];
-            [[pair itemA] setValue:question forKey:@"stringValue"];
-            
-            NSString * answer = [itemDict objectForKey:@"answer"];
-            [[pair itemB] setValue:answer forKey:@"stringValue"];
+            NSDictionary * itemDicts = [rootDict objectForKey:@"items"];
+            NSEnumerator * itemDictEnumerator = [itemDicts objectEnumerator];
+            NSDictionary * itemDict;
+            NSMutableArray * array = [NSMutableArray array];
+            while ((itemDict = [itemDictEnumerator nextObject]))
+            {
+                GeniusPair * pair = [[GeniusPair alloc] init];
+                
+                NSString * question = [itemDict objectForKey:@"question"];
+                [[pair itemA] setValue:question forKey:@"stringValue"];
+                
+                NSString * answer = [itemDict objectForKey:@"answer"];
+                [[pair itemB] setValue:answer forKey:@"stringValue"];
 
-            NSNumber * scoreNumber = [itemDict objectForKey:@"score"];
-            [[pair associationAB] setScoreNumber:scoreNumber];
+                NSNumber * scoreNumber = [itemDict objectForKey:@"score"];
+                [[pair associationAB] setScoreNumber:scoreNumber];
 
-            NSDate * dueDate = [itemDict objectForKey:@"fireDate"];
-            [[pair associationAB] setDueDate:dueDate];
-            
-            [array addObject:pair];
+                NSDate * dueDate = [itemDict objectForKey:@"fireDate"];
+                [[pair associationAB] setDueDate:dueDate];
+                
+                [array addObject:pair];
+            }
+            [self setPairs:array];
+            /*!
+                @todo This information is probably best tracked through formatVersion.  A missing
+                formatVersion means this GeniusDocument was loaded from an older version, and we should
+                therefore display the warning.  Alternatively one could support saving both styles as
+                an explicit user option, or even just quietly use the old format for old docs.
+             */
+            _shouldShowImportWarningOnSave = YES;
+            [self updateChangeCount:NSChangeDone];  // due to the 1.0 to 1.5 version change
+            result = YES;
         }
-        [self setPairs:array];
-        /*!
-            @todo This information is probably best tracked through formatVersion.  A missing
-            formatVersion means this GeniusDocument was loaded from an older version, and we should
-            therefore display the warning.  Alternatively one could support saving both styles as
-            an explicit user option, or even just quietly use the old format for old docs.
-         */
-        _shouldShowImportWarningOnSave = YES;
-        [self updateChangeCount:NSChangeDone];  // due to the 1.0 to 1.5 version change
-        return YES;
+        else
+        {
+            result = NO;
+        }
     }
-        
-    return NO;
+    [self addObserver:self];
+    return result;
 }
 
 //! Initiates modal sheet for selecting export file.
