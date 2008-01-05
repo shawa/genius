@@ -76,7 +76,6 @@
 @end
 
 @interface GeniusDocument (KeyValueObserving)
-- (void) _markDocumentDirty:(NSNotification *)notification;
 - (void) _reloadCustomTypeCacheSet;
 - (NSArray *) _sortedCustomTypeStrings;
 @end
@@ -184,9 +183,6 @@
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
 	[self _handleUserDefaultsDidChange:nil];
-        
-    if (_shouldShowImportWarningOnSave)
-        [self updateChangeCount:NSChangeDone];
         
     [statusField setStringValue:@""];
     [self reloadInterfaceFromModel];
@@ -465,15 +461,9 @@
     if ([keyPath isEqualToString:@"customTypeString"])
         [self _reloadCustomTypeCacheSet];
     
-    [self _markDocumentDirty:nil];
+    [self updateChangeCount:NSChangeDone];
     [self _updateStatusText];
 	[self _updateLevelIndicator];
-}
-
-//! Increments change count when document is not already edited.
-- (void) _markDocumentDirty:(NSNotification *)notification
-{
-    [self updateChangeCount:NSChangeDone];
 }
 
 //! Dumps the GeniusDocument#_customTypeStringCache and rebuilds it from _pairs.
@@ -576,7 +566,7 @@
         [arrayController addObjects:pairs];
     }
         
-    [self _markDocumentDirty:nil];
+    [self updateChangeCount:NSChangeDone];
     return YES;
 }
 
@@ -639,10 +629,10 @@
     [self _toggleColumnWithIdentifier:@"scoreBA"];
 }
 
-//! Marks document as dirty @see _markDocumentDirty:.
+//! Marks document as edited.
 - (IBAction)learnReviewSliderChanged:(id)sender
 {
-    [self _markDocumentDirty:nil];
+    [self updateChangeCount:NSChangeDone];
 }
 
 //! shows panel for setting field labels
@@ -699,7 +689,7 @@
     [tableView selectRow:newPairIndex byExtendingSelection:NO];
     [tableView editColumn:1 row:newPairIndex withEvent:nil select:YES];
     
-    [self _markDocumentDirty:nil];
+    [self updateChangeCount:NSChangeDone];
 }
 
 //! Duplicates the selected items and inserts them in the document.
@@ -720,7 +710,7 @@
     [arrayController setSelectedObjects:newObjects];
     [newObjects release];
     
-    [self _markDocumentDirty:nil];
+    [self updateChangeCount:NSChangeDone];
 }
 
 //! Initiates modal sheet to check if the user really wants to delete selected items.
@@ -752,7 +742,7 @@
         return;
     
     [arrayController removeObjects:selectedObjects];
-    [self _markDocumentDirty:nil];
+    [self updateChangeCount:NSChangeDone];
 }
 
 //! Initiates modal sheet to check if the user really wants to reset selected items.

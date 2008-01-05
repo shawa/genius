@@ -75,6 +75,7 @@
     if (unarchiver)
     {
         // Read Genius 1.5 file format (formatVersion==1)
+        NSLog(@"1.5");
         
         int formatVersion = [unarchiver decodeIntForKey:@"formatVersion"];
         if (formatVersion > 1)
@@ -123,6 +124,8 @@
     else
     {
         // Import Genius 1.0 file format
+        NSLog(@"1.0");
+        
         NSDictionary * rootDict = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:kCFPropertyListMutableContainersAndLeaves format:NULL errorDescription:NULL];
         if (rootDict == nil)
             return NO;
@@ -158,9 +161,7 @@
             an explicit user option, or even just quietly use the old format for old docs.
          */
         _shouldShowImportWarningOnSave = YES;
-        NSLog(@"1.0");
-
-        [self updateChangeCount:NSChangeCleared];
+        [self updateChangeCount:NSChangeDone];  // due to the 1.0 to 1.5 version change
         return YES;
     }
         
