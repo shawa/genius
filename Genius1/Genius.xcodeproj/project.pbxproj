@@ -37,29 +37,17 @@
 /* Begin PBXBuildFile section */
 		2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */; };
 		2318E4100725C16D00726F95 /* GeniusHelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */; };
-		2318E4110725C16D00726F95 /* GeniusHelpWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2318E40F0725C16D00726F95 /* GeniusHelpWindowController.h */; };
 		2318E41F0725C29B00726F95 /* Help.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2318E41D0725C29B00726F95 /* Help.nib */; };
 		2318E4220725C29F00726F95 /* Help.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2318E4200725C29F00726F95 /* Help.rtf */; };
-		23227C950725BD1300D09B7F /* GeniusAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C860725BD1300D09B7F /* GeniusAppDelegate.h */; };
 		23227C960725BD1300D09B7F /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C870725BD1300D09B7F /* GeniusAppDelegate.m */; };
-		23227C970725BD1300D09B7F /* GeniusDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C880725BD1300D09B7F /* GeniusDocument.h */; };
 		23227C980725BD1300D09B7F /* GeniusDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */; };
-		23227C990725BD1300D09B7F /* GeniusDocumentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */; };
 		23227C9A0725BD1300D09B7F /* GeniusDocumentFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */; };
-		23227C9B0725BD1300D09B7F /* GeniusDocumentPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8C0725BD1300D09B7F /* GeniusDocumentPrivate.h */; };
-		23227C9C0725BD1300D09B7F /* GeniusToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8D0725BD1300D09B7F /* GeniusToolbar.h */; };
 		23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8E0725BD1300D09B7F /* GeniusToolbar.m */; };
-		23227C9E0725BD1300D09B7F /* GeniusWelcomePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */; };
 		23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */; };
-		23227CA00725BD1300D09B7F /* MyQuizController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C910725BD1300D09B7F /* MyQuizController.h */; };
 		23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C920725BD1300D09B7F /* MyQuizController.m */; };
-		23227CA20725BD1300D09B7F /* NSArrayGeniusAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */; };
 		23227CA30725BD1300D09B7F /* NSArrayGeniusAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */; };
-		23227CAD0725BD2000D09B7F /* GeniusAssociationEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */; };
 		23227CAE0725BD2000D09B7F /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */; };
-		23227CAF0725BD2000D09B7F /* GeniusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA70725BD2000D09B7F /* GeniusItem.h */; };
 		23227CB00725BD2000D09B7F /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA80725BD2000D09B7F /* GeniusItem.m */; };
-		23227CB10725BD2000D09B7F /* GeniusPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA90725BD2000D09B7F /* GeniusPair.h */; };
 		23227CB20725BD2000D09B7F /* GeniusPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CAA0725BD2000D09B7F /* GeniusPair.m */; };
 		23227CCF0725BD2600D09B7F /* add_idle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CB90725BD2600D09B7F /* add_idle.tiff */; };
 		23227CD00725BD2600D09B7F /* add_pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CBA0725BD2600D09B7F /* add_pressed.tiff */; };
@@ -68,9 +56,7 @@
 		23227CD80725BD2600D09B7F /* status-green.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC20725BD2600D09B7F /* status-green.tiff */; };
 		23227CD90725BD2600D09B7F /* status-red.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC30725BD2600D09B7F /* status-red.tiff */; };
 		23227CDA0725BD2600D09B7F /* status-yellow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC40725BD2600D09B7F /* status-yellow.tiff */; };
-		23227CDD0725BD2600D09B7F /* ParagraphStyleFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */; };
 		23227CDE0725BD2600D09B7F /* ParagraphStyleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */; };
-		23227CE90725BD6100D09B7F /* Genius_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 23227CE70725BD6100D09B7F /* Genius_Prefix.pch */; };
 		23227CEA0725BD6100D09B7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CE80725BD6100D09B7F /* main.m */; };
 		23227D0C0725BD7600D09B7F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23227CEF0725BD7600D09B7F /* Credits.rtf */; };
 		23227D0D0725BD7600D09B7F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23227CF10725BD7600D09B7F /* GeniusDocument.nib */; };
@@ -81,13 +67,9 @@
 		23227D260725BDA100D09B7F /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D1F0725BDA100D09B7F /* Add.tiff */; };
 		23227D270725BDA100D09B7F /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D200725BDA100D09B7F /* Add_Pressed.tiff */; };
 		23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 23286A740AA2077200EC1FFF /* NSString+Similiarity.m */; };
-		23516AB8075EE2CE0020D17E /* GeniusStringDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */; };
 		23516AB9075EE2CE0020D17E /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */; };
-		236640550AA2056100888E37 /* IconTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640460AA2056100888E37 /* IconTextFieldCell.h */; };
 		236640560AA2056100888E37 /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640470AA2056100888E37 /* IconTextFieldCell.m */; };
 		237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 237DA3DE07395DD6006B7D4B /* Localizable.strings */; };
-		23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
-		23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
 		23AA22930AA305E6009AF327 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23AA22920AA305E6009AF327 /* Genius.icns */; };
 		23B358C4073C0FEC00B89026 /* Release History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		23B358D1073C101900B89026 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
@@ -98,9 +80,31 @@
 		23F818E70B3531390041656E /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23F818E50B3531390041656E /* Preferences.nib */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
+		833C26A00D2D33810097E3CE /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B723BB0D2D3014004668E1 /* JRSwizzle.m */; };
+		833C26A10D2D33840097E3CE /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B723BA0D2D3014004668E1 /* JRSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */; };
+		833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
+		833C27140D2D3C410097E3CE /* GeniusHelpWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2318E40F0725C16D00726F95 /* GeniusHelpWindowController.h */; };
+		833C27150D2D3C410097E3CE /* GeniusAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C860725BD1300D09B7F /* GeniusAppDelegate.h */; };
+		833C27160D2D3C410097E3CE /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
+		833C27170D2D3C410097E3CE /* GeniusAssociationEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */; };
+		833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C880725BD1300D09B7F /* GeniusDocument.h */; };
+		833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */; };
+		833C271A0D2D3C410097E3CE /* GeniusDocumentPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8C0725BD1300D09B7F /* GeniusDocumentPrivate.h */; };
+		833C271B0D2D3C410097E3CE /* GeniusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA70725BD2000D09B7F /* GeniusItem.h */; };
+		833C271C0D2D3C410097E3CE /* GeniusPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA90725BD2000D09B7F /* GeniusPair.h */; };
+		833C271D0D2D3C410097E3CE /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
+		833C271E0D2D3C410097E3CE /* GeniusStringDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */; };
+		833C271F0D2D3C410097E3CE /* GeniusToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8D0725BD1300D09B7F /* GeniusToolbar.h */; };
+		833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */; };
+		833C27210D2D3C410097E3CE /* IconTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640460AA2056100888E37 /* IconTextFieldCell.h */; };
+		833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C910725BD1300D09B7F /* MyQuizController.h */; };
+		833C27230D2D3C410097E3CE /* NSArrayGeniusAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */; };
+		833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
+		833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */; };
+		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
 		8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */ = {isa = PBXBuildFile; fileRef = 8379CD7B0CEB410600CCFF86 /* TestFile1.genius */; };
-		83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
 		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
 		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */; };
 		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
@@ -114,6 +118,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		833C2AB60D2D3FE60097E3CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 833C268A0D2D32850097E3CE;
+			remoteInfo = JRSwizzle;
+		};
 		83AA1D000CDA206F009E7A1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -135,8 +146,9 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 7;
+			dstSubfolderSpec = 10;
 			files = (
+				833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,8 +235,12 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		833C268B0D2D32850097E3CE /* JRSwizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JRSwizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
 		8379CD7B0CEB410600CCFF86 /* TestFile1.genius */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestFile1.genius; sourceTree = "<group>"; };
+		83B723BA0D2D3014004668E1 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = SOURCE_ROOT; };
+		83B723BB0D2D3014004668E1 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = SOURCE_ROOT; };
+		83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "JRSwizzle-Info.plist"; path = "JRSwizzle/JRSwizzle-Info.plist"; sourceTree = SOURCE_ROOT; };
 		83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
 		83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
 		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFileTest.m; sourceTree = "<group>"; };
@@ -239,6 +255,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		833C26890D2D32850097E3CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83CC1CD20CD2499B0002FFA8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */,
 			);
@@ -284,6 +308,7 @@
 				83D9C9850CD8AE79003B422F /* DeveloperDocs */,
 				8D15AC370486D014006FF6A4 /* Genius.app */,
 				83CC1CD50CD2499B0002FFA8 /* Testing.octest */,
+				833C268B0D2D32850097E3CE /* JRSwizzle.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -442,6 +467,7 @@
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				83CC1CDD0CD249BF0002FFA8 /* TestCases */,
 				83D9C97F0CD8AD8E003B422F /* Developer Docs */,
+				83B723B70D2D2FDE004668E1 /* JRSwizzle */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = Genius;
@@ -474,6 +500,16 @@
 			name = TestFiles;
 			sourceTree = "<group>";
 		};
+		83B723B70D2D2FDE004668E1 /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */,
+				83B723BA0D2D3014004668E1 /* JRSwizzle.h */,
+				83B723BB0D2D3014004668E1 /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
 		83CC1CDD0CD249BF0002FFA8 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,35 +533,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		833C26860D2D32850097E3CE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C26A10D2D33840097E3CE /* JRSwizzle.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D15AC280486D014006FF6A4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23227C950725BD1300D09B7F /* GeniusAppDelegate.h in Headers */,
-				23227C970725BD1300D09B7F /* GeniusDocument.h in Headers */,
-				23227C990725BD1300D09B7F /* GeniusDocumentFile.h in Headers */,
-				23227C9B0725BD1300D09B7F /* GeniusDocumentPrivate.h in Headers */,
-				23227C9C0725BD1300D09B7F /* GeniusToolbar.h in Headers */,
-				23227C9E0725BD1300D09B7F /* GeniusWelcomePanel.h in Headers */,
-				23227CA00725BD1300D09B7F /* MyQuizController.h in Headers */,
-				23227CA20725BD1300D09B7F /* NSArrayGeniusAdditions.h in Headers */,
-				23227CAD0725BD2000D09B7F /* GeniusAssociationEnumerator.h in Headers */,
-				23227CAF0725BD2000D09B7F /* GeniusItem.h in Headers */,
-				23227CB10725BD2000D09B7F /* GeniusPair.h in Headers */,
-				23227CDD0725BD2600D09B7F /* ParagraphStyleFormatter.h in Headers */,
-				23227CE90725BD6100D09B7F /* Genius_Prefix.pch in Headers */,
-				2318E4110725C16D00726F95 /* GeniusHelpWindowController.h in Headers */,
-				23516AB8075EE2CE0020D17E /* GeniusStringDiff.h in Headers */,
-				236640550AA2056100888E37 /* IconTextFieldCell.h in Headers */,
-				23A0B4A10B353D4A00801B1A /* NSString+Similiarity.h in Headers */,
-				23A0B4A30B353D4D00801B1A /* GeniusPreferencesController.h in Headers */,
-				83C26B300CE8ACB700C5EE32 /* GeniusAssociation.h in Headers */,
+				833C27140D2D3C410097E3CE /* GeniusHelpWindowController.h in Headers */,
+				833C27150D2D3C410097E3CE /* GeniusAppDelegate.h in Headers */,
+				833C27160D2D3C410097E3CE /* GeniusAssociation.h in Headers */,
+				833C27170D2D3C410097E3CE /* GeniusAssociationEnumerator.h in Headers */,
+				833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */,
+				833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */,
+				833C271A0D2D3C410097E3CE /* GeniusDocumentPrivate.h in Headers */,
+				833C271B0D2D3C410097E3CE /* GeniusItem.h in Headers */,
+				833C271C0D2D3C410097E3CE /* GeniusPair.h in Headers */,
+				833C271D0D2D3C410097E3CE /* GeniusPreferencesController.h in Headers */,
+				833C271E0D2D3C410097E3CE /* GeniusStringDiff.h in Headers */,
+				833C271F0D2D3C410097E3CE /* GeniusToolbar.h in Headers */,
+				833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */,
+				833C27210D2D3C410097E3CE /* IconTextFieldCell.h in Headers */,
+				833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */,
+				833C27230D2D3C410097E3CE /* NSArrayGeniusAdditions.h in Headers */,
+				833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */,
+				833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		833C268A0D2D32850097E3CE /* JRSwizzle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 833C268D0D2D32850097E3CE /* Build configuration list for PBXNativeTarget "JRSwizzle" */;
+			buildPhases = (
+				833C26860D2D32850097E3CE /* Headers */,
+				833C26870D2D32850097E3CE /* Resources */,
+				833C26880D2D32850097E3CE /* Sources */,
+				833C26890D2D32850097E3CE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JRSwizzle;
+			productName = JRSwizzle;
+			productReference = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		83CC1CD40CD2499B0002FFA8 /* Testing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83CC1CD70CD2499C0002FFA8 /* Build configuration list for PBXNativeTarget "Testing" */;
@@ -558,6 +619,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				833C2AB70D2D3FE60097E3CE /* PBXTargetDependency */,
 			);
 			name = Genius;
 			productInstallPath = "$(HOME)/Applications";
@@ -580,11 +642,20 @@
 				83D9BE670CD110E90092858D /* Genius-1.7.dmg */,
 				83CC1CD40CD2499B0002FFA8 /* Testing */,
 				83D9C9780CD8AC7D003B422F /* DeveloperDocs */,
+				833C268A0D2D32850097E3CE /* JRSwizzle */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		833C26870D2D32850097E3CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83CC1CD00CD2499B0002FFA8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -689,6 +760,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		833C26880D2D32850097E3CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833C26A00D2D33810097E3CE /* JRSwizzle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83CC1CD10CD2499B0002FFA8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -727,6 +806,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		833C2AB70D2D3FE60097E3CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 833C268A0D2D32850097E3CE /* JRSwizzle */;
+			targetProxy = 833C2AB60D2D3FE60097E3CE /* PBXContainerItemProxy */;
+		};
 		83AA1D010CDA206F009E7A1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* Genius */;
@@ -843,7 +927,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "-DDEBUG=1";
+				OTHER_CFLAGS = (
+					"-D",
+					"DEBUG=1",
+				);
 				OTHER_LDFLAGS = "";
 				"Optimization level" = 0;
 				PRODUCT_NAME = Genius;
@@ -874,7 +961,6 @@
 				INFOPLIST_FILE = app/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Genius;
 				SECTORDER_FLAGS = "";
@@ -911,6 +997,60 @@
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SVNREV = development;
+			};
+			name = Deployment;
+		};
+		833C268E0D2D32850097E3CE /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "JRSwizzle/JRSwizzle-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = JRSwizzle;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		833C268F0D2D32850097E3CE /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "JRSwizzle/JRSwizzle-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = JRSwizzle;
+				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
@@ -1039,6 +1179,15 @@
 			buildConfigurations = (
 				23D0AFE90AA1C7F50069E6D3 /* Development */,
 				23D0AFEA0AA1C7F50069E6D3 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		833C268D0D2D32850097E3CE /* Build configuration list for PBXNativeTarget "JRSwizzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				833C268E0D2D32850097E3CE /* Development */,
+				833C268F0D2D32850097E3CE /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
