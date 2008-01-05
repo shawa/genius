@@ -50,8 +50,7 @@
     [archiver encodeObject:_columnHeadersDict forKey:@"columnHeadersDict"];
     [archiver encodeObject:[self pairs] forKey:@"pairs"];
     [archiver encodeObject:_cumulativeStudyTime forKey:@"cumulativeStudyTime"];
-    NSNumber * learnReviewNumber = [NSNumber numberWithFloat:[learnReviewSlider floatValue]];
-    [archiver encodeObject:learnReviewNumber forKey:@"learnVsReviewNumber"];
+    [archiver encodeObject:probabilityCenter forKey:@"learnVsReviewNumber"];
     [archiver finishEncoding];
     [archiver release];
 
@@ -113,8 +112,9 @@
         }
         
         NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
-        if (learnVsReviewNumber)
-            _learnVsReviewWeightBeforeNibLoaded = [learnVsReviewNumber floatValue];
+        if (learnVsReviewNumber) {
+            [self setValue:learnVsReviewNumber forKey:@"probabilityCenter"];
+        }
 
         [unarchiver finishDecoding];
         [unarchiver release];

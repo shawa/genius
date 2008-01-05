@@ -39,10 +39,10 @@
     
     // Data model
     NSMutableArray *_visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
-    float _learnVsReviewWeightBeforeNibLoaded;                   //!< ???
     NSMutableDictionary *_columnHeadersDict;                     //!< Labels used for column header names.
     NSMutableArray *_pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
     NSDate *_cumulativeStudyTime;                                //!< Not sure this is used anymore.
+    NSNumber *probabilityCenter;                                 //!< balance between learning and reviewing.
 
     BOOL _shouldShowImportWarningOnSave;                          //!< Flag indicating the GeniusDocument was loaded from an older version.
     NSArray *_pairsDuringDrag;                                   //!< Temporary array of items being dragged and dropped.

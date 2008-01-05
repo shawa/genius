@@ -43,7 +43,7 @@
 
     [document loadDataRepresentation:data ofType:@"Genius Documnent"];
     STAssertNil([document valueForKeyPath:@"_cumulativeStudyTime"], nil);
-    STAssertEqualObjects([document valueForKeyPath:@"_learnVsReviewWeightBeforeNibLoaded"], [NSNumber numberWithFloat:50.0F], nil);
+    STAssertEqualObjects([document valueForKeyPath:@"probabilityCenter"], [NSNumber numberWithFloat:50.0F], nil);
 
     NSArray * columns = [document visibleColumnIdentifiers];
     STAssertEquals([columns count], 4U, nil);

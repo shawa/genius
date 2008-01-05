@@ -18,7 +18,6 @@
                 duplicate = id; 
                 endDeckPreferences = id; 
                 exportFile = id; 
-                learnReviewSliderChanged = id; 
                 quizAutoPick = id; 
                 quizReview = id; 
                 quizSelection = id; 

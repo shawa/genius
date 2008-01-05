@@ -104,7 +104,9 @@
     self = [super init];
     if (self) {
         _visibleColumnIdentifiersBeforeNibLoaded = [[GeniusDocument _defaultColumnIdentifiers] mutableCopy];
-        _learnVsReviewWeightBeforeNibLoaded = 50.0;
+
+        probabilityCenter = [[NSNumber numberWithFloat:50.0F] retain];
+        [self addObserver:self forKeyPath:@"probabilityCenter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 
         _columnHeadersDict = [[NSMutableDictionary alloc] init];
         [_columnHeadersDict setValue:@"Question" forKey:@"columnA"];
@@ -135,6 +137,7 @@
     [_columnHeadersDict release];
     [_searchField release];
     [_customTypeStringCache release];
+    [probabilityCenter release];
     
     [super dealloc];
 }
@@ -250,8 +253,6 @@
     }
 
     [tableView sizeToFit];
-
-    [learnReviewSlider setFloatValue:_learnVsReviewWeightBeforeNibLoaded];
 
     if ([[self pairs] count])
     {
@@ -629,12 +630,6 @@
     [self _toggleColumnWithIdentifier:@"scoreBA"];
 }
 
-//! Marks document as edited.
-- (IBAction)learnReviewSliderChanged:(id)sender
-{
-    [self updateChangeCount:NSChangeDone];
-}
-
 //! shows panel for setting field labels
 - (IBAction) showDeckPreferences:(id)sender
 {
@@ -845,7 +840,7 @@
         50% should be m=1.0
         100% should be minimum=0 (review only)
     */
-    float weight = [learnReviewSlider doubleValue];
+    float weight = [probabilityCenter doubleValue];
     if (weight == 100.0)
         [enumerator setMinimumScore:0]; // Review only
     float m_value = (weight / 100.0) * 2.0;
