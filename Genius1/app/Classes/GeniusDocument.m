@@ -1171,8 +1171,6 @@
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
-    //! @todo Remove calls to +new.
-    _filterString = @"";
     return self;
 }
 
@@ -1192,18 +1190,17 @@
 //! _filterString setter.
 - (void) setFilterString:(NSString *)string
 {
+    [string retain];
     [_filterString release];
-    //! @todo don't copy this
-    _filterString = [string copy];
+    _filterString = string;
+
     [self rearrangeObjects];
 }
 
 //! Returns a given array, appropriately sorted and filtered.
 - (NSArray *)arrangeObjects:(NSArray *)objects
 {
-    if ([_filterString isEqualToString:@""])
-        return [super arrangeObjects:objects];
-    else
+    if ([_filterString length] > 0)
     {
         //! @todo Set colum bindings as a property rather than pull them from the geniusDocument.
         NSMutableArray * keyPaths = [[geniusDocument columnBindings] mutableCopy];
@@ -1221,6 +1218,10 @@
                 [filteredObjects addObject:pair];
         }
         return [super arrangeObjects:filteredObjects];
+    }
+    else
+    {
+        return [super arrangeObjects:objects];
     }
 }
 
