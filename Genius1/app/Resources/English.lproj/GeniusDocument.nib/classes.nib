@@ -31,7 +31,6 @@
                 arrayController = GeniusArrayController; 
                 deckPreferences = NSWindow; 
                 infoDrawer = NSDrawer; 
-                initialWatermarkView = NSView; 
                 learnReviewSlider = NSSlider; 
                 levelField = NSTextField; 
                 levelIndicator = NSLevelIndicator; 
