@@ -39,9 +39,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     //! Stores user entered properties related to this GeniusPair.
     /*! Variable storage for info such as group, importance, and type */
     NSMutableDictionary * _userDict;
-    
-    // Transient
-    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty
 }
 
 + (NSArray *) associationsForPairs:(NSArray *)pairs useAB:(BOOL)useAB useBA:(BOOL)useBA;
@@ -85,7 +82,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 + (NSString *) tabularTextFromPairs:(NSArray *)pairs order:(NSArray *)keyPaths;
 - (NSString *) tabularTextByOrder:(NSArray *)keyPaths;
 
-+ (NSArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
++ (NSMutableArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
 - (id) initWithTabularText:(NSString *)line order:(NSArray *)keyPaths;
 
 @end

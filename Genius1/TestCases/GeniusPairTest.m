@@ -33,40 +33,6 @@
     geniusPair = nil;
 }
 
-//! Test that a new GeniusPair already has associated objects.
-- (void) testAllocation
-{
-    STAssertNotNil([geniusPair itemA], nil);
-    STAssertNotNil([geniusPair itemB], nil);
-    STAssertNotNil([geniusPair associationAB], nil);
-    STAssertNotNil([geniusPair associationBA], nil);
-    STAssertFalse([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-}
-
-//! Test that changes to score number are registered
-- (void) testObserveScoreNumber
-{
-    STAssertFalse([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-    [[geniusPair associationAB] setValue:[NSNumber numberWithInt:1U] forKey:@"scoreNumber"];
-    STAssertTrue([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-}
-
-//! Test that changes to due date are registered
-- (void) testObserveDueDate
-{
-    STAssertFalse([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-    [[geniusPair associationAB] setValue:[NSNumber numberWithInt:1U] forKey:@"dueDate"];
-    STAssertTrue([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-}
-
-//! Test that changes to string value are registered
-- (void) testObserveStringValue
-{
-    STAssertFalse([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-    [[geniusPair itemA] setValue:@"a value" forKey:@"stringValue"];
-    STAssertTrue([[geniusPair valueForKey:@"dirty"] boolValue], nil);
-}
-
 //! Test that encoding fails without a keyed archiver.
 - (void) testEncodingFailure
 {    

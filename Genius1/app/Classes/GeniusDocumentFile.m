@@ -49,7 +49,7 @@
     [archiver encodeInt:1 forKey:@"formatVersion"];
     [archiver encodeObject:[self visibleColumnIdentifiers] forKey:@"visibleColumnIdentifiers"];
     [archiver encodeObject:_columnHeadersDict forKey:@"columnHeadersDict"];
-    [archiver encodeObject:[self pairs] forKey:@"pairs"];
+    [archiver encodeObject:_pairs forKey:@"pairs"];
     [archiver encodeObject:_cumulativeStudyTime forKey:@"cumulativeStudyTime"];
     [archiver encodeObject:probabilityCenter forKey:@"learnVsReviewNumber"];
     [archiver finishEncoding];
@@ -102,13 +102,13 @@
             if (visibleColumnIdentifiers)
                 [_visibleColumnIdentifiersBeforeNibLoaded setArray:visibleColumnIdentifiers];
 
-            NSDictionary * columnHeadersDict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
-            if (columnHeadersDict) {
+            NSDictionary * dict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
+            if (dict) {
                 NSString *title;
-                if ((title = [columnHeadersDict valueForKey:@"columnA"]) != nil)
+                if ((title = [dict valueForKey:@"columnA"]) != nil)
                     [_columnHeadersDict setObject:title forKey:@"columnA"];
 
-                if ((title = [columnHeadersDict valueForKey:@"columnB"]) != nil)
+                if ((title = [dict valueForKey:@"columnB"]) != nil)
                     [_columnHeadersDict setObject:title forKey:@"columnB"];
             }
 
@@ -218,7 +218,7 @@
             [string appendString:@"\t"];
     }*/ //! @todo Consider adding headers to the exported file.
     
-    NSString * string = [GeniusPair tabularTextFromPairs:[self pairs] order:[self columnBindings]];
+    NSString * string = [GeniusPair tabularTextFromPairs:_pairs order:[self columnBindings]];
     [string writeToFile:path atomically:NO];
 }
 
@@ -248,10 +248,10 @@
     [documentController newDocument:self];
     GeniusDocument * document = (GeniusDocument *)[documentController currentDocument];
     
-    NSArray * pairs = [GeniusPair pairsFromTabularText:text order:[document columnBindings]];
+    NSMutableArray * pairs = [GeniusPair pairsFromTabularText:text order:[document columnBindings]];
     if (pairs)
     {
-        [[document pairs] setArray:pairs];
+        [document setPairs:pairs];
         [document reloadInterfaceFromModel];
     }
 }

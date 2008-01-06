@@ -32,26 +32,21 @@
     NSString * _speakableStringValue;
     //! record audio atom @todo not used
     NSURL * _soundURL;
-    
-    /*! @todo Replace dummy property with implementation of setValue:forUndefinedKey: */
-    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty 
 }
+
+- (void) addObserver: (id) observer;
+- (void) removeObserver: (id) observer;
 
 // Visual
 - (NSString *) stringValue;
-//- (void) setStringValue:(NSString *)string;
 
 - (NSURL *) imageURL;
-//- (void) setImageURL:(NSURL *)imageURL;
 
 - (NSURL *) webResourceURL;
-//- (void) setWebResourceURL:(NSURL *)webResourceURL;
 
 // Audio
 - (NSString *) speakableStringValue;
-    //- (void) setSpeakableStringValue:(NSString *)speakableString;
 
 - (NSURL *) soundURL;
-//- (void) setSoundURL:(NSURL *)soundURL;
 
 @end

@@ -41,12 +41,11 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
  */
 @implementation GeniusPair
 
-//! Set up #importance and #_dirty as dependent properties.
+//! Set up #importance as dependent properties.
 + (void)initialize
 {
     [super initialize];
     [self setKeys:[NSArray arrayWithObjects:@"disabled", nil] triggerChangeNotificationsForDependentKey:@"importance"];
-    [self setKeys:[NSArray arrayWithObjects:@"importance", @"customGroupString", @"customTypeString", @"notesString", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
 }
 
 /*!
@@ -73,11 +72,8 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 
 //! Initializes new GeniusPair and allocates storage.
 /*!
-    This #init method allocates two GeniusAssociation objects as well as the related two GeniusItem objects and connects
-    them together.  The returned intance is setup as an observer of these four objects.  Specifically it watches for changes to
-    their 'dirty' attribute in order to track changes.
-    @todo Pick a designated initializer and organize the varous init methods as needed.
-*/
+    This #init method allocates two GeniusItem objects and connects them together.
+ */
 - (id) init {
     self = [super init];
     if (self != nil) {
@@ -95,11 +91,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 */
 - (void) dealloc
 {
-    [[self itemA] removeObserver:self forKeyPath:@"dirty"];
-    [[self itemB] removeObserver:self forKeyPath:@"dirty"];
-    [_associationAB removeObserver:self forKeyPath:@"dirty"];
-    [_associationBA removeObserver:self forKeyPath:@"dirty"];
-
     [_associationAB release];
     [_associationBA release];
     [_userDict release];
@@ -120,11 +111,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     _associationAB = [[GeniusAssociation alloc] _initWithCueItem:itemA answerItem:itemB parentPair:self performanceDict:performanceDictAB];
     _associationBA = [[GeniusAssociation alloc] _initWithCueItem:itemB answerItem:itemA parentPair:self performanceDict:performanceDictBA];
     _userDict = [[coder decodeObjectForKey:@"userDict"] retain];
-
-    [itemA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [itemB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationAB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationBA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
     return self;
 }
@@ -157,12 +143,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     _associationAB = [[GeniusAssociation alloc] _initWithCueItem:itemA answerItem:itemB parentPair:self performanceDict:nil];
     _associationBA = [[GeniusAssociation alloc] _initWithCueItem:itemB answerItem:itemA parentPair:self performanceDict:nil];
     _userDict = [userDict retain];
-
-    [itemA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [itemB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationAB addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    [_associationBA addObserver:self forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-
     return self;
 }
 
@@ -183,22 +163,27 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 //! registers an observer for the relevent fields of this object
 - (void) addObserver: (id) observer
 {
-    [self addObserver:observer forKeyPath:@"dirty" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"importance" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"customGroupString" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
     [self addObserver:observer forKeyPath:@"customTypeString" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"notesString" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [_associationAB addObserver:observer];
+    [_associationBA addObserver:observer];
+    [[self itemA] addObserver:observer];
+    [[self itemB] addObserver:observer];
 }
 
 //! un-registers an observer for the relevent fields of this object
 - (void) removeObserver: (id) observer
 {
-    [self removeObserver:observer forKeyPath:@"dirty"];
+    [self removeObserver:observer forKeyPath:@"importance"];
+    [self removeObserver:observer forKeyPath:@"customGroupString"];
     [self removeObserver:observer forKeyPath:@"customTypeString"];
-}
-
-//! Catches changes to observed instances of GeniusItem and GeniusAssociation.
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    //NSLog(@"GeniusPair observeValueForKeyPath:%@", keyPath);
-    [self setValue:[NSNumber numberWithBool:YES] forKey:@"dirty"];
+    [self removeObserver:observer forKeyPath:@"notesString"];
+    [_associationAB removeObserver:observer];
+    [_associationBA removeObserver:observer];
+    [[self itemA] removeObserver:observer];
+    [[self itemB] removeObserver:observer];
 }
 
 //! Returns string with description of items.
@@ -245,9 +230,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 {
     NSNumber * importanceNumber = [NSNumber numberWithInt:importance];
     [_userDict setObject:importanceNumber forKey:GeniusPairImportanceNumberKey];
-
-//    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-//    [nc postNotificationName:GeniusPairFieldHasChanged object:GeniusPairImportanceNumberKey];
 }
 
 
@@ -265,9 +247,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
         [_userDict setObject:customGroup forKey:GeniusPairCustomGroupStringKey];
     else
         [_userDict removeObjectForKey:GeniusPairCustomGroupStringKey];
-
-//    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-//    [nc postNotificationName:GeniusPairFieldHasChanged object:GeniusPairCustomGroupStringKey];
 }
 
 //! customTypeString getter
@@ -283,9 +262,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
         [_userDict setObject:customType forKey:GeniusPairCustomTypeStringKey];
     else
         [_userDict removeObjectForKey:GeniusPairCustomTypeStringKey];
-
-//    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-//    [nc postNotificationName:GeniusPairFieldHasChanged object:GeniusPairCustomTypeStringKey];
 }
 
 //! notesString getter
@@ -301,9 +277,6 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
         [_userDict setObject:notesString forKey:GeniusPairNotesStringKey];
     else
         [_userDict removeObjectForKey:GeniusPairNotesStringKey];
-
-//    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-//    [nc postNotificationName:GeniusPairFieldHasChanged object:GeniusPairNotesStringKey];
 }
 
 @end
@@ -408,7 +381,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
     instance that is initialized by the delimited line.
     @todo Maybe this code belongs in GeniusDocument(FileFormat)
  */
-+ (NSArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths;
++ (NSMutableArray *) pairsFromTabularText:(NSString *)string order:(NSArray *)keyPaths
 {
     //Can't use lines = [string componentsSeparatedByString:@"\n"];
     // because it doesn't handle carriage returns.
@@ -423,7 +396,7 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
         [pairs addObject:pair];
         [pair release];
     }
-    return (NSArray *)pairs;
+    return pairs;
 }
 
 //! Initializes a GeniusPair from a tab delimited string.

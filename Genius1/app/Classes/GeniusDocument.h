@@ -19,6 +19,7 @@
 
 @class MyTableView;
 @class GeniusArrayController;
+@class GeniusPair;
 
 //! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
@@ -30,7 +31,6 @@
     IBOutlet NSLevelIndicator *levelIndicator;          //!< Displays level information as bar.
     IBOutlet NSDrawer *infoDrawer;                      //!< Drawer where you can set group and type info.
     IBOutlet NSDrawer *notesDrawer;                     //!< Drawer at bottom of window with GeniusPair notes.
-    IBOutlet NSView *initialWatermarkView;              //!< Help text displayed over the table in empty documents.
     IBOutlet NSWindow *deckPreferences;                 //!< Sheet for enter card side titles.
     
     IBOutlet NSSlider *learnReviewSlider;               //!< Slider used to setup Quiz mode between Learn and Review.
@@ -49,8 +49,10 @@
     NSMutableSet *_customTypeStringCache;                        //!< Cache of all types used in deck.
 }
 
-- (NSMutableArray *) pairs;
+- (NSArray*) pairs;
 - (void) setPairs: (NSMutableArray*) values;
+- (void) removeObjectFromPairsAtIndex:(int) index;
+- (void) insertObject:(GeniusPair*) pair inPairsAtIndex:(int)index;
 
 - (NSSearchField *) searchField;    // in toolbar
 

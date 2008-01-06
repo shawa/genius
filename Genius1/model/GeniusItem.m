@@ -20,14 +20,6 @@
 
 @implementation GeniusItem
 
-//! sets up dummy _dirty property as dependent property of other instance properties.
-/*! @todo Track changes differently. */
-+ (void)initialize
-{
-    [super initialize];
-    [self setKeys:[NSArray arrayWithObjects:@"stringValue", @"imageURL", @"webResourceURL", @"speakableStringValue", @"soundURL", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
-}
-
 //! Initializes new instance with all properties set to nil.
 /*! @todo Remove code that sets everything to nil because it isn't needed. */
 - (id) init
@@ -50,6 +42,26 @@
     [_speakableStringValue release];
     [_soundURL release];
     [super dealloc];
+}
+
+//! registers an observer for the relevent fields of this object
+- (void) addObserver: (id) observer
+{
+    [self addObserver:observer forKeyPath:@"stringValue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"imageURL" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"webResourceURL" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"speakableStringValue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"soundURL" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+}
+
+//! un-registers an observer for the relevent fields of this object
+- (void) removeObserver: (id) observer
+{
+    [self removeObserver:observer forKeyPath:@"stringValue"];
+    [self removeObserver:observer forKeyPath:@"imageURL"];
+    [self removeObserver:observer forKeyPath:@"webResourceURL"];
+    [self removeObserver:observer forKeyPath:@"speakableStringValue"];
+    [self removeObserver:observer forKeyPath:@"soundURL"];
 }
 
 //! Creates and returns a copy of this instance in the new zone.
@@ -99,27 +111,11 @@
     return [self stringValue];
 }
 
-/*- (void) _setDirty
-{
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:GeniusDocumentHasChanged object:
-        [[NSDocumentController sharedDocumentController] currentDocument]]; // HACK
-}*/
-
-
 //! _stringValue getter
 - (NSString *) stringValue
 {
     return _stringValue;
 }
-
-/*- (void) setStringValue:(NSString *)string
-{
-    [_stringValue release];
-    _stringValue = [string copy];
-
-    [self _setDirty];
-}*/
 
 //! _imageURL getter
 - (NSURL *) imageURL
@@ -127,30 +123,11 @@
     return _imageURL;
 }
 
-/*- (void) setImageURL:(NSURL *)imageURL
-{
-    [_imageURL release];
-    _imageURL = [imageURL copy];
-
-    [self _setDirty];
-}*/
-
-
 //! _webResourceURL getter
 - (NSURL *) webResourceURL
 {
     return _webResourceURL;
 }
-
-//! @todo dead code
-/*- (void) setWebResourceURL:(NSURL *)webResourceURL
-{
-    [_webResourceURL release];
-    _webResourceURL = [webResourceURL copy];
-
-    [self _setDirty];
-}*/
-
 
 //! _speakableStringValue getter
 - (NSString *) speakableStringValue
@@ -158,27 +135,10 @@
     return _speakableStringValue;
 }
 
-//! @todo dead code
-/*- (void) setSpeakableStringValue:(NSString *)speakableString
-{
-    [_dict setObject:speakableString forKey:@"speakableString"];
-
-    [self _setDirty];
-}*/
-
 //! _soundURL getter
 - (NSURL *) soundURL
 {
     return _soundURL;
 }
-
-//! @todo dead code
-/*- (void) setSoundURL:(NSURL *)soundURL
-{
-    [_soundURL release];
-    _soundURL = [soundURL copy];
-
-    [self _setDirty];
-}*/
 
 @end

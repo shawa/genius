@@ -13,14 +13,6 @@ NSString * GeniusAssociationScoreNumberKey = @"scoreNumber"; //!< accessor key f
 NSString * GeniusAssociationDueDateKey = @"dueDate"; //!< accessor key for due date in _perfDict
 
 @implementation GeniusAssociation
-//! sets up dummy _dirty property as dependent property of other instance properties.
-/*! @todo Track changes differently. */
-+ (void)initialize
-{
-    [super initialize];
-    [self setKeys:[NSArray arrayWithObjects:@"scoreNumber", @"dueDate", nil] triggerChangeNotificationsForDependentKey:@"dirty"];
-}
-
 /*! 
 Creates copy of the provided @a performanceDict.
 */
@@ -50,6 +42,20 @@ Creates copy of the provided @a performanceDict.
     [_answerItem release];
     [_perfDict release];
     [super dealloc];
+}
+
+//! registers an observer for the relevent fields of this object
+- (void) addObserver: (id) observer
+{
+    [self addObserver:observer forKeyPath:@"scoreNumber" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    [self addObserver:observer forKeyPath:@"dueDate" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+}
+
+//! un-registers an observer for the relevent fields of this object
+- (void) removeObserver: (id) observer
+{
+    [self removeObserver:observer forKeyPath:@"scoreNumber"];
+    [self removeObserver:observer forKeyPath:@"dueDate"];
 }
 
 //! _cueItem getter
@@ -144,33 +150,6 @@ and deletes all entries from GeniusAssociation#_perfDict.
     
     [_perfDict setValue:scoreNumber forKey:GeniusAssociationScoreNumberKey];
 }
-
-//! @todo remove dead code
-/*- (unsigned int) right
-{
-    NSNumber * rightNumber = [_perfDict objectForKey:@"right"];
-    return (rightNumber ? [rightNumber unsignedIntValue] : 0);
-}
-
-- (void) setRight:(unsigned int)right
-{
-    [_perfDict setObject:[NSNumber numberWithUnsignedInt:right] forKey:@"right"];
-    
-    [self _setDirty];
-}
-
-- (unsigned int) wrong
-{
-    NSNumber * wrongNumber = [_perfDict objectForKey:@"wrong"];
-    return (wrongNumber ? [wrongNumber unsignedIntValue] : 0);
-}
-
-- (void) setWrong:(unsigned int)wrong
-{
-    [_perfDict setObject:[NSNumber numberWithUnsignedInt:wrong] forKey:@"wrong"];
-    
-    [self _setDirty];
-}*/
 
 //! dueDate getter. Returns object in _perfDict for GeniusAssociationDueDateKey
 - (NSDate *) dueDate

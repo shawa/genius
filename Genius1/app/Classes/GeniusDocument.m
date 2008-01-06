@@ -27,6 +27,7 @@
 #import "GeniusPreferencesController.h"
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
+#import <JRSwizzle/JRSwizzle.h>
 
 //! NSValueTransformer for displaying importance as simple boolean
 @interface IsPairImportantTransformer : NSValueTransformer
@@ -85,8 +86,73 @@
 - (void) _setTitle:(NSString *)title forTableColumnWithIdentifier:(NSString *)identifier;
 @end
 
+@interface GeniusDocument(DebugLogging)
++ (void) installLogging;
+@end
+
+//! Simple swizzle based logging code.
+@implementation GeniusDocument(DebugLogging)
+
+//! replaces some methods with logging versions.
++ (void) installLogging
+{
+    NSError *error = nil;
+    
+    [GeniusDocument jr_swizzleMethod:@selector(insertObject:inPairsAtIndex:) withMethod:@selector(insertObject:inPairsAtIndex:) error:&error];
+    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+    
+    [GeniusDocument jr_swizzleMethod:@selector(removeObjectFromPairsAtIndex:) withMethod:@selector(log_removeObjectFromPairsAtIndex:) error:&error];
+    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+    
+    [GeniusDocument jr_swizzleMethod:@selector(setPairs:) withMethod:@selector(log_setPairs:) error:&error];
+    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+
+    [GeniusDocument jr_swizzleMethod:@selector(observeValueForKeyPath:ofObject:change:context:) withMethod:@selector(log_observeValueForKeyPath:ofObject:change:context:) error:&error];
+    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+}
+
+//! logs referenced call to referenced method executes it
+- (void)log_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSLog(@"_cmd: %s", _cmd);
+    NSLog(@"keyPath: %@ ofObject: %@ change: %@", keyPath, object, change);
+    [self log_observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+//! logs referenced call to referenced method executes it
+- (void) log_insertObject:(GeniusPair*) pair inPairsAtIndex:(int)index
+{
+    NSLog(@"_cmd: %s", _cmd);
+    [self log_insertObject:pair inPairsAtIndex:index];
+}
+
+//! logs referenced call to referenced method executes it
+- (void) log_removeObjectFromPairsAtIndex:(int) index
+{
+    NSLog(@"_cmd: %s", _cmd);
+    [self log_removeObjectFromPairsAtIndex:index];    
+}
+
+//! logs referenced call to referenced method executes it
+- (void) log_setPairs: (NSMutableArray*) values
+{
+    NSLog(@"_cmd: %s", _cmd);
+    return [self log_setPairs:values];
+}
+
+@end
+
 // Standard NSDocument subclass for controlling display and editing of a Genius file.
 @implementation GeniusDocument
+
+//! sets up swizzle based logging.
++ (void) initialize
+{
+    [super initialize];
+#if DEBUG
+    [self installLogging];
+#endif
+}
 
 //! Basic NSDocument init method.
 /*!
@@ -98,6 +164,9 @@
 {
     self = [super init];
     if (self) {
+        // Init array for genius pairs.
+        [self setPairs:[NSMutableArray array]];
+
         // Expect not to be loading a 1.0 format file
         _shouldShowImportWarningOnSave = NO;
 
@@ -188,11 +257,39 @@
     [self reloadInterfaceFromModel];
 }
 
-//! _pairs getter.
-- (NSMutableArray *) pairs
+//! inserts the item at index in pairs array, taking care to start observing it.
+- (void) insertObject:(GeniusPair*) pair inPairsAtIndex:(int)index
 {
-    if (_pairs == nil)
-        _pairs = [[NSMutableArray alloc] init];
+    NSUndoManager *undoManager = [self undoManager];
+    
+    if (![undoManager isUndoing]) {
+        [undoManager setActionName:@"Insert Pair"];
+    }
+    
+    [[undoManager prepareWithInvocationTarget:self] removeObjectFromPairsAtIndex:index];
+
+    [pair addObserver:self];
+    [_pairs insertObject:pair atIndex:index];
+}
+
+//! removes the item at index from pairs array, taking care to stop observing it first.
+- (void) removeObjectFromPairsAtIndex:(int) index
+{
+    NSUndoManager *undoManager = [self undoManager];
+    
+    if (![undoManager isUndoing]) {
+        [undoManager setActionName:@"Delete Pair"];
+    }
+    
+    GeniusPair *pair = [_pairs objectAtIndex:index];
+    [[undoManager prepareWithInvocationTarget:self] insertObject:pair inPairsAtIndex:index];
+    [pair removeObserver:self];
+    [_pairs removeObjectAtIndex:index];
+}
+
+//! _pairs getter.
+- (NSArray*) pairs
+{
     return _pairs;
 }
 
@@ -251,15 +348,10 @@
 
     [tableView sizeToFit];
 
-    if ([[self pairs] count])
+    if ([_pairs count])
     {
-        [initialWatermarkView removeFromSuperview];
-        initialWatermarkView = nil;
-        
         [tableView reloadData];
         
-        // Sync with _pairs    
-        [arrayController setContent:[self pairs]];    // reload
         [self _reloadCustomTypeCacheSet];
     }
 
@@ -387,7 +479,7 @@
 - (void) _updateStatusText
 {
     NSString * status = @"";
-    int rowCount = [[self pairs] count];
+    int rowCount = [_pairs count];
     if (rowCount == 0)
     {
         [statusField setStringValue:status];
@@ -425,7 +517,7 @@
 //! Updates the progress bar at lower right of Genius window to reflect current success with a Genius Document.
 - (void) _updateLevelIndicator
 {	
-	NSArray * associations = [self _enabledAssociationsForPairs:[self pairs]];
+	NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
 	int associationCount = [associations count];
 
 	if (associationCount == 0)
@@ -457,28 +549,38 @@
 - (void) addObserver: (id) observer
 {
     [self addObserver:observer forKeyPath:@"probabilityCenter" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-    [self addObserver:observer forKeyPath:@"columnHeadersDict.columnA" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-    [self addObserver:observer forKeyPath:@"columnHeadersDict.columnB" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-    [self addObserver:observer forKeyPath:@"pairs" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    [_columnHeadersDict addObserver:observer forKeyPath:@"columnA" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    [_columnHeadersDict addObserver:observer forKeyPath:@"columnB" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 }
 
 //! un-registers up observer for relevant keys.
 - (void) removeObserver: (id) observer
 {
     [self removeObserver:self forKeyPath:@"probabilityCenter"];
-    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnA"];
-    [self removeObserver:self forKeyPath:@"columnHeadersDict.columnB"];
-    [self removeObserver:self forKeyPath:@"pairs"];
+    [_columnHeadersDict removeObserver:self forKeyPath:@"columnA"];
+    [_columnHeadersDict removeObserver:self forKeyPath:@"columnB"];
+}
+
+//! support for undo of property changes.
+- (void) changeKeyPath:(NSString*)keyPath ofObject:(id)object toValue:(id)value
+{
+    [object setValue:value forKeyPath:keyPath];
 }
 
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"keyPath: %@ ofObject: %@ change: %@", keyPath, object, change);
+    NSUndoManager *undoManager = [self undoManager];
+    id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+    if (oldValue == [NSNull null]) {
+        oldValue = nil;
+    }
+    [[undoManager prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
+    [undoManager setActionName:@"Edit"];
+    
     if ([keyPath isEqualToString:@"customTypeString"])
         [self _reloadCustomTypeCacheSet];
     
-    [self updateChangeCount:NSChangeDone];
     [self _updateStatusText];
 	[self _updateLevelIndicator];
 }
@@ -488,7 +590,7 @@
 {
     [_customTypeStringCache removeAllObjects];
     
-    NSEnumerator * pairEnumerator = [[self pairs] objectEnumerator];
+    NSEnumerator * pairEnumerator = [_pairs objectEnumerator];
     GeniusPair * pair;
     while ((pair = [pairEnumerator nextObject]))
     {
@@ -673,43 +775,23 @@
         [notesDrawer openOnEdge:NSMinYEdge];
 }
 
-
-//! Creates a new empty GeniusPair and inserts it in table view.
+//! FirstResponder wrapper for arrayController insert:.
 - (IBAction)add:(id)sender
 {
-    // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
-    //! @todo check if this is really how to end editing.
-    NSWindow * window = [[[self windowControllers] objectAtIndex:0] window];
-    if ([window makeFirstResponder:window] == NO)
-        [window endEditingFor:nil];
+    [arrayController insert:sender];
+}
 
-    [initialWatermarkView removeFromSuperview];
-    initialWatermarkView = nil;
-
-    [_searchField setStringValue:@""];
-    [self search:_searchField];
-
-    [tableView deselectAll:self];
-    
-    // Insert after selection if possible; otherwise insert at document end
-    int newPairIndex = [tableView numberOfRows];
-    GeniusPair *pair = [[[GeniusPair alloc] init] autorelease];
-    [arrayController addObject:pair];
-    
-    [tableView selectRow:newPairIndex byExtendingSelection:NO];
-    [tableView editColumn:1 row:newPairIndex withEvent:nil select:YES];
+//! FirstResponder wrapper for arrayController remove:.
+- (IBAction)delete:(id)sender
+{
+    [arrayController remove:sender];
 }
 
 //! Duplicates the selected items and inserts them in the document.
 - (IBAction)duplicate:(id)sender
 {
-    // First end editing in-progress (from -[NSWindow endEditingFor:] documentation)
-    NSWindow * window = [[[self windowControllers] objectAtIndex:0] window];
-    if ([window makeFirstResponder:window] == NO)
-        [window endEditingFor:nil];
-
     NSArray * selectedObjects = [arrayController selectedObjects];
-
+    
     NSIndexSet * selectionIndexes = [arrayController selectionIndexes];
     int lastIndex = [selectionIndexes lastIndex];
     NSIndexSet * indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(lastIndex+1, [selectionIndexes count])];
@@ -717,37 +799,6 @@
     [arrayController insertObjects:newObjects atArrangedObjectIndexes:indexSet];
     [arrayController setSelectedObjects:newObjects];
     [newObjects release];
-}
-
-//! Initiates modal sheet to check if the user really wants to delete selected items.
-- (IBAction)delete:(id)sender
-{
-    NSArray * selectedObjects = [arrayController selectedObjects];
-	if ([selectedObjects count] == 0)
-		return;
-
-	NSString * title = NSLocalizedString(@"Are you sure you want to delete the selected items?", nil);
-	NSString * message = NSLocalizedString(@"You cannot undo this operation.", nil);
-	NSString * deleteTitle = NSLocalizedString(@"Delete", nil); 
-	NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
-
-    NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:deleteTitle alternateButton:cancelTitle otherButton:nil informativeTextWithFormat:message];
-    NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
-    [defaultButton setKeyEquivalent:@"\r"];
-
-    [alert beginSheetModalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:@selector(_deleteAlertDidEnd:returnCode:contextInfo:) contextInfo:selectedObjects];
-}
-
-//! Handles the results of the modal sheet initiated in @a delete:.
-/*!
-    In the event the user confirmed the delete action, then the selected GeniusPair items are deleted.
- */
-- (void)_deleteAlertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(NSArray *)selectedObjects
-{
-    if (returnCode == 0)
-        return;
-    
-    [arrayController removeObjects:selectedObjects];
 }
 
 //! Initiates modal sheet to check if the user really wants to reset selected items.
@@ -768,6 +819,7 @@
     
     [alert beginSheetModalForWindow:[self windowForSheet] modalDelegate:self didEndSelector:@selector(_resetAlertDidEnd:returnCode:contextInfo:) contextInfo:selectedObjects];
 }
+
 
 //! Handles the results of the modal sheet initiated in @a resetScore:.
 /*!
@@ -842,7 +894,7 @@
 */
 - (IBAction)quizAutoPick:(id)sender
 {
-    NSArray * associations = [self _enabledAssociationsForPairs:[self pairs]];
+    NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
     [enumerator setCount:13];    
     /*
@@ -867,7 +919,7 @@
 */
 - (IBAction)quizReview:(id)sender
 {
-    NSArray * associations = [self _enabledAssociationsForPairs:[self pairs]];
+    NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
     [enumerator setCount:13];
     [enumerator setMinimumScore:0];
@@ -882,7 +934,7 @@
 {
     NSArray * selectedPairs = [arrayController selectedObjects];
     if ([selectedPairs count] == 0)
-        selectedPairs = [self pairs];
+        selectedPairs = _pairs;
 
     NSArray * associations = [self _enabledAssociationsForPairs:selectedPairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
@@ -1299,7 +1351,7 @@
     [_tableColumns removeAllObjects];
 
     [self removeObserver:self];
-    [[self pairs] makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
+    [_pairs makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
 
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }

@@ -30,12 +30,12 @@ A GeniusAssociation is the basic unit of memorization in Genius.  A GeniusAssoci
     //! performance info dictionary
     /*! contains scoreNumber and dueDate for this GeniusAssociation. */
     NSMutableDictionary * _perfDict;
-    
-    // Transient
-    BOOL _dirty;    //!< dummy property to ensure key value compliance for the key dirty
 }
 
 - (id) _initWithCueItem:(GeniusItem *)cueItem answerItem:(GeniusItem *)answerItem parentPair:(GeniusPair *)parentPair performanceDict:(NSDictionary *)performanceDict;
+
+- (void) addObserver: (id) observer;
+- (void) removeObserver: (id) observer;
 
 - (GeniusItem *) cueItem;
 - (GeniusItem *) answerItem;
@@ -52,13 +52,6 @@ A GeniusAssociation is the basic unit of memorization in Genius.  A GeniusAssoci
 - (void) setScoreNumber:(id)scoreNumber;
 
 - (BOOL) isFirstTime;
-
-    //! @todo dead code.
-    /*- (unsigned int) right;
-- (void) setRight:(unsigned int)right;
-
-- (unsigned int) wrong;
-- (void) setWrong:(unsigned int)wrong;*/
 
 - (NSDate *) dueDate;
 - (void) setDueDate:(NSDate *)dueDate;
