@@ -131,6 +131,7 @@
         [_screenWindow setHasShadow:NO];
         [_screenWindow setIgnoresMouseEvents:YES];
         [_screenWindow setReleasedWhenClosed:NO];
+        [_screenWindow setHidesOnDeactivate:YES];
     }
     return _screenWindow;
 }
