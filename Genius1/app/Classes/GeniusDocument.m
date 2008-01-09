@@ -16,6 +16,8 @@
 */
 
 #import "GeniusDocument.h"
+#import "GeniusDocument_DebugLogging.h"
+
 #import "GeniusDocumentPrivate.h"
 #import "GeniusDocumentFile.h"
 #import "IconTextFieldCell.h"
@@ -27,7 +29,6 @@
 #import "GeniusPreferencesController.h"
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
-#import <JRSwizzle/JRSwizzle.h>
 
 //! NSValueTransformer for displaying importance as simple boolean
 @interface IsPairImportantTransformer : NSValueTransformer
@@ -84,91 +85,6 @@
 
 - (NSString *) _titleForTableColumnWithIdentifier:(NSString *)identifier;
 - (void) _setTitle:(NSString *)title forTableColumnWithIdentifier:(NSString *)identifier;
-@end
-
-@interface GeniusDocument(DebugLogging)
-+ (void) installLogging;
-@end
-
-//! Simple swizzle based logging code.
-@implementation GeniusDocument(DebugLogging)
-
-//! replaces some methods with logging versions.
-+ (void) installLogging
-{
-    NSError *error = nil;
-    
-    [GeniusDocument jr_swizzleMethod:@selector(insertObject:inPairsAtIndex:) withMethod:@selector(insertObject:inPairsAtIndex:) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
-    
-    [GeniusDocument jr_swizzleMethod:@selector(removeObjectFromPairsAtIndex:) withMethod:@selector(log_removeObjectFromPairsAtIndex:) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
-    
-    [GeniusDocument jr_swizzleMethod:@selector(setPairs:) withMethod:@selector(log_setPairs:) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
-
-    [GeniusDocument jr_swizzleMethod:@selector(observeValueForKeyPath:ofObject:change:context:) withMethod:@selector(log_observeValueForKeyPath:ofObject:change:context:) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
-
-    [GeniusDocument jr_swizzleMethod:@selector(updateChangeCount:) withMethod:@selector(log_updateChangeCount:) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
-}
-
-- (void)log_updateChangeCount:(NSDocumentChangeType)change
-{
-    NSString *changeString = nil;
-
-    switch(change)
-    {
-        case NSChangeDone:
-            changeString = @"NSChangeDone";
-            break;
-        case NSChangeUndone:
-            changeString = @"NSChangeUndone";
-            break;
-        case NSChangeCleared:
-            changeString = @"NSChangeCleared";
-            break;
-        case NSChangeReadOtherContents:
-            changeString = @"NSChangeReadOtherContents";
-            break;
-        case NSChangeAutosaved:
-            changeString = @"NSChangeAutosaved";
-            break;
-    }
-    
-    NSLog(@"_cmd: %s change: %@", _cmd, changeString);
-    [self log_updateChangeCount:change];    
-}
-//! logs referenced call to referenced method executes it
-- (void)log_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    NSLog(@"_cmd: %s", _cmd);
-    NSLog(@"keyPath: %@ ofObject: %@ change: %@", keyPath, object, change);
-    [self log_observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-//! logs referenced call to referenced method executes it
-- (void) log_insertObject:(GeniusPair*) pair inPairsAtIndex:(int)index
-{
-    NSLog(@"_cmd: %s", _cmd);
-    [self log_insertObject:pair inPairsAtIndex:index];
-}
-
-//! logs referenced call to referenced method executes it
-- (void) log_removeObjectFromPairsAtIndex:(int) index
-{
-    NSLog(@"_cmd: %s", _cmd);
-    [self log_removeObjectFromPairsAtIndex:index];    
-}
-
-//! logs referenced call to referenced method executes it
-- (void) log_setPairs: (NSMutableArray*) values
-{
-    NSLog(@"_cmd: %s", _cmd);
-    return [self log_setPairs:values];
-}
-
 @end
 
 // Standard NSDocument subclass for controlling display and editing of a Genius file.

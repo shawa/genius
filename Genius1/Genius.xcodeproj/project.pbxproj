@@ -114,6 +114,8 @@
 		83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
+		83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */; };
+		83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +253,8 @@
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83D9C9850CD8AE79003B422F /* DeveloperDocs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DeveloperDocs; path = build/Development/DeveloperDocs; sourceTree = "<group>"; };
+		83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocument_DebugLogging.h; sourceTree = "<group>"; };
+		83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument_DebugLogging.m; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -333,6 +337,8 @@
 				23227C920725BD1300D09B7F /* MyQuizController.m */,
 				23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */,
 				23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */,
+				83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */,
+				83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */,
 			);
 			name = Classes;
 			path = app/Classes;
@@ -563,6 +569,7 @@
 				833C27230D2D3C410097E3CE /* NSArrayGeniusAdditions.h in Headers */,
 				833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */,
 				833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */,
+				83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +807,7 @@
 				23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */,
 				23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */,
 				83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */,
+				83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
