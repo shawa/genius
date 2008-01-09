@@ -99,18 +99,47 @@
     NSError *error = nil;
     
     [GeniusDocument jr_swizzleMethod:@selector(insertObject:inPairsAtIndex:) withMethod:@selector(insertObject:inPairsAtIndex:) error:&error];
-    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
     
     [GeniusDocument jr_swizzleMethod:@selector(removeObjectFromPairsAtIndex:) withMethod:@selector(log_removeObjectFromPairsAtIndex:) error:&error];
-    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
     
     [GeniusDocument jr_swizzleMethod:@selector(setPairs:) withMethod:@selector(log_setPairs:) error:&error];
-    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
 
     [GeniusDocument jr_swizzleMethod:@selector(observeValueForKeyPath:ofObject:change:context:) withMethod:@selector(log_observeValueForKeyPath:ofObject:change:context:) error:&error];
-    NSAssert(error == nil, @"Swizzle Unexpectedly Failed");
+    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
+
+    [GeniusDocument jr_swizzleMethod:@selector(updateChangeCount:) withMethod:@selector(log_updateChangeCount:) error:&error];
+    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
 }
 
+- (void)log_updateChangeCount:(NSDocumentChangeType)change
+{
+    NSString *changeString = nil;
+
+    switch(change)
+    {
+        case NSChangeDone:
+            changeString = @"NSChangeDone";
+            break;
+        case NSChangeUndone:
+            changeString = @"NSChangeUndone";
+            break;
+        case NSChangeCleared:
+            changeString = @"NSChangeCleared";
+            break;
+        case NSChangeReadOtherContents:
+            changeString = @"NSChangeReadOtherContents";
+            break;
+        case NSChangeAutosaved:
+            changeString = @"NSChangeAutosaved";
+            break;
+    }
+    
+    NSLog(@"_cmd: %s change: %@", _cmd, changeString);
+    [self log_updateChangeCount:change];    
+}
 //! logs referenced call to referenced method executes it
 - (void)log_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -369,12 +398,6 @@
     while ((column = [columnEnumerator nextObject]))
         [outIdentifiers addObject:[column identifier]];
     return outIdentifiers;
-}
-
-//! arrayController getter.
-- (NSArrayController *) arrayController
-{
-    return arrayController;
 }
 
 //! Returns array of keypaths used as bindings in our NSTableView.
@@ -1356,4 +1379,16 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+@end
+
+@implementation GeniusDocument(NSControlDelegate)
+- (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
+{
+    BOOL retval = NO;
+    if (commandSelector == @selector(insertNewline:)) {
+        retval = YES;
+        [fieldEditor insertNewlineIgnoringFieldEditor:nil];
+    }
+    return retval;
+}
 @end
