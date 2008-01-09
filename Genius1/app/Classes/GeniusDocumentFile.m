@@ -68,7 +68,7 @@
 {
     BOOL result = NO;
     
-    [self removeObserver:self];
+    [[self undoManager]  disableUndoRegistration];
     
     NSKeyedUnarchiver * unarchiver = nil;
     NS_DURING
@@ -182,7 +182,7 @@
             result = NO;
         }
     }
-    [self addObserver:self];
+    [[self undoManager]  enableUndoRegistration];
     return result;
 }
 
