@@ -25,8 +25,6 @@
 
 - (NSArray *) visibleColumnIdentifiers;
 
-- (NSArrayController *) arrayController;
-
 - (NSArray *) columnBindings;   // in display order
 
 @end
