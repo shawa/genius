@@ -20,6 +20,7 @@
 @class MyTableView;
 @class GeniusArrayController;
 @class GeniusPair;
+@class MyQuizController;
 
 //! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
@@ -44,9 +45,11 @@
     NSDate *_cumulativeStudyTime;                                //!< Not sure this is used anymore.
     NSNumber *probabilityCenter;                                 //!< balance between learning and reviewing.
 
-    BOOL _shouldShowImportWarningOnSave;                          //!< Flag indicating the GeniusDocument was loaded from an older version.
+    BOOL _shouldShowImportWarningOnSave;                         //!< Flag indicating the GeniusDocument was loaded from an older version.
     NSArray *_pairsDuringDrag;                                   //!< Temporary array of items being dragged and dropped.
     NSMutableSet *_customTypeStringCache;                        //!< Cache of all types used in deck.
+    
+    MyQuizController *quizController;                            //!< The current quiz controller if there is one.
 }
 
 - (NSArray*) pairs;
@@ -55,6 +58,9 @@
 - (void) insertObject:(GeniusPair*) pair inPairsAtIndex:(int)index;
 
 - (NSSearchField *) searchField;    // in toolbar
+
+- (void) _reloadCustomTypeCacheSet;
+- (NSArray *) _sortedCustomTypeStrings;
 
 @end
 
@@ -102,9 +108,11 @@
 - (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal;
 @end
 
-@interface GeniusDocument (KeyValueObserving)
+@interface GeniusDocument(UndoRedoSupport)
 - (void) addObserver: (id) observer;
 - (void) removeObserver: (id) observer;
-- (void) _reloadCustomTypeCacheSet;
-- (NSArray *) _sortedCustomTypeStrings;
+@end
+
+@interface NSWindowController(UndoRedoSupport)
+- (void) setValue:(id)value forKeyPath:(NSString*)keyPath inObject:(id)object;
 @end

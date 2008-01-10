@@ -7,9 +7,9 @@
             CLASS = MyQuizController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                answerTextView = NSTextView; 
+                answerTextView = NSTextField; 
                 associationController = NSObjectController; 
-                cueTextView = NSTextView; 
+                cueTextView = NSTextField; 
                 entryField = NSTextField; 
                 evaluationTabView = NSTabView; 
                 noButton = NSButton; 

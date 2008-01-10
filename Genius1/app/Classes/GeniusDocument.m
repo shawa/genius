@@ -255,6 +255,30 @@
     return _searchField;
 }
 
+//! Dumps the GeniusDocument#_customTypeStringCache and rebuilds it from _pairs.
+- (void) _reloadCustomTypeCacheSet
+{
+    [_customTypeStringCache removeAllObjects];
+    
+    NSEnumerator * pairEnumerator = [_pairs objectEnumerator];
+    GeniusPair * pair;
+    while ((pair = [pairEnumerator nextObject]))
+    {
+        NSString * customTypeString = [pair customTypeString];
+        if (customTypeString && [customTypeString isEqualToString:@""] == NO)
+            [_customTypeStringCache addObject:customTypeString];
+    }
+}
+
+//! Convenience method to sort the GeniusDocument#_customTypeStringCache.
+/*!
+@todo is there a reason not to do this when refreshing the cache in the first place?
+ */
+- (NSArray *) _sortedCustomTypeStrings
+{
+    return [[_customTypeStringCache allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
 @end
 
 //! Ecclectic collection of misc methods.
@@ -480,9 +504,23 @@
 
 @end
 
+//! Supports executing undo actions arranged by controller.
+@implementation NSWindowController(UndoRedoSupport)
+//! support for undo of property changes.
+- (void) setValue:(id)value forKeyPath:(NSString*)keyPath inObject:(id)object
+{
+    [object setValue:value forKeyPath:keyPath];
+}
+@end
+
 //! Collection of methods loosely related to coordinating model and view changes.
-/*! @category GeniusDocument(KeyValueObserving) */
-@implementation GeniusDocument(KeyValueObserving)
+/*! @category GeniusDocument(UndoRedoSupport) */
+@implementation GeniusDocument(UndoRedoSupport)
+//! support for undo of property changes.
+- (void) setValue:(id)value forKeyPath:(NSString*)keyPath inObject:(id)object
+{
+    [object setValue:value forKeyPath:keyPath];
+}
 
 //! registers observer for relevant keys.
 - (void) addObserver: (id) observer
@@ -500,10 +538,14 @@
     [_columnHeadersDict removeObserver:self forKeyPath:@"columnB"];
 }
 
-//! support for undo of property changes.
-- (void) changeKeyPath:(NSString*)keyPath ofObject:(id)object toValue:(id)value
+
+//! Returns quizController if we have one (ie during quiz) or self.
+- (NSObject*) activeUndoTarget
 {
-    [object setValue:value forKeyPath:keyPath];
+    NSObject *result = self;
+    if (quizController)
+        result = quizController;
+    return result;
 }
 
 //! Catches changes to many objects in the model graph and updates cached values as needed.
@@ -514,7 +556,9 @@
     if (oldValue == [NSNull null]) {
         oldValue = nil;
     }
-    [[undoManager prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
+    
+    [[undoManager prepareWithInvocationTarget:[self activeUndoTarget]] setValue:oldValue forKeyPath:keyPath inObject:object];
+
     [undoManager setActionName:@"Edit"];
     
     if ([keyPath isEqualToString:@"customTypeString"])
@@ -522,30 +566,6 @@
     
     [self _updateStatusText];
 	[self _updateLevelIndicator];
-}
-
-//! Dumps the GeniusDocument#_customTypeStringCache and rebuilds it from _pairs.
-- (void) _reloadCustomTypeCacheSet
-{
-    [_customTypeStringCache removeAllObjects];
-    
-    NSEnumerator * pairEnumerator = [_pairs objectEnumerator];
-    GeniusPair * pair;
-    while ((pair = [pairEnumerator nextObject]))
-    {
-        NSString * customTypeString = [pair customTypeString];
-        if (customTypeString && [customTypeString isEqualToString:@""] == NO)
-            [_customTypeStringCache addObject:customTypeString];
-    }
-}
-
-//! Convenience method to sort the GeniusDocument#_customTypeStringCache.
-/*!
-    @todo is there a reason not to do this when refreshing the cache in the first place?
-*/
-- (NSArray *) _sortedCustomTypeStrings
-{
-    return [[_customTypeStringCache allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 @end
@@ -801,8 +821,12 @@
     presented with an alert panel to that effect and the quiz is not begun.  In the end the status
     text and level indicator are updated
 */
-- (void) _beginQuiz:(GeniusAssociationEnumerator *)enumerator
+- (void) beginQuiz:(GeniusAssociationEnumerator *)enumerator
 {
+    quizController = [[MyQuizController alloc] init];
+
+    [enumerator performChooseAssociations];    // Pre-perform for progress indication
+
     if ([enumerator remainingCount] == 0)
     {
 		NSString * title = NSLocalizedString(@"There is nothing to study.", nil);
@@ -813,16 +837,18 @@
         NSButton * defaultButton = [[alert buttons] objectAtIndex:0];
         [defaultButton setKeyEquivalent:@"\r"];
         
-        [alert runModal];        
-        return;
+        [alert runModal];
     }
-
-    MyQuizController * quizController = [[MyQuizController alloc] init];
-    [quizController runQuiz:enumerator];
+    else {
+        [quizController runQuiz:enumerator];
+    }
+    
+    [[self undoManager] removeAllActionsWithTarget:quizController];
     [quizController release];
+    quizController = nil;
     
     [self _updateStatusText];
-	[self _updateLevelIndicator];
+    [self _updateLevelIndicator];
 }
 
 //! Set up quiz mode using enabled and based probablity.
@@ -847,8 +873,7 @@
     float m_value = (weight / 100.0) * 2.0;
     [enumerator setProbabilityCenter:m_value];
     
-    [enumerator performChooseAssociations];    // Pre-perform for progress indication
-    [self _beginQuiz:enumerator];
+    [self beginQuiz:enumerator];
 }
 
 //! Set up quiz mode using enabled and previously learned GeniusPair items.
@@ -863,8 +888,7 @@
     [enumerator setCount:13];
     [enumerator setMinimumScore:0];
 
-    [enumerator performChooseAssociations];    // Pre-perform for progress indication
-    [self _beginQuiz:enumerator];
+    [self beginQuiz:enumerator];
 }
 
 //! Set up quiz mode using the user selected GeniusPair items.
@@ -878,8 +902,7 @@
     NSArray * associations = [self _enabledAssociationsForPairs:selectedPairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
 
-    [enumerator performChooseAssociations];    // Pre-perform for progress indication
-    [self _beginQuiz:enumerator];
+    [self beginQuiz:enumerator];
 }
 
 @end

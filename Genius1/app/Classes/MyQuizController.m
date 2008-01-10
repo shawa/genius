@@ -261,7 +261,7 @@
     }
     // No associations left, so time to clean up.
     else {
-        [self quizTeardown];
+        [[self window] performClose:nil];
     }
 }
 
