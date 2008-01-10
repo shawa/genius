@@ -96,8 +96,8 @@ and deletes all entries from GeniusAssociation#_perfDict.
     [self willChangeValueForKey:GeniusAssociationScoreNumberKey];
     [self willChangeValueForKey:GeniusAssociationDueDateKey];
     [_perfDict removeAllObjects];
-    [self didChangeValueForKey:GeniusAssociationScoreNumberKey];
     [self didChangeValueForKey:GeniusAssociationDueDateKey];
+    [self didChangeValueForKey:GeniusAssociationScoreNumberKey];
 }
 
 //! Convenience method for getting GeniusAssociation#scoreNumber as an integer.
