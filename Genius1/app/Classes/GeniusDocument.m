@@ -1324,7 +1324,7 @@
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
 {
     BOOL retval = NO;
-    if (commandSelector == @selector(insertNewline:))
+    if ([control isKindOfClass:[NSTextField class]] && commandSelector == @selector(insertNewline:))
     {
         retval = YES;
         [fieldEditor insertNewlineIgnoringFieldEditor:nil];
