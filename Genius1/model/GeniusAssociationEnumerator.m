@@ -107,7 +107,6 @@ static float PoissonValue(int x, float m)
     _minimumScore = -2;
     _maximumScore = _minimumScore;
     
-    
     NSMutableArray * outAssociations = [NSMutableArray array];
     NSEnumerator * associationEnumerator = [_inputAssociations objectEnumerator];
     GeniusAssociation * association;
@@ -121,11 +120,6 @@ static float PoissonValue(int x, float m)
         // Filter out minimum association scores
         if ([association score] < requestedMinimumScore)
             continue;
-
-        // Filter out long-term items (HACK)
-/*        NSDate * limitDate = [NSDate dateWithTimeIntervalSinceNow:7*60];
-        if ([[association dueDate] compare:limitDate] == NSOrderedDescending)
-            continue;*/
 
         [(NSMutableArray *)outAssociations addObject:association];
             
