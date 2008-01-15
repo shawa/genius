@@ -114,6 +114,8 @@
 		83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
+		83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
+		83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */; };
 		83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
@@ -150,6 +152,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */,
 				833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +256,7 @@
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83D9C9850CD8AE79003B422F /* DeveloperDocs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DeveloperDocs; path = build/Development/DeveloperDocs; sourceTree = "<group>"; };
+		83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocument_DebugLogging.h; sourceTree = "<group>"; };
 		83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument_DebugLogging.m; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +285,7 @@
 				833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */,
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */,
+				83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +295,7 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */,
 				83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */,
 				2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
@@ -920,7 +926,13 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../../../Sparkle/Extras/Source/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -956,7 +968,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../../../Sparkle/Extras/Source/build/Debug\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
