@@ -1,82 +1,84 @@
-	body {
-		width: 700px;
-		font-family:'Lucida Grande',helvetica,verdana,arial,sans-serif;
-		margin: auto;
-	}
-	#background	{
-		background: #CCFFFF url("images/top-header.png");
-		background-repeat: no-repeat;
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-	#header {
-		color: #FFFFFF;
-		padding-top: 10px;
-		padding-left: 10px;
-	}
-	
-	#download>a>img {
-		position: relative;
-		top: 10px;
-	}
+body {
+	width: 700px;
+	font-family:'Lucida Grande',helvetica,verdana,arial,sans-serif;
+	margin: auto;
+}
+#background	{
+	background: #CCFFFF url("images/top-header.png");
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#header {
+	color: #FFFFFF;
+	padding-top: 10px;
+	padding-left: 10px;
+}
 
-	#download {
-		float:right;
-	}
-	
-	#content>h2 {
-		padding-top: 20px;
-	}
-	
-	#content {
-		clear: both;
-	}
-	
-	#footer {
-		text-align: center;
-		margin-top: 100px;
-		padding-bottom: 10px;
-	}
-	
-	#title {
-		font-size: 32px;
-		vertical-align: top;
-	}
-	
-	#header>img {
-		float:left;
-		padding-right: 40px;
-	}
-	
-	img, a {
-		border: none;
-		text-decoration: none;		
-	}
-	
-	li a {
-		color: #FFFFFF;
-	}
-	
-	a:hover {
-		color: #AAAAAA;
-		text-decoration: underline;		
-	}
-	
-	li {
-		display: inline;
-		list-style-type: none;
-		background: transparent url("images/tab-inactive.png") no-repeat;
-		float:right;
-		width: 109px;
-		height: 31px;
-		padding-top: 5px;
-		margin-right: 10px;
-		margin-top: 0px;
-		text-align:center;
-		font-size: 14px;
-	}
-	
-	li.active {
-		background: transparent url("images/tab-active.png") no-repeat;
-	}
-	
+#download>a>img {
+	position: relative;
+	top: 10px;
+}
+
+#download {
+	float:right;
+}
+
+#content>h2 {
+	padding-top: 20px;
+}
+
+#content {
+	clear: both;
+}
+
+#footer {
+	border-top-style: dotted;
+	border-top-width: thin;
+	margin-top: 100px;
+	padding-bottom: 10px;
+	text-align: right;
+}
+
+#title {
+	font-size: 32px;
+	vertical-align: top;
+}
+
+#header>img {
+	float:left;
+	padding-right: 40px;
+}
+
+img, a {
+	border: none;
+	text-decoration: none;		
+}
+
+li a {
+	color: #FFFFFF;
+}
+
+a:hover {
+	color: #AAAAAA;
+	text-decoration: underline;		
+}
+
+li {
+	display: inline;
+	list-style-type: none;
+	background: transparent url("images/tab-inactive.png") no-repeat;
+	float:right;
+	width: 109px;
+	height: 31px;
+	padding-top: 5px;
+	margin-right: 10px;
+	margin-top: 0px;
+	text-align:center;
+	font-size: 14px;
+}
+
+li.active {
+	background: transparent url("images/tab-active.png") no-repeat;
+}
+
