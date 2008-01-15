@@ -5,34 +5,37 @@
         <link>http://genius.sourceforge.net/</link>
         <description>Genius Project Software Updates for version 1.7.</description>
         <ttl>1</ttl>
+
         <item>
             <title>Version 1.7.185 (2 new features)</title>
             <description>
             <![CDATA[
-            <b>Fixes:</b>
-            <ol>
-                <li>1868874 Resize quiz window does not work</li>
-                <li>1868739 Table view editing doesn't work right anymore</li>
-            </ol>
+            <b>New Features:</b>
+            <ul>
+                <li>None.</li>
+            </ul>
+            <b>New Fixes:</b>
+            <ul>
+                <li>1868874: Resize quiz window does not work.</li>
+                <li>1868739: Table view editing doesn't work right anymore.</li>
+            </ul>
             ]]>
             </description>
             <enclosure sparkle:version="1.7.185" url="http://downloads.sourceforge.net/genius/Genius-1.7.185.dmg" length="311580" type="application/octet-stream"/>
-            <pubDate>15 Jan 2008 15:34 +0100</pubDate>
+            <pubDate>11 Jan 2008 10:41 +0100</pubDate>
+        </item>
+
+        <item>
+            <title>Version 1.7.181 (2 new features)</title>
+            <description>
+            <![CDATA[
+            <b>Notes:</b>
+            Notes: This release features a new feature. Undo / Redo is implemented. There are also some memory management fixes so this release doesn't "leak" as much as previous ones. There are some user interface changes. No more Scrolling Text entry boxes. This should making tabbing between fields easier. And the labels in the info drawer are no longer editable. 
+            ]]>
+            </description>
+            <enclosure sparkle:version="1.7.181" url="http://downloads.sourceforge.net/genius/Genius-1.7.181.dmg" length="312259" type="application/octet-stream"/>
+            <pubDate>10 Jan 2008 17:14 +0100</pubDate>
         </item>
         
-        <item>
-            <title>Version 1.7.185 (2 new features)</title>
-            <description>
-            <![CDATA[
-            <b>Fixes:</b>
-            <ol>
-                <li>1868874 Resize quiz window does not work</li>
-                <li>1868739 Table view editing doesn't work right anymore</li>
-            </ol>
-            ]]>
-            </description>
-            <enclosure sparkle:version="1.7.185" url="http://downloads.sourceforge.net/genius/Genius-1.7.185.dmg" length="311580" type="application/octet-stream"/>
-            <pubDate>15 Jan 2008 15:34 +0100</pubDate>
-        </item>
     </channel>
 </rss>
