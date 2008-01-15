@@ -578,6 +578,10 @@
 			83E0C1380D3D162D000BED1F /* PBXTextBookmark */ = 83E0C1380D3D162D000BED1F /* PBXTextBookmark */;
 			83E0C1390D3D167B000BED1F /* PBXTextBookmark */ = 83E0C1390D3D167B000BED1F /* PBXTextBookmark */;
 			83E0C13A0D3D167B000BED1F /* PBXTextBookmark */ = 83E0C13A0D3D167B000BED1F /* PBXTextBookmark */;
+			83E0C13D0D3D1795000BED1F /* PBXTextBookmark */ = 83E0C13D0D3D1795000BED1F /* PBXTextBookmark */;
+			83E0C13E0D3D1795000BED1F /* PBXTextBookmark */ = 83E0C13E0D3D1795000BED1F /* PBXTextBookmark */;
+			83E0C1410D3D179E000BED1F /* PBXTextBookmark */ = 83E0C1410D3D179E000BED1F /* PBXTextBookmark */;
+			83E0C1420D3D179E000BED1F /* PBXTextBookmark */ = 83E0C1420D3D179E000BED1F /* PBXTextBookmark */;
 			83E23A9E0D355F4A00E82369 /* PBXTextBookmark */ = 83E23A9E0D355F4A00E82369 /* PBXTextBookmark */;
 			83E23AA20D355F4A00E82369 /* PBXTextBookmark */ = 83E23AA20D355F4A00E82369 /* PBXTextBookmark */;
 			83E23AB30D35603C00E82369 /* PBXTextBookmark */ = 83E23AB30D35603C00E82369 /* PBXTextBookmark */;
@@ -1390,6 +1394,46 @@
 		name = "Release History.rtf: 1";
 		rLen = 79;
 		rLoc = 0;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 0;
+	};
+	83E0C13D0D3D1795000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83E0BDAF0D3CFD4F000BED1F /* NSApplication+AppCopies.h */;
+		name = "NSApplication+AppCopies.h: 14";
+		rLen = 0;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 241;
+		vrLoc = 0;
+	};
+	83E0C13E0D3D1795000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23B358BC073C0FA700B89026 /* Release History.rtf */;
+		name = "Release History.rtf: 1";
+		rLen = 0;
+		rLoc = 29;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 0;
+	};
+	83E0C1410D3D179E000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83E0BDAF0D3CFD4F000BED1F /* NSApplication+AppCopies.h */;
+		name = "NSApplication+AppCopies.h: 14";
+		rLen = 0;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 241;
+		vrLoc = 0;
+	};
+	83E0C1420D3D179E000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23B358BC073C0FA700B89026 /* Release History.rtf */;
+		name = "Release History.rtf: 1";
+		rLen = 0;
+		rLoc = 29;
 		rType = 0;
 		vrLen = 936;
 		vrLoc = 0;
