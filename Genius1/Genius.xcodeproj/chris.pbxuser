@@ -574,6 +574,10 @@
 			83E0C1310D3D1310000BED1F /* PBXTextBookmark */ = 83E0C1310D3D1310000BED1F /* PBXTextBookmark */;
 			83E0C1340D3D15BE000BED1F /* PBXTextBookmark */ = 83E0C1340D3D15BE000BED1F /* PBXTextBookmark */;
 			83E0C1350D3D15BE000BED1F /* PBXTextBookmark */ = 83E0C1350D3D15BE000BED1F /* PBXTextBookmark */;
+			83E0C1370D3D162D000BED1F /* PBXTextBookmark */ = 83E0C1370D3D162D000BED1F /* PBXTextBookmark */;
+			83E0C1380D3D162D000BED1F /* PBXTextBookmark */ = 83E0C1380D3D162D000BED1F /* PBXTextBookmark */;
+			83E0C1390D3D167B000BED1F /* PBXTextBookmark */ = 83E0C1390D3D167B000BED1F /* PBXTextBookmark */;
+			83E0C13A0D3D167B000BED1F /* PBXTextBookmark */ = 83E0C13A0D3D167B000BED1F /* PBXTextBookmark */;
 			83E23A9E0D355F4A00E82369 /* PBXTextBookmark */ = 83E23A9E0D355F4A00E82369 /* PBXTextBookmark */;
 			83E23AA20D355F4A00E82369 /* PBXTextBookmark */ = 83E23AA20D355F4A00E82369 /* PBXTextBookmark */;
 			83E23AB30D35603C00E82369 /* PBXTextBookmark */ = 83E23AB30D35603C00E82369 /* PBXTextBookmark */;
@@ -993,7 +997,7 @@
 		functionName = "-_fetchAppcastFromURL:";
 		hitCount = 1;
 		lineNumber = 68;
-		modificationTime = 222107027.271547;
+		modificationTime = 222107258.70348;
 		state = 1;
 	};
 	83E0C08A0D3D0BB7000BED1F /* PBXTextBookmark */ = {
@@ -1350,6 +1354,46 @@
 		vrLen = 936;
 		vrLoc = 0;
 	};
+	83E0C1370D3D162D000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83E0BDAF0D3CFD4F000BED1F /* NSApplication+AppCopies.h */;
+		name = "NSApplication+AppCopies.h: 14";
+		rLen = 0;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 241;
+		vrLoc = 0;
+	};
+	83E0C1380D3D162D000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23B358BC073C0FA700B89026 /* Release History.rtf */;
+		name = "Release History.rtf: 1";
+		rLen = 79;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 0;
+	};
+	83E0C1390D3D167B000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83E0BDAF0D3CFD4F000BED1F /* NSApplication+AppCopies.h */;
+		name = "NSApplication+AppCopies.h: 14";
+		rLen = 0;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 241;
+		vrLoc = 0;
+	};
+	83E0C13A0D3D167B000BED1F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23B358BC073C0FA700B89026 /* Release History.rtf */;
+		name = "Release History.rtf: 1";
+		rLen = 79;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 0;
+	};
 	83E2361F0D33AB9000E82369 /* -[NSMenuItem setEnabled:] */ = {
 		isa = PBXSymbolicBreakpoint;
 		actions = (
@@ -1359,7 +1403,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = AppKit;
-		modificationTime = 222106381.347424;
+		modificationTime = 222107179.067401;
 		state = 2;
 		symbolName = "-[NSMenuItem setEnabled:]";
 	};
@@ -1372,7 +1416,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = AppKit;
-		modificationTime = 222106381.347714;
+		modificationTime = 222107179.067887;
 		state = 2;
 		symbolName = "-[NSWindow undo:]";
 	};
@@ -1483,7 +1527,7 @@
 		hitCount = 1;
 		lineNumber = 51;
 		location = Genius;
-		modificationTime = 222106381.345685;
+		modificationTime = 222107179.064124;
 		state = 2;
 	};
 	83E23BFB0D36214B00E82369 /* MyQuizController.m:190 */ = {
@@ -1498,7 +1542,7 @@
 		hitCount = 1;
 		lineNumber = 190;
 		location = Genius;
-		modificationTime = 222106381.346152;
+		modificationTime = 222107179.064716;
 		state = 2;
 	};
 	83E23C000D3621BE00E82369 /* MyQuizController.m:447 */ = {
@@ -1513,7 +1557,7 @@
 		hitCount = 1;
 		lineNumber = 447;
 		location = Genius;
-		modificationTime = 222106381.346442;
+		modificationTime = 222107179.064985;
 		state = 2;
 	};
 	83E23C030D3621F600E82369 /* -[NSWindowController setDocument:] */ = {
@@ -1525,7 +1569,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = AppKit;
-		modificationTime = 222106381.347995;
+		modificationTime = 222107179.068244;
 		state = 2;
 		symbolName = "-[NSWindowController setDocument:]";
 	};
@@ -1595,7 +1639,7 @@
 		hitCount = 1;
 		lineNumber = 85;
 		location = Genius;
-		modificationTime = 222106381.346727;
+		modificationTime = 222107179.065389;
 		state = 2;
 	};
 	83E23E850D366B4500E82369 /* PBXTextBookmark */ = {
