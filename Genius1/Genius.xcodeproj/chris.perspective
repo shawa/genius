@@ -292,7 +292,7 @@
 							<real>281</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>164 55 1195 823 0 0 1440 878 </string>
+						<string>163 55 1195 823 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -320,7 +320,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>83F1F0B20D42AC7800468B3B</string>
+										<string>83F1F0B40D42AC9900468B3B</string>
 										<key>history</key>
 										<array>
 											<string>83E23F590D3761FA00E82369</string>
@@ -391,7 +391,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {892, 403}}</string>
 								<key>RubberWindowFrame</key>
-								<string>164 55 1195 823 0 0 1440 878 </string>
+								<string>163 55 1195 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -450,7 +450,7 @@
 										<key>Frame</key>
 										<string>{{10, 27}, {892, 347}}</string>
 										<key>RubberWindowFrame</key>
-										<string>164 55 1195 823 0 0 1440 878 </string>
+										<string>163 55 1195 823 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXCVSModule</string>
@@ -604,7 +604,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>83F1F0B30D42AC7800468B3B</string>
+										<string>83F1F0B50D42AC9900468B3B</string>
 										<key>history</key>
 										<array>
 											<string>83E23AB30D35603C00E82369</string>
@@ -964,7 +964,7 @@
 		<string>/Users/chris/Development/genius/trunk/Genius1/Genius.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>164 55 1195 823 0 0 1440 878 </string>
+	<string>163 55 1195 823 0 0 1440 878 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

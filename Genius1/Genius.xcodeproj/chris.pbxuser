@@ -1184,6 +1184,8 @@
 			83F1F0B10D42AC7800468B3B /* PBXTextBookmark */ = 83F1F0B10D42AC7800468B3B /* PBXTextBookmark */;
 			83F1F0B20D42AC7800468B3B /* PBXTextBookmark */ = 83F1F0B20D42AC7800468B3B /* PBXTextBookmark */;
 			83F1F0B30D42AC7800468B3B /* PBXTextBookmark */ = 83F1F0B30D42AC7800468B3B /* PBXTextBookmark */;
+			83F1F0B40D42AC9900468B3B /* PBXTextBookmark */ = 83F1F0B40D42AC9900468B3B /* PBXTextBookmark */;
+			83F1F0B50D42AC9900468B3B /* PBXTextBookmark */ = 83F1F0B50D42AC9900468B3B /* PBXTextBookmark */;
 		};
 		sourceControlManager = 83F415BC0C95543200B44E51 /* Source Control */;
 		userBookmarkGroup = 83978D6F0D1730BB003B1C93 /* PBXBookmarkGroup */;
@@ -8089,8 +8091,8 @@
 		path = /Users/chris/Development/genius/trunk/Genius1/Genius.xcodeproj/chris.pbxuser;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {845, 115794}}";
-			sepNavSelRange = "{254023, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {845, 116270}}";
+			sepNavSelRange = "{255073, 0}";
 			sepNavVisRect = "{{0, 0}, {845, 371}}";
 		};
 	};
@@ -8191,6 +8193,26 @@
 		vrLoc = 0;
 	};
 	83F1F0B30D42AC7800468B3B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		name = "GeniusDocument.m: 677";
+		rLen = 0;
+		rLoc = 23143;
+		rType = 0;
+		vrLen = 898;
+		vrLoc = 22482;
+	};
+	83F1F0B40D42AC9900468B3B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F1F0A80D42AC5400468B3B /* chris.pbxuser */;
+		name = "chris.pbxuser: 8305";
+		rLen = 0;
+		rLoc = 255073;
+		rType = 0;
+		vrLen = 799;
+		vrLoc = 0;
+	};
+	83F1F0B50D42AC9900468B3B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 677";
