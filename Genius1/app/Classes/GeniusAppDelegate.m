@@ -51,6 +51,7 @@
 //! Releases @a preferencesController and frees memory.
 - (void) dealloc {
     [preferencesController release];
+    [helpController release];
     [super dealloc];
 }
 
@@ -78,24 +79,25 @@
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-//! Does nothing
+//! Empty method to ensure that our sound toggle menu stays active.
 /*!
-    If we weren't using bindings to set this preference we'd need the following line of code.
-    But we are using bindings so it isn't needed.  We have to bind the menu item to something
-    or it wouldn't be enabled.  So we use this dummy method here.
-
-    <tt>[[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:GeniusPreferencesUseSoundEffectsKey];</tt>
- 
-     @todo replace this with code that enables/disables menu items explicitely.
- */
+  The state of the toggle menu is bound directly(through a binding) to the use sound effects user preference.
+  However without a target and action it wouldn't remain enabled.
+*/
 - (IBAction) toggleSoundEffects:(id)sender
 {
+
 }
 
 //! Presents basic help window @see GeniusHelpWindowController#showWindow
 - (IBAction) showHelpWindow:(id)sender
 {
-    [GeniusHelpWindowController showWindow];
+    if (!helpController) {
+        helpController = [[GeniusHelpWindowController alloc] init];
+    }
+    
+    [[helpController window] center];
+    [helpController showWindow:self];
 }
 
 //! Wraps call to GeniusDocument(FileFormat)::importFile:

@@ -29,46 +29,9 @@
 #import "GeniusPreferencesController.h"
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
-
-//! NSValueTransformer for displaying importance as simple boolean
-@interface IsPairImportantTransformer : NSValueTransformer
-@end
-@implementation IsPairImportantTransformer
-//! We return an NSNumber.
-+ (Class)transformedValueClass { return [NSNumber class]; }
-
-//! Don't support reverse transformation.
-+ (BOOL)supportsReverseTransformation { return NO; }
-
-//! Returns 1 for values greater than kGeniusPairNormalImportance.
-- (id)transformedValue:(id)value {
-    int importance = [value intValue];
-    return [NSNumber numberWithBool:(importance > kGeniusPairNormalImportance) ? YES : NO];
-}
-@end
-
-//! NSValueTransformer for displaying importance as simple color value
-@interface ColorFromPairImportanceTransformer : NSValueTransformer
-@end
-@implementation ColorFromPairImportanceTransformer
-//! We return an NSColor
-+ (Class)transformedValueClass { return [NSColor class]; }
-
-//! Do not support writing the value back.
-+ (BOOL)supportsReverseTransformation { return NO; }
-
-//! Return red for max importance, gray for 'normal', and black for everything else.
-- (id)transformedValue:(id)value {
-    int importance = [value intValue];
-    if (importance == kGeniusPairMaximumImportance)
-        return [NSColor redColor];
-    else if (importance < kGeniusPairNormalImportance)
-        return [NSColor darkGrayColor];
-    else
-        return [NSColor blackColor];
-}
-@end
-
+#import "IsPairImportantTransformer.h"
+#import "ColorFromPairImportanceTransformer.h"
+#import "TableViewResponder.h"
 
 @interface GeniusDocument (VeryPrivate)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
@@ -90,10 +53,16 @@
 // Standard NSDocument subclass for controlling display and editing of a Genius file.
 @implementation GeniusDocument
 
-//! sets up swizzle based logging.
+//! Sets up logging and registers value transformers.
 + (void) initialize
 {
     [super initialize];
+    
+    // install our read only value tranformers referenced in GeniusDocument.nib.
+    [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
+    [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
+
+    // install swizzle based logging
 #if DEBUG
     [self installLogging];
 #endif
@@ -102,8 +71,6 @@
 //! Basic NSDocument init method.
 /*!
     Initializes some transformers and registers them with NSValueTransformer.
- 
-    @todo Probably the transformers don't need to be registered every time.
 */
 - (id)init
 {
@@ -127,8 +94,6 @@
         _tableColumns = [[NSMutableDictionary alloc] init];
         _customTypeStringCache = [[NSMutableSet alloc] init];
         
-        [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
-        [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
 
         // setup change tracking
         [self addObserver:self];
@@ -137,9 +102,6 @@
 }
 
 //! Releases various ivars and deallocates memory.
-/*!
-    @todo Check if this leaks anything.
-*/
 - (void) dealloc
 {
     [_pairs release];
@@ -149,6 +111,8 @@
     [_searchField release];
     [_customTypeStringCache release];
     [probabilityCenter release];
+    [_sortedCustomTypeStrings release];
+    [_tableViewResponder release];
     
     [super dealloc];
 }
@@ -169,7 +133,6 @@
     
     [self setupToolbarForWindow:[aController window]];
     [_searchField setNextKeyView:tableView];
-    //[tableView setNextKeyView:_searchField];    // This doesn't work!
 	
     // Retain all table columns in case we hide them later
     NSEnumerator * columnEnumerator = [[tableView tableColumns] objectEnumerator];
@@ -191,7 +154,12 @@
     tableColumn = [tableView tableColumnWithIdentifier:@"scoreBA"];
     [tableColumn setDataCell:cell];
 
-    [tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTabularTextPboardType, nil]];    
+    [tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTabularTextPboardType, nil]];
+    [tableView setDraggingSourceOperationMask:(NSDragOperationCopy) forLocal:NO];
+    
+    _tableViewResponder = [[TableViewResponder alloc] initWithTarget:self];
+    [_tableViewResponder setNextResponder:[tableView nextResponder]];
+    [tableView setNextResponder:_tableViewResponder];
 
 	// Configure list font size
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
@@ -268,15 +236,8 @@
         if (customTypeString && [customTypeString isEqualToString:@""] == NO)
             [_customTypeStringCache addObject:customTypeString];
     }
-}
-
-//! Convenience method to sort the GeniusDocument#_customTypeStringCache.
-/*!
-@todo is there a reason not to do this when refreshing the cache in the first place?
- */
-- (NSArray *) _sortedCustomTypeStrings
-{
-    return [[_customTypeStringCache allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    [_sortedCustomTypeStrings release];
+    _sortedCustomTypeStrings = [[[_customTypeStringCache allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] retain];
 }
 
 @end
@@ -380,9 +341,6 @@
 }
 
 //! Returns row height that is suitable given our chosen font size.
-/*!
-    @todo not sure why the font size needs to be reflected anywhere but the card view?
- */
 + (float) rowHeightForSizeMode:(int)mode
 {
 	switch (mode)
@@ -424,16 +382,15 @@
 
 //! Convenience method to check which GeniusPair GeniusAssociation scores are Displayed.
 /*!
-    Hiding a score excludes its related GeniusAssociation from the quiz.
+    Hiding a score column excludes its related GeniusAssociation from the quiz.
     @todo Wouldn't this be better controlled during Quiz setup?
-    @todo Is this really that clear a UI control?
+    @todo Is this really that clear as UI control?
 */
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs
 {
-    NSTableColumn * associationABColumn = [_tableColumns objectForKey:@"scoreAB"];
-    BOOL useAB = [[tableView tableColumns] containsObject:associationABColumn];
-    NSTableColumn * associationBAColumn = [_tableColumns objectForKey:@"scoreBA"];
-    BOOL useBA = [[tableView tableColumns] containsObject:associationBAColumn];
+    BOOL useAB = [[tableView tableColumns] containsObject:[_tableColumns objectForKey:@"scoreAB"]];
+    
+    BOOL useBA = [[tableView tableColumns] containsObject:[_tableColumns objectForKey:@"scoreBA"]];
 
     return [GeniusPair associationsForPairs:pairs useAB:useAB useBA:useBA];
 }
@@ -655,33 +612,6 @@
 */
 @implementation GeniusDocument(IBActions)
 
-//! Saves GeniusDocument
-/*! 
-    The implementation checks to see if saving the file would make it impossible to open the file again with older versions of Genius.
-    Assuming this is okay, it simply passes the call to super.
-    @todo Perhaps this would be better to have in the GeniusDocument(FileFormat) category next to loadDataRepresentation:ofType:.
-*/
-- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
-{
-    if (_shouldShowImportWarningOnSave)
-    {
-		NSString * title = NSLocalizedString(@"This document needs to be saved in a newer format.", nil);
-		NSString * message = NSLocalizedString(@"Once you save, the file will no longer be readable by previous versions of Genius.", nil);
-		NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
-		NSString * saveTitle = NSLocalizedString(@"Save", nil); 
-
-        NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:cancelTitle alternateButton:saveTitle otherButton:nil informativeTextWithFormat:message];
-        int result = [alert runModal];
-        if (result != NSAlertAlternateReturn) // not NSAlertSecondButtonReturn?
-            return;
-        
-        _shouldShowImportWarningOnSave = NO;
-    }
-    
-    [super saveDocumentWithDelegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
-}
-
-
 //! Turns on/off display of the group column.
 - (IBAction)toggleGroupColumn:(id)sender
 {
@@ -795,7 +725,7 @@
     [associations makeObjectsPerformSelector:@selector(reset)];
 }
 
-//! Sets the importance of the selected items from 1 to 5.
+//! Sets the importance of the selected items from -1 to 10.
 - (IBAction)setItemImportance:(id)sender
 {
     NSMenuItem * menuItem = (NSMenuItem *)sender;
@@ -807,6 +737,14 @@
     while ((pair = [objectEnumerator nextObject]))
         [pair setImportance:importance];
 }
+
+
+//! Move cursor to search field
+- (IBAction) selectSearchField: (id) sender
+{
+    [[_searchField window] makeFirstResponder:_searchField];
+}
+
 
 //! Action invoked from the little find NSTextField 
 - (IBAction)search:(id)sender
@@ -915,7 +853,6 @@
 //! Enable / Disable menu items.
 /*!
     Handles updates of table colum toggles, auto pick quiz mode, setting of importance, duplication, and reseting.
-    @todo Check if this can handle toggleSoundEffects menu item enable/disable.
 */
 - (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
 {
@@ -1126,53 +1063,6 @@
 
 @end
 
-//! NSTableView subclass that supports header cell editing.
-/*!
-    Adds support for delete key and tabbing into the search field.
- 
-    @see NSObject(MyTableViewDelegate)
-    @todo The delete and tab keys can probably both be handled via the responder chain.
-    @todo delete this class and related code.
-*/
-@implementation MyTableView
-
-//! Workaround for Global drag and drop
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal
-{
-    if (isLocal)
-        return [super draggingSourceOperationMaskForLocal:isLocal];
-    else
-        return NSDragOperationCopy;
-}
-
-//! Handle delete key.
-/*!
-    @todo Delete can be handled via responder chain. 
-*/
-- (void)keyDown:(NSEvent *)theEvent
-{	
-    if ([theEvent keyCode] == 51)       // Delete
-    {
-        id delegate = [self delegate];
-        if (delegate && [delegate respondsToSelector:@selector(delete:)])
-        {
-            [delegate performSelector:@selector(delete:) withObject:self];
-            return;
-        }
-    }
-        // This is a super hack to make tab select the search field.
-        // Toolbar items aren't views and therefore aren't included in the window's key view loop.
-    else if ([theEvent keyCode] == 48)       // Tab
-    {
-        [[self window] makeFirstResponder:[documentController searchField]];
-    }
-
-    [super keyDown:theEvent];
-}
-
-@end
-
-
 //! Subclass to handle item filtering
 @implementation GeniusArrayController
 
@@ -1243,22 +1133,19 @@
 //! returns index of @a aString from _customTypeStringCache.
 - (unsigned int)comboBox:(NSComboBox *)aComboBox indexOfItemWithStringValue:(NSString *)aString
 {
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    return [sortedVariantStrings indexOfObject:aString];
+    return [_sortedCustomTypeStrings indexOfObject:aString];
 }
 
 //! returns object at @a index from _customTypeStringCache.
 - (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(int)index
 {
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    return [sortedVariantStrings objectAtIndex:index];
+    return [_sortedCustomTypeStrings objectAtIndex:index];
 }
 
 //! returns number of items in _customTypeStringCache.
 - (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    return [sortedVariantStrings count];
+    return [_sortedCustomTypeStrings count];
 }
 
 @end
@@ -1270,15 +1157,13 @@
 //! returns value from _customTypeStringCache.
 - (id)comboBoxCell:(NSComboBoxCell *)aComboBoxCell objectValueForItemAtIndex:(int)index
 {
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    return [sortedVariantStrings objectAtIndex:index];
+    return [_sortedCustomTypeStrings objectAtIndex:index];
 }
 
 //! count of _customTypeStringCache.
 - (int)numberOfItemsInComboBoxCell:(NSComboBoxCell *)aComboBoxCell
 {
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    return [sortedVariantStrings count];
+    return [_sortedCustomTypeStrings count];
 }
 
 //! Returns index of @a string in _customTypeStringCache.
@@ -1286,15 +1171,13 @@
 {
     string = [aComboBoxCell stringValue];   // string comes in as (null) for some reason
     
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    return [sortedVariantStrings indexOfObject:string];
+    return [_sortedCustomTypeStrings indexOfObject:string];
 }
 
 //! Field completion for the custom type popup.
 - (NSString *)comboBoxCell:(NSComboBoxCell *)aComboBoxCell completedString:(NSString*)uncompletedString
 {
-    NSArray * sortedVariantStrings = [self _sortedCustomTypeStrings];
-    NSEnumerator * stringEnumerator = [sortedVariantStrings objectEnumerator];
+    NSEnumerator * stringEnumerator = [_sortedCustomTypeStrings objectEnumerator];
     NSString * string;
     while ((string = [stringEnumerator nextObject]))
         if ([[string lowercaseString] hasPrefix:[uncompletedString lowercaseString]])

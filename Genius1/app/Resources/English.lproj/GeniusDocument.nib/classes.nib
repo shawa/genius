@@ -36,18 +36,12 @@
                 levelIndicator = NSLevelIndicator; 
                 notesDrawer = NSDrawer; 
                 statusField = NSTextField; 
-                tableView = MyTableView; 
+                tableView = NSTableView; 
             }; 
             SUPERCLASS = NSDocument; 
         }, 
         {CLASS = GeniusItem; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = LevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
-        {
-            CLASS = MyTableView; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {documentController = id; }; 
-            SUPERCLASS = NSTableView; 
-        }, 
         {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = NSObject; LANGUAGE = ObjC; }
     ); 

@@ -17,7 +17,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MyTableView;
 @class GeniusArrayController;
 @class GeniusPair;
 @class MyQuizController;
@@ -25,7 +24,7 @@
 //! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
 {
-    IBOutlet MyTableView *tableView;                    //!< The main table showing the GeniusPair items.
+    IBOutlet NSTableView *tableView;                    //!< The main table showing the GeniusPair items.
     IBOutlet GeniusArrayController *arrayController;    //!< The controller holding the displayed items.
     IBOutlet NSTextField  *statusField;                 //!< Shows selection count and total items.
     IBOutlet NSTextField *levelField;                   //!< Displays percentage of items with any score.
@@ -50,6 +49,8 @@
     NSMutableSet *_customTypeStringCache;                        //!< Cache of all types used in deck.
     
     MyQuizController *quizController;                            //!< The current quiz controller if there is one.
+    NSArray *_sortedCustomTypeStrings;                           //!< Sorted array of custom types cached from Genius Pairs.
+    id _tableViewResponder;                                      //!< pointer to key event handler for table view.
 }
 
 - (NSArray*) pairs;
@@ -60,7 +61,6 @@
 - (NSSearchField *) searchField;    // in toolbar
 
 - (void) _reloadCustomTypeCacheSet;
-- (NSArray *) _sortedCustomTypeStrings;
 
 @end
 
@@ -98,14 +98,6 @@
 - (NSString *) filterString;
 - (void) setFilterString:(NSString *)string;
 - (NSArray *)arrangeObjects:(NSArray *)objects;
-@end
-
-@interface MyTableView : NSTableView
-{
-    IBOutlet id documentController; //!< provides access to searchField of GeniusDocument
-}
-
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal;
 @end
 
 @interface GeniusDocument(UndoRedoSupport)

@@ -22,6 +22,4 @@
     IBOutlet id textView; //!< Used to display the help file.
 }
 
-+ (void) showWindow;
-
 @end

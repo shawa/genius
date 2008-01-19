@@ -18,9 +18,11 @@
 #import <Foundation/Foundation.h>
 
 @class GeniusPreferencesController;
+@class GeniusHelpWindowController;
 
 @interface GeniusAppDelegate : NSObject {
     GeniusPreferencesController *preferencesController;  //!< Standard NSWindowController subclass for preferences window.
+    GeniusHelpWindowController *helpController;              //!< Standard NSWindowController subclass for help window.
 }
 
 - (IBAction) showPreferences:(id)sender;

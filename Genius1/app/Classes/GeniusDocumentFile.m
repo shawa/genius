@@ -186,6 +186,32 @@
     return result;
 }
 
+//! Saves GeniusDocument
+/*! 
+The implementation checks to see if saving the file would make it impossible to open the file again with older versions of Genius.
+Assuming this is okay, it simply passes the call to super.
+@todo Perhaps this would be better to have in the GeniusDocument(FileFormat) category next to loadDataRepresentation:ofType:.
+*/
+- (void)saveDocumentWithDelegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo
+{
+    if (_shouldShowImportWarningOnSave)
+    {
+		NSString * title = NSLocalizedString(@"This document needs to be saved in a newer format.", nil);
+		NSString * message = NSLocalizedString(@"Once you save, the file will no longer be readable by previous versions of Genius.", nil);
+		NSString * cancelTitle = NSLocalizedString(@"Cancel", nil);
+		NSString * saveTitle = NSLocalizedString(@"Save", nil); 
+        
+        NSAlert * alert = [NSAlert alertWithMessageText:title defaultButton:cancelTitle alternateButton:saveTitle otherButton:nil informativeTextWithFormat:message];
+        int result = [alert runModal];
+        if (result != NSAlertAlternateReturn) // not NSAlertSecondButtonReturn?
+            return;
+        
+        _shouldShowImportWarningOnSave = NO;
+    }
+    
+    [super saveDocumentWithDelegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
+}
+
 //! Initiates modal sheet for selecting export file.
 - (IBAction)exportFile:(id)sender
 {
