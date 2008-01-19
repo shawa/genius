@@ -665,19 +665,26 @@
 }
 
 //! FirstResponder wrapper for arrayController insert:.
-- (IBAction)add:(id)sender
+- (IBAction) add:(id)sender
 {
-    [arrayController insert:sender];
+    [[tableView window] endEditingFor:nil]; 
+    
+    unsigned int count = [[arrayController arrangedObjects] count];    
+
+    [arrayController insertObject:[[arrayController newObject] autorelease]
+            atArrangedObjectIndex:count];
+
+    [tableView editColumn: 1 row:count withEvent:nil select:YES];
 }
 
 //! FirstResponder wrapper for arrayController remove:.
-- (IBAction)delete:(id)sender
+- (IBAction) delete:(id)sender
 {
     [arrayController remove:sender];
 }
 
 //! Duplicates the selected items and inserts them in the document.
-- (IBAction)duplicate:(id)sender
+- (IBAction) duplicate:(id)sender
 {
     NSArray * selectedObjects = [arrayController selectedObjects];
     
@@ -1204,6 +1211,7 @@
 @end
 
 @implementation GeniusDocument(NSControlDelegate)
+
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)fieldEditor doCommandBySelector:(SEL)commandSelector
 {
     BOOL retval = NO;
@@ -1214,4 +1222,5 @@
     }
     return retval;
 }
+
 @end
