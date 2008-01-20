@@ -38,7 +38,7 @@
     NSSearchField *_searchField;                        //!< Text field top right used for searching through GeniusPair items.
     
     // Data model
-    NSMutableArray *_visibleColumnIdentifiers;          //!< ???
+    NSMutableArray *_visibleColumnIdentifiers;          //!< Identifiers of the columns that should be displayed on loading a file.
     NSMutableDictionary *_columnHeadersDict;            //!< Labels used for column header names.
     NSMutableArray *_pairs;                             //!< The GeniusPair items that make up a GeniusDocument.
     NSDate *_cumulativeStudyTime;                       //!< Not sure this is used anymore.

@@ -79,7 +79,7 @@
         _columnHeadersDict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:@"Question", @"columnA", @"Answer", @"columnB", nil] retain];
 
         // default visible columns.
-        _visibleColumnIdentifiers = [[NSArray alloc] initWithObjects:@"disabled", @"columnA", @"columnB", @"scoreAB", nil];
+        _visibleColumnIdentifiers = [[NSMutableArray alloc] initWithObjects:@"disabled", @"columnA", @"columnB", @"scoreAB", nil];
 
         _customTypeStringCache = [[NSMutableSet alloc] init];
 
@@ -726,6 +726,8 @@
 */
 - (IBAction)quizAutoPick:(id)sender
 {
+    [[tableView window] endEditingFor:nil]; 
+
     NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
     [enumerator setCount:13];    
@@ -750,6 +752,8 @@
 */
 - (IBAction)quizReview:(id)sender
 {
+    [[tableView window] endEditingFor:nil]; 
+
     NSArray * associations = [self _enabledAssociationsForPairs:_pairs];
     GeniusAssociationEnumerator * enumerator = [[GeniusAssociationEnumerator alloc] initWithAssociations:associations];
     [enumerator setCount:13];
@@ -762,6 +766,8 @@
 /*! Excludes disabled items */
 - (IBAction)quizSelection:(id)sender
 {
+    [[tableView window] endEditingFor:nil]; 
+
     NSArray * selectedPairs = [arrayController selectedObjects];
     if ([selectedPairs count] == 0)
         selectedPairs = _pairs;
