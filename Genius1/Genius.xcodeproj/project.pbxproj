@@ -271,8 +271,6 @@
 		83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocument_DebugLogging.h; sourceTree = "<group>"; };
 		83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument_DebugLogging.m; sourceTree = "<group>"; };
-		83F1EF070D426A3900468B3B /* TableViewResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewResponder.h; sourceTree = "<group>"; };
-		83F1EF080D426A3900468B3B /* TableViewResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewResponder.m; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -363,8 +361,6 @@
 				83602A030D3FC51700C6AF73 /* IsPairImportantTransformer.m */,
 				83602A0A0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h */,
 				83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */,
-				83F1EF070D426A3900468B3B /* TableViewResponder.h */,
-				83F1EF080D426A3900468B3B /* TableViewResponder.m */,
 				838EFAA90D438E68004E90BC /* GSTableView.h */,
 				838EFAAA0D438E68004E90BC /* GSTableView.m */,
 			);

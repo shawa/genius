@@ -3347,6 +3347,12 @@
 		vrLoc = 1677;
 	};
 	83F1EF070D426A3900468B3B /* TableViewResponder.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = TableViewResponder.h;
+		path = /Users/chris/Development/genius/trunk/Genius1/app/Classes/TableViewResponder.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {867, 496}}";
 			sepNavSelRange = "{215, 0}";
@@ -3355,6 +3361,12 @@
 		};
 	};
 	83F1EF080D426A3900468B3B /* TableViewResponder.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = TableViewResponder.m;
+		path = /Users/chris/Development/genius/trunk/Genius1/app/Classes/TableViewResponder.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {708, 700}}";
 			sepNavSelRange = "{482, 562}";
