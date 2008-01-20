@@ -21,15 +21,9 @@
 @implementation GeniusItem
 
 //! Initializes new instance with all properties set to nil.
-/*! @todo Remove code that sets everything to nil because it isn't needed. */
 - (id) init
 {
     self = [super init];
-    _stringValue = nil;
-    _imageURL = nil;
-    _webResourceURL = nil;
-    _speakableStringValue = nil;
-    _soundURL = nil;
     return self;
 }
 

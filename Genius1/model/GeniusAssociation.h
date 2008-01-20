@@ -19,8 +19,6 @@ A GeniusAssociation is the basic unit of memorization in Genius.  A GeniusAssoci
  are dependent on the user recalling the correct answer given a particular cue.
  
  Never create directly; always create through GeniusPair.
- 
- @todo Create standalone GeniusAssociation.[h,m] files.
  */
 @interface GeniusAssociation : NSObject {
     GeniusItem * _cueItem; //!< Item acting as question or prompt.

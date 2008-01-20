@@ -23,9 +23,6 @@
 @class GeniusAssociation;
 
 //! Standard NSWindowController subclass for managing a user quiz.
-/*!
-    @todo replace id in IBOutlets with a pointer to the actual class.
-*/
 @interface MyQuizController : NSWindowController
 {
     IBOutlet NSObjectController *associationController;  //!< NSObjectController for #_currentAssociation.
