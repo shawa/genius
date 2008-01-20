@@ -109,6 +109,8 @@
 		83602A0C0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83602A0A0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h */; };
 		83602A0D0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */; };
 		8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */ = {isa = PBXBuildFile; fileRef = 8379CD7B0CEB410600CCFF86 /* TestFile1.genius */; };
+		838EFAAB0D438E68004E90BC /* GSTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 838EFAA90D438E68004E90BC /* GSTableView.h */; };
+		838EFAAC0D438E68004E90BC /* GSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 838EFAAA0D438E68004E90BC /* GSTableView.m */; };
 		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
 		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */; };
 		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
@@ -122,8 +124,6 @@
 		83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */; };
 		83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */; };
-		83F1EF090D426A3900468B3B /* TableViewResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F1EF070D426A3900468B3B /* TableViewResponder.h */; };
-		83F1EF0A0D426A3900468B3B /* TableViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1EF080D426A3900468B3B /* TableViewResponder.m */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -253,6 +253,8 @@
 		83602A0A0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorFromPairImportanceTransformer.h; sourceTree = "<group>"; };
 		83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorFromPairImportanceTransformer.m; sourceTree = "<group>"; };
 		8379CD7B0CEB410600CCFF86 /* TestFile1.genius */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestFile1.genius; sourceTree = "<group>"; };
+		838EFAA90D438E68004E90BC /* GSTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GSTableView.h; sourceTree = "<group>"; };
+		838EFAAA0D438E68004E90BC /* GSTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GSTableView.m; sourceTree = "<group>"; };
 		83B723BA0D2D3014004668E1 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = SOURCE_ROOT; };
 		83B723BB0D2D3014004668E1 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = SOURCE_ROOT; };
 		83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "JRSwizzle-Info.plist"; path = "JRSwizzle/JRSwizzle-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -363,6 +365,8 @@
 				83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */,
 				83F1EF070D426A3900468B3B /* TableViewResponder.h */,
 				83F1EF080D426A3900468B3B /* TableViewResponder.m */,
+				838EFAA90D438E68004E90BC /* GSTableView.h */,
+				838EFAAA0D438E68004E90BC /* GSTableView.m */,
 			);
 			name = Classes;
 			path = app/Classes;
@@ -596,7 +600,7 @@
 				83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */,
 				83602A040D3FC51700C6AF73 /* IsPairImportantTransformer.h in Headers */,
 				83602A0C0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h in Headers */,
-				83F1EF090D426A3900468B3B /* TableViewResponder.h in Headers */,
+				838EFAAB0D438E68004E90BC /* GSTableView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,7 +841,7 @@
 				83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */,
 				83602A050D3FC51700C6AF73 /* IsPairImportantTransformer.m in Sources */,
 				83602A0D0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m in Sources */,
-				83F1EF0A0D426A3900468B3B /* TableViewResponder.m in Sources */,
+				838EFAAC0D438E68004E90BC /* GSTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

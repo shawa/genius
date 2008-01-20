@@ -31,23 +31,13 @@
 #import "GeniusAssociation.h"
 #import "IsPairImportantTransformer.h"
 #import "ColorFromPairImportanceTransformer.h"
-#import "TableViewResponder.h"
+#import "GSTableView.h"
 
 @interface GeniusDocument (VeryPrivate)
 - (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs;
 - (void) _updateStatusText;
 - (void) _updateLevelIndicator;
-@end
-
-@interface GeniusDocument (TableColumnManagement)
-+ (NSArray *) _defaultColumnIdentifiers;
-- (void) _hideTableColumn:(NSTableColumn *)column;
-- (void) _showTableColumn:(NSTableColumn *)column;
-- (void) _toggleColumnWithIdentifier:(NSString *)identifier;
-
-- (NSString *) _titleForTableColumnWithIdentifier:(NSString *)identifier;
-- (void) _setTitle:(NSString *)title forTableColumnWithIdentifier:(NSString *)identifier;
 @end
 
 // Standard NSDocument subclass for controlling display and editing of a Genius file.
@@ -85,15 +75,13 @@
         // 50 - 50 value for the learn review setting.
         probabilityCenter = [[NSNumber alloc] initWithFloat:50.0F];
 
-        // custom  card titles
+        // default card side titles
         _columnHeadersDict = [[NSMutableDictionary dictionaryWithObjectsAndKeys:@"Question", @"columnA", @"Answer", @"columnB", nil] retain];
 
-        //! @todo look into if this is needed
-        _visibleColumnIdentifiersBeforeNibLoaded = [[GeniusDocument _defaultColumnIdentifiers] mutableCopy];
+        // default visible columns.
+        _visibleColumnIdentifiers = [[NSArray alloc] initWithObjects:@"disabled", @"columnA", @"columnB", @"scoreAB", nil];
 
-        _tableColumns = [[NSMutableDictionary alloc] init];
         _customTypeStringCache = [[NSMutableSet alloc] init];
-        
 
         // setup change tracking
         [self addObserver:self];
@@ -105,14 +93,12 @@
 - (void) dealloc
 {
     [_pairs release];
-    [_visibleColumnIdentifiersBeforeNibLoaded release];
-    [_tableColumns release];
+    [_visibleColumnIdentifiers release];
     [_columnHeadersDict release];
     [_searchField release];
     [_customTypeStringCache release];
     [probabilityCenter release];
     [_sortedCustomTypeStrings release];
-    [_tableViewResponder release];
     
     [super dealloc];
 }
@@ -134,33 +120,6 @@
     [self setupToolbarForWindow:[aController window]];
     [_searchField setNextKeyView:tableView];
 	
-    // Retain all table columns in case we hide them later
-    NSEnumerator * columnEnumerator = [[tableView tableColumns] objectEnumerator];
-    NSTableColumn * column;
-    while ((column = [columnEnumerator nextObject]))
-    {
-        NSString * identifier = [column identifier];
-        if (identifier)
-            [_tableColumns setObject:column forKey:[column identifier]];
-    }
-        
-    // Set up icon text field cells for colored score indication
-    IconTextFieldCell * cell = [[[IconTextFieldCell alloc] init] autorelease];
-
-    NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:@"scoreAB"];
-    NSNumberFormatter * numberFormatter = [[tableColumn dataCell] formatter];
-    [cell setFormatter:numberFormatter];
-    [tableColumn setDataCell:cell];
-    tableColumn = [tableView tableColumnWithIdentifier:@"scoreBA"];
-    [tableColumn setDataCell:cell];
-
-    [tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSStringPboardType, NSTabularTextPboardType, nil]];
-    [tableView setDraggingSourceOperationMask:(NSDragOperationCopy) forLocal:NO];
-    
-    _tableViewResponder = [[TableViewResponder alloc] initWithTarget:self];
-    [_tableViewResponder setNextResponder:[tableView nextResponder]];
-    [tableView setNextResponder:_tableViewResponder];
-
 	// Configure list font size
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
@@ -252,53 +211,17 @@
 //! Updates UI to reflect the document.
 - (void) reloadInterfaceFromModel
 {
-    // Sync with _visibleColumnIdentifiersBeforeNibLoaded
-
-        // Hide table columns that should not be visible, but are
-    NSMutableSet * actualColumnIdentifiersSet = [NSMutableSet setWithArray:[self visibleColumnIdentifiers]];
-    NSSet * expectedColumnIdentifierSet = [NSSet setWithArray:_visibleColumnIdentifiersBeforeNibLoaded];
-    [actualColumnIdentifiersSet minusSet:expectedColumnIdentifierSet];
-    NSEnumerator * identifierToHideEnumerator = [actualColumnIdentifiersSet objectEnumerator];
-    NSString * identifier;
-    while ((identifier = [identifierToHideEnumerator nextObject]))
-    {
-        NSTableColumn * tableColumn = [tableView tableColumnWithIdentifier:identifier];
-        [self _hideTableColumn:tableColumn];
-    }
+    // Sync with _visibleColumnIdentifiers
+    [tableView setVisibleColumns:_visibleColumnIdentifiers];
     
-        // Show table columns that should be visible, but aren't
-    NSEnumerator * expectedIdentifierEnumerator = [_visibleColumnIdentifiersBeforeNibLoaded objectEnumerator];
-    NSString * expectedIdentifier;
-    while ((expectedIdentifier = [expectedIdentifierEnumerator nextObject]))
-    {
-        NSTableColumn * expectedColumn = [_tableColumns objectForKey:expectedIdentifier];
-        if ([[tableView tableColumns] containsObject:expectedColumn] == NO)
-            [self _showTableColumn:expectedColumn];
-    }
-
-    [tableView sizeToFit];
-
     if ([_pairs count])
     {
         [tableView reloadData];
-        
         [self _reloadCustomTypeCacheSet];
     }
-
+    
     [self _updateStatusText];
 	[self _updateLevelIndicator];
-}
-
-//! Convenience method for getting the identifiers for the table columns that are currently visible.
-- (NSArray *) visibleColumnIdentifiers
-{
-    // NSTableColumns -> NSStrings
-    NSMutableArray * outIdentifiers = [NSMutableArray array];
-    NSEnumerator * columnEnumerator = [[tableView tableColumns] objectEnumerator];
-    NSTableColumn * column;
-    while ((column = [columnEnumerator nextObject]))
-        [outIdentifiers addObject:[column identifier]];
-    return outIdentifiers;
 }
 
 //! Returns array of keypaths used as bindings in our NSTableView.
@@ -388,9 +311,8 @@
 */
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs
 {
-    BOOL useAB = [[tableView tableColumns] containsObject:[_tableColumns objectForKey:@"scoreAB"]];
-    
-    BOOL useBA = [[tableView tableColumns] containsObject:[_tableColumns objectForKey:@"scoreBA"]];
+    BOOL useAB = !([tableView columnWithIdentifier:@"scoreAB"] < 0);
+    BOOL useBA = !([tableView columnWithIdentifier:@"scoreBA"] < 0);
 
     return [GeniusPair associationsForPairs:pairs useAB:useAB useBA:useBA];
 }
@@ -615,25 +537,25 @@
 //! Turns on/off display of the group column.
 - (IBAction)toggleGroupColumn:(id)sender
 {
-    [self _toggleColumnWithIdentifier:@"customGroup"];
+    [tableView toggleColumnWithIdentifier:@"customGroup"];
 }
 
 //! Turns on/off display of the type column.
 - (IBAction)toggleTypeColumn:(id)sender
 {
-    [self _toggleColumnWithIdentifier:@"customType"];
+    [tableView toggleColumnWithIdentifier:@"customType"];
 }
 
 //! Turns on/off display of the standard style score column.
 - (IBAction)toggleABScoreColumn:(id)sender
 {
-    [self _toggleColumnWithIdentifier:@"scoreAB"];
+    [tableView toggleColumnWithIdentifier:@"scoreAB"];
 }
 
 //! Turns on/off display of the jepardy style score column.
 - (IBAction)toggleBAScoreColumn:(id)sender
 {
-    [self _toggleColumnWithIdentifier:@"scoreBA"];
+    [tableView toggleColumnWithIdentifier:@"scoreBA"];
 }
 
 //! shows panel for setting field labels
@@ -867,8 +789,8 @@
     
     if (action == @selector(toggleABScoreColumn:) || action == @selector(toggleBAScoreColumn:))
     {
-        NSString * titleA = [self _titleForTableColumnWithIdentifier:@"columnA"];
-        NSString * titleB = [self _titleForTableColumnWithIdentifier:@"columnB"];
+        NSString * titleA = [_columnHeadersDict valueForKey:@"columnA"];
+        NSString * titleB = [_columnHeadersDict valueForKey:@"columnB"];
 
         if (action == @selector(toggleABScoreColumn:))
         {
@@ -897,7 +819,7 @@
         chosenColumnIdentifier = @"scoreBA";
     if (chosenColumnIdentifier)
     {
-        NSArray * visibleColumnIdentifiers = [self visibleColumnIdentifiers];
+        NSArray * visibleColumnIdentifiers = [tableView visibleColumnIdentifiers];
         int state = ([visibleColumnIdentifiers containsObject:chosenColumnIdentifier] ? NSOnState : NSOffState);
         [menuItem setState:state];
 
@@ -982,90 +904,6 @@
 {
     [self _updateStatusText];
     [[infoDrawer contentView] setNeedsDisplay:YES];
-}
-
-
-@end
-
-
-/*! @category GeniusDocument(TableColumnManagement) */
-@implementation GeniusDocument(TableColumnManagement)
-
-//! Convenience method returning all the identifiers for which we have columns.
-+ (NSArray *) _allColumnIdentifiers
-{
-    return [NSArray arrayWithObjects:@"disabled", @"columnA", @"columnB", @"customGroup", @"customType", @"scoreAB", @"scoreBA", nil];
-}
-
-//! Convenience method returning identifiers for the basic set of columns.
-+ (NSArray *) _defaultColumnIdentifiers
-{
-    return [NSArray arrayWithObjects:@"disabled", @"columnA", @"columnB", @"scoreAB", nil];
-}
-
-//! Convenience method for sorting @a identifiers after the ordering in GeniusDocument#_allColumnIdentifiers.
-- (NSArray *) __columnIdentifiersReorderedByDefaultOrder:(NSArray *)identifiers
-{
-    NSMutableArray * outIdentifiers = [NSMutableArray array];
-    NSEnumerator * identifierEnumerator = [[GeniusDocument _allColumnIdentifiers] objectEnumerator];
-    NSString * identifier;
-    while ((identifier = [identifierEnumerator nextObject]))
-        if ([identifiers containsObject:identifier])
-            [outIdentifiers addObject:identifier];
-    return outIdentifiers;
-}
-
-//! Removes @a column from GeniusDocument#tableView.
-- (void) _hideTableColumn:(NSTableColumn *)column
-{
-    [tableView removeTableColumn:column];
-}
-
-//! Reinserts @a column in GeniusDocument#tableView.
-- (void) _showTableColumn:(NSTableColumn *)column
-{
-    // Determine proper column position
-    NSString * identifier = [column identifier];
-    NSMutableArray * identifiers = [NSMutableArray arrayWithArray:[self visibleColumnIdentifiers]];
-    [identifiers addObject:identifier];
-    NSArray * orderedIdentifiers = [self __columnIdentifiersReorderedByDefaultOrder:identifiers];
-    int index = [orderedIdentifiers indexOfObject:identifier];
-    
-    [tableView addTableColumn:column];
-    [tableView moveColumn:[tableView numberOfColumns]-1 toColumn:index];
-}
-
-//! Removes or adds the column identified by @a identifier to GeniusDocument#tableView
-- (void) _toggleColumnWithIdentifier:(NSString *)identifier
-{
-    NSTableColumn * column = [_tableColumns objectForKey:identifier];
-    if (column == nil)
-        return; // not found
-
-    NSArray * tableColumns = [tableView tableColumns];
-    if ([tableColumns containsObject:column])
-        [self _hideTableColumn:column];
-    else
-        [self _showTableColumn:column];
-    
-    [tableView sizeToFit];
-}
-
-
-//! Convenience method for getting the @a title of a column based on that column @a identifier.
-- (NSString *) _titleForTableColumnWithIdentifier:(NSString *)identifier
-{
-    NSTableColumn * column = [tableView tableColumnWithIdentifier:identifier];
-    if (column == nil)
-        return nil;
-    return [[column headerCell] title];
-}
-
-//! Convenience method for setting the @a title of a column based on the column @a identifier.
-- (void) _setTitle:(NSString *)title forTableColumnWithIdentifier:(NSString *)identifier
-{
-    NSTableColumn * column = [tableView tableColumnWithIdentifier:identifier];
-    [[column headerCell] setStringValue:title];
 }
 
 @end
@@ -1200,8 +1038,6 @@
 //! Removes self from notification center
 - (void)windowWillClose:(NSNotification *)aNotification
 {
-    [_tableColumns removeAllObjects];
-
     [self removeObserver:self];
     [_pairs makeObjectsPerformSelector:@selector(removeObserver:) withObject:self];
 

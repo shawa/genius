@@ -20,11 +20,12 @@
 @class GeniusArrayController;
 @class GeniusPair;
 @class MyQuizController;
+@class GSTableView;
 
 //! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
 @interface GeniusDocument : NSDocument
 {
-    IBOutlet NSTableView *tableView;                    //!< The main table showing the GeniusPair items.
+    IBOutlet GSTableView *tableView;                    //!< The main table showing the GeniusPair items.
     IBOutlet GeniusArrayController *arrayController;    //!< The controller holding the displayed items.
     IBOutlet NSTextField  *statusField;                 //!< Shows selection count and total items.
     IBOutlet NSTextField *levelField;                   //!< Displays percentage of items with any score.
@@ -35,22 +36,20 @@
     
     IBOutlet NSSlider *learnReviewSlider;               //!< Slider used to setup Quiz mode between Learn and Review.
     NSSearchField *_searchField;                        //!< Text field top right used for searching through GeniusPair items.
-    NSMutableDictionary *_tableColumns;                 //!< Cache of all table columns for hiding and displaying them.
     
     // Data model
-    NSMutableArray *_visibleColumnIdentifiersBeforeNibLoaded;    //!< ???
-    NSMutableDictionary *_columnHeadersDict;                     //!< Labels used for column header names.
-    NSMutableArray *_pairs;                                      //!< The GeniusPair items that make up a GeniusDocument.
-    NSDate *_cumulativeStudyTime;                                //!< Not sure this is used anymore.
-    NSNumber *probabilityCenter;                                 //!< balance between learning and reviewing.
+    NSMutableArray *_visibleColumnIdentifiers;          //!< ???
+    NSMutableDictionary *_columnHeadersDict;            //!< Labels used for column header names.
+    NSMutableArray *_pairs;                             //!< The GeniusPair items that make up a GeniusDocument.
+    NSDate *_cumulativeStudyTime;                       //!< Not sure this is used anymore.
+    NSNumber *probabilityCenter;                        //!< balance between learning and reviewing.
 
-    BOOL _shouldShowImportWarningOnSave;                         //!< Flag indicating the GeniusDocument was loaded from an older version.
-    NSArray *_pairsDuringDrag;                                   //!< Temporary array of items being dragged and dropped.
-    NSMutableSet *_customTypeStringCache;                        //!< Cache of all types used in deck.
+    BOOL _shouldShowImportWarningOnSave;                //!< Flag indicating the GeniusDocument was loaded from an older version.
+    NSArray *_pairsDuringDrag;                          //!< Temporary array of items being dragged and dropped.
+    NSMutableSet *_customTypeStringCache;               //!< Cache of all types used in deck.
     
-    MyQuizController *quizController;                            //!< The current quiz controller if there is one.
-    NSArray *_sortedCustomTypeStrings;                           //!< Sorted array of custom types cached from Genius Pairs.
-    id _tableViewResponder;                                      //!< pointer to key event handler for table view.
+    MyQuizController *quizController;                   //!< The current quiz controller if there is one.
+    NSArray *_sortedCustomTypeStrings;                  //!< Sorted array of custom types cached from Genius Pairs.
 }
 
 - (NSArray*) pairs;

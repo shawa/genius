@@ -23,8 +23,6 @@
 
 - (void) reloadInterfaceFromModel;
 
-- (NSArray *) visibleColumnIdentifiers;
-
 - (NSArray *) columnBindings;   // in display order
 
 @end

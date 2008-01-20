@@ -6,6 +6,7 @@
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
         }, 
+        {CLASS = GSTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
         {
             CLASS = GeniusArrayController; 
             LANGUAGE = ObjC; 
@@ -36,7 +37,7 @@
                 levelIndicator = NSLevelIndicator; 
                 notesDrawer = NSDrawer; 
                 statusField = NSTextField; 
-                tableView = NSTableView; 
+                tableView = GSTableView; 
             }; 
             SUPERCLASS = NSDocument; 
         }, 

@@ -20,6 +20,7 @@
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
 #import "GeniusDocument.h"
+#import "GSTableView.h"
 
 //! Methods related to reading and writing genius files.
 /*!
@@ -47,7 +48,7 @@
 		[archiver setOutputFormat:kCFPropertyListBinaryFormat_v1_0];
     
     [archiver encodeInt:1 forKey:@"formatVersion"];
-    [archiver encodeObject:[self visibleColumnIdentifiers] forKey:@"visibleColumnIdentifiers"];
+    [archiver encodeObject:[tableView visibleColumnIdentifiers] forKey:@"visibleColumnIdentifiers"];
     [archiver encodeObject:_columnHeadersDict forKey:@"columnHeadersDict"];
     [archiver encodeObject:_pairs forKey:@"pairs"];
     [archiver encodeObject:_cumulativeStudyTime forKey:@"cumulativeStudyTime"];
@@ -100,7 +101,7 @@
         {
             NSArray * visibleColumnIdentifiers = [unarchiver decodeObjectForKey:@"visibleColumnIdentifiers"];
             if (visibleColumnIdentifiers)
-                [_visibleColumnIdentifiersBeforeNibLoaded setArray:visibleColumnIdentifiers];
+                [_visibleColumnIdentifiers setArray:visibleColumnIdentifiers];
 
             NSDictionary * dict = [unarchiver decodeObjectForKey:@"columnHeadersDict"];
             if (dict) {
