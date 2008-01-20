@@ -35,6 +35,7 @@
     IBOutlet NSWindow *deckPreferences;                 //!< Sheet for enter card side titles.
     
     IBOutlet NSSlider *learnReviewSlider;               //!< Slider used to setup Quiz mode between Learn and Review.
+    IBOutlet NSView *helpTextOverlay;                   //!< Help text displayed when table contents empty.
     NSSearchField *_searchField;                        //!< Text field top right used for searching through GeniusPair items.
     
     // Data model

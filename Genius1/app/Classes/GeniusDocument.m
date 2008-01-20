@@ -117,6 +117,15 @@
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     
+    // Slip the help text in on top of the table view so it doesn't flicker.
+    NSRect newFrame = [tableView convertRect:[helpTextOverlay frame] fromView:[helpTextOverlay superview]];
+    [helpTextOverlay retain];
+    [helpTextOverlay removeFromSuperview];
+    [helpTextOverlay setFrame:newFrame];
+    [tableView addSubview:helpTextOverlay];
+    [helpTextOverlay release];
+    
+    // set up tool bar and enable tabbing from search field to table view.
     [self setupToolbarForWindow:[aController window]];
     [_searchField setNextKeyView:tableView];
 	
