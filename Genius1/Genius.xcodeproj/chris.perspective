@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Build</string>
+	<string>Project</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -289,6 +289,8 @@
 							<string>MainColumn</string>
 							<real>228</real>
 						</array>
+						<key>RubberWindowFrame</key>
+						<string>10 59 1050 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -299,12 +301,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>83B002090ACD464B0022D4F3</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GSTableView.h</string>
+								<string>Release History.rtf</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -312,11 +316,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>83B0020A0ACD464B0022D4F3</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GSTableView.h</string>
+										<string>Release History.rtf</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8307B67C0D47D215000C05AE</string>
+										<string>8307B6930D47D5D2000C05AE</string>
 										<key>history</key>
 										<array>
 											<string>83E23F590D3761FA00E82369</string>
@@ -339,7 +343,8 @@
 											<string>8307B61A0D47C2F2000C05AE</string>
 											<string>8307B6670D47D18B000C05AE</string>
 											<string>8307B67A0D47D212000C05AE</string>
-											<string>8307B6760D47D20E000C05AE</string>
+											<string>8307B6820D47D447000C05AE</string>
+											<string>8307B6810D47D439000C05AE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -385,6 +390,7 @@
 											<string>8307B6200D47C2F2000C05AE</string>
 											<string>8307B66A0D47D18B000C05AE</string>
 											<string>8307B66B0D47D18B000C05AE</string>
+											<string>8307B6800D47D439000C05AE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -399,6 +405,8 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {800, 513}}</string>
+								<key>RubberWindowFrame</key>
+								<string>10 59 1050 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -454,6 +462,8 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {800, 233}}</string>
+										<key>RubberWindowFrame</key>
+										<string>10 59 1050 819 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXCVSModule</string>
@@ -558,11 +568,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>35</integer>
+									<integer>33</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {247, 760}}</string>
+							<string>{{0, 191}, {247, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -578,8 +590,6 @@
 							<string>MainColumn</string>
 							<real>247</real>
 						</array>
-						<key>RubberWindowFrame</key>
-						<string>10 59 1050 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -595,7 +605,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>83B002090ACD464B0022D4F3</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GSTableView.h</string>
+								<string>Release History.rtf</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -603,11 +613,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>83B0020A0ACD464B0022D4F3</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GSTableView.h</string>
+										<string>Release History.rtf</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8307B67D0D47D215000C05AE</string>
+										<string>8307B6940D47D5D2000C05AE</string>
 										<key>history</key>
 										<array>
 											<string>83E23F590D3761FA00E82369</string>
@@ -630,7 +640,8 @@
 											<string>8307B6290D47C396000C05AE</string>
 											<string>8307B62A0D47C396000C05AE</string>
 											<string>8307B6740D47D1A6000C05AE</string>
-											<string>8307B67B0D47D212000C05AE</string>
+											<string>8307B67E0D47D439000C05AE</string>
+											<string>8307B67F0D47D439000C05AE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -658,6 +669,7 @@
 											<string>8307B4430D462353000C05AE</string>
 											<string>8307B62D0D47C396000C05AE</string>
 											<string>8307B62E0D47C396000C05AE</string>
+											<string>8307B6800D47D439000C05AE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -671,18 +683,16 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {781, 383}}</string>
-								<key>RubberWindowFrame</key>
-								<string>10 59 1050 819 0 0 1440 878 </string>
+								<string>{{0, 0}, {781, 647}}</string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>383pt</string>
+							<string>647pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>390pt</string>
+							<string>126pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -755,9 +765,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {781, 363}}</string>
-										<key>RubberWindowFrame</key>
-										<string>10 59 1050 819 0 0 1440 878 </string>
+										<string>{{10, 27}, {781, 99}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXRunSessionModule</string>
