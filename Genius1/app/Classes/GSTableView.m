@@ -136,6 +136,19 @@
     }
 }
 
+//! Handle esc key.
+- (void) cancelOperation: (id) sender
+{
+    if ([self currentEditor])
+    {
+        // save changes
+        [[self window] endEditingFor:nil];
+        
+        // we lose focus so re-establish
+        [[self window] makeFirstResponder:self];
+    }
+}
+
 //! Standard 1st responder implementation.
 - (void) keyDown: (NSEvent *) event
 {

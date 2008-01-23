@@ -44,13 +44,6 @@
     [document loadDataRepresentation:data ofType:@"Genius Documnent"];
     STAssertNil([document valueForKeyPath:@"_cumulativeStudyTime"], nil);
     STAssertEqualObjects([document valueForKeyPath:@"probabilityCenter"], [NSNumber numberWithFloat:50.0F], nil);
-
-    NSArray * columns = [document visibleColumnIdentifiers];
-    STAssertEquals([columns count], 4U, nil);
-    STAssertEqualObjects([columns objectAtIndex:0], @"disabled", nil);
-    STAssertEqualObjects([columns objectAtIndex:1], @"columnA", nil);
-    STAssertEqualObjects([columns objectAtIndex:2], @"columnB", nil);
-    STAssertEqualObjects([columns objectAtIndex:3], @"scoreAB", nil);
     
     NSDictionary * headers = [document valueForKey:@"columnHeadersDict"];
     STAssertEquals([headers count], 2U, nil);
