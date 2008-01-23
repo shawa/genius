@@ -37,13 +37,6 @@
     [GeniusDocument jr_swizzleMethod:@selector(updateChangeCount:) withMethod:@selector(log_updateChangeCount:) error:&error];
     NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
     
-    //activeUndoTarget
-    [GeniusDocument jr_swizzleMethod:@selector(activeUndoTarget) withMethod:@selector(log_activeUndoTarget) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);
-    
-    //beginQuiz:
-    [GeniusDocument jr_swizzleMethod:@selector(beginQuiz:) withMethod:@selector(check_beginQuiz:) error:&error];
-    NSAssert1(error == nil, @"Swizzle Unexpectedly Failed %@", error);    
 }
 
 //! logs referenced call to referenced method executes it
@@ -104,26 +97,6 @@
 {
     NSLog(@"_cmd: %s", _cmd);
     return [self log_setPairs:values];
-}
-
-//! logs referenced call to referenced method executes it
-- (id) log_activeUndoTarget
-{
-    id result = [self log_activeUndoTarget];
-    NSLog(@"_cmd: %s returning: %@", _cmd, result);
-    return result;
-}
-
-//! checks that all undo actions for the quiz were removed from stack.
-- (void) check_beginQuiz:(id) enumerator
-{
-    int initial = [[self valueForKeyPath:@"undoManager.undoStack.count"] intValue];
-    
-    [self check_beginQuiz:enumerator];
-
-    int final = [[self valueForKeyPath:@"undoManager.undoStack.count"] intValue];
-
-    NSAssert2(final == initial, @"Undo stack count should be %d but is %d.", initial, final);    
 }
 
 @end

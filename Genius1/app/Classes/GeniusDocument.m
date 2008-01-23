@@ -143,10 +143,6 @@
 {
     NSUndoManager *undoManager = [self undoManager];
     
-    if (![undoManager isUndoing]) {
-        [undoManager setActionName:@"Insert Pair"];
-    }
-    
     [[undoManager prepareWithInvocationTarget:self] removeObjectFromPairsAtIndex:index];
 
     [pair addObserver:self];
@@ -157,10 +153,6 @@
 - (void) removeObjectFromPairsAtIndex:(int) index
 {
     NSUndoManager *undoManager = [self undoManager];
-    
-    if (![undoManager isUndoing]) {
-        [undoManager setActionName:@"Delete Pair"];
-    }
     
     GeniusPair *pair = [_pairs objectAtIndex:index];
     [[undoManager prepareWithInvocationTarget:self] insertObject:pair inPairsAtIndex:index];
@@ -427,15 +419,6 @@
 }
 
 
-//! Returns quizController if we have one (ie during quiz) or self.
-- (NSObject*) activeUndoTarget
-{
-    NSObject *result = self;
-    if (quizController)
-        result = quizController;
-    return result;
-}
-
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -445,9 +428,7 @@
         oldValue = nil;
     }
     
-    [[undoManager prepareWithInvocationTarget:[self activeUndoTarget]] setValue:oldValue forKeyPath:keyPath inObject:object];
-
-    [undoManager setActionName:@"Edit"];
+    [[undoManager prepareWithInvocationTarget:self] setValue:oldValue forKeyPath:keyPath inObject:object];
     
     if ([keyPath isEqualToString:@"customTypeString"])
         [self _reloadCustomTypeCacheSet];
@@ -598,20 +579,40 @@
 //! FirstResponder wrapper for arrayController insert:.
 - (IBAction) add:(id)sender
 {
+    // In case user is typing in table view.
     [[tableView window] endEditingFor:nil]; 
-    
-    unsigned int count = [[arrayController arrangedObjects] count];    
 
+    // Isolate this action it its own undo group.
+    NSUndoManager *undoManager = [self undoManager];
+    if([undoManager groupingLevel] > 0)
+    {
+        [undoManager endUndoGrouping];
+        [undoManager beginUndoGrouping];
+    }
+
+    unsigned int count = [[arrayController arrangedObjects] count];    
     [arrayController insertObject:[[arrayController newObject] autorelease]
             atArrangedObjectIndex:count];
-
     [tableView editColumn: 1 row:count withEvent:nil select:YES];
+    [undoManager setActionName:@"Insert Pair"];
 }
 
 //! FirstResponder wrapper for arrayController remove:.
 - (IBAction) delete:(id)sender
 {
+    // In case user is typing in table view.
+    [[tableView window] endEditingFor:nil]; 
+
+    // Isolate this action it its own undo group.
+    NSUndoManager *undoManager = [self undoManager];
+    if([undoManager groupingLevel] > 0)
+    {
+        [undoManager endUndoGrouping];
+        [undoManager beginUndoGrouping];
+    }
+    
     [arrayController remove:sender];
+    [undoManager setActionName:@"Delete Pair"];
 }
 
 //! Duplicates the selected items and inserts them in the document.
@@ -676,13 +677,11 @@
         [pair setImportance:importance];
 }
 
-
 //! Move cursor to search field
 - (IBAction) selectSearchField: (id) sender
 {
     [[_searchField window] makeFirstResponder:_searchField];
 }
-
 
 //! Action invoked from the little find NSTextField 
 - (IBAction)search:(id)sender
@@ -699,7 +698,12 @@
 */
 - (void) beginQuiz:(GeniusAssociationEnumerator *)enumerator
 {
-    quizController = [[MyQuizController alloc] init];
+    NSUndoManager *undoManager = [self undoManager];
+    if([undoManager groupingLevel] > 0)
+    {
+        [undoManager endUndoGrouping];
+        [undoManager beginUndoGrouping];
+    }
 
     [enumerator performChooseAssociations];    // Pre-perform for progress indication
 
@@ -716,15 +720,14 @@
         [alert runModal];
     }
     else {
+        MyQuizController *quizController = [[MyQuizController alloc] init];
         [quizController runQuiz:enumerator];
+        [quizController release];
     }
-    
-    [[self undoManager] removeAllActionsWithTarget:quizController];
-    [quizController release];
-    quizController = nil;
-    
+
     [self _updateStatusText];
     [self _updateLevelIndicator];
+    [[self undoManager] setActionName:@"Run Quiz"];
 }
 
 //! Set up quiz mode using enabled and based probablity.

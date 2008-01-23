@@ -19,7 +19,6 @@
 
 @class GeniusArrayController;
 @class GeniusPair;
-@class MyQuizController;
 @class GSTableView;
 
 //! Standard NSDocument subclass for controlling interaction between UI and GeniusPair list.
@@ -49,7 +48,6 @@
     NSArray *_pairsDuringDrag;                          //!< Temporary array of items being dragged and dropped.
     NSMutableSet *_customTypeStringCache;               //!< Cache of all types used in deck.
     
-    MyQuizController *quizController;                   //!< The current quiz controller if there is one.
     NSArray *_sortedCustomTypeStrings;                  //!< Sorted array of custom types cached from Genius Pairs.
 }
 
