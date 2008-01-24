@@ -7,6 +7,28 @@
         <ttl>1</ttl>
 
         <item>
+            <title>Version 1.7.210 (0 new feature 5 new fixes)</title>
+            <description>
+            <![CDATA[
+            <b>New Features:</b>
+            <ul>
+                <li>None.</li>
+            </ul>
+            <b>New Fixes:</b>
+            <ul>
+				<li>Hitting escape ends editing of card side in table view 1878448.</li>
+				<li>You can't edit score values in the table view anymore 1878445.</li>
+				<li>Fixed problem with undo after quizes.  You can now undo a quiz run 1878375.</li>
+				<li>Table view question value selected for edit after insert 1875518.</li>
+				<li>Instructions no longer flicker and sometimes disappear for empty decks 1868744.</li>
+            </ul>
+            ]]>
+            </description>
+            <enclosure sparkle:version="210" url="http://downloads.sourceforge.net/genius/Genius-1.7.210.dmg" length="415206" type="application/octet-stream"/>
+            <pubDate>23 Jan 2008 21:09 +0100</pubDate>
+        </item>
+
+        <item>
             <title>Version 1.7.196 (1 new feature 0 new fixes)</title>
             <description>
             <![CDATA[
