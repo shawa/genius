@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		83D9BE670CD110E90092858D /* Genius-1.7.dmg */ = {
+		83D9BE670CD110E90092858D /* DiskImage */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "Genius-1.7.dmg" */;
+			buildConfigurationList = 83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "DiskImage" */;
 			buildPhases = (
 				83D9BED50CD122050092858D /* Create Image */,
 				83D9BECF0CD120100092858D /* CopyFiles */,
@@ -18,7 +18,7 @@
 			dependencies = (
 				83D9BE690CD110EF0092858D /* PBXTargetDependency */,
 			);
-			name = "Genius-1.7.dmg";
+			name = DiskImage;
 			productName = DiskImage;
 		};
 		83D9C9780CD8AC7D003B422F /* DeveloperDocs */ = {
@@ -71,15 +71,12 @@
 		236640560AA2056100888E37 /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640470AA2056100888E37 /* IconTextFieldCell.m */; };
 		237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 237DA3DE07395DD6006B7D4B /* Localizable.strings */; };
 		23AA22930AA305E6009AF327 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23AA22920AA305E6009AF327 /* Genius.icns */; };
-		23B358C4073C0FEC00B89026 /* Release History.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
-		23B358D1073C101900B89026 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
 		23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B358E4073C5B7D00B89026 /* PreQuiz.nib */; };
 		23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B00B0AA1CD560069E6D3 /* play.tiff */; };
 		23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B2310AA1E65D0069E6D3 /* Inspector.png */; };
 		23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F818E20B35312B0041656E /* GeniusPreferencesController.m */; };
 		23F818E70B3531390041656E /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23F818E50B3531390041656E /* Preferences.nib */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
-		832389FF0CC39B1C00782903 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 832389FE0CC39B1C00782903 /* TODO.txt */; };
 		833C26A00D2D33810097E3CE /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B723BB0D2D3014004668E1 /* JRSwizzle.m */; };
 		833C26A10D2D33840097E3CE /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B723BA0D2D3014004668E1 /* JRSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */; };
@@ -116,8 +113,8 @@
 		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
 		83CC1CEF0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */; };
+		83CEB5AB0D4BC18700EF7952 /* History.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83CEB59F0D4BBF2A00EF7952 /* History.html */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
-		83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358BC073C0FA700B89026 /* Release History.rtf */; };
 		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
 		83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
@@ -169,9 +166,9 @@
 			dstPath = "/Volumes/${PROJECT_NAME}";
 			dstSubfolderSpec = 0;
 			files = (
+				83CEB5AB0D4BC18700EF7952 /* History.html in CopyFiles */,
 				83D9BED70CD122380092858D /* Genius.app in CopyFiles */,
 				83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */,
-				83D9BED30CD121D70092858D /* Release History.rtf in CopyFiles */,
 				83D9BED40CD121DA0092858D /* Samples in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,7 +231,6 @@
 		237DA3DC07395DC4006B7D4B /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23AA22920AA305E6009AF327 /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
 		23AA229A0AA30E31009AF327 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING.txt; sourceTree = SOURCE_ROOT; };
-		23B358BC073C0FA700B89026 /* Release History.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Release History.rtf"; sourceTree = "<group>"; };
 		23B358C9073C101800B89026 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		23B358E5073C5B7D00B89026 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PreQuiz.nib; sourceTree = "<group>"; };
 		23D0B00B0AA1CD560069E6D3 /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = play.tiff; sourceTree = "<group>"; };
@@ -266,6 +262,7 @@
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
 		83CC1CEE0CD24A2A0002FFA8 /* GeniusAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegateTest.m; sourceTree = "<group>"; };
+		83CEB59F0D4BBF2A00EF7952 /* History.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = History.html; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83D9C9850CD8AE79003B422F /* DeveloperDocs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DeveloperDocs; path = build/Development/DeveloperDocs; sourceTree = "<group>"; };
 		83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -466,8 +463,8 @@
 		23B358BB073C0FA700B89026 /* User Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				83CEB59F0D4BBF2A00EF7952 /* History.html */,
 				23AA229A0AA30E31009AF327 /* COPYING.txt */,
-				23B358BC073C0FA700B89026 /* Release History.rtf */,
 				23B358C9073C101800B89026 /* Samples */,
 			);
 			name = "User Documentation";
@@ -673,7 +670,7 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Genius */,
-				83D9BE670CD110E90092858D /* Genius-1.7.dmg */,
+				83D9BE670CD110E90092858D /* DiskImage */,
 				83CC1CD40CD2499B0002FFA8 /* Testing */,
 				83D9C9780CD8AC7D003B422F /* DeveloperDocs */,
 				833C268A0D2D32850097E3CE /* JRSwizzle */,
@@ -720,15 +717,12 @@
 				2318E41F0725C29B00726F95 /* Help.nib in Resources */,
 				2318E4220725C29F00726F95 /* Help.rtf in Resources */,
 				237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */,
-				23B358C4073C0FEC00B89026 /* Release History.rtf in Resources */,
-				23B358D1073C101900B89026 /* Samples in Resources */,
 				23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */,
 				23FE373F07494CC00029DD61 /* Information.tiff in Resources */,
 				23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */,
 				23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */,
 				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
 				23F818E70B3531390041656E /* Preferences.nib in Resources */,
-				832389FF0CC39B1C00782903 /* TODO.txt in Resources */,
 				8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# unmount image\nhdiutil detach /Volumes/${PROJECT_NAME}\n\n# convert to read only compressed archive leaving the result in build root.\nhdiutil convert -ov -format UDZO -o ${BUILT_PRODUCTS_DIR}/${TARGETNAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\n\nexit 0";
+			shellScript = "# unmount image\nif ! hdiutil detach /Volumes/${PROJECT_NAME}; then\n\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\tif ! hdiutil info | grep -q /Volumes/Genius; then\n\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\telse\n\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\tfi\n\texit -1;\nfi\n\n# convert to read only compressed archive leaving the result in build root.\nif ! hdiutil convert -ov -format UDZO -o ${BUILT_PRODUCTS_DIR}/${PROJECT_NAME}-1.7.${SVNREV}.dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\t/bin/echo \"error: Can't convert dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\nexit 0";
 		};
 		83D9BED50CD122050092858D /* Create Image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -772,11 +766,10 @@
 			);
 			name = "Create Image";
 			outputPaths = (
-				"${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# check for and try to clean up leftovers\nif test -e /Volumes/${PROJECT_NAME}; then\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}; then\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius; then\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg; then\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
+			shellScript = "# check for and try to clean up leftovers at /Volumes/Genius\nif test -e /Volumes/${PROJECT_NAME}\nthen\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}\n\tthen\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius\n\t\tthen\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# create derived files dir\nif ! mkdir -p ${DERIVED_FILE_DIR}\nthen\n\techo \"error: Can't create derived files dir: ${DERIVED_FILE_DIR}\" 1>&2\n\texit -1;\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/packaging/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/packaging/DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
 		};
 		83D9C9770CD8AC7D003B422F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1251,7 +1244,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "Genius-1.7.dmg" */ = {
+		83D9BE6F0CD110F30092858D /* Build configuration list for PBXAggregateTarget "DiskImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83D9BE700CD110F30092858D /* Development */,

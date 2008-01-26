@@ -37,10 +37,10 @@
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.7</string>
 	<key>CFBundleVersion</key>
 	<string>${SVNREV}</string>
 	<key>LSMinimumSystemVersion</key>
