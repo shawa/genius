@@ -44,11 +44,17 @@
     NSDate *_cumulativeStudyTime;                       //!< Not sure this is used anymore.
     NSNumber *probabilityCenter;                        //!< balance between learning and reviewing.
 
+    // some flags
     BOOL _shouldShowImportWarningOnSave;                //!< Flag indicating the GeniusDocument was loaded from an older version.
     NSArray *_pairsDuringDrag;                          //!< Temporary array of items being dragged and dropped.
     NSMutableSet *_customTypeStringCache;               //!< Cache of all types used in deck.
-    
+
+    // cached values
     NSArray *_sortedCustomTypeStrings;                  //!< Sorted array of custom types cached from Genius Pairs.
+    
+    // TableView appearance
+    float rowHeight;                                    //!< table view row height
+    float fontSize;                                     //!< table view font size
 }
 
 - (NSArray*) pairs;
@@ -56,9 +62,10 @@
 - (void) removeObjectFromPairsAtIndex:(int) index;
 - (void) insertObject:(GeniusPair*) pair inPairsAtIndex:(int)index;
 
-- (NSSearchField *) searchField;    // in toolbar
+- (NSSearchField *) searchField;
 
 - (void) _reloadCustomTypeCacheSet;
+- (void) setListTextSizeMode: (int) mode;
 
 @end
 

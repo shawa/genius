@@ -34,7 +34,6 @@
 #import "GSTableView.h"
 
 @interface GeniusDocument (VeryPrivate)
-- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification;
 - (NSArray *) _enabledAssociationsForPairs:(NSArray *)pairs;
 - (void) _updateStatusText;
 - (void) _updateLevelIndicator;
@@ -83,8 +82,12 @@
 
         _customTypeStringCache = [[NSMutableSet alloc] init];
 
-        // setup change tracking
+        // setup change tracking of ourself
         [self addObserver:self];
+        
+        // initialize table layout font size and row height monitor changes to preference
+        [self setListTextSizeMode:[[NSUserDefaults standardUserDefaults] integerForKey:GeniusPreferencesListTextSizeModeKey]];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"ListTextSizeMode" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
@@ -129,11 +132,6 @@
     [self setupToolbarForWindow:[aController window]];
     [_searchField setNextKeyView:tableView];
 	
-	// Configure list font size
-	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(_handleUserDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:nil];
-	[self _handleUserDefaultsDidChange:nil];
-        
     [statusField setStringValue:@""];
     [self reloadInterfaceFromModel];
 }
@@ -200,6 +198,34 @@
     _sortedCustomTypeStrings = [[[_customTypeStringCache allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] retain];
 }
 
+//! Updates fontSize and rowHeight to reflect the current small medium or large List Text preference 
+- (void) setListTextSizeMode: (int) mode
+{
+    [self willChangeValueForKey:@"fontSize"];
+    [self willChangeValueForKey:@"rowHeight"];
+    
+    switch (mode)
+    {
+        case 0:
+            fontSize = [NSFont smallSystemFontSize];
+            break;
+        case 1:
+            fontSize = [NSFont systemFontSize];
+            break;
+        case 2:
+            fontSize = 16.0;
+            break;
+        default:
+            fontSize = [NSFont systemFontSize];
+    }
+    
+    NSLayoutManager *layoutManager = [[[NSLayoutManager alloc] init] autorelease];
+    rowHeight = [layoutManager defaultLineHeightForFont:[NSFont systemFontOfSize:fontSize]];
+    
+    [self didChangeValueForKey:@"rowHeight"];
+    [self didChangeValueForKey:@"fontSize"];
+}
+
 @end
 
 //! Ecclectic collection of misc methods.
@@ -245,64 +271,6 @@
     I don't know what makes these worthy of being in the VeryPrivate category.
 */
 @implementation GeniusDocument(VeryPrivate)
-
-//! The three font sizes we support through preferences.
-+ (float) listTextFontSizeForSizeMode:(int)mode
-{
-	// IB: 11/14, 13/17  -- iTunes: 11/15, 13/18
-
-	switch (mode)
-	{
-		case 0:
-			return [NSFont smallSystemFontSize];
-		case 1:
-			return [NSFont systemFontSize];
-		case 2:
-			return 16.0;
-	}
-	
-	return [NSFont systemFontSize];
-}
-
-//! Returns row height that is suitable given our chosen font size.
-+ (float) rowHeightForSizeMode:(int)mode
-{
-	switch (mode)
-	{
-		case 0:
-			return [NSFont smallSystemFontSize] + 4.0;
-		case 1:
-			return [NSFont systemFontSize] + 5.0;
-		case 2:
-			return 16.0 + 6.0;
-	}
-	
-	return [NSFont systemFontSize];
-}
-
-//! updates fonts and table row heights.
-- (void) _handleUserDefaultsDidChange:(NSNotification *)aNotification
-{	
-	// _dismissFieldEditor
-    NSWindow * window = [[[self windowControllers] objectAtIndex:0] window];
-	if ([window makeFirstResponder:window] == NO)
-		[window endEditingFor:nil];
-	
-	NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-
-	// Handle font size
-	int mode = [ud integerForKey:GeniusPreferencesListTextSizeModeKey];
-	float fontSize = [GeniusDocument listTextFontSizeForSizeMode:mode];
-
-	float rowHeight = [GeniusDocument rowHeightForSizeMode:mode];
-	[tableView setRowHeight:rowHeight];
-
-	NSEnumerator * tableColumnEnumerator = [[tableView tableColumns] objectEnumerator];
-	NSTableColumn * tableColumn;
-	while ((tableColumn = [tableColumnEnumerator nextObject]))
-		[[tableColumn dataCell] setFont:[NSFont systemFontOfSize:fontSize]];
-}
-
 
 //! Convenience method to check which GeniusPair GeniusAssociation scores are Displayed.
 /*!
@@ -422,19 +390,26 @@
 //! Catches changes to many objects in the model graph and updates cached values as needed.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSUndoManager *undoManager = [self undoManager];
-    id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
-    if (oldValue == [NSNull null]) {
-        oldValue = nil;
+    if ([keyPath isEqualToString:@"ListTextSizeMode"])
+    {
+        [self setListTextSizeMode:[[change objectForKey:NSKeyValueChangeNewKey] intValue]];
     }
-    
-    [[undoManager prepareWithInvocationTarget:self] setValue:oldValue forKeyPath:keyPath inObject:object];
-    
-    if ([keyPath isEqualToString:@"customTypeString"])
-        [self _reloadCustomTypeCacheSet];
-    
-    [self _updateStatusText];
-	[self _updateLevelIndicator];
+    else
+    {
+        NSUndoManager *undoManager = [self undoManager];
+        id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        if (oldValue == [NSNull null]) {
+            oldValue = nil;
+        }
+        
+        [[undoManager prepareWithInvocationTarget:self] setValue:oldValue forKeyPath:keyPath inObject:object];
+        
+        if ([keyPath isEqualToString:@"customTypeString"])
+            [self _reloadCustomTypeCacheSet];
+        
+        [self _updateStatusText];
+        [self _updateLevelIndicator];
+    }
 }
 
 @end
