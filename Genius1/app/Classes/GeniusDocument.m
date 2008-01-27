@@ -50,7 +50,8 @@
  */
 static NSArray *columnBindings;
 
-+ (NSArray *) columnBindings    // in display order
+//! returns list of keypaths used to get at values of a GeniusPair.
++ (NSArray *) columnBindings
 {
     return columnBindings;
 }
@@ -346,18 +347,10 @@ static NSArray *columnBindings;
 
 @end
 
-//! Supports executing undo actions arranged by controller.
-@implementation NSWindowController(UndoRedoSupport)
-//! support for undo of property changes.
-- (void) setValue:(id)value forKeyPath:(NSString*)keyPath inObject:(id)object
-{
-    [object setValue:value forKeyPath:keyPath];
-}
-@end
-
 //! Collection of methods loosely related to coordinating model and view changes.
 /*! @category GeniusDocument(UndoRedoSupport) */
 @implementation GeniusDocument(UndoRedoSupport)
+
 //! support for undo of property changes.
 - (void) setValue:(id)value forKeyPath:(NSString*)keyPath inObject:(id)object
 {
@@ -933,7 +926,6 @@ static NSArray *columnBindings;
 {
     if ([_filterString length] > 0)
     {
-        //! @todo Set colum bindings as a property rather than pull them from the geniusDocument.
         NSArray * keyPaths = [GeniusDocument columnBindings];
         NSMutableArray * filteredObjects = [NSMutableArray array];
         NSEnumerator * pairEnumerator = [objects objectEnumerator];

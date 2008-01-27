@@ -10,7 +10,7 @@
         {
             CLASS = GeniusArrayController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {geniusDocument = id; }; 
+            OUTLETS = {}; 
             SUPERCLASS = NSArrayController; 
         }, 
         {

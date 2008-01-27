@@ -100,20 +100,14 @@
 @end
 
 @interface GeniusArrayController : NSArrayController {
-    IBOutlet id geniusDocument;  //!< Provides access to columnBindings
     NSString * _filterString; //!< The string for which we are filtering.
 }
 
 - (NSString *) filterString;
 - (void) setFilterString:(NSString *)string;
-- (NSArray *)arrangeObjects:(NSArray *)objects;
 @end
 
 @interface GeniusDocument(UndoRedoSupport)
 - (void) addObserver: (id) observer;
 - (void) removeObserver: (id) observer;
-@end
-
-@interface NSWindowController(UndoRedoSupport)
-- (void) setValue:(id)value forKeyPath:(NSString*)keyPath inObject:(id)object;
 @end

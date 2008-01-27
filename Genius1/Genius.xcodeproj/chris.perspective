@@ -265,7 +265,10 @@
 								<string>83D9C97F0CD8AD8E003B422F</string>
 								<string>83B723B70D2D2FDE004668E1</string>
 								<string>19C28FB0FE9D524F11CA2CBB</string>
+								<string>83D9C9850CD8AE79003B422F</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>838885460D4D3304002F25ED</string>
+								<string>838885470D4D3304002F25ED</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
 								<string>1C77FABC04509CD000000102</string>
@@ -322,14 +325,14 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>838885130D4D2EEA002F25ED</string>
+										<string>838885530D4D3304002F25ED</string>
 										<key>history</key>
 										<array>
-											<string>838884FD0D4D2EB7002F25ED</string>
-											<string>8388850C0D4D2EEA002F25ED</string>
 											<string>8388850D0D4D2EEA002F25ED</string>
-											<string>8388850E0D4D2EEA002F25ED</string>
-											<string>8388850F0D4D2EEA002F25ED</string>
+											<string>8388851A0D4D300E002F25ED</string>
+											<string>8388852A0D4D307A002F25ED</string>
+											<string>838885480D4D3304002F25ED</string>
+											<string>838885490D4D3304002F25ED</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -392,6 +395,19 @@
 											<string>838885100D4D2EEA002F25ED</string>
 											<string>838885110D4D2EEA002F25ED</string>
 											<string>838885120D4D2EEA002F25ED</string>
+											<string>8388851C0D4D300E002F25ED</string>
+											<string>8388851D0D4D300E002F25ED</string>
+											<string>8388852D0D4D307A002F25ED</string>
+											<string>838885380D4D319A002F25ED</string>
+											<string>8388854A0D4D3304002F25ED</string>
+											<string>8388854B0D4D3304002F25ED</string>
+											<string>8388854C0D4D3304002F25ED</string>
+											<string>8388854D0D4D3304002F25ED</string>
+											<string>8388854E0D4D3304002F25ED</string>
+											<string>8388854F0D4D3304002F25ED</string>
+											<string>838885500D4D3304002F25ED</string>
+											<string>838885510D4D3304002F25ED</string>
+											<string>838885520D4D3304002F25ED</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -405,18 +421,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {895, 442}}</string>
+								<string>{{0, 0}, {895, 513}}</string>
 								<key>RubberWindowFrame</key>
 								<string>8 55 1150 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>442pt</string>
+							<string>513pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>335pt</string>
+							<string>264pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -446,7 +462,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {895, 308}}</string>
+										<string>{{10, 27}, {895, 237}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -464,7 +480,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {895, 308}}</string>
+										<string>{{10, 27}, {895, 237}}</string>
 										<key>RubberWindowFrame</key>
 										<string>8 55 1150 823 0 0 1440 878 </string>
 									</dict>
@@ -602,7 +618,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>83B002090ACD464B0022D4F3</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GeniusDocumentFileTest.m</string>
+								<string>GeniusDocument.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -610,18 +626,18 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>83B0020A0ACD464B0022D4F3</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusDocumentFileTest.m</string>
+										<string>GeniusDocument.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>838885140D4D2EEA002F25ED</string>
+										<string>838885540D4D3304002F25ED</string>
 										<key>history</key>
 										<array>
 											<string>838884650D4D277A002F25ED</string>
-											<string>838884D70D4D2D6D002F25ED</string>
-											<string>838884EA0D4D2DE8002F25ED</string>
 											<string>8388850A0D4D2ECF002F25ED</string>
-											<string>838885070D4D2EB7002F25ED</string>
+											<string>838885240D4D306A002F25ED</string>
+											<string>8388853B0D4D31CA002F25ED</string>
+											<string>838885250D4D306A002F25ED</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -640,6 +656,10 @@
 											<string>838884C50D4D2C2B002F25ED</string>
 											<string>838884D90D4D2D6D002F25ED</string>
 											<string>838884DA0D4D2D6D002F25ED</string>
+											<string>838885100D4D2EEA002F25ED</string>
+											<string>838885270D4D306A002F25ED</string>
+											<string>838885280D4D306A002F25ED</string>
+											<string>8388853C0D4D31CA002F25ED</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
