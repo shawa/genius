@@ -460,9 +460,6 @@
 
 
 //! Support for animated fade in and out of quiz backdrop window
-/*!
-    @todo Fix this so the fade in effect works.
-*/
 @implementation MyQuizController(NSAnimationDelegate)
 
 //! Handles fade in and out of quiz backdrop window.

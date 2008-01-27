@@ -17,7 +17,6 @@
 
 #import "GeniusAssociationEnumerator.h"
 #include <math.h>   // pow
-#import "NSArrayGeniusAdditions.h"
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
 
@@ -32,6 +31,13 @@ static float PoissonValue(int x, float m)
     return (pow(m,x) / Factorial(x)) * pow(M_E, -m);
 }
 
+
+//! randomly returns NSOrderedAscending or NSOrderedDescending
+int RandomSortFunction(id object1, id object2, void * context)
+{
+    BOOL x = random() & 0x1;
+    return (x ? NSOrderedAscending : NSOrderedDescending);
+}
 
 //! Meant to be used like an NSEnumerator to iterate over a collection of GeniusAssociation items.
 /*!

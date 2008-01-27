@@ -24,7 +24,6 @@
 #import "GeniusItem.h"
 #import "GeniusAssociationEnumerator.h"
 #import "MyQuizController.h"
-#import "NSArrayGeniusAdditions.h"
 #import "GeniusPreferencesController.h"
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
@@ -41,13 +40,6 @@
 // Standard NSDocument subclass for controlling display and editing of a Genius file.
 @implementation GeniusDocument
 
-//! Returns array of keypaths used as bindings in our NSTableView.
-/*
- @todo Must this be created new each time?
- @todo Perhaps this should be derived from the columns in our NSTableView?
- @todo They are particularly not in display order if the colums are reordered.
- @todo notesString is not a column binding.
- */
 static NSArray *columnBindings;
 
 //! returns list of keypaths used to get at values of a GeniusPair.

@@ -231,19 +231,7 @@ Assuming this is okay, it simply passes the call to super.
     if (path == nil)
         return;
 
-    // Construct line of headers
-    /*NSMutableString * string = [NSMutableString string];
-    NSArray * itemKeys = [self itemKeys];
-    int i, count = [itemKeys count];
-    for (i=0; i<count; i++)
-    {
-        NSString * itemKey = [itemKeys objectAtIndex:i];
-        NSString * header = [_headers objectForKey:itemKey];
-        [string appendString:header];
-        if (i<count-1)
-            [string appendString:@"\t"];
-    }*/ //! @todo Consider adding headers to the exported file.
-    
+    //! @todo Consider adding headers to the exported file.    
     NSString * string = [GeniusPair tabularTextFromPairs:_pairs order:[GeniusDocument columnBindings]];
     [string writeToFile:path atomically:NO];
 }
@@ -266,7 +254,6 @@ Assuming this is okay, it simply passes the call to super.
     if (path == nil)
         return;
     
-    //! @todo Maybe make this work in a 'streaming' fashion so we don't load the whole file at once.
     NSString * text = [NSString stringWithContentsOfFile:path];
     if (text == nil)
         return;

@@ -45,7 +45,6 @@
 		23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8E0725BD1300D09B7F /* GeniusToolbar.m */; };
 		23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */; };
 		23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C920725BD1300D09B7F /* MyQuizController.m */; };
-		23227CA30725BD1300D09B7F /* NSArrayGeniusAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */; };
 		23227CAE0725BD2000D09B7F /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */; };
 		23227CB00725BD2000D09B7F /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA80725BD2000D09B7F /* GeniusItem.m */; };
 		23227CB20725BD2000D09B7F /* GeniusPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CAA0725BD2000D09B7F /* GeniusPair.m */; };
@@ -95,7 +94,6 @@
 		833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */; };
 		833C27210D2D3C410097E3CE /* IconTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640460AA2056100888E37 /* IconTextFieldCell.h */; };
 		833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C910725BD1300D09B7F /* MyQuizController.h */; };
-		833C27230D2D3C410097E3CE /* NSArrayGeniusAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */; };
 		833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
 		833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */; };
 		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
@@ -193,8 +191,6 @@
 		23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusWelcomePanel.m; sourceTree = "<group>"; };
 		23227C910725BD1300D09B7F /* MyQuizController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyQuizController.h; sourceTree = "<group>"; };
 		23227C920725BD1300D09B7F /* MyQuizController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyQuizController.m; sourceTree = "<group>"; };
-		23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSArrayGeniusAdditions.h; sourceTree = "<group>"; };
-		23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSArrayGeniusAdditions.m; sourceTree = "<group>"; };
 		23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAssociationEnumerator.h; sourceTree = "<group>"; };
 		23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociationEnumerator.m; sourceTree = "<group>"; };
 		23227CA70725BD2000D09B7F /* GeniusItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusItem.h; sourceTree = "<group>"; };
@@ -347,8 +343,6 @@
 				23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */,
 				23227C910725BD1300D09B7F /* MyQuizController.h */,
 				23227C920725BD1300D09B7F /* MyQuizController.m */,
-				23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */,
-				23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */,
 				83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */,
 				83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */,
 				83602A020D3FC51700C6AF73 /* IsPairImportantTransformer.h */,
@@ -583,7 +577,6 @@
 				833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */,
 				833C27210D2D3C410097E3CE /* IconTextFieldCell.h in Headers */,
 				833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */,
-				833C27230D2D3C410097E3CE /* NSArrayGeniusAdditions.h in Headers */,
 				833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */,
 				833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */,
 				83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */,
@@ -811,7 +804,6 @@
 				23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */,
 				23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */,
 				23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */,
-				23227CA30725BD1300D09B7F /* NSArrayGeniusAdditions.m in Sources */,
 				23227CAE0725BD2000D09B7F /* GeniusAssociationEnumerator.m in Sources */,
 				23227CB00725BD2000D09B7F /* GeniusItem.m in Sources */,
 				23227CB20725BD2000D09B7F /* GeniusPair.m in Sources */,

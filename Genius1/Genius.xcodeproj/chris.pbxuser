@@ -50,9 +50,9 @@
 	};
 	23227C890725BD1300D09B7F /* GeniusDocument.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1352, 14504}}";
-			sepNavSelRange = "{14228, 0}";
-			sepNavVisRect = "{{0, 5500}, {1103, 494}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1352, 14392}}";
+			sepNavSelRange = "{823, 0}";
+			sepNavVisRect = "{{0, 170}, {738, 403}}";
 			sepNavWindowFrame = "{{373, 37}, {1043, 841}}";
 		};
 	};
@@ -66,9 +66,9 @@
 	};
 	23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1196, 4004}}";
-			sepNavSelRange = "{607, 0}";
-			sepNavVisRect = "{{0, 66}, {848, 410}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1196, 3822}}";
+			sepNavSelRange = "{10703, 0}";
+			sepNavVisRect = "{{0, 3182}, {913, 482}}";
 			sepNavWindowFrame = "{{367, 5}, {1027, 873}}";
 		};
 	};
@@ -110,9 +110,9 @@
 	};
 	23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {951, 1232}}";
-			sepNavSelRange = "{1349, 18}";
-			sepNavVisRect = "{{0, 548}, {951, 407}}";
+			sepNavIntBoundsRect = "{{0, 0}, {913, 1232}}";
+			sepNavSelRange = "{763, 5}";
+			sepNavVisRect = "{{0, 238}, {913, 411}}";
 			sepNavWindowFrame = "{{272, 5}, {1027, 873}}";
 		};
 	};
@@ -126,24 +126,10 @@
 	};
 	23227C920725BD1300D09B7F /* MyQuizController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {938, 6734}}";
-			sepNavSelRange = "{2197, 6}";
-			sepNavVisRect = "{{0, 907}, {753, 412}}";
+			sepNavIntBoundsRect = "{{0, 0}, {938, 6692}}";
+			sepNavSelRange = "{15584, 0}";
+			sepNavVisRect = "{{0, 6281}, {913, 411}}";
 			sepNavWindowFrame = "{{186, 182}, {776, 696}}";
-		};
-	};
-	23227C930725BD1300D09B7F /* NSArrayGeniusAdditions.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {776, 530}}";
-			sepNavSelRange = "{704, 22}";
-			sepNavVisRect = "{{0, 0}, {776, 530}}";
-		};
-	};
-	23227C940725BD1300D09B7F /* NSArrayGeniusAdditions.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {944, 784}}";
-			sepNavSelRange = "{966, 0}";
-			sepNavVisRect = "{{0, 266}, {944, 505}}";
 		};
 	};
 	23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */ = {
@@ -155,9 +141,9 @@
 	};
 	23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1003, 5418}}";
-			sepNavSelRange = "{9600, 0}";
-			sepNavVisRect = "{{0, 3836}, {1003, 379}}";
+			sepNavIntBoundsRect = "{{0, 0}, {980, 5502}}";
+			sepNavSelRange = "{575, 0}";
+			sepNavVisRect = "{{0, 168}, {738, 403}}";
 			sepNavWindowFrame = "{{15, 18}, {1243, 855}}";
 		};
 	};
@@ -331,8 +317,6 @@
 		);
 		breakpoints = (
 			8307B5E40D479EBA000C05AE /* -[NSException raise] */,
-			838883F10D4D1AB1002F25ED /* GeniusDocument.m:379 */,
-			8388841F0D4D1C2B002F25ED /* GeniusDocument.m:377 */,
 		);
 		breakpointsGroup = 83238A280CC3A52300782903 /* XCBreakpointsBucket */;
 		codeSenseManager = 83F415BD0C95543200B44E51 /* Code sense */;
@@ -798,6 +782,20 @@
 			838885FF0D4D4E76002F25ED /* PBXTextBookmark */ = 838885FF0D4D4E76002F25ED /* PBXTextBookmark */;
 			838886000D4D4E7C002F25ED /* PBXTextBookmark */ = 838886000D4D4E7C002F25ED /* PBXTextBookmark */;
 			838886010D4D4E7C002F25ED /* PBXTextBookmark */ = 838886010D4D4E7C002F25ED /* PBXTextBookmark */;
+			8388861B0D4D50F6002F25ED /* PBXTextBookmark */ = 8388861B0D4D50F6002F25ED /* PBXTextBookmark */;
+			8388861C0D4D50F6002F25ED /* PBXTextBookmark */ = 8388861C0D4D50F6002F25ED /* PBXTextBookmark */;
+			8388861D0D4D50F6002F25ED /* PBXTextBookmark */ = 8388861D0D4D50F6002F25ED /* PBXTextBookmark */;
+			8388861E0D4D50F6002F25ED /* PBXTextBookmark */ = 8388861E0D4D50F6002F25ED /* PBXTextBookmark */;
+			8388861F0D4D50F6002F25ED /* PBXTextBookmark */ = 8388861F0D4D50F6002F25ED /* PBXTextBookmark */;
+			838886200D4D50F6002F25ED /* PBXTextBookmark */ = 838886200D4D50F6002F25ED /* PBXTextBookmark */;
+			838886210D4D50F6002F25ED /* PBXTextBookmark */ = 838886210D4D50F6002F25ED /* PBXTextBookmark */;
+			838886220D4D50F6002F25ED /* PBXTextBookmark */ = 838886220D4D50F6002F25ED /* PBXTextBookmark */;
+			838886230D4D50F6002F25ED /* PBXTextBookmark */ = 838886230D4D50F6002F25ED /* PBXTextBookmark */;
+			838886240D4D50F6002F25ED /* PBXTextBookmark */ = 838886240D4D50F6002F25ED /* PBXTextBookmark */;
+			838886250D4D50F6002F25ED /* PBXTextBookmark */ = 838886250D4D50F6002F25ED /* PBXTextBookmark */;
+			8388862C0D4D5136002F25ED /* PBXTextBookmark */ = 8388862C0D4D5136002F25ED /* PBXTextBookmark */;
+			8388862D0D4D513F002F25ED /* PBXTextBookmark */ = 8388862D0D4D513F002F25ED /* PBXTextBookmark */;
+			8388862E0D4D513F002F25ED /* PBXTextBookmark */ = 8388862E0D4D513F002F25ED /* PBXTextBookmark */;
 		};
 		sourceControlManager = 83F415BC0C95543200B44E51 /* Source Control */;
 		userBookmarkGroup = 83978D6F0D1730BB003B1C93 /* PBXBookmarkGroup */;
@@ -830,8 +828,6 @@
 		name = Genius;
 		objects = (
 			8307B5E40D479EBA000C05AE /* -[NSException raise] */,
-			838883F10D4D1AB1002F25ED /* GeniusDocument.m:379 */,
-			8388841F0D4D1C2B002F25ED /* GeniusDocument.m:377 */,
 		);
 	};
 	833C268A0D2D32850097E3CE /* JRSwizzle */ = {
@@ -890,7 +886,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) setListTextSizeMode: (int) mode";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 8913;
@@ -900,7 +896,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 117";
 		rLen = 0;
-		rLoc = 4868;
+		rLoc = 4518;
 		rType = 0;
 		vrLen = 1539;
 		vrLoc = 3697;
@@ -920,7 +916,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = FontSize;
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 7630;
@@ -940,7 +936,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = GeniusPreferencesListTextSizeModeKey;
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 8865;
@@ -960,7 +956,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 89";
 		rLen = 0;
-		rLoc = 3964;
+		rLoc = 3614;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 2016;
@@ -980,7 +976,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 89";
 		rLen = 0;
-		rLoc = 3964;
+		rLoc = 3614;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 2016;
@@ -1000,7 +996,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 89";
 		rLen = 0;
-		rLoc = 3964;
+		rLoc = 3614;
 		rType = 0;
 		vrLen = 1678;
 		vrLoc = 2016;
@@ -1020,7 +1016,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 89";
 		rLen = 0;
-		rLoc = 3725;
+		rLoc = 3375;
 		rType = 0;
 		vrLen = 1844;
 		vrLoc = 1552;
@@ -1040,7 +1036,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 89";
 		rLen = 0;
-		rLoc = 3725;
+		rLoc = 3375;
 		rType = 0;
 		vrLen = 1852;
 		vrLoc = 1552;
@@ -1060,7 +1056,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 55";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1909;
 		vrLoc = 1528;
@@ -1080,7 +1076,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 55";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 1528;
@@ -1100,7 +1096,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 55";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1911;
 		vrLoc = 1528;
@@ -1120,7 +1116,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 56";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1914;
 		vrLoc = 932;
@@ -1140,7 +1136,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 56";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1878;
 		vrLoc = 932;
@@ -1160,7 +1156,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 56";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1958;
 		vrLoc = 892;
@@ -1180,7 +1176,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 57";
 		rLen = 0;
-		rLoc = 2535;
+		rLoc = 2185;
 		rType = 0;
 		vrLen = 1955;
 		vrLoc = 892;
@@ -1200,7 +1196,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) setListTextSizeMode: (int) mode";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 8913;
@@ -1225,21 +1221,6 @@
 		vrLen = 1378;
 		vrLoc = 2281;
 	};
-	838883F10D4D1AB1002F25ED /* GeniusDocument.m:379 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		delayBeforeContinue = 0;
-		fileReference = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
-		functionName = "-observeValueForKeyPath:ofObject:change:context:";
-		hitCount = 1;
-		lineNumber = 379;
-		location = Genius;
-		modificationTime = 223170026.800325;
-		state = 2;
-	};
 	838883FA0D4D1B06002F25ED /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 23227C880725BD1300D09B7F /* GeniusDocument.h */;
@@ -1255,7 +1236,7 @@
 		comments = "warning: method definition for '-_handleUserDefaultsDidChange:' not found";
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		rLen = 1;
-		rLoc = 344;
+		rLoc = 336;
 		rType = 1;
 	};
 	838883FC0D4D1B06002F25ED /* PBXTextBookmark */ = {
@@ -1263,7 +1244,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 198";
 		rLen = 0;
-		rLoc = 7212;
+		rLoc = 6862;
 		rType = 0;
 		vrLen = 902;
 		vrLoc = 6676;
@@ -1283,7 +1264,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 438";
 		rLen = 0;
-		rLoc = 13164;
+		rLoc = 12814;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 13920;
@@ -1303,7 +1284,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: _enabledAssociationsForPairs:";
 		rLen = 0;
-		rLoc = 1102;
+		rLoc = 1067;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 644;
@@ -1313,7 +1294,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: _enabledAssociationsForPairs:";
 		rLen = 0;
-		rLoc = 1102;
+		rLoc = 1067;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 603;
@@ -1323,7 +1304,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: _enabledAssociationsForPairs:";
 		rLen = 0;
-		rLoc = 1102;
+		rLoc = 1067;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 678;
@@ -1333,7 +1314,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 603;
@@ -1343,7 +1324,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 424;
@@ -1353,7 +1334,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 678;
@@ -1363,7 +1344,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 678;
@@ -1373,7 +1354,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 424;
@@ -1383,7 +1364,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1393,7 +1374,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 424;
@@ -1403,32 +1384,17 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
-	};
-	8388841F0D4D1C2B002F25ED /* GeniusDocument.m:377 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		delayBeforeContinue = 0;
-		fileReference = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
-		functionName = "-observeValueForKeyPath:ofObject:change:context:";
-		hitCount = 1;
-		lineNumber = 377;
-		location = Genius;
-		modificationTime = 223170026.800974;
-		state = 2;
 	};
 	838884220D4D1C42002F25ED /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 424;
@@ -1438,7 +1404,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1448,7 +1414,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 424;
@@ -1458,7 +1424,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1468,7 +1434,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 424;
@@ -1478,7 +1444,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1488,7 +1454,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 412";
 		rLen = 0;
-		rLoc = 13128;
+		rLoc = 12778;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 12372;
@@ -1498,7 +1464,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 275";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 8298;
@@ -1508,7 +1474,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 275";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 8520;
@@ -1518,7 +1484,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1528,7 +1494,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 275";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 8520;
@@ -1538,7 +1504,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1548,7 +1514,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 280";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 8520;
@@ -1558,7 +1524,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1568,7 +1534,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 280";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 8520;
@@ -1578,7 +1544,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1588,7 +1554,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 247";
 		rLen = 0;
-		rLoc = 9033;
+		rLoc = 8683;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8533;
@@ -1598,7 +1564,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 534;
@@ -1608,7 +1574,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 246";
 		rLen = 0;
-		rLoc = 9025;
+		rLoc = 8675;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 8102;
@@ -1628,7 +1594,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: _setListTextSizeMode:";
 		rLen = 0;
-		rLoc = 1223;
+		rLoc = 1188;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 788;
@@ -1668,7 +1634,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: _setListTextSizeMode:";
 		rLen = 0;
-		rLoc = 1223;
+		rLoc = 1188;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 788;
@@ -1688,7 +1654,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: _setListTextSizeMode:";
 		rLen = 0;
-		rLoc = 1223;
+		rLoc = 1188;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 788;
@@ -1718,7 +1684,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 29";
 		rLen = 0;
-		rLoc = 897;
+		rLoc = 862;
 		rType = 0;
 		vrLen = 847;
 		vrLoc = 534;
@@ -1748,7 +1714,7 @@
 		comments = "warning: method definition for '-setListTextSizeMode:' not found";
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		rLen = 1;
-		rLoc = 259;
+		rLoc = 251;
 		rType = 1;
 	};
 	838884760D4D27DA002F25ED /* PBXTextBookmark */ = {
@@ -1766,7 +1732,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = reloadInterfaceFromModel;
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 1618;
 		vrLoc = 7299;
@@ -1786,7 +1752,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = reloadInterfaceFromModel;
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 817;
 		vrLoc = 7517;
@@ -1806,7 +1772,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = setListTextSizeMode;
 		rLen = 19;
-		rLoc = 7688;
+		rLoc = 7338;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 6229;
@@ -1820,7 +1786,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 236";
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 7299;
@@ -1840,7 +1806,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = setListTextSizeMode;
 		rLen = 19;
-		rLoc = 7688;
+		rLoc = 7338;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 6229;
@@ -1860,7 +1826,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 11565;
+		rLoc = 11034;
 		rType = 0;
 		vrLen = 804;
 		vrLoc = 10966;
@@ -1870,7 +1836,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 8217;
@@ -1920,7 +1886,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 8265;
@@ -1950,7 +1916,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 32107;
+		rLoc = 31757;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 31928;
@@ -1970,7 +1936,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = geniusDocument;
 		rLen = 0;
-		rLoc = 32075;
+		rLoc = 31725;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 32051;
@@ -1990,7 +1956,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 32107;
+		rLoc = 31757;
 		rType = 0;
 		vrLen = 1160;
 		vrLoc = 32001;
@@ -2000,7 +1966,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 11565;
+		rLoc = 11034;
 		rType = 0;
 		vrLen = 804;
 		vrLoc = 10966;
@@ -2020,7 +1986,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 8217;
@@ -2070,7 +2036,7 @@
 		comments = "warning: incomplete implementation of class 'GeniusDocument'";
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		rLen = 1;
-		rLoc = 259;
+		rLoc = 251;
 		rType = 1;
 	};
 	838884C50D4D2C2B002F25ED /* PBXTextBookmark */ = {
@@ -2088,7 +2054,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 8793;
+		rLoc = 8443;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 7227;
@@ -2108,7 +2074,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 238";
 		rLen = 0;
-		rLoc = 8793;
+		rLoc = 8443;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 7517;
@@ -2118,7 +2084,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 0;
-		rLoc = 8793;
+		rLoc = 8443;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 7227;
@@ -2128,7 +2094,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 55";
 		rLen = 0;
-		rLoc = 2530;
+		rLoc = 2180;
 		rType = 0;
 		vrLen = 1897;
 		vrLoc = 765;
@@ -2148,7 +2114,7 @@
 		comments = "warning: 'GeniusDocument' may not respond to '-columnBindings'";
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		rLen = 1;
-		rLoc = 420;
+		rLoc = 412;
 		rType = 1;
 	};
 	838884D90D4D2D6D002F25ED /* PBXTextBookmark */ = {
@@ -2156,7 +2122,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "@end";
 		rLen = 5;
-		rLoc = 8794;
+		rLoc = 8444;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 7887;
@@ -2176,7 +2142,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "NSString * outputString = [GeniusPair tabularTextFromPairs:_pairsDuringDrag order:[self columnBindings]];";
 		rLen = 120;
-		rLoc = 14605;
+		rLoc = 14255;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 14099;
@@ -2186,7 +2152,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = filteredObjects;
 		rLen = 15;
-		rLoc = 32658;
+		rLoc = 32308;
 		rType = 0;
 		vrLen = 1090;
 		vrLoc = 32101;
@@ -2195,7 +2161,7 @@
 		isa = PBXTextBookmark;
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		rLen = 15;
-		rLoc = 11565;
+		rLoc = 11034;
 		rType = 0;
 	};
 	838884E50D4D2DC2002F25ED /* PBXTextBookmark */ = {
@@ -2203,7 +2169,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = filteredObjects;
 		rLen = 15;
-		rLoc = 32658;
+		rLoc = 32308;
 		rType = 0;
 		vrLen = 1090;
 		vrLoc = 32101;
@@ -2213,7 +2179,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = "GeniusDocumentFile.m: 278";
 		rLen = 0;
-		rLoc = 11580;
+		rLoc = 11049;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 10754;
@@ -2223,7 +2189,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 441";
 		rLen = 0;
-		rLoc = 14706;
+		rLoc = 14356;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 14099;
@@ -2233,7 +2199,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = "GeniusDocumentFile.m: 278";
 		rLen = 0;
-		rLoc = 11580;
+		rLoc = 11049;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 3;
@@ -2243,7 +2209,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = "GeniusDocumentFile.m: 278";
 		rLen = 0;
-		rLoc = 11580;
+		rLoc = 11049;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 3;
@@ -2310,7 +2276,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = reloadInterfaceFromModel;
 		rLen = 24;
-		rLoc = 11657;
+		rLoc = 11126;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 10754;
@@ -2320,7 +2286,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = reloadInterfaceFromModel;
 		rLen = 24;
-		rLoc = 5551;
+		rLoc = 5201;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 4969;
@@ -2350,7 +2316,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 262";
 		rLen = 0;
-		rLoc = 8799;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 8757;
@@ -2400,7 +2366,7 @@
 		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
 		name = "GeniusDocumentFile.m: 277";
 		rLen = 0;
-		rLoc = 11580;
+		rLoc = 11049;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 3;
@@ -2589,7 +2555,7 @@
 		isa = PBXTextBookmark;
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		rLen = 1;
-		rLoc = 53;
+		rLoc = 45;
 		rType = 1;
 	};
 	838885270D4D306A002F25ED /* PBXTextBookmark */ = {
@@ -2617,7 +2583,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 2311;
+		rLoc = 1961;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 1460;
@@ -2637,7 +2603,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 2311;
+		rLoc = 1961;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 1695;
@@ -2654,7 +2620,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 2311;
+		rLoc = 1961;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 1695;
@@ -2674,7 +2640,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 2311;
+		rLoc = 1961;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 1460;
@@ -2694,7 +2660,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = columnBindings;
 		rLen = 14;
-		rLoc = 2311;
+		rLoc = 1961;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 1460;
@@ -2724,7 +2690,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = _filterString;
 		rLen = 13;
-		rLoc = 31521;
+		rLoc = 31171;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 31255;
@@ -2734,7 +2700,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = _filterString;
 		rLen = 13;
-		rLoc = 31521;
+		rLoc = 31171;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 31255;
@@ -2744,7 +2710,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = _filterString;
 		rLen = 13;
-		rLoc = 31521;
+		rLoc = 31171;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 31255;
@@ -2774,7 +2740,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 8837;
@@ -2794,7 +2760,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "arrangeObjects:";
 		rLen = 15;
-		rLoc = 32723;
+		rLoc = 32373;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 32429;
@@ -2814,7 +2780,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = inObject;
 		rLen = 0;
-		rLoc = 11671;
+		rLoc = 11321;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 11533;
@@ -2834,7 +2800,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 376";
 		rLen = 0;
-		rLoc = 12848;
+		rLoc = 12498;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 12718;
@@ -2854,7 +2820,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 8837;
@@ -2874,7 +2840,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 8837;
@@ -2894,7 +2860,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 8837;
@@ -2904,7 +2870,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2924,7 +2890,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2934,7 +2900,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 8837;
@@ -2944,7 +2910,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2954,7 +2920,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2964,7 +2930,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2974,7 +2940,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2984,7 +2950,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8837;
@@ -2994,7 +2960,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 296";
 		rLen = 0;
-		rLoc = 9791;
+		rLoc = 9441;
 		rType = 0;
 		vrLen = 893;
 		vrLoc = 9564;
@@ -3004,7 +2970,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 296";
 		rLen = 0;
-		rLoc = 9791;
+		rLoc = 9441;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 9363;
@@ -3014,7 +2980,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10768;
+		rLoc = 10418;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 9640;
@@ -3024,7 +2990,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10768;
+		rLoc = 10418;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 10066;
@@ -3034,7 +3000,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1466;
 		vrLoc = 8837;
@@ -3044,7 +3010,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = statusField;
 		rLen = 0;
-		rLoc = 10769;
+		rLoc = 10419;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 9564;
@@ -3053,7 +3019,7 @@
 		isa = PBXTextBookmark;
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		rLen = 0;
-		rLoc = 10769;
+		rLoc = 10419;
 		rType = 0;
 	};
 	838885760D4D3813002F25ED /* PBXTextBookmark */ = {
@@ -3061,7 +3027,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10800;
+		rLoc = 10450;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 10229;
@@ -3071,7 +3037,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10800;
+		rLoc = 10450;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 10229;
@@ -3081,7 +3047,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 8800;
@@ -3091,7 +3057,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10800;
+		rLoc = 10450;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 10229;
@@ -3101,7 +3067,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 8800;
@@ -3111,7 +3077,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10800;
+		rLoc = 10450;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 10229;
@@ -3121,7 +3087,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 8800;
@@ -3131,7 +3097,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 317";
 		rLen = 0;
-		rLoc = 10800;
+		rLoc = 10450;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 10229;
@@ -3141,7 +3107,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 8800;
@@ -3151,7 +3117,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 289";
 		rLen = 0;
-		rLoc = 9784;
+		rLoc = 9434;
 		rType = 0;
 		vrLen = 1025;
 		vrLoc = 9526;
@@ -3161,7 +3127,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 292";
 		rLen = 0;
-		rLoc = 9868;
+		rLoc = 9518;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 9604;
@@ -3171,7 +3137,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 292";
 		rLen = 0;
-		rLoc = 9868;
+		rLoc = 9518;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 9325;
@@ -3181,7 +3147,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3191,7 +3157,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 292";
 		rLen = 0;
-		rLoc = 9868;
+		rLoc = 9518;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 9325;
@@ -3201,7 +3167,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3211,7 +3177,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 292";
 		rLen = 0;
-		rLoc = 9868;
+		rLoc = 9518;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 9322;
@@ -3221,7 +3187,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 285";
 		rLen = 0;
-		rLoc = 9693;
+		rLoc = 9343;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 9325;
@@ -3231,7 +3197,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 285";
 		rLen = 0;
-		rLoc = 9693;
+		rLoc = 9343;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 9325;
@@ -3241,7 +3207,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3251,7 +3217,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 281";
 		rLen = 0;
-		rLoc = 9603;
+		rLoc = 9253;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 9325;
@@ -3261,7 +3227,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 281";
 		rLen = 0;
-		rLoc = 9603;
+		rLoc = 9253;
 		rType = 0;
 		vrLen = 1602;
 		vrLoc = 13901;
@@ -3271,7 +3237,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 281";
 		rLen = 0;
-		rLoc = 9603;
+		rLoc = 9253;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 13901;
@@ -3281,7 +3247,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3291,7 +3257,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 411";
 		rLen = 0;
-		rLoc = 14228;
+		rLoc = 13878;
 		rType = 0;
 		vrLen = 1602;
 		vrLoc = 13901;
@@ -3301,7 +3267,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 411";
 		rLen = 0;
-		rLoc = 14228;
+		rLoc = 13878;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 13901;
@@ -3321,7 +3287,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 411";
 		rLen = 0;
-		rLoc = 14228;
+		rLoc = 13878;
 		rType = 0;
 		vrLen = 1566;
 		vrLoc = 13901;
@@ -3351,7 +3317,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3371,7 +3337,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3391,7 +3357,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3411,7 +3377,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3431,7 +3397,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3451,7 +3417,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3471,7 +3437,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3491,7 +3457,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3511,7 +3477,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3531,7 +3497,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3551,7 +3517,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3571,7 +3537,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3591,7 +3557,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3611,7 +3577,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3631,7 +3597,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3651,7 +3617,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
@@ -3661,7 +3627,7 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "GeniusDocument.m: 411";
 		rLen = 0;
-		rLoc = 14228;
+		rLoc = 13878;
 		rType = 0;
 		vrLen = 1403;
 		vrLoc = 13680;
@@ -3691,10 +3657,147 @@
 		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
 		name = "- (void) addObserver: (id) observer";
 		rLen = 36;
-		rLoc = 12066;
+		rLoc = 11716;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 8800;
+	};
+	8388861B0D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
+		name = "GeniusDocumentFile.m: 257";
+		rLen = 0;
+		rLoc = 10703;
+		rType = 0;
+		vrLen = 1337;
+		vrLoc = 9603;
+	};
+	8388861C0D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */;
+		name = "@todo";
+		rLen = 5;
+		rLoc = 763;
+		rType = 0;
+		vrLen = 889;
+		vrLoc = 576;
+	};
+	8388861D0D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C920725BD1300D09B7F /* MyQuizController.m */;
+		name = "MyQuizController.m: 463";
+		rLen = 0;
+		rLoc = 15584;
+		rType = 0;
+		vrLen = 808;
+		vrLoc = 15314;
+	};
+	8388861E0D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */;
+		name = "GeniusAssociationEnumerator.m: 17";
+		rLen = 0;
+		rLoc = 575;
+		rType = 0;
+		vrLen = 667;
+		vrLoc = 487;
+	};
+	8388861F0D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+	};
+	838886200D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		name = "@todo";
+		rLen = 5;
+		rLoc = 31998;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 31487;
+	};
+	838886210D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */;
+		name = "GeniusDocumentFile.m: 257";
+		rLen = 0;
+		rLoc = 10703;
+		rType = 0;
+		vrLen = 1337;
+		vrLoc = 9603;
+	};
+	838886220D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */;
+		name = "@todo";
+		rLen = 5;
+		rLoc = 763;
+		rType = 0;
+		vrLen = 889;
+		vrLoc = 576;
+	};
+	838886230D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C920725BD1300D09B7F /* MyQuizController.m */;
+		name = "MyQuizController.m: 463";
+		rLen = 0;
+		rLoc = 15584;
+		rType = 0;
+		vrLen = 808;
+		vrLoc = 15314;
+	};
+	838886240D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */;
+		name = "GeniusAssociationEnumerator.m: 17";
+		rLen = 0;
+		rLoc = 575;
+		rType = 0;
+		vrLen = 667;
+		vrLoc = 487;
+	};
+	838886250D4D50F6002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		name = "GeniusDocument.m: 27";
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+		vrLen = 824;
+		vrLoc = 487;
+	};
+	8388862C0D4D5136002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		name = "GeniusDocument.m: 27";
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+		vrLen = 1119;
+		vrLoc = 294;
+	};
+	8388862D0D4D513F002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		name = "GeniusDocument.m: 27";
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+		vrLen = 824;
+		vrLoc = 487;
+	};
+	8388862E0D4D513F002F25ED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */;
+		name = "GeniusDocument.m: 27";
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+		vrLen = 1119;
+		vrLoc = 294;
 	};
 	838EFAA90D438E68004E90BC /* GSTableView.h */ = {
 		uiCtxt = {
@@ -3707,7 +3810,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {980, 3514}}";
 			sepNavSelRange = "{5481, 0}";
-			sepNavVisRect = "{{0, 1652}, {848, 535}}";
+			sepNavVisRect = "{{0, 1749}, {913, 603}}";
 		};
 	};
 	83978D6F0D1730BB003B1C93 /* PBXBookmarkGroup */ = {
