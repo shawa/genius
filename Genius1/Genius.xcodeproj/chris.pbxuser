@@ -67,12 +67,18 @@
 	23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1196, 4004}}";
-			sepNavSelRange = "{11580, 0}";
-			sepNavVisRect = "{{0, 14}, {834, 547}}";
+			sepNavSelRange = "{607, 0}";
+			sepNavVisRect = "{{0, 66}, {848, 410}}";
 			sepNavWindowFrame = "{{367, 5}, {1027, 873}}";
 		};
 	};
 	23227C8C0725BD1300D09B7F /* GeniusDocumentPrivate.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = GeniusDocumentPrivate.h;
+		path = /Users/chris/Development/genius/trunk/Genius1/app/Classes/GeniusDocumentPrivate.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {848, 410}}";
 			sepNavSelRange = "{574, 0}";

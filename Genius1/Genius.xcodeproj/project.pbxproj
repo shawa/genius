@@ -87,7 +87,6 @@
 		833C27170D2D3C410097E3CE /* GeniusAssociationEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */; };
 		833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C880725BD1300D09B7F /* GeniusDocument.h */; };
 		833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */; };
-		833C271A0D2D3C410097E3CE /* GeniusDocumentPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8C0725BD1300D09B7F /* GeniusDocumentPrivate.h */; };
 		833C271B0D2D3C410097E3CE /* GeniusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA70725BD2000D09B7F /* GeniusItem.h */; };
 		833C271C0D2D3C410097E3CE /* GeniusPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA90725BD2000D09B7F /* GeniusPair.h */; };
 		833C271D0D2D3C410097E3CE /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
@@ -188,7 +187,6 @@
 		23227C890725BD1300D09B7F /* GeniusDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument.m; sourceTree = "<group>"; };
 		23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusDocumentFile.h; sourceTree = "<group>"; };
 		23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFile.m; sourceTree = "<group>"; };
-		23227C8C0725BD1300D09B7F /* GeniusDocumentPrivate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusDocumentPrivate.h; sourceTree = "<group>"; };
 		23227C8D0725BD1300D09B7F /* GeniusToolbar.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusToolbar.h; sourceTree = "<group>"; };
 		23227C8E0725BD1300D09B7F /* GeniusToolbar.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusToolbar.m; sourceTree = "<group>"; };
 		23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusWelcomePanel.h; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 				23227C890725BD1300D09B7F /* GeniusDocument.m */,
 				23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */,
 				23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */,
-				23227C8C0725BD1300D09B7F /* GeniusDocumentPrivate.h */,
 				23227C8D0725BD1300D09B7F /* GeniusToolbar.h */,
 				23227C8E0725BD1300D09B7F /* GeniusToolbar.m */,
 				23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */,
@@ -578,7 +575,6 @@
 				833C27170D2D3C410097E3CE /* GeniusAssociationEnumerator.h in Headers */,
 				833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */,
 				833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */,
-				833C271A0D2D3C410097E3CE /* GeniusDocumentPrivate.h in Headers */,
 				833C271B0D2D3C410097E3CE /* GeniusItem.h in Headers */,
 				833C271C0D2D3C410097E3CE /* GeniusPair.h in Headers */,
 				833C271D0D2D3C410097E3CE /* GeniusPreferencesController.h in Headers */,
