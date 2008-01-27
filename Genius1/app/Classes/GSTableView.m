@@ -118,6 +118,61 @@
     return outIdentifiers;
 }
 
+
+//! moves selection up one while optionally extending selection
+- (void)moveUp:(id)sender modifySelection:(BOOL)modify
+{
+    unsigned int index = [[self selectedRowIndexes] firstIndex];
+    if (index != NSNotFound && index-- > 0)
+    {
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:modify];
+        [self scrollRowToVisible:index];
+    }
+    else
+    {
+        NSBeep();
+    }
+}
+
+//! Moves the selection up one while extending.
+- (void)moveUpAndModifySelection:(id)sender
+{
+    [self moveUp:sender modifySelection:YES];
+}
+
+//! Move the selection up one
+- (void)moveUp:(id)sender
+{
+    [self moveUp:sender modifySelection:NO];
+}
+
+//! moves selection down one while optionally extending selection
+- (void)moveDown:(id)sender modifySelection:(BOOL)modify
+{
+    unsigned int index = [[self selectedRowIndexes] lastIndex];
+    if (index != NSNotFound && ++index < [self numberOfRows])
+    {
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:modify];
+        [self scrollRowToVisible:index];
+    }
+    else
+    {
+        NSBeep();
+    }
+}
+
+//! Moves selection down one extending the selection
+- (void)moveDownAndModifySelection:(id)sender
+{
+    [self moveDown:sender modifySelection:YES];
+}
+
+//! Moves selection down one
+- (void)moveDown:(id)sender
+{
+    [self moveDown:sender modifySelection:NO];
+}
+
 //! Handle delete key.
 - (void) deleteBackward: (id) sender
 {

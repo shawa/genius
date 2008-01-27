@@ -276,7 +276,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>8</integer>
+									<integer>26</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
@@ -310,12 +310,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>83B002090ACD464B0022D4F3</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GeniusDocument.m</string>
+								<string>GSTableView.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,18 +325,19 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>83B0020A0ACD464B0022D4F3</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GeniusDocument.m</string>
+										<string>GSTableView.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>838885900D4D392E002F25ED</string>
+										<string>838886000D4D4E7C002F25ED</string>
 										<key>history</key>
 										<array>
 											<string>8388850D0D4D2EEA002F25ED</string>
 											<string>8388851A0D4D300E002F25ED</string>
 											<string>8388852A0D4D307A002F25ED</string>
 											<string>838885480D4D3304002F25ED</string>
-											<string>8388858F0D4D392E002F25ED</string>
+											<string>8388859D0D4D3F0E002F25ED</string>
+											<string>838885FF0D4D4E76002F25ED</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -410,6 +413,7 @@
 											<string>838885500D4D3304002F25ED</string>
 											<string>838885510D4D3304002F25ED</string>
 											<string>838885520D4D3304002F25ED</string>
+											<string>8388859F0D4D3F0E002F25ED</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -423,18 +427,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {895, 518}}</string>
+								<string>{{0, 0}, {895, 567}}</string>
 								<key>RubberWindowFrame</key>
 								<string>8 55 1150 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>518pt</string>
+							<string>567pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>259pt</string>
+							<string>210pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -448,7 +452,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {895, 378}}</string>
+										<string>{{10, 27}, {895, 183}}</string>
+										<key>RubberWindowFrame</key>
+										<string>8 55 1150 823 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -470,8 +476,6 @@
 									<string>PBXProjectFindModule</string>
 								</dict>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -483,8 +487,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {895, 232}}</string>
-										<key>RubberWindowFrame</key>
-										<string>8 55 1150 823 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXCVSModule</string>
@@ -632,7 +634,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>838885910D4D392E002F25ED</string>
+										<string>838886010D4D4E7C002F25ED</string>
 										<key>history</key>
 										<array>
 											<string>838884650D4D277A002F25ED</string>
@@ -857,8 +859,8 @@
 								<string>yes</string>
 								<key>sizes</key>
 								<array>
-									<string>{{0, 0}, {550, 146}}</string>
-									<string>{{550, 0}, {600, 146}}</string>
+									<string>{{0, 0}, {557, 86}}</string>
+									<string>{{557, 0}, {593, 86}}</string>
 								</array>
 							</dict>
 							<key>VerticalSplitView</key>
@@ -873,8 +875,8 @@
 								<string>yes</string>
 								<key>sizes</key>
 								<array>
-									<string>{{0, 0}, {1150, 146}}</string>
-									<string>{{0, 146}, {1150, 526}}</string>
+									<string>{{0, 0}, {1150, 86}}</string>
+									<string>{{0, 86}, {1150, 586}}</string>
 								</array>
 							</dict>
 						</dict>
@@ -960,7 +962,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8388858D0D4D38C9002F25ED</string>
 		<string>838884190D4D1BEB002F25ED</string>
 		<string>8388841A0D4D1BEB002F25ED</string>
 		<string>838884100D4D1B08002F25ED</string>
