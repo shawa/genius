@@ -90,8 +90,8 @@
 
 //! _visibleAnswerItem setter.
 /*!
-    Single line items are large size and centered-justified.
-    Multiple line items are small size and left-justified.
+    Single line items are large size (18 pt) and centered-justified.
+    Multiple line items are small size (13 pt) and left-justified.
     Nil items are grey color; non-nil items are black color.
  */
 - (void) _setVisibleAnswerItem:(GeniusItem *)item
