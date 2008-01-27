@@ -148,7 +148,6 @@ static NSArray *columnBindings;
     [self setupToolbarForWindow:[aController window]];
     [_searchField setNextKeyView:tableView];
 	
-    [statusField setStringValue:@""];
     [self reloadInterfaceFromModel];
 }
 
@@ -284,40 +283,38 @@ static NSArray *columnBindings;
 //! Updates the selection summary text at bottom of window.
 - (void) _updateStatusText
 {
-    NSString * status = @"";
+    NSString * status = nil;
     int rowCount = [_pairs count];
-    if (rowCount == 0)
+    
+    if (rowCount > 0)
     {
-        [statusField setStringValue:status];
-        return;
+        NSString * queryString = [arrayController filterString];
+        if ([queryString length] > 0)
+        {
+            NSString * format = NSLocalizedString(@"n of m shown", nil);
+            status = [NSString stringWithFormat:format, [[arrayController arrangedObjects] count], rowCount];
+        }
+        else
+        {
+            int numberOfSelectedRows = [tableView numberOfSelectedRows];
+            if (numberOfSelectedRows > 0)
+            {
+                NSString * format = NSLocalizedString(@"n of m selected", nil);
+                status = [NSString stringWithFormat:format, numberOfSelectedRows, rowCount];
+            }
+            else if (rowCount == 1)
+            {
+                status = NSLocalizedString(@"1 item", nil);
+            }
+            else
+            {
+                NSString * format = NSLocalizedString(@"n items", nil);
+                status = [NSString stringWithFormat:format, rowCount];
+            }
+        }
     }
     
-	NSString * queryString = [arrayController filterString];
-	if ([queryString isEqualToString:@""])
-	{
-		int numberOfSelectedRows = [tableView numberOfSelectedRows];
-		if (numberOfSelectedRows > 0)
-		{
-			NSString * format = NSLocalizedString(@"n of m selected", nil);
-			status = [NSString stringWithFormat:format, numberOfSelectedRows, rowCount];
-		}
-		else if (rowCount == 1)
-		{
-			status = NSLocalizedString(@"1 item", nil);
-		}
-		else
-		{
-			NSString * format = NSLocalizedString(@"n items", nil);
-			status = [NSString stringWithFormat:format, rowCount];
-		}
-	}
-	else
-	{
-		NSString * format = NSLocalizedString(@"n of m shown", nil);
-		status = [NSString stringWithFormat:format, [[arrayController arrangedObjects] count], rowCount];
-	}
-
-    [statusField setStringValue:status];
+    [statusField setObjectValue:status];
 }
 
 //! Updates the progress bar at lower right of Genius window to reflect current success with a Genius Document.
