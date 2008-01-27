@@ -67,6 +67,10 @@
 - (void) _reloadCustomTypeCacheSet;
 - (void) setListTextSizeMode: (int) mode;
 
++ (NSArray *) columnBindings;
+
+- (void) reloadInterfaceFromModel;
+
 @end
 
 @interface GeniusDocument(IBActions)

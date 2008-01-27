@@ -18,7 +18,6 @@
 #import "GeniusDocument.h"
 #import "GeniusDocument_DebugLogging.h"
 
-#import "GeniusDocumentPrivate.h"
 #import "GeniusDocumentFile.h"
 #import "IconTextFieldCell.h"
 #import "GeniusToolbar.h"
@@ -42,6 +41,20 @@
 // Standard NSDocument subclass for controlling display and editing of a Genius file.
 @implementation GeniusDocument
 
+//! Returns array of keypaths used as bindings in our NSTableView.
+/*
+ @todo Must this be created new each time?
+ @todo Perhaps this should be derived from the columns in our NSTableView?
+ @todo They are particularly not in display order if the colums are reordered.
+ @todo notesString is not a column binding.
+ */
+static NSArray *columnBindings;
+
++ (NSArray *) columnBindings    // in display order
+{
+    return columnBindings;
+}
+
 //! Sets up logging and registers value transformers.
 + (void) initialize
 {
@@ -51,6 +64,8 @@
     [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
     [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
 
+    columnBindings = [[NSArray alloc] initWithObjects:@"itemA.stringValue", @"itemB.stringValue", @"customGroupString", @"customTypeString", @"associationAB.scoreNumber", @"associationBA.scoreNumber", @"notesString", nil];
+    
     // install swizzle based logging
 #if DEBUG
     [self installLogging];
@@ -226,15 +241,6 @@
     [self didChangeValueForKey:@"fontSize"];
 }
 
-@end
-
-//! Ecclectic collection of misc methods.
-/*!
-    @category GeniusDocument(Private)
-    Not sure why this category exists.
-*/
-@implementation GeniusDocument(Private)
-
 //! Updates UI to reflect the document.
 - (void) reloadInterfaceFromModel
 {
@@ -249,18 +255,6 @@
     
     [self _updateStatusText];
 	[self _updateLevelIndicator];
-}
-
-//! Returns array of keypaths used as bindings in our NSTableView.
-/*
- @todo Must this be created new each time?
- @todo Perhaps this should be derived from the columns in our NSTableView?
- @todo They are particularly not in display order if the colums are reordered.
- @todo notesString is not a column binding.
- */
-- (NSArray *) columnBindings    // in display order
-{
-    return [NSArray arrayWithObjects:@"itemA.stringValue", @"itemB.stringValue", @"customGroupString", @"customTypeString", @"associationAB.scoreNumber", @"associationBA.scoreNumber", @"notesString", nil];
 }
 
 @end
@@ -434,7 +428,7 @@
         [(NSMutableArray *)_pairsDuringDrag addObject:item];
     }    
 
-    NSString * outputString = [GeniusPair tabularTextFromPairs:_pairsDuringDrag order:[self columnBindings]];
+    NSString * outputString = [GeniusPair tabularTextFromPairs:_pairsDuringDrag order:[GeniusDocument columnBindings]];
     [pboard setString:outputString forType:NSTabularTextPboardType];
     [pboard setString:outputString forType:NSStringPboardType];
     
@@ -483,7 +477,7 @@
 
         string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-        NSArray * pairs = [GeniusPair pairsFromTabularText:string order:[self columnBindings]];
+        NSArray * pairs = [GeniusPair pairsFromTabularText:string order:[GeniusDocument columnBindings]];
         [arrayController setFilterString:@""];
         [arrayController addObjects:pairs];
     }
@@ -940,9 +934,7 @@
     if ([_filterString length] > 0)
     {
         //! @todo Set colum bindings as a property rather than pull them from the geniusDocument.
-        NSMutableArray * keyPaths = [[geniusDocument columnBindings] mutableCopy];
-        //! @todo notesString is is already returned from @c columnBindings
-        [keyPaths addObject:@"notesString"];
+        NSArray * keyPaths = [GeniusDocument columnBindings];
         NSMutableArray * filteredObjects = [NSMutableArray array];
         NSEnumerator * pairEnumerator = [objects objectEnumerator];
         GeniusPair * pair;

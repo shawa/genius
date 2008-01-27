@@ -16,7 +16,6 @@
 */
 
 #import "GeniusDocumentFile.h"
-#import "GeniusDocumentPrivate.h"   // arrayController, columnBindings for +importFile:
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
 #import "GeniusDocument.h"
@@ -245,7 +244,7 @@ Assuming this is okay, it simply passes the call to super.
             [string appendString:@"\t"];
     }*/ //! @todo Consider adding headers to the exported file.
     
-    NSString * string = [GeniusPair tabularTextFromPairs:_pairs order:[self columnBindings]];
+    NSString * string = [GeniusPair tabularTextFromPairs:_pairs order:[GeniusDocument columnBindings]];
     [string writeToFile:path atomically:NO];
 }
 
@@ -275,7 +274,7 @@ Assuming this is okay, it simply passes the call to super.
     [documentController newDocument:self];
     GeniusDocument * document = (GeniusDocument *)[documentController currentDocument];
     
-    NSMutableArray * pairs = [GeniusPair pairsFromTabularText:text order:[document columnBindings]];
+    NSMutableArray * pairs = [GeniusPair pairsFromTabularText:text order:[GeniusDocument columnBindings]];
     if (pairs)
     {
         [document setPairs:pairs];

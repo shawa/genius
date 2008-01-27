@@ -20,7 +20,6 @@
 #import "GeniusHelpWindowController.h"
 #import "GeniusItem.h"
 #import "GeniusDocument.h"
-#import "GeniusDocumentPrivate.h"   // reloadInterfaceFromModel
 #import "GeniusDocumentFile.h"
 
 #import "GeniusPreferencesController.h"

@@ -7,7 +7,6 @@
 //
 
 #import "GeniusDocument.h"
-#import "GeniusDocumentPrivate.h"
 #import "GeniusPair.h"
 
 #import <SenTestingKit/SenTestingKit.h>
