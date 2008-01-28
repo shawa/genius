@@ -119,61 +119,13 @@
 }
 
 
-//! moves selection up one while optionally extending selection
-- (void)moveUp:(id)sender modifySelection:(BOOL)modify
+//! Standard 1st responder implementation.
+- (void) keyDown: (NSEvent *) event
 {
-    unsigned int index = [[self selectedRowIndexes] firstIndex];
-    if (index != NSNotFound && index-- > 0)
-    {
-        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:modify];
-        [self scrollRowToVisible:index];
-    }
-    else
-    {
-        NSBeep();
-    }
+    [self interpretKeyEvents:[NSArray arrayWithObject:event]];
 }
 
-//! Moves the selection up one while extending.
-- (void)moveUpAndModifySelection:(id)sender
-{
-    [self moveUp:sender modifySelection:YES];
-}
-
-//! Move the selection up one
-- (void)moveUp:(id)sender
-{
-    [self moveUp:sender modifySelection:NO];
-}
-
-//! moves selection down one while optionally extending selection
-- (void)moveDown:(id)sender modifySelection:(BOOL)modify
-{
-    unsigned int index = [[self selectedRowIndexes] lastIndex];
-    if (index != NSNotFound && ++index < [self numberOfRows])
-    {
-        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:modify];
-        [self scrollRowToVisible:index];
-    }
-    else
-    {
-        NSBeep();
-    }
-}
-
-//! Moves selection down one extending the selection
-- (void)moveDownAndModifySelection:(id)sender
-{
-    [self moveDown:sender modifySelection:YES];
-}
-
-//! Moves selection down one
-- (void)moveDown:(id)sender
-{
-    [self moveDown:sender modifySelection:NO];
-}
-
-//! Handle delete key.
+//! Handle delete to remove selected entries.
 - (void) deleteBackward: (id) sender
 {
     if ([[self delegate] respondsToSelector:@selector(delete:)])
@@ -191,7 +143,19 @@
     }
 }
 
-//! Handle esc key.
+//! Handle option return to begin editing.  Focuses selection on row and begins editing.
+- (void) insertNewlineIgnoringFieldEditor:(id)sender
+{
+    unsigned int selectedIndex;
+    if ((selectedIndex = [[self selectedRowIndexes] lastIndex]) != NSNotFound)
+    {
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:selectedIndex] byExtendingSelection:NO];
+        NSAssert((selectedIndex) < INT_MAX, @"Unexpectedly large number for selected row in GSTableView");
+        [self editColumn:1 row:(int)selectedIndex withEvent:nil select:YES];
+    }
+}
+
+//! Handle esc key to end editing.
 - (void) cancelOperation: (id) sender
 {
     if ([self currentEditor])
@@ -204,10 +168,68 @@
     }
 }
 
-//! Standard 1st responder implementation.
-- (void) keyDown: (NSEvent *) event
+// move selection up or down and modifies the selection or not.
+- (void) _moveUp: (BOOL)moveUp modifySelection: (BOOL)modify
 {
-    [self interpretKeyEvents:[NSArray arrayWithObject:event]];
+    NSIndexSet *selection = [self selectedRowIndexes];
+    if ([selection count] > 0)
+    {
+        unsigned int index = NSNotFound;
+        unsigned int newIndex = NSNotFound;
+        if (moveUp)
+        {
+            index = [selection firstIndex];
+            if (index > 0)
+                newIndex = index-1;
+        }
+        else
+        {
+            index = [selection lastIndex];
+            if (index < ([self numberOfRows]-1))
+                newIndex = index+1;
+        }
+
+        // set up new selection
+        NSMutableIndexSet *newSelection = [NSMutableIndexSet indexSet];
+        // add new index if we have one.
+        if (newIndex != NSNotFound)
+            [newSelection addIndex:newIndex];
+        
+        // fill first to last index range of current selection if modifying selection
+        if (modify)
+            [newSelection addIndexesInRange:NSMakeRange([selection firstIndex], ([selection lastIndex]-[selection firstIndex]+1))];
+
+        // if anything resulted from all this work, change the selection.
+        if ([newSelection count] > 0)
+        {
+            [self selectRowIndexes:newSelection byExtendingSelection:NO];
+            [self scrollRowToVisible:newIndex];
+        }
+    }
+}
+
+//! Moves the selection up one while extending.
+- (void)moveUpAndModifySelection:(id)sender
+{
+    [self _moveUp:YES modifySelection:YES];
+}
+
+//! Move the selection up one
+- (void)moveUp:(id)sender
+{
+    [self _moveUp:YES modifySelection:NO];
+}
+
+//! Moves selection down one extending the selection
+- (void)moveDownAndModifySelection:(id)sender
+{
+    [self _moveUp:NO modifySelection:YES];
+}
+
+//! Moves selection down one
+- (void)moveDown:(id)sender
+{
+    [self _moveUp:NO modifySelection:NO];
 }
 
 @end
