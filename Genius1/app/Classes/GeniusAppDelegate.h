@@ -32,6 +32,4 @@
 - (IBAction) showHelpWindow:(id)sender;
 - (IBAction) importFile:(id)sender;
 
-- (BOOL) isNewerVersion: (NSString*) currentVersion lastVersion:(NSString*)lastVersion;
-
 @end

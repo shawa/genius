@@ -7,6 +7,29 @@
         <ttl>1</ttl>
 
         <item>
+            <title>Version 1.7.228 (4 features 4 fixes)</title>
+            <description>
+            <![CDATA[
+				<b>New Features!</b>
+				<ul>
+					<li>Improved keyboard based navigation and editing.</li>
+					<li>Up and down arrow now changes selection in list view.</li>
+					<li>Shift up and down arrow now extends selection in list view.</li>
+					<li>Option return now begins editing of an item in list view.</li>
+				</ul>
+				<b>New Fixes!</b>
+				<ul>
+					<li>Hitting command option now begins editing of the selected row 1881146.</li>
+					<li>Arrow keys can be used to navigate the table view 1880902.</li>
+					<li>Status text at bottom of window reflects the selected items 1880874.</li>
+					<li>Custom group text no longer clipped 1881818.</li>
+				</ul>
+            ]]>
+            </description>
+            <enclosure sparkle:shortVersionString="1.7" sparkle:version="228" url="http://downloads.sourceforge.net/genius/Genius-1.7.228.dmg" length="415206" type="application/octet-stream"/>
+            <pubDate>29 Jan 2008 18:45 +0100</pubDate>
+        </item>
+        <item>
             <title>Version 1.7.210 (0 new feature 5 new fixes)</title>
             <description>
             <![CDATA[

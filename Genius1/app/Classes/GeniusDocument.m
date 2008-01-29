@@ -220,14 +220,15 @@ static NSArray *columnBindings;
             fontSize = [NSFont systemFontSize];
             break;
         case 2:
-            fontSize = 16.0;
+            fontSize = 16.0f;
             break;
         default:
             fontSize = [NSFont systemFontSize];
     }
     
     NSLayoutManager *layoutManager = [[[NSLayoutManager alloc] init] autorelease];
-    rowHeight = [layoutManager defaultLineHeightForFont:[NSFont systemFontOfSize:fontSize]];
+    // the magic 4 pixels here accomodates the customGroup NSComboBoxCell which is otherwise too big.
+    rowHeight = 4.0f + [layoutManager defaultLineHeightForFont:[NSFont systemFontOfSize:fontSize]];
     
     [self didChangeValueForKey:@"rowHeight"];
     [self didChangeValueForKey:@"fontSize"];

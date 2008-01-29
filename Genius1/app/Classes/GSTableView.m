@@ -168,7 +168,7 @@
     }
 }
 
-// move selection up or down and modifies the selection or not.
+//! move selection up or down and modifies the selection or not.
 - (void) _moveUp: (BOOL)moveUp modifySelection: (BOOL)modify
 {
     NSIndexSet *selection = [self selectedRowIndexes];
