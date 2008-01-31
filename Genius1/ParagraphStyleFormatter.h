@@ -6,8 +6,7 @@
 //  http://creativecommons.org/licenses/publicdomain/
 //
 
-#import <Foundation/Foundation.h>
-
+#import <AppKit/AppKit.h>
 
 @interface ParagraphStyleFormatter : NSFormatter {
     NSMutableParagraphStyle * _paragraphStyle;  //!< Used in formating our string.
