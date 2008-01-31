@@ -36,60 +36,17 @@
 
 /* Begin PBXBuildFile section */
 		2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */; };
-		2318E4100725C16D00726F95 /* GeniusHelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */; };
-		2318E41F0725C29B00726F95 /* Help.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2318E41D0725C29B00726F95 /* Help.nib */; };
-		2318E4220725C29F00726F95 /* Help.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2318E4200725C29F00726F95 /* Help.rtf */; };
-		23227C960725BD1300D09B7F /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C870725BD1300D09B7F /* GeniusAppDelegate.m */; };
-		23227C980725BD1300D09B7F /* GeniusDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C890725BD1300D09B7F /* GeniusDocument.m */; };
-		23227C9A0725BD1300D09B7F /* GeniusDocumentFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */; };
-		23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8E0725BD1300D09B7F /* GeniusToolbar.m */; };
-		23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */; };
-		23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C920725BD1300D09B7F /* MyQuizController.m */; };
-		23227CEA0725BD6100D09B7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CE80725BD6100D09B7F /* main.m */; };
-		23227D0C0725BD7600D09B7F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23227CEF0725BD7600D09B7F /* Credits.rtf */; };
-		23227D0D0725BD7600D09B7F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23227CF10725BD7600D09B7F /* GeniusDocument.nib */; };
-		23227D100725BD7600D09B7F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23227CF70725BD7600D09B7F /* InfoPlist.strings */; };
-		23227D110725BD7600D09B7F /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23227CF90725BD7600D09B7F /* MainMenu.nib */; };
-		23227D120725BD7600D09B7F /* Quiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23227CFB0725BD7600D09B7F /* Quiz.nib */; };
-		23227D1C0725BD7600D09B7F /* Storage Files.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23227D080725BD7600D09B7F /* Storage Files.icns */; };
-		23227D260725BDA100D09B7F /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D1F0725BDA100D09B7F /* Add.tiff */; };
-		23227D270725BDA100D09B7F /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D200725BDA100D09B7F /* Add_Pressed.tiff */; };
-		237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 237DA3DE07395DD6006B7D4B /* Localizable.strings */; };
-		23AA22930AA305E6009AF327 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23AA22920AA305E6009AF327 /* Genius.icns */; };
-		23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B358E4073C5B7D00B89026 /* PreQuiz.nib */; };
-		23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B2310AA1E65D0069E6D3 /* Inspector.png */; };
-		23F818E70B3531390041656E /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23F818E50B3531390041656E /* Preferences.nib */; };
-		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		8303C1020D4F91040073A7F3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 8303C1010D4F91040073A7F3 /* index.html */; };
 		833C26A00D2D33810097E3CE /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B723BB0D2D3014004668E1 /* JRSwizzle.m */; };
 		833C26A10D2D33840097E3CE /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B723BA0D2D3014004668E1 /* JRSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */; };
 		833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
-		833C27140D2D3C410097E3CE /* GeniusHelpWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2318E40F0725C16D00726F95 /* GeniusHelpWindowController.h */; };
-		833C27150D2D3C410097E3CE /* GeniusAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C860725BD1300D09B7F /* GeniusAppDelegate.h */; };
-		833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C880725BD1300D09B7F /* GeniusDocument.h */; };
-		833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */; };
-		833C271F0D2D3C410097E3CE /* GeniusToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8D0725BD1300D09B7F /* GeniusToolbar.h */; };
-		833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */; };
-		833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C910725BD1300D09B7F /* MyQuizController.h */; };
 		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
-		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
-		83602A040D3FC51700C6AF73 /* IsPairImportantTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83602A020D3FC51700C6AF73 /* IsPairImportantTransformer.h */; };
-		83602A050D3FC51700C6AF73 /* IsPairImportantTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83602A030D3FC51700C6AF73 /* IsPairImportantTransformer.m */; };
-		83602A0C0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83602A0A0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h */; };
-		83602A0D0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */; };
-		8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */ = {isa = PBXBuildFile; fileRef = 8379CD7B0CEB410600CCFF86 /* TestFile1.genius */; };
-		838EFAAB0D438E68004E90BC /* GSTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 838EFAA90D438E68004E90BC /* GSTableView.h */; };
-		838EFAAC0D438E68004E90BC /* GSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 838EFAAA0D438E68004E90BC /* GSTableView.m */; };
-		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */; };
-		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
 		83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
-		83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */; };
-		83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,64 +102,19 @@
 /* Begin PBXFileReference section */
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GeniusHelpWindowController.m; path = app/Resources/GeniusHelpWindowController.m; sourceTree = SOURCE_ROOT; };
-		2318E40F0725C16D00726F95 /* GeniusHelpWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GeniusHelpWindowController.h; path = app/Resources/GeniusHelpWindowController.h; sourceTree = SOURCE_ROOT; };
-		2318E41E0725C29B00726F95 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Help.nib; sourceTree = "<group>"; };
-		2318E4210725C29F00726F95 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Help.rtf; sourceTree = "<group>"; };
-		23227C860725BD1300D09B7F /* GeniusAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAppDelegate.h; sourceTree = "<group>"; };
-		23227C870725BD1300D09B7F /* GeniusAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAppDelegate.m; sourceTree = "<group>"; };
-		23227C880725BD1300D09B7F /* GeniusDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusDocument.h; sourceTree = "<group>"; };
-		23227C890725BD1300D09B7F /* GeniusDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument.m; sourceTree = "<group>"; };
-		23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusDocumentFile.h; sourceTree = "<group>"; };
-		23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFile.m; sourceTree = "<group>"; };
-		23227C8D0725BD1300D09B7F /* GeniusToolbar.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusToolbar.h; sourceTree = "<group>"; };
-		23227C8E0725BD1300D09B7F /* GeniusToolbar.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusToolbar.m; sourceTree = "<group>"; };
-		23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusWelcomePanel.h; sourceTree = "<group>"; };
-		23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusWelcomePanel.m; sourceTree = "<group>"; };
-		23227C910725BD1300D09B7F /* MyQuizController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyQuizController.h; sourceTree = "<group>"; };
-		23227C920725BD1300D09B7F /* MyQuizController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyQuizController.m; sourceTree = "<group>"; };
-		23227CE70725BD6100D09B7F /* Genius_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Genius_Prefix.pch; sourceTree = "<group>"; };
-		23227CE80725BD6100D09B7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		23227CF00725BD7600D09B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
-		23227CF20725BD7600D09B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GeniusDocument.nib; sourceTree = "<group>"; };
-		23227CF80725BD7600D09B7F /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		23227CFA0725BD7600D09B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		23227CFC0725BD7600D09B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Quiz.nib; sourceTree = "<group>"; };
-		23227D080725BD7600D09B7F /* Storage Files.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Storage Files.icns"; sourceTree = "<group>"; };
-		23227D1F0725BDA100D09B7F /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
-		23227D200725BDA100D09B7F /* Add_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add_Pressed.tiff; sourceTree = "<group>"; };
-		237DA3DC07395DC4006B7D4B /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		23AA22920AA305E6009AF327 /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
-		23AA229A0AA30E31009AF327 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING.txt; sourceTree = SOURCE_ROOT; };
-		23B358E5073C5B7D00B89026 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PreQuiz.nib; sourceTree = "<group>"; };
-		23D0B2310AA1E65D0069E6D3 /* Inspector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Inspector.png; sourceTree = "<group>"; };
-		23F818E60B3531390041656E /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
-		23FE373C07494CC00029DD61 /* Information.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Information.tiff; sourceTree = "<group>"; };
+		23AA229A0AA30E31009AF327 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8303C1010D4F91040073A7F3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = index.html; path = /tmp/Genius1/build/Development/DeveloperDocs/index.html; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		833C268B0D2D32850097E3CE /* JRSwizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JRSwizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8347AB880CD12DB3005CBAC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = app/Info.plist; sourceTree = SOURCE_ROOT; };
-		83602A020D3FC51700C6AF73 /* IsPairImportantTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsPairImportantTransformer.h; sourceTree = "<group>"; };
-		83602A030D3FC51700C6AF73 /* IsPairImportantTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsPairImportantTransformer.m; sourceTree = "<group>"; };
-		83602A0A0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorFromPairImportanceTransformer.h; sourceTree = "<group>"; };
-		83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorFromPairImportanceTransformer.m; sourceTree = "<group>"; };
-		8379CD7B0CEB410600CCFF86 /* TestFile1.genius */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestFile1.genius; sourceTree = "<group>"; };
-		838EFAA90D438E68004E90BC /* GSTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GSTableView.h; sourceTree = "<group>"; };
-		838EFAAA0D438E68004E90BC /* GSTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GSTableView.m; sourceTree = "<group>"; };
 		83B723BA0D2D3014004668E1 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = SOURCE_ROOT; };
 		83B723BB0D2D3014004668E1 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = SOURCE_ROOT; };
 		83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "JRSwizzle-Info.plist"; path = "JRSwizzle/JRSwizzle-Info.plist"; sourceTree = SOURCE_ROOT; };
-		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFileTest.m; sourceTree = "<group>"; };
-		83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusPairTest.m; sourceTree = "<group>"; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocument_DebugLogging.h; sourceTree = "<group>"; };
-		83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocument_DebugLogging.m; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -266,94 +178,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		23227C850725BD1300D09B7F /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				23227C860725BD1300D09B7F /* GeniusAppDelegate.h */,
-				23227C870725BD1300D09B7F /* GeniusAppDelegate.m */,
-				2318E40F0725C16D00726F95 /* GeniusHelpWindowController.h */,
-				2318E40E0725C16D00726F95 /* GeniusHelpWindowController.m */,
-				23227C880725BD1300D09B7F /* GeniusDocument.h */,
-				23227C890725BD1300D09B7F /* GeniusDocument.m */,
-				23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */,
-				23227C8B0725BD1300D09B7F /* GeniusDocumentFile.m */,
-				23227C8D0725BD1300D09B7F /* GeniusToolbar.h */,
-				23227C8E0725BD1300D09B7F /* GeniusToolbar.m */,
-				23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */,
-				23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */,
-				23227C910725BD1300D09B7F /* MyQuizController.h */,
-				23227C920725BD1300D09B7F /* MyQuizController.m */,
-				83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */,
-				83E23A8D0D355ED700E82369 /* GeniusDocument_DebugLogging.m */,
-				83602A020D3FC51700C6AF73 /* IsPairImportantTransformer.h */,
-				83602A030D3FC51700C6AF73 /* IsPairImportantTransformer.m */,
-				83602A0A0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h */,
-				83602A0B0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m */,
-				838EFAA90D438E68004E90BC /* GSTableView.h */,
-				838EFAAA0D438E68004E90BC /* GSTableView.m */,
-			);
-			name = Classes;
-			path = app/Classes;
-			sourceTree = "<group>";
-		};
-		23227CEB0725BD7600D09B7F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				23227CEF0725BD7600D09B7F /* Credits.rtf */,
-				23227CF90725BD7600D09B7F /* MainMenu.nib */,
-				23227CF10725BD7600D09B7F /* GeniusDocument.nib */,
-				2318E41D0725C29B00726F95 /* Help.nib */,
-				2318E4200725C29F00726F95 /* Help.rtf */,
-				23B358E4073C5B7D00B89026 /* PreQuiz.nib */,
-				23227CFB0725BD7600D09B7F /* Quiz.nib */,
-				23F818E50B3531390041656E /* Preferences.nib */,
-				237DA3DE07395DD6006B7D4B /* Localizable.strings */,
-				8347AB880CD12DB3005CBAC3 /* Info.plist */,
-				23227CF70725BD7600D09B7F /* InfoPlist.strings */,
-				23AA22920AA305E6009AF327 /* Genius.icns */,
-				23227D080725BD7600D09B7F /* Storage Files.icns */,
-				23227D1E0725BDA100D09B7F /* Images */,
-				23AA229A0AA30E31009AF327 /* COPYING.txt */,
-			);
-			name = Resources;
-			path = app/Resources;
-			sourceTree = "<group>";
-		};
-		23227D1E0725BDA100D09B7F /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				23227D1F0725BDA100D09B7F /* Add.tiff */,
-				23227D200725BDA100D09B7F /* Add_Pressed.tiff */,
-				23D0B2310AA1E65D0069E6D3 /* Inspector.png */,
-				23FE373C07494CC00029DD61 /* Information.tiff */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
 		2A37F4AAFDCFA73011CA2CEA /* Genius */ = {
 			isa = PBXGroup;
 			children = (
 				832389FE0CC39B1C00782903 /* TODO.txt */,
-				23227C850725BD1300D09B7F /* Classes */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
-				23227CEB0725BD7600D09B7F /* Resources */,
+				23AA229A0AA30E31009AF327 /* COPYING.txt */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
-				83CC1CDD0CD249BF0002FFA8 /* TestCases */,
 				83D9C97F0CD8AD8E003B422F /* Developer Docs */,
 				83B723B70D2D2FDE004668E1 /* JRSwizzle */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = Genius;
-			sourceTree = "<group>";
-		};
-		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				23227CE70725BD6100D09B7F /* Genius_Prefix.pch */,
-				23227CE80725BD6100D09B7F /* main.m */,
-			);
-			name = "Other Sources";
-			path = app;
 			sourceTree = "<group>";
 		};
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
@@ -365,14 +200,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8379CD620CEB408E00CCFF86 /* TestFiles */ = {
-			isa = PBXGroup;
-			children = (
-				8379CD7B0CEB410600CCFF86 /* TestFile1.genius */,
-			);
-			name = TestFiles;
-			sourceTree = "<group>";
-		};
 		83B723B70D2D2FDE004668E1 /* JRSwizzle */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,17 +208,6 @@
 				83B723BB0D2D3014004668E1 /* JRSwizzle.m */,
 			);
 			path = JRSwizzle;
-			sourceTree = "<group>";
-		};
-		83CC1CDD0CD249BF0002FFA8 /* TestCases */ = {
-			isa = PBXGroup;
-			children = (
-				8379CD620CEB408E00CCFF86 /* TestFiles */,
-				83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */,
-				83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */,
-				83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */,
-			);
-			path = TestCases;
 			sourceTree = "<group>";
 		};
 		83D9C97F0CD8AD8E003B422F /* Developer Docs */ = {
@@ -418,17 +234,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833C27140D2D3C410097E3CE /* GeniusHelpWindowController.h in Headers */,
-				833C27150D2D3C410097E3CE /* GeniusAppDelegate.h in Headers */,
-				833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */,
-				833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */,
-				833C271F0D2D3C410097E3CE /* GeniusToolbar.h in Headers */,
-				833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */,
-				833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */,
-				83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */,
-				83602A040D3FC51700C6AF73 /* IsPairImportantTransformer.h in Headers */,
-				83602A0C0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h in Headers */,
-				838EFAAB0D438E68004E90BC /* GSTableView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,7 +331,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,23 +338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23227D0C0725BD7600D09B7F /* Credits.rtf in Resources */,
-				23227D0D0725BD7600D09B7F /* GeniusDocument.nib in Resources */,
-				23227D100725BD7600D09B7F /* InfoPlist.strings in Resources */,
-				23227D110725BD7600D09B7F /* MainMenu.nib in Resources */,
-				23227D120725BD7600D09B7F /* Quiz.nib in Resources */,
-				23227D1C0725BD7600D09B7F /* Storage Files.icns in Resources */,
-				23227D260725BDA100D09B7F /* Add.tiff in Resources */,
-				23227D270725BDA100D09B7F /* Add_Pressed.tiff in Resources */,
-				2318E41F0725C29B00726F95 /* Help.nib in Resources */,
-				2318E4220725C29F00726F95 /* Help.rtf in Resources */,
-				237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */,
-				23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */,
-				23FE373F07494CC00029DD61 /* Information.tiff in Resources */,
-				23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */,
-				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
-				23F818E70B3531390041656E /* Preferences.nib in Resources */,
-				8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */,
 				8303C1020D4F91040073A7F3 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,8 +414,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */,
-				83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,18 +421,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23227C960725BD1300D09B7F /* GeniusAppDelegate.m in Sources */,
-				23227C980725BD1300D09B7F /* GeniusDocument.m in Sources */,
-				23227C9A0725BD1300D09B7F /* GeniusDocumentFile.m in Sources */,
-				23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */,
-				23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */,
-				23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */,
-				23227CEA0725BD6100D09B7F /* main.m in Sources */,
-				2318E4100725C16D00726F95 /* GeniusHelpWindowController.m in Sources */,
-				83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */,
-				83602A050D3FC51700C6AF73 /* IsPairImportantTransformer.m in Sources */,
-				83602A0D0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m in Sources */,
-				838EFAAC0D438E68004E90BC /* GSTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,89 +443,6 @@
 			targetProxy = 83D9BE680CD110EF0092858D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2318E41D0725C29B00726F95 /* Help.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2318E41E0725C29B00726F95 /* English */,
-			);
-			name = Help.nib;
-			sourceTree = "<group>";
-		};
-		2318E4200725C29F00726F95 /* Help.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2318E4210725C29F00726F95 /* English */,
-			);
-			name = Help.rtf;
-			sourceTree = "<group>";
-		};
-		23227CEF0725BD7600D09B7F /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23227CF00725BD7600D09B7F /* English */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		23227CF10725BD7600D09B7F /* GeniusDocument.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23227CF20725BD7600D09B7F /* English */,
-			);
-			name = GeniusDocument.nib;
-			sourceTree = "<group>";
-		};
-		23227CF70725BD7600D09B7F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23227CF80725BD7600D09B7F /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		23227CF90725BD7600D09B7F /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23227CFA0725BD7600D09B7F /* English */,
-			);
-			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
-		23227CFB0725BD7600D09B7F /* Quiz.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23227CFC0725BD7600D09B7F /* English */,
-			);
-			name = Quiz.nib;
-			sourceTree = "<group>";
-		};
-		237DA3DE07395DD6006B7D4B /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				237DA3DC07395DC4006B7D4B /* English */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		23B358E4073C5B7D00B89026 /* PreQuiz.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23B358E5073C5B7D00B89026 /* English */,
-			);
-			name = PreQuiz.nib;
-			sourceTree = "<group>";
-		};
-		23F818E50B3531390041656E /* Preferences.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23F818E60B3531390041656E /* English */,
-			);
-			name = Preferences.nib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		23D0AFE50AA1C7F50069E6D3 /* Development */ = {
