@@ -45,17 +45,6 @@
 		23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C8E0725BD1300D09B7F /* GeniusToolbar.m */; };
 		23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */; };
 		23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227C920725BD1300D09B7F /* MyQuizController.m */; };
-		23227CAE0725BD2000D09B7F /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */; };
-		23227CB00725BD2000D09B7F /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CA80725BD2000D09B7F /* GeniusItem.m */; };
-		23227CB20725BD2000D09B7F /* GeniusPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CAA0725BD2000D09B7F /* GeniusPair.m */; };
-		23227CCF0725BD2600D09B7F /* add_idle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CB90725BD2600D09B7F /* add_idle.tiff */; };
-		23227CD00725BD2600D09B7F /* add_pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CBA0725BD2600D09B7F /* add_pressed.tiff */; };
-		23227CD60725BD2600D09B7F /* remove_idle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC00725BD2600D09B7F /* remove_idle.tiff */; };
-		23227CD70725BD2600D09B7F /* remove_pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC10725BD2600D09B7F /* remove_pressed.tiff */; };
-		23227CD80725BD2600D09B7F /* status-green.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC20725BD2600D09B7F /* status-green.tiff */; };
-		23227CD90725BD2600D09B7F /* status-red.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC30725BD2600D09B7F /* status-red.tiff */; };
-		23227CDA0725BD2600D09B7F /* status-yellow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227CC40725BD2600D09B7F /* status-yellow.tiff */; };
-		23227CDE0725BD2600D09B7F /* ParagraphStyleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */; };
 		23227CEA0725BD6100D09B7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23227CE80725BD6100D09B7F /* main.m */; };
 		23227D0C0725BD7600D09B7F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 23227CEF0725BD7600D09B7F /* Credits.rtf */; };
 		23227D0D0725BD7600D09B7F /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23227CF10725BD7600D09B7F /* GeniusDocument.nib */; };
@@ -65,15 +54,10 @@
 		23227D1C0725BD7600D09B7F /* Storage Files.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23227D080725BD7600D09B7F /* Storage Files.icns */; };
 		23227D260725BDA100D09B7F /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D1F0725BDA100D09B7F /* Add.tiff */; };
 		23227D270725BDA100D09B7F /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23227D200725BDA100D09B7F /* Add_Pressed.tiff */; };
-		23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 23286A740AA2077200EC1FFF /* NSString+Similiarity.m */; };
-		23516AB9075EE2CE0020D17E /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */; };
-		236640560AA2056100888E37 /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236640470AA2056100888E37 /* IconTextFieldCell.m */; };
 		237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 237DA3DE07395DD6006B7D4B /* Localizable.strings */; };
 		23AA22930AA305E6009AF327 /* Genius.icns in Resources */ = {isa = PBXBuildFile; fileRef = 23AA22920AA305E6009AF327 /* Genius.icns */; };
 		23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23B358E4073C5B7D00B89026 /* PreQuiz.nib */; };
-		23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B00B0AA1CD560069E6D3 /* play.tiff */; };
 		23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D0B2310AA1E65D0069E6D3 /* Inspector.png */; };
-		23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F818E20B35312B0041656E /* GeniusPreferencesController.m */; };
 		23F818E70B3531390041656E /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 23F818E50B3531390041656E /* Preferences.nib */; };
 		23FE373F07494CC00029DD61 /* Information.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 23FE373C07494CC00029DD61 /* Information.tiff */; };
 		8303C1020D4F91040073A7F3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 8303C1010D4F91040073A7F3 /* index.html */; };
@@ -83,20 +67,11 @@
 		833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		833C27140D2D3C410097E3CE /* GeniusHelpWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2318E40F0725C16D00726F95 /* GeniusHelpWindowController.h */; };
 		833C27150D2D3C410097E3CE /* GeniusAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C860725BD1300D09B7F /* GeniusAppDelegate.h */; };
-		833C27160D2D3C410097E3CE /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */; };
-		833C27170D2D3C410097E3CE /* GeniusAssociationEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */; };
 		833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C880725BD1300D09B7F /* GeniusDocument.h */; };
 		833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8A0725BD1300D09B7F /* GeniusDocumentFile.h */; };
-		833C271B0D2D3C410097E3CE /* GeniusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA70725BD2000D09B7F /* GeniusItem.h */; };
-		833C271C0D2D3C410097E3CE /* GeniusPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CA90725BD2000D09B7F /* GeniusPair.h */; };
-		833C271D0D2D3C410097E3CE /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23F818E10B35312B0041656E /* GeniusPreferencesController.h */; };
-		833C271E0D2D3C410097E3CE /* GeniusStringDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */; };
 		833C271F0D2D3C410097E3CE /* GeniusToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8D0725BD1300D09B7F /* GeniusToolbar.h */; };
 		833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C8F0725BD1300D09B7F /* GeniusWelcomePanel.h */; };
-		833C27210D2D3C410097E3CE /* IconTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 236640460AA2056100888E37 /* IconTextFieldCell.h */; };
 		833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227C910725BD1300D09B7F /* MyQuizController.h */; };
-		833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 23286A730AA2077200EC1FFF /* NSString+Similiarity.h */; };
-		833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */; };
 		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		8347AB890CD12DB3005CBAC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8347AB880CD12DB3005CBAC3 /* Info.plist */; };
 		83602A040D3FC51700C6AF73 /* IsPairImportantTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83602A020D3FC51700C6AF73 /* IsPairImportantTransformer.h */; };
@@ -106,13 +81,10 @@
 		8379CD7C0CEB410600CCFF86 /* TestFile1.genius in Resources */ = {isa = PBXBuildFile; fileRef = 8379CD7B0CEB410600CCFF86 /* TestFile1.genius */; };
 		838EFAAB0D438E68004E90BC /* GSTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 838EFAA90D438E68004E90BC /* GSTableView.h */; };
 		838EFAAC0D438E68004E90BC /* GSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 838EFAAA0D438E68004E90BC /* GSTableView.m */; };
-		83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */; };
 		83C26C2B0CE9F50800C5EE32 /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */; };
 		83C26DF20CEA20BC00C5EE32 /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */; };
 		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
-		83CEB5AB0D4BC18700EF7952 /* History.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83CEB59F0D4BBF2A00EF7952 /* History.html */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
-		83D9BED40CD121DA0092858D /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23B358C9073C101800B89026 /* Samples */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
 		83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
@@ -163,10 +135,8 @@
 			dstPath = "/Volumes/${PROJECT_NAME}";
 			dstSubfolderSpec = 0;
 			files = (
-				83CEB5AB0D4BC18700EF7952 /* History.html in CopyFiles */,
 				83D9BED70CD122380092858D /* Genius.app in CopyFiles */,
 				83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */,
-				83D9BED40CD121DA0092858D /* Samples in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,21 +161,6 @@
 		23227C900725BD1300D09B7F /* GeniusWelcomePanel.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusWelcomePanel.m; sourceTree = "<group>"; };
 		23227C910725BD1300D09B7F /* MyQuizController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyQuizController.h; sourceTree = "<group>"; };
 		23227C920725BD1300D09B7F /* MyQuizController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyQuizController.m; sourceTree = "<group>"; };
-		23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusAssociationEnumerator.h; sourceTree = "<group>"; };
-		23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociationEnumerator.m; sourceTree = "<group>"; };
-		23227CA70725BD2000D09B7F /* GeniusItem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusItem.h; sourceTree = "<group>"; };
-		23227CA80725BD2000D09B7F /* GeniusItem.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusItem.m; sourceTree = "<group>"; };
-		23227CA90725BD2000D09B7F /* GeniusPair.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusPair.h; sourceTree = "<group>"; };
-		23227CAA0725BD2000D09B7F /* GeniusPair.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusPair.m; sourceTree = "<group>"; };
-		23227CB90725BD2600D09B7F /* add_idle.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = add_idle.tiff; sourceTree = "<group>"; };
-		23227CBA0725BD2600D09B7F /* add_pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = add_pressed.tiff; sourceTree = "<group>"; };
-		23227CC00725BD2600D09B7F /* remove_idle.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = remove_idle.tiff; sourceTree = "<group>"; };
-		23227CC10725BD2600D09B7F /* remove_pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = remove_pressed.tiff; sourceTree = "<group>"; };
-		23227CC20725BD2600D09B7F /* status-green.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-green.tiff"; sourceTree = "<group>"; };
-		23227CC30725BD2600D09B7F /* status-red.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-red.tiff"; sourceTree = "<group>"; };
-		23227CC40725BD2600D09B7F /* status-yellow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-yellow.tiff"; sourceTree = "<group>"; };
-		23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ParagraphStyleFormatter.h; sourceTree = "<group>"; };
-		23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ParagraphStyleFormatter.m; sourceTree = "<group>"; };
 		23227CE70725BD6100D09B7F /* Genius_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Genius_Prefix.pch; sourceTree = "<group>"; };
 		23227CE80725BD6100D09B7F /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		23227CF00725BD7600D09B7F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -216,21 +171,11 @@
 		23227D080725BD7600D09B7F /* Storage Files.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Storage Files.icns"; sourceTree = "<group>"; };
 		23227D1F0725BDA100D09B7F /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
 		23227D200725BDA100D09B7F /* Add_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add_Pressed.tiff; sourceTree = "<group>"; };
-		23286A730AA2077200EC1FFF /* NSString+Similiarity.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString+Similiarity.h"; sourceTree = "<group>"; };
-		23286A740AA2077200EC1FFF /* NSString+Similiarity.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSString+Similiarity.m"; sourceTree = "<group>"; };
-		23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusStringDiff.h; sourceTree = "<group>"; };
-		23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusStringDiff.m; sourceTree = "<group>"; };
-		236640460AA2056100888E37 /* IconTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconTextFieldCell.h; sourceTree = "<group>"; };
-		236640470AA2056100888E37 /* IconTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconTextFieldCell.m; sourceTree = "<group>"; };
 		237DA3DC07395DC4006B7D4B /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23AA22920AA305E6009AF327 /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
 		23AA229A0AA30E31009AF327 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING.txt; sourceTree = SOURCE_ROOT; };
-		23B358C9073C101800B89026 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		23B358E5073C5B7D00B89026 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PreQuiz.nib; sourceTree = "<group>"; };
-		23D0B00B0AA1CD560069E6D3 /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = play.tiff; sourceTree = "<group>"; };
 		23D0B2310AA1E65D0069E6D3 /* Inspector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Inspector.png; sourceTree = "<group>"; };
-		23F818E10B35312B0041656E /* GeniusPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GeniusPreferencesController.h; sourceTree = "<group>"; };
-		23F818E20B35312B0041656E /* GeniusPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GeniusPreferencesController.m; sourceTree = "<group>"; };
 		23F818E60B3531390041656E /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
 		23FE373C07494CC00029DD61 /* Information.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Information.tiff; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -249,14 +194,11 @@
 		83B723BA0D2D3014004668E1 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = SOURCE_ROOT; };
 		83B723BB0D2D3014004668E1 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = SOURCE_ROOT; };
 		83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "JRSwizzle-Info.plist"; path = "JRSwizzle/JRSwizzle-Info.plist"; sourceTree = SOURCE_ROOT; };
-		83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusAssociation.h; sourceTree = "<group>"; };
-		83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusAssociation.m; sourceTree = "<group>"; };
 		83C26C2A0CE9F50800C5EE32 /* GeniusDocumentFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusDocumentFileTest.m; sourceTree = "<group>"; };
 		83C26DF10CEA20BC00C5EE32 /* GeniusPairTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusPairTest.m; sourceTree = "<group>"; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CC1CD60CD2499B0002FFA8 /* Testing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Testing-Info.plist"; sourceTree = "<group>"; };
-		83CEB59F0D4BBF2A00EF7952 /* History.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = History.html; sourceTree = "<group>"; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
 		83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		83E23A8C0D355ED700E82369 /* GeniusDocument_DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusDocument_DebugLogging.h; sourceTree = "<group>"; };
@@ -354,50 +296,6 @@
 			path = app/Classes;
 			sourceTree = "<group>";
 		};
-		23227CA40725BD2000D09B7F /* model */ = {
-			isa = PBXGroup;
-			children = (
-				23227CA50725BD2000D09B7F /* GeniusAssociationEnumerator.h */,
-				23227CA60725BD2000D09B7F /* GeniusAssociationEnumerator.m */,
-				23227CA70725BD2000D09B7F /* GeniusItem.h */,
-				23227CA80725BD2000D09B7F /* GeniusItem.m */,
-				23227CA90725BD2000D09B7F /* GeniusPair.h */,
-				23227CAA0725BD2000D09B7F /* GeniusPair.m */,
-				83C26B2E0CE8ACB700C5EE32 /* GeniusAssociation.h */,
-				83C26B2F0CE8ACB700C5EE32 /* GeniusAssociation.m */,
-				23286A720AA2077200EC1FFF /* NSString+Similiarity */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		23227CB50725BD2600D09B7F /* widgets */ = {
-			isa = PBXGroup;
-			children = (
-				23227CB80725BD2600D09B7F /* image */,
-				23227CC70725BD2600D09B7F /* ParagraphStyleFormatter.h */,
-				23227CC80725BD2600D09B7F /* ParagraphStyleFormatter.m */,
-				23516AB6075EE2CE0020D17E /* GeniusStringDiff.h */,
-				23516AB7075EE2CE0020D17E /* GeniusStringDiff.m */,
-				236640450AA2056100888E37 /* IconTextFieldCell */,
-			);
-			path = widgets;
-			sourceTree = "<group>";
-		};
-		23227CB80725BD2600D09B7F /* image */ = {
-			isa = PBXGroup;
-			children = (
-				23D0B00B0AA1CD560069E6D3 /* play.tiff */,
-				23227CB90725BD2600D09B7F /* add_idle.tiff */,
-				23227CBA0725BD2600D09B7F /* add_pressed.tiff */,
-				23227CC00725BD2600D09B7F /* remove_idle.tiff */,
-				23227CC10725BD2600D09B7F /* remove_pressed.tiff */,
-				23227CC20725BD2600D09B7F /* status-green.tiff */,
-				23227CC30725BD2600D09B7F /* status-red.tiff */,
-				23227CC40725BD2600D09B7F /* status-yellow.tiff */,
-			);
-			path = image;
-			sourceTree = "<group>";
-		};
 		23227CEB0725BD7600D09B7F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +313,7 @@
 				23AA22920AA305E6009AF327 /* Genius.icns */,
 				23227D080725BD7600D09B7F /* Storage Files.icns */,
 				23227D1E0725BDA100D09B7F /* Images */,
+				23AA229A0AA30E31009AF327 /* COPYING.txt */,
 			);
 			name = Resources;
 			path = app/Resources;
@@ -431,55 +330,13 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		23286A720AA2077200EC1FFF /* NSString+Similiarity */ = {
-			isa = PBXGroup;
-			children = (
-				23286A730AA2077200EC1FFF /* NSString+Similiarity.h */,
-				23286A740AA2077200EC1FFF /* NSString+Similiarity.m */,
-			);
-			path = "NSString+Similiarity";
-			sourceTree = "<group>";
-		};
-		236640450AA2056100888E37 /* IconTextFieldCell */ = {
-			isa = PBXGroup;
-			children = (
-				236640460AA2056100888E37 /* IconTextFieldCell.h */,
-				236640470AA2056100888E37 /* IconTextFieldCell.m */,
-			);
-			path = IconTextFieldCell;
-			sourceTree = "<group>";
-		};
-		23B358BB073C0FA700B89026 /* User Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				83CEB59F0D4BBF2A00EF7952 /* History.html */,
-				23AA229A0AA30E31009AF327 /* COPYING.txt */,
-				23B358C9073C101800B89026 /* Samples */,
-			);
-			name = "User Documentation";
-			path = UserDocs;
-			sourceTree = "<group>";
-		};
-		23F818E00B35312B0041656E /* prefs */ = {
-			isa = PBXGroup;
-			children = (
-				23F818E10B35312B0041656E /* GeniusPreferencesController.h */,
-				23F818E20B35312B0041656E /* GeniusPreferencesController.m */,
-			);
-			path = prefs;
-			sourceTree = "<group>";
-		};
 		2A37F4AAFDCFA73011CA2CEA /* Genius */ = {
 			isa = PBXGroup;
 			children = (
 				832389FE0CC39B1C00782903 /* TODO.txt */,
 				23227C850725BD1300D09B7F /* Classes */,
-				23227CA40725BD2000D09B7F /* model */,
-				23227CB50725BD2600D09B7F /* widgets */,
-				23F818E00B35312B0041656E /* prefs */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				23227CEB0725BD7600D09B7F /* Resources */,
-				23B358BB073C0FA700B89026 /* User Documentation */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				83CC1CDD0CD249BF0002FFA8 /* TestCases */,
 				83D9C97F0CD8AD8E003B422F /* Developer Docs */,
@@ -563,20 +420,11 @@
 			files = (
 				833C27140D2D3C410097E3CE /* GeniusHelpWindowController.h in Headers */,
 				833C27150D2D3C410097E3CE /* GeniusAppDelegate.h in Headers */,
-				833C27160D2D3C410097E3CE /* GeniusAssociation.h in Headers */,
-				833C27170D2D3C410097E3CE /* GeniusAssociationEnumerator.h in Headers */,
 				833C27180D2D3C410097E3CE /* GeniusDocument.h in Headers */,
 				833C27190D2D3C410097E3CE /* GeniusDocumentFile.h in Headers */,
-				833C271B0D2D3C410097E3CE /* GeniusItem.h in Headers */,
-				833C271C0D2D3C410097E3CE /* GeniusPair.h in Headers */,
-				833C271D0D2D3C410097E3CE /* GeniusPreferencesController.h in Headers */,
-				833C271E0D2D3C410097E3CE /* GeniusStringDiff.h in Headers */,
 				833C271F0D2D3C410097E3CE /* GeniusToolbar.h in Headers */,
 				833C27200D2D3C410097E3CE /* GeniusWelcomePanel.h in Headers */,
-				833C27210D2D3C410097E3CE /* IconTextFieldCell.h in Headers */,
 				833C27220D2D3C410097E3CE /* MyQuizController.h in Headers */,
-				833C27240D2D3C410097E3CE /* NSString+Similiarity.h in Headers */,
-				833C27250D2D3C410097E3CE /* ParagraphStyleFormatter.h in Headers */,
 				83E23A8E0D355ED700E82369 /* GeniusDocument_DebugLogging.h in Headers */,
 				83602A040D3FC51700C6AF73 /* IsPairImportantTransformer.h in Headers */,
 				83602A0C0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.h in Headers */,
@@ -686,13 +534,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23227CCF0725BD2600D09B7F /* add_idle.tiff in Resources */,
-				23227CD00725BD2600D09B7F /* add_pressed.tiff in Resources */,
-				23227CD60725BD2600D09B7F /* remove_idle.tiff in Resources */,
-				23227CD70725BD2600D09B7F /* remove_pressed.tiff in Resources */,
-				23227CD80725BD2600D09B7F /* status-green.tiff in Resources */,
-				23227CD90725BD2600D09B7F /* status-red.tiff in Resources */,
-				23227CDA0725BD2600D09B7F /* status-yellow.tiff in Resources */,
 				23227D0C0725BD7600D09B7F /* Credits.rtf in Resources */,
 				23227D0D0725BD7600D09B7F /* GeniusDocument.nib in Resources */,
 				23227D100725BD7600D09B7F /* InfoPlist.strings in Resources */,
@@ -706,7 +547,6 @@
 				237DA3DF07395DD6006B7D4B /* Localizable.strings in Resources */,
 				23B358E6073C5B7D00B89026 /* PreQuiz.nib in Resources */,
 				23FE373F07494CC00029DD61 /* Information.tiff in Resources */,
-				23D0B00C0AA1CD560069E6D3 /* play.tiff in Resources */,
 				23D0B2320AA1E65D0069E6D3 /* Inspector.png in Resources */,
 				23AA22930AA305E6009AF327 /* Genius.icns in Resources */,
 				23F818E70B3531390041656E /* Preferences.nib in Resources */,
@@ -802,17 +642,8 @@
 				23227C9D0725BD1300D09B7F /* GeniusToolbar.m in Sources */,
 				23227C9F0725BD1300D09B7F /* GeniusWelcomePanel.m in Sources */,
 				23227CA10725BD1300D09B7F /* MyQuizController.m in Sources */,
-				23227CAE0725BD2000D09B7F /* GeniusAssociationEnumerator.m in Sources */,
-				23227CB00725BD2000D09B7F /* GeniusItem.m in Sources */,
-				23227CB20725BD2000D09B7F /* GeniusPair.m in Sources */,
-				23227CDE0725BD2600D09B7F /* ParagraphStyleFormatter.m in Sources */,
 				23227CEA0725BD6100D09B7F /* main.m in Sources */,
 				2318E4100725C16D00726F95 /* GeniusHelpWindowController.m in Sources */,
-				23516AB9075EE2CE0020D17E /* GeniusStringDiff.m in Sources */,
-				236640560AA2056100888E37 /* IconTextFieldCell.m in Sources */,
-				23286A760AA2077200EC1FFF /* NSString+Similiarity.m in Sources */,
-				23F818E40B35312B0041656E /* GeniusPreferencesController.m in Sources */,
-				83C26B310CE8ACB700C5EE32 /* GeniusAssociation.m in Sources */,
 				83E23A8F0D355ED700E82369 /* GeniusDocument_DebugLogging.m in Sources */,
 				83602A050D3FC51700C6AF73 /* IsPairImportantTransformer.m in Sources */,
 				83602A0D0D3FC52C00C6AF73 /* ColorFromPairImportanceTransformer.m in Sources */,
