@@ -37,60 +37,36 @@
 
 /* Begin PBXBuildFile section */
 		2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */; };
-		8303C1020D4F91040073A7F3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 8303C1010D4F91040073A7F3 /* index.html */; };
 		833C26A00D2D33810097E3CE /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B723BB0D2D3014004668E1 /* JRSwizzle.m */; };
 		833C26A10D2D33840097E3CE /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B723BA0D2D3014004668E1 /* JRSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */; };
 		833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
-		83784CAC0D527C8700720968 /* Storage Files.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83784CAB0D527C8700720968 /* Storage Files.icns */; };
 		83784CAF0D527D1900720968 /* Storage Files.icns in Resources */ = {isa = PBXBuildFile; fileRef = 83784CAB0D527C8700720968 /* Storage Files.icns */; };
-		83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
 		83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
-		83F9D3A10D525EFD004C531D /* GeniusToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3770D525EFD004C531D /* GeniusToolbar.h */; };
-		83F9D3A20D525EFD004C531D /* GeniusAssociationEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3780D525EFD004C531D /* GeniusAssociationEnumerator.h */; };
-		83F9D3A30D525EFD004C531D /* GeniusHelpWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3790D525EFD004C531D /* GeniusHelpWindowController.h */; };
-		83F9D3A40D525EFD004C531D /* MyQuizController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D37A0D525EFD004C531D /* MyQuizController.h */; };
-		83F9D3A50D525EFD004C531D /* IconTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D37B0D525EFD004C531D /* IconTextFieldCell.h */; };
-		83F9D3A60D525EFD004C531D /* IsPairImportantTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D37C0D525EFD004C531D /* IsPairImportantTransformer.h */; };
-		83F9D3A70D525EFD004C531D /* GeniusDocument_DebugLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D37D0D525EFD004C531D /* GeniusDocument_DebugLogging.h */; };
-		83F9D3A80D525EFD004C531D /* ParagraphStyleFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D37E0D525EFD004C531D /* ParagraphStyleFormatter.h */; };
-		83F9D3A90D525EFD004C531D /* GeniusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D37F0D525EFD004C531D /* GeniusItem.h */; };
-		83F9D3AA0D525EFD004C531D /* GeniusDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3800D525EFD004C531D /* GeniusDocument.h */; };
-		83F9D3AB0D525EFD004C531D /* GeniusWelcomePanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3810D525EFD004C531D /* GeniusWelcomePanel.h */; };
-		83F9D3AC0D525EFD004C531D /* GeniusPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3820D525EFD004C531D /* GeniusPreferencesController.h */; };
-		83F9D3AD0D525EFD004C531D /* ColorFromPairImportanceTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3830D525EFD004C531D /* ColorFromPairImportanceTransformer.h */; };
-		83F9D3AE0D525EFD004C531D /* GeniusAssociation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3840D525EFD004C531D /* GeniusAssociation.h */; };
 		83F9D3AF0D525EFD004C531D /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3850D525EFD004C531D /* GeniusPreferencesController.m */; };
 		83F9D3B00D525EFD004C531D /* IsPairImportantTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3860D525EFD004C531D /* IsPairImportantTransformer.m */; };
-		83F9D3B10D525EFD004C531D /* NSString+Similiarity.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3870D525EFD004C531D /* NSString+Similiarity.h */; };
 		83F9D3B20D525EFD004C531D /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3880D525EFD004C531D /* NSString+Similiarity.m */; };
 		83F9D3B30D525EFD004C531D /* MyQuizController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3890D525EFD004C531D /* MyQuizController.m */; };
 		83F9D3B40D525EFD004C531D /* ParagraphStyleFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D38A0D525EFD004C531D /* ParagraphStyleFormatter.m */; };
 		83F9D3B50D525EFD004C531D /* GeniusHelpWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D38B0D525EFD004C531D /* GeniusHelpWindowController.m */; };
-		83F9D3B60D525EFD004C531D /* GeniusDocumentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D38C0D525EFD004C531D /* GeniusDocumentFile.h */; };
-		83F9D3B70D525EFD004C531D /* GeniusStringDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D38D0D525EFD004C531D /* GeniusStringDiff.h */; };
 		83F9D3B80D525EFD004C531D /* GeniusAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D38E0D525EFD004C531D /* GeniusAppDelegate.m */; };
 		83F9D3B90D525EFD004C531D /* GeniusDocument_DebugLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D38F0D525EFD004C531D /* GeniusDocument_DebugLogging.m */; };
 		83F9D3BA0D525EFD004C531D /* GeniusWelcomePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3900D525EFD004C531D /* GeniusWelcomePanel.m */; };
 		83F9D3BB0D525EFD004C531D /* GSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3910D525EFD004C531D /* GSTableView.m */; };
 		83F9D3BC0D525EFD004C531D /* GeniusDocumentFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3920D525EFD004C531D /* GeniusDocumentFile.m */; };
-		83F9D3BD0D525EFD004C531D /* GSTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3930D525EFD004C531D /* GSTableView.h */; };
-		83F9D3BE0D525EFD004C531D /* GeniusAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3940D525EFD004C531D /* GeniusAppDelegate.h */; };
 		83F9D3C00D525EFD004C531D /* IconTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3960D525EFD004C531D /* IconTextFieldCell.m */; };
 		83F9D3C10D525EFD004C531D /* GeniusAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3970D525EFD004C531D /* GeniusAssociation.m */; };
 		83F9D3C20D525EFD004C531D /* GeniusStringDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3980D525EFD004C531D /* GeniusStringDiff.m */; };
 		83F9D3C30D525EFD004C531D /* GeniusDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3990D525EFD004C531D /* GeniusDocument.m */; };
 		83F9D3C40D525EFD004C531D /* GeniusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D39A0D525EFD004C531D /* GeniusItem.m */; };
-		83F9D3C60D525EFD004C531D /* GeniusPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D39C0D525EFD004C531D /* GeniusPair.h */; };
 		83F9D3C70D525EFD004C531D /* GeniusPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D39D0D525EFD004C531D /* GeniusPair.m */; };
 		83F9D3C80D525EFD004C531D /* ColorFromPairImportanceTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D39E0D525EFD004C531D /* ColorFromPairImportanceTransformer.m */; };
 		83F9D3C90D525EFD004C531D /* GeniusToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D39F0D525EFD004C531D /* GeniusToolbar.m */; };
 		83F9D3CA0D525EFD004C531D /* GeniusAssociationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3A00D525EFD004C531D /* GeniusAssociationEnumerator.m */; };
-		83F9D3CD0D525F30004C531D /* Genius_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 83F9D3CB0D525F30004C531D /* Genius_Prefix.pch */; };
 		83F9D3CE0D525F30004C531D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3CC0D525F30004C531D /* main.m */; };
 		83F9D3D50D525F7B004C531D /* GeniusDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D3CF0D525F7B004C531D /* GeniusDocument.nib */; };
 		83F9D3DC0D525F8F004C531D /* Help.nib in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D3D60D525F8F004C531D /* Help.nib */; };
@@ -169,7 +145,6 @@
 				83D9BED70CD122380092858D /* Genius.app in CopyFiles */,
 				83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */,
 				83F9D60B0D527761004C531D /* History.html in CopyFiles */,
-				83784CAC0D527C8700720968 /* Storage Files.icns in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +267,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83CC1CDB0CD249AC0002FFA8 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,27 +522,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83F9D3A10D525EFD004C531D /* GeniusToolbar.h in Headers */,
-				83F9D3A20D525EFD004C531D /* GeniusAssociationEnumerator.h in Headers */,
-				83F9D3A30D525EFD004C531D /* GeniusHelpWindowController.h in Headers */,
-				83F9D3A40D525EFD004C531D /* MyQuizController.h in Headers */,
-				83F9D3A50D525EFD004C531D /* IconTextFieldCell.h in Headers */,
-				83F9D3A60D525EFD004C531D /* IsPairImportantTransformer.h in Headers */,
-				83F9D3A70D525EFD004C531D /* GeniusDocument_DebugLogging.h in Headers */,
-				83F9D3A80D525EFD004C531D /* ParagraphStyleFormatter.h in Headers */,
-				83F9D3A90D525EFD004C531D /* GeniusItem.h in Headers */,
-				83F9D3AA0D525EFD004C531D /* GeniusDocument.h in Headers */,
-				83F9D3AB0D525EFD004C531D /* GeniusWelcomePanel.h in Headers */,
-				83F9D3AC0D525EFD004C531D /* GeniusPreferencesController.h in Headers */,
-				83F9D3AD0D525EFD004C531D /* ColorFromPairImportanceTransformer.h in Headers */,
-				83F9D3AE0D525EFD004C531D /* GeniusAssociation.h in Headers */,
-				83F9D3B10D525EFD004C531D /* NSString+Similiarity.h in Headers */,
-				83F9D3B60D525EFD004C531D /* GeniusDocumentFile.h in Headers */,
-				83F9D3B70D525EFD004C531D /* GeniusStringDiff.h in Headers */,
-				83F9D3BD0D525EFD004C531D /* GSTableView.h in Headers */,
-				83F9D3BE0D525EFD004C531D /* GeniusAppDelegate.h in Headers */,
-				83F9D3C60D525EFD004C531D /* GeniusPair.h in Headers */,
-				83F9D3CD0D525F30004C531D /* Genius_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +592,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 23D0AFE80AA1C7F50069E6D3 /* Build configuration list for PBXProject "Genius" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Genius */;
 			projectDirPath = "";
@@ -674,7 +628,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8303C1020D4F91040073A7F3 /* index.html in Resources */,
 				83F9D3D50D525F7B004C531D /* GeniusDocument.nib in Resources */,
 				83F9D3DC0D525F8F004C531D /* Help.nib in Resources */,
 				83F9D4030D525F9B004C531D /* InfoPlist.strings in Resources */,
@@ -715,6 +668,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			showEnvVarsInLog = 0;
 		};
 		83D9BE660CD110E90092858D /* Convert Image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -729,6 +683,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "# unmount image\nif ! hdiutil detach /Volumes/${PROJECT_NAME}; then\n\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\tif ! hdiutil info | grep -q /Volumes/Genius; then\n\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\telse\n\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\tfi\n\texit -1;\nfi\n\n# convert to read only compressed archive leaving the result in build root.\nif ! hdiutil convert -ov -format UDZO -o ${BUILT_PRODUCTS_DIR}/${PROJECT_NAME}-1.7.${SVNREV}.dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\t/bin/echo \"error: Can't convert dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\nexit 0";
+			showEnvVarsInLog = 0;
 		};
 		83D9BED50CD122050092858D /* Create Image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -743,6 +698,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "# check for and try to clean up leftovers at /Volumes/Genius\nif test -e /Volumes/${PROJECT_NAME}\nthen\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}\n\tthen\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius\n\t\tthen\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# create derived files dir\nif ! mkdir -p ${DERIVED_FILE_DIR}\nthen\n\techo \"error: Can't create derived files dir: ${DERIVED_FILE_DIR}\" 1>&2\n\texit -1;\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/dmg.DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
+			showEnvVarsInLog = 0;
 		};
 		83D9C9770CD8AC7D003B422F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -756,6 +712,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "if [ \"$DOXY_HOME\" = \"\" ]; then\n\techo \"error: DOXY_HOME not set.  Can't generate documentation.\" 1>&2\n\texit -1\nfi\n\nif [ -e ${DOXY_HOME}/doxygen ]; then\n\t${DOXY_HOME}/doxygen ${PROJECT_DIR}/doxygen.conf\nelse\n\techo \"error: 'doxygen' executable not found.  Can't generate documentation. Check DOXY_HOME setting.\"  1>&2\n\texit -1\nfi\n\nexit 0\n\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -926,9 +883,11 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../../../Sparkle/Extras/Source/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -967,9 +926,11 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../../../Sparkle/Extras/Source/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;

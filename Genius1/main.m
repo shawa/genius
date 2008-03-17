@@ -21,10 +21,10 @@
 *
 * @section intro_sec Introductions
 *
-* Originally created by John R Change on Sat Oct 18 2003.  Opensourced on Aug 27 2006.
+* Originally created by John R Chang on Sat Oct 18 2003.  Opensourced on Aug 27 2006.
 * Current development by Chris Miner under the GNU GPL.
 *
-* @section more_inhfo For more information
+* @section more_info For more information
 *
 * Visit the <a href="http://www.sourceforge.net/projects/genius">genius project</a> at sourceforge or send Chris Miner an email at
 * sourceforge. (chris_miner at users.sourceforge.net)

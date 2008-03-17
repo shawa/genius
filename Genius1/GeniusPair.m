@@ -17,6 +17,7 @@
 
 #import "GeniusPair.h"
 #import "GeniusAssociation.h"
+#import "GeniusItem.h"
 
 NSString * GeniusPairImportanceNumberKey = @"importanceNumber";
 NSString * GeniusPairCustomTypeStringKey = @"customTypeString";

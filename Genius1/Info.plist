@@ -49,7 +49,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-    <key>SUFeedURL</key> 
-    <string>http://genius.sourceforge.net/appcast.xml</string> 
+    <key>SUFeedURL</key>
+    <string>http://genius.sourceforge.net/appcast.xml</string>
 </dict>
 </plist>
