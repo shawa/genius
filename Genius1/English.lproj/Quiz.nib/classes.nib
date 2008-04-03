@@ -1,25 +1,71 @@
-{
-    IBClasses = (
-        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {CLASS = GeniusRelevanceIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
-        {
-            ACTIONS = {getRightNo = id; getRightSkip = id; getRightYes = id; handleEntry = id; }; 
-            CLASS = MyQuizController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                answerTextView = NSTextField; 
-                associationController = NSObjectController; 
-                cueTextView = NSTextField; 
-                entryField = NSTextField; 
-                evaluationTabView = NSTabView; 
-                noButton = NSButton; 
-                progressIndicator = NSLevelIndicator; 
-                yesButton = NSButton; 
-            }; 
-            SUPERCLASS = NSWindowController; 
-        }, 
-        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
-        {CLASS = SimpleProgressIndicator; LANGUAGE = ObjC; SUPERCLASS = NSView; }
-    ); 
-    IBVersion = 1; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>CLASS</key>
+			<string>NSLevelIndicator</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSControl</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>getRightNo</key>
+				<string>id</string>
+				<key>getRightSkip</key>
+				<string>id</string>
+				<key>getRightYes</key>
+				<string>id</string>
+				<key>handleEntry</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>MyQuizController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>answerTextView</key>
+				<string>NSTextField</string>
+				<key>associationController</key>
+				<string>NSObjectController</string>
+				<key>cueTextView</key>
+				<string>NSTextField</string>
+				<key>entryField</key>
+				<string>NSTextField</string>
+				<key>evaluationTabView</key>
+				<string>NSTabView</string>
+				<key>noButton</key>
+				<string>NSButton</string>
+				<key>progressIndicator</key>
+				<string>NSLevelIndicator</string>
+				<key>yesButton</key>
+				<string>NSButton</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSWindowController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>NSObject</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>

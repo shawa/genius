@@ -26,10 +26,10 @@
 @interface MyQuizController : NSWindowController
 {
     IBOutlet NSObjectController *associationController;  //!< NSObjectController for #_currentAssociation.
-    IBOutlet NSTextView *cueTextView;                    //!< Displays the cue item of #_currentAssociation.
+    IBOutlet NSTextField *cueTextView;                    //!< Displays the cue item of #_currentAssociation.
 
     IBOutlet NSTabView *evaluationTabView;               //!< swap view for the review / learn controls
-    IBOutlet NSTextView *answerTextView;                 //!< Displays the answer item of #_currentAssociation.
+    IBOutlet NSTextField *answerTextView;                 //!< Displays the answer item of #_currentAssociation.
 
     IBOutlet NSTextField *entryField;                    //!< Text area for typing in the answer in learning mode.
     IBOutlet NSButton *yesButton;                        //!< Confirms correct answer.

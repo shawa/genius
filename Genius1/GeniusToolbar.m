@@ -84,7 +84,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
 			NSView * itemView = [learnReviewSlider superview];
             [toolbarItem setView:itemView];
-            [toolbarItem setMinSize:NSMakeSize([itemView frame].size.width, 32.0)];
+            [toolbarItem setMinSize:NSMakeSize([itemView frame].size.width, [itemView frame].size.height)];
         }
         else if ([itemIdentifier isEqual:GeniusToolbarInfoItemIdentifier])
         {

@@ -42,11 +42,11 @@
 		833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */; };
 		833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
+		8360E4F10DA5133A009A290C /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83784CAF0D527D1900720968 /* Storage Files.icns in Resources */ = {isa = PBXBuildFile; fileRef = 83784CAB0D527C8700720968 /* Storage Files.icns */; };
 		83D9BED20CD121D40092858D /* COPYING.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23AA229A0AA30E31009AF327 /* COPYING.txt */; };
 		83D9BED70CD122380092858D /* Genius.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D15AC370486D014006FF6A4 /* Genius.app */; };
 		83E0BD910D3CD61D000BED1F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
-		83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
 		83F9D3AF0D525EFD004C531D /* GeniusPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3850D525EFD004C531D /* GeniusPreferencesController.m */; };
 		83F9D3B00D525EFD004C531D /* IsPairImportantTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3860D525EFD004C531D /* IsPairImportantTransformer.m */; };
 		83F9D3B20D525EFD004C531D /* NSString+Similiarity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3880D525EFD004C531D /* NSString+Similiarity.m */; };
@@ -127,11 +127,11 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		83CC19CF0CD1DD5E0002FFA8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				83E0C0ED0D3D0BEE000BED1F /* Sparkle.framework in CopyFiles */,
+				8360E4F10DA5133A009A290C /* Sparkle.framework in CopyFiles */,
 				833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
