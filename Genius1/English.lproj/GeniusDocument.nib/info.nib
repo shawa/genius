@@ -7,10 +7,9 @@
 	<key>IBLastKnownRelativeProjectPath</key>
 	<string>../../Genius.xcodeproj</string>
 	<key>IBOldestOS</key>
-	<integer>4</integer>
+	<integer>5</integer>
 	<key>IBOpenObjects</key>
 	<array>
-		<integer>285</integer>
 		<integer>54</integer>
 	</array>
 	<key>IBSystem Version</key>
