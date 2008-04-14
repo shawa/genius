@@ -3,7 +3,7 @@
 //  Genius
 //
 //  Created by Chris Miner on 12.11.07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Copyright 2007-2008 Chris Miner. All rights reserved.
 //
 
 #import "GeniusAssociation.h"
