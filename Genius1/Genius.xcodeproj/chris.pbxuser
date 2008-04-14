@@ -525,6 +525,12 @@
 			8397C0F80DB376E8005B0FCF /* PBXTextBookmark */ = 8397C0F80DB376E8005B0FCF /* PBXTextBookmark */;
 			8397C0F90DB376ED005B0FCF /* PBXTextBookmark */ = 8397C0F90DB376ED005B0FCF /* PBXTextBookmark */;
 			8397C0FA0DB376ED005B0FCF /* PBXTextBookmark */ = 8397C0FA0DB376ED005B0FCF /* PBXTextBookmark */;
+			8397C0FB0DB3786D005B0FCF /* PBXTextBookmark */ = 8397C0FB0DB3786D005B0FCF /* PBXTextBookmark */;
+			8397C0FC0DB3786D005B0FCF /* PBXTextBookmark */ = 8397C0FC0DB3786D005B0FCF /* PBXTextBookmark */;
+			8397C0FD0DB3786D005B0FCF /* PBXTextBookmark */ = 8397C0FD0DB3786D005B0FCF /* PBXTextBookmark */;
+			8397C0FE0DB3786D005B0FCF /* PBXTextBookmark */ = 8397C0FE0DB3786D005B0FCF /* PBXTextBookmark */;
+			8397C0FF0DB3786D005B0FCF /* PBXTextBookmark */ = 8397C0FF0DB3786D005B0FCF /* PBXTextBookmark */;
+			8397C1000DB3786D005B0FCF /* PBXTextBookmark */ = 8397C1000DB3786D005B0FCF /* PBXTextBookmark */;
 			83EE4BA00D8EB3FD00AE5520 = 83EE4BA00D8EB3FD00AE5520 /* PBXTextBookmark */;
 			83EE4BA10D8EB3FD00AE5520 = 83EE4BA10D8EB3FD00AE5520 /* PBXTextBookmark */;
 			83EE4BA20D8EB3FD00AE5520 = 83EE4BA20D8EB3FD00AE5520 /* PBXTextBookmark */;
@@ -3629,6 +3635,66 @@
 		vrLen = 825;
 		vrLoc = 661;
 	};
+	8397C0FB0DB3786D005B0FCF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F9D40D0D52600D004C531D /* Info.plist */;
+		name = "Info.plist: 44";
+		rLen = 0;
+		rLoc = 1209;
+		rType = 0;
+		vrLen = 667;
+		vrLoc = 819;
+	};
+	8397C0FC0DB3786D005B0FCF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F9D3EC0D525F9B004C531D /* English */;
+		name = "John R Chang";
+		rLen = 12;
+		rLoc = 59;
+		rType = 0;
+		vrLen = 1090;
+		vrLoc = 0;
+	};
+	8397C0FD0DB3786D005B0FCF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F9D40D0D52600D004C531D /* Info.plist */;
+		name = "Info.plist: 44";
+		rLen = 0;
+		rLoc = 1209;
+		rType = 0;
+		vrLen = 667;
+		vrLoc = 819;
+	};
+	8397C0FE0DB3786D005B0FCF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F9D3EC0D525F9B004C531D /* English */;
+		name = "John R Chang";
+		rLen = 12;
+		rLoc = 59;
+		rType = 0;
+		vrLen = 1090;
+		vrLoc = 0;
+	};
+	8397C0FF0DB3786D005B0FCF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F9D3EE0D525F9B004C531D /* English */;
+		name = "English: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 550;
+		vrLoc = 0;
+	};
+	8397C1000DB3786D005B0FCF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 83F9D40D0D52600D004C531D /* Info.plist */;
+		name = "Info.plist: 44";
+		rLen = 0;
+		rLoc = 1209;
+		rType = 0;
+		vrLen = 825;
+		vrLoc = 661;
+	};
 	83A04AC50D6F33A900256482 /* GeniusDocumentFileTest.m:64 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
@@ -4292,9 +4358,9 @@
 	};
 	83F9D3EE0D525F9B004C531D /* English */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {786, 314}}";
+			sepNavIntBoundsRect = "{{0, 0}, {755, 324}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {786, 314}}";
+			sepNavVisRect = "{{0, 0}, {755, 324}}";
 		};
 	};
 	83F9D40D0D52600D004C531D /* Info.plist */ = {
