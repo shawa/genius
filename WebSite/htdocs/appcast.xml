@@ -7,18 +7,18 @@
         <ttl>1</ttl>
 
         <item>
-            <title>Version 1.7.247 (1 fix)</title>
+            <title>Version 1.7.250 (1 fix)</title>
             <description>
             <![CDATA[
-				<h4>WHAT'S NEW IN VERSION 1.7.245</h4>
+				<h4>WHAT'S NEW IN VERSION 1.7.250</h4>
 				<b>New Fixes:</b>
 				<ul>
 					<li>Text now wraps during quiz mode and in info drawer 1933501.</li>
 				</ul>
             ]]>
             </description>
-            <enclosure sparkle:shortVersionString="1.7" sparkle:version="247" url="http://downloads.sourceforge.net/genius/Genius-1.7.245.dmg" length="379412" type="application/octet-stream"/>
-            <pubDate>14 Apr 2008 12:16 +0100</pubDate>
+            <enclosure sparkle:shortVersionString="1.7" sparkle:version="250" url="http://downloads.sourceforge.net/genius/Genius-1.7.250.dmg" length="379501" type="application/octet-stream"/>
+            <pubDate>14 Apr 2008 14:38 +0100</pubDate>
         </item>
         
         <item>

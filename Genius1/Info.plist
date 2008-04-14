@@ -41,6 +41,8 @@
 	<string>????</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.7.${SVNREV}</string>
+	<key>CFBundleVersion</key>
+	<string>${SVNREV}</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.4</string>
 	<key>NSMainNibFile</key>
