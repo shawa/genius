@@ -1,3 +1,4 @@
+
 /*
 	Genius
 	Copyright (C) 2003-2006 John R Chang
