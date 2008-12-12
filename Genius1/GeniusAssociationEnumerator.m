@@ -308,9 +308,9 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
         [self performChooseAssociations];
 
     // Try popping an association off the scheduled associations queue
-    #if DEBUG
-    //NSLog(@"_scheduledAssociations = %@", [_scheduledAssociations description]);
-    #endif
+#if DEBUG
+    NSLog(@"_scheduledAssociations = %@", [_scheduledAssociations description]);
+#endif
     if ([_scheduledAssociations count])
     {
         association = [[_scheduledAssociations objectAtIndex:0] retain];
@@ -322,9 +322,9 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
     }
     
     // Otherwise try popping an unscheduled association
-    #if DEBUG
-    //NSLog(@"_inputAssociations = %@", [_inputAssociations description]);
-    #endif
+#if DEBUG
+    NSLog(@"_inputAssociations = %@", [_inputAssociations description]);
+#endif
     if ([_inputAssociations count] == 0)
         return nil;
     association = [[_inputAssociations objectAtIndex:0] retain];
