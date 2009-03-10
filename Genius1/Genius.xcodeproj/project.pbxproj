@@ -39,7 +39,6 @@
 		2301C5BF059BEBD2009AE4A0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2301C5BE059BEBD2009AE4A0 /* CoreServices.framework */; };
 		833C26A00D2D33810097E3CE /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B723BB0D2D3014004668E1 /* JRSwizzle.m */; };
 		833C26A10D2D33840097E3CE /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B723BA0D2D3014004668E1 /* JRSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */; };
 		833C26CD0D2D3AD00097E3CE /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		833C2AAA0D2D3FB40097E3CE /* JRSwizzle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 833C268B0D2D32850097E3CE /* JRSwizzle.framework */; };
 		8360E4F10DA5133A009A290C /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E0BD7D0D3CD61D000BED1F /* Sparkle.framework */; };
@@ -79,7 +78,6 @@
 		83F9D4090D525F9B004C531D /* PreQuiz.nib in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D3E90D525F9B004C531D /* PreQuiz.nib */; };
 		83F9D40A0D525F9B004C531D /* Help.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D3EB0D525F9B004C531D /* Help.rtf */; };
 		83F9D40B0D525F9B004C531D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D3ED0D525F9B004C531D /* Credits.rtf */; };
-		83F9D40E0D52600D004C531D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D40D0D52600D004C531D /* Info.plist */; };
 		83F9D4F00D5265E1004C531D /* GeniusDocumentFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D3950D525EFD004C531D /* GeniusDocumentFileTest.m */; };
 		83F9D4F10D5265E2004C531D /* GeniusPairTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D39B0D525EFD004C531D /* GeniusPairTest.m */; };
 		83F9D5000D5266B9004C531D /* Add_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 83F9D4F90D5266B9004C531D /* Add_Pressed.tiff */; };
@@ -176,7 +174,7 @@
 		83784CAB0D527C8700720968 /* Storage Files.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Storage Files.icns"; sourceTree = "<group>"; };
 		83B723BA0D2D3014004668E1 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = SOURCE_ROOT; };
 		83B723BB0D2D3014004668E1 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = SOURCE_ROOT; };
-		83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "JRSwizzle-Info.plist"; path = "JRSwizzle/JRSwizzle-Info.plist"; sourceTree = SOURCE_ROOT; };
+		83B723C20D2D305F004668E1 /* JRSwizzle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = "JRSwizzle-Info.plist"; path = "JRSwizzle/JRSwizzle-Info.plist"; sourceTree = SOURCE_ROOT; };
 		83CC1CBD0CD2498C0002FFA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		83CC1CD50CD2499B0002FFA8 /* Testing.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Testing.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D9C9820CD8ADD7003B422F /* doxygen.conf */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = doxygen.conf; sourceTree = "<group>"; };
@@ -236,7 +234,7 @@
 		83F9D3EA0D525F9B004C531D /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PreQuiz.nib; sourceTree = "<group>"; };
 		83F9D3EC0D525F9B004C531D /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Help.rtf; sourceTree = "<group>"; };
 		83F9D3EE0D525F9B004C531D /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
-		83F9D40D0D52600D004C531D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		83F9D40D0D52600D004C531D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F9D4F90D5266B9004C531D /* Add_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add_Pressed.tiff; sourceTree = "<group>"; };
 		83F9D4FA0D5266B9004C531D /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
 		83F9D4FB0D5266B9004C531D /* Information.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Information.tiff; sourceTree = "<group>"; };
@@ -246,12 +244,12 @@
 		83F9D4FF0D5266B9004C531D /* status-yellow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "status-yellow.tiff"; sourceTree = "<group>"; };
 		83F9D5080D5266F5004C531D /* Genius.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Genius.icns; sourceTree = "<group>"; };
 		83F9D5780D527441004C531D /* play.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = play.tiff; sourceTree = "<group>"; };
-		83F9D5D50D5275D0004C531D /* TestFile1.genius */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestFile1.genius; sourceTree = "<group>"; };
+		83F9D5D50D5275D0004C531D /* TestFile1.genius */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = TestFile1.genius; sourceTree = "<group>"; };
 		83F9D60A0D527761004C531D /* History.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = History.html; sourceTree = "<group>"; };
 		83F9D6170D5277C0004C531D /* Canadian Provincial Capitals.genius */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Canadian Provincial Capitals.genius"; sourceTree = "<group>"; };
 		83F9D6180D5277C0004C531D /* Swadesh Basic Core Vocabulary.genius */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Swadesh Basic Core Vocabulary.genius"; sourceTree = "<group>"; };
 		83F9D6190D5277C0004C531D /* Swedish Verbs.genius */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Swedish Verbs.genius"; sourceTree = "<group>"; };
-		83F9D61A0D5277C0004C531D /* US State Capitals.genius */ = {isa = PBXFileReference; lastKnownFileType = file; path = "US State Capitals.genius"; sourceTree = "<group>"; };
+		83F9D61A0D5277C0004C531D /* US State Capitals.genius */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "US State Capitals.genius"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -612,7 +610,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833C26A90D2D36110097E3CE /* JRSwizzle-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +636,6 @@
 				83F9D4090D525F9B004C531D /* PreQuiz.nib in Resources */,
 				83F9D40A0D525F9B004C531D /* Help.rtf in Resources */,
 				83F9D40B0D525F9B004C531D /* Credits.rtf in Resources */,
-				83F9D40E0D52600D004C531D /* Info.plist in Resources */,
 				83F9D5000D5266B9004C531D /* Add_Pressed.tiff in Resources */,
 				83F9D5010D5266B9004C531D /* Add.tiff in Resources */,
 				83F9D5020D5266B9004C531D /* Information.tiff in Resources */,
@@ -892,6 +888,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
@@ -900,7 +897,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = (
 					"-D",
 					"DEBUG=1",
