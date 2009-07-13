@@ -168,7 +168,6 @@
 		23AA229A0AA30E31009AF327 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8303C1010D4F91040073A7F3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = index.html; path = /tmp/Genius1/build/Development/DeveloperDocs/index.html; sourceTree = "<absolute>"; };
 		832389FE0CC39B1C00782903 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		833C268B0D2D32850097E3CE /* JRSwizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JRSwizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83784CAB0D527C8700720968 /* Storage Files.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Storage Files.icns"; sourceTree = "<group>"; };
@@ -351,7 +350,6 @@
 		83D9C97F0CD8AD8E003B422F /* Developer Docs */ = {
 			isa = PBXGroup;
 			children = (
-				8303C1010D4F91040073A7F3 /* index.html */,
 				83D9C9820CD8ADD7003B422F /* doxygen.conf */,
 			);
 			name = "Developer Docs";
@@ -707,7 +705,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ \"$DOXY_HOME\" = \"\" ]; then\n\techo \"error: DOXY_HOME not set.  Can't generate documentation.\" 1>&2\n\texit -1\nfi\n\nif [ -e ${DOXY_HOME}/doxygen ]; then\n\t${DOXY_HOME}/doxygen ${PROJECT_DIR}/doxygen.conf\nelse\n\techo \"error: 'doxygen' executable not found.  Can't generate documentation. Check DOXY_HOME setting.\"  1>&2\n\texit -1\nfi\n\nexit 0\n\n";
+			shellScript = "if [ -z $DOXY_HOME ]; then\n  echo \"error: DOXY_HOME not set.  Can't generate documentation.\" 1>&2\n  exit -1\n\nelif [ ! -e $DOXY_HOME/doxygen ]; then\n  echo \"error: 'doxygen' executable not found.  Can't generate documentation. Check DOXY_HOME setting.\"  1>&2\n  exit -1\n\nelse\n  $DOXY_HOME/doxygen $PROJECT_DIR/doxygen.conf\n  make -C $TARGET_BUILD_DIR/$PRODUCT_NAME install\n  open $DOCSET_INSTALL/$BUNDLE_ID.docset\nfi\n\nexit 0\n\n\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -953,7 +951,9 @@
 		23D0AFE90AA1C7F50069E6D3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
+				BUNDLE_ID = com.mac.jrc.Genius;
+				DOCSET_INSTALL = "$(HOME)/Library/Developer/Shared/Documentation/DocSets";
+				DOXY_HOME = /opt/local/bin;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -969,7 +969,9 @@
 					ppc,
 					i386,
 				);
-				DOXY_HOME = "${LOCAL_APPS_DIR}/Doxygen.app/Contents/Resources/";
+				BUNDLE_ID = com.mac.jrc.Genius;
+				DOCSET_INSTALL = "$(HOME)/Library/Developer/Shared/Documentation/DocSets";
+				DOXY_HOME = /opt/local/bin;
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;

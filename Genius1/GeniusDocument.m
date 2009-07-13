@@ -1001,7 +1001,7 @@ static NSArray *columnBindings;
 @end
 
 //! Implementation of some of the NSWindow delegate methods.
-@implementation GeniusDocument (NSWindowDelegate)
+@implementation GeniusDocument(NSWindowDelegate)
 
 //! Removes self from notification center
 - (void)windowWillClose:(NSNotification *)aNotification

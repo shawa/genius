@@ -44,8 +44,8 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
 
 @end
 
-
-@implementation GeniusDocument (NSToolbarDelegate)
+//! Standard support for configuring a tool bar.
+@implementation GeniusDocument(NSToolbarDelegate)
 
 //! Configures the allowed item identifiers for our toolbar.
 - (NSArray *) toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
