@@ -52,18 +52,19 @@ static NSArray *columnBindings;
 //! Sets up logging and registers value transformers.
 + (void) initialize
 {
-    [super initialize];
-    
-    // install our read only value tranformers referenced in GeniusDocument.nib.
-    [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
-    [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
-
-    columnBindings = [[NSArray alloc] initWithObjects:@"itemA.stringValue", @"itemB.stringValue", @"customGroupString", @"customTypeString", @"associationAB.scoreNumber", @"associationBA.scoreNumber", @"notesString", nil];
-    
-    // install swizzle based logging
+    if (self == [GeniusDocument class])
+    {
+        // install our read only value tranformers referenced in GeniusDocument.nib.
+        [NSValueTransformer setValueTransformer:[[[IsPairImportantTransformer alloc] init] autorelease] forName:@"IsPairImportantTransformer"];
+        [NSValueTransformer setValueTransformer:[[[ColorFromPairImportanceTransformer alloc] init] autorelease] forName:@"ColorFromPairImportanceTransformer"];
+        
+        columnBindings = [[NSArray alloc] initWithObjects:@"itemA.stringValue", @"itemB.stringValue", @"customGroupString", @"customTypeString", @"associationAB.scoreNumber", @"associationBA.scoreNumber", @"notesString", nil];
+        
+        // install swizzle based logging
 #if DEBUG
-    [self installLogging];
+        [self installLogging];
 #endif
+    }    
 }
 
 //! Basic NSDocument init method.

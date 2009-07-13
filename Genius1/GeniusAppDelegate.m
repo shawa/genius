@@ -31,21 +31,24 @@
 //! Initializes application with factory defaults.
 + (void) initialize
 {
-	// Register defaults
-	NSDictionary * defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+    if (self == [GeniusAppDelegate class])
+    {
+        // Register defaults
+        NSDictionary * defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   
+                                   [NSNumber numberWithBool:YES], GeniusPreferencesUseSoundEffectsKey,
+                                   [NSNumber numberWithBool:YES], GeniusPreferencesQuizUseFullScreenKey,
+                                   [NSNumber numberWithBool:YES], GeniusPreferencesQuizUseVisualErrorsKey,
+                                   [NSNumber numberWithInt:GeniusPreferencesQuizSimilarMatchingMode], GeniusPreferencesQuizMatchingModeKey,
+                                   
+                                   [NSNumber numberWithInt:10], GeniusPreferencesQuizNumItemsKey,
+                                   [NSNumber numberWithInt:20], GeniusPreferencesQuizFixedTimeMinKey,
+                                   [NSNumber numberWithFloat:50.0], GeniusPreferencesQuizReviewLearnFloatKey,
+                                   
+                                   NULL];
         
-		[NSNumber numberWithBool:YES], GeniusPreferencesUseSoundEffectsKey,
-		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseFullScreenKey,
-		[NSNumber numberWithBool:YES], GeniusPreferencesQuizUseVisualErrorsKey,
-		[NSNumber numberWithInt:GeniusPreferencesQuizSimilarMatchingMode], GeniusPreferencesQuizMatchingModeKey,
-        
-		[NSNumber numberWithInt:10], GeniusPreferencesQuizNumItemsKey,
-		[NSNumber numberWithInt:20], GeniusPreferencesQuizFixedTimeMinKey,
-		[NSNumber numberWithFloat:50.0], GeniusPreferencesQuizReviewLearnFloatKey,
-        
-		NULL];
-    
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+    }
 }
 
 //! Releases @a preferencesController and frees memory.

@@ -46,8 +46,10 @@ A GeniusPair is conceptually like a two sided index card.  Through its two insta
 //! Set up #importance as dependent properties.
 + (void)initialize
 {
-    [super initialize];
-    [self setKeys:[NSArray arrayWithObjects:@"disabled", nil] triggerChangeNotificationsForDependentKey:@"importance"];
+    if(self == [GeniusPair class])
+    {
+        [self setKeys:[NSArray arrayWithObjects:@"disabled", nil] triggerChangeNotificationsForDependentKey:@"importance"];
+    }
 }
 
 /*!
