@@ -124,14 +124,14 @@
             
             NSNumber * learnVsReviewNumber = [unarchiver decodeObjectForKey:@"learnVsReviewNumber"];
             if (learnVsReviewNumber) {
-                [self takeValue:learnVsReviewNumber forKey:@"probabilityCenter"];
+                [self setValue:learnVsReviewNumber forKey:@"probabilityCenter"];
             }
 
             [unarchiver finishDecoding];
-            [unarchiver release];
 
             result = YES;
         }
+        [unarchiver release];
     }
     // 1.0 format
     else
@@ -166,6 +166,7 @@
                 [[pair associationAB] setDueDate:dueDate];
                 
                 [array addObject:pair];
+                [pair release];
             }
             [self setPairs:array];
             /*!

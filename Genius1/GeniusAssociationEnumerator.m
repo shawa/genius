@@ -317,18 +317,20 @@ static NSComparisonResult CompareAssociationByImportance(GeniusAssociation * ass
         if ([[association dueDate] compare:[NSDate date]] == NSOrderedAscending)
         {
             [_scheduledAssociations removeObjectAtIndex:0];
-            return [association autorelease];
         }
     }
-    
-    // Otherwise try popping an unscheduled association
+    else 
+    {
+        
+        // Otherwise try popping an unscheduled association
 #if DEBUG
-    NSLog(@"_inputAssociations = %@", [_inputAssociations description]);
+        NSLog(@"_inputAssociations = %@", [_inputAssociations description]);
 #endif
-    if ([_inputAssociations count] == 0)
-        return nil;
-    association = [[_inputAssociations objectAtIndex:0] retain];
-    [_inputAssociations removeObjectAtIndex:0];
+        if ([_inputAssociations count] == 0)
+            return nil;
+        association = [[_inputAssociations objectAtIndex:0] retain];
+        [_inputAssociations removeObjectAtIndex:0];
+    }
     return [association autorelease];
 }
 

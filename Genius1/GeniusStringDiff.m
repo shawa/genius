@@ -112,23 +112,29 @@ The implementation chops @a string1 and @a string2 into words based on the space
 	NS_HANDLER
 		succeed = NO;
 	NS_ENDHANDLER
+    
 	if (succeed == NO)
+    {
+        [diffTask release];
 		return nil;
-
-	NSMutableData * diffData = [NSMutableData data];
-	NSData *inData = nil;
-	while ((inData = [readHandle availableData]) && [inData length])
-		[diffData appendData:inData];
-	NSString * diffOutput = [[NSString alloc] initWithData:diffData encoding:NSUTF8StringEncoding];
-
-	[diffTask release];
-
-	// Delete temp files
-	NSFileManager * fm = [NSFileManager defaultManager];
-	[fm removeFileAtPath:path1 handler:nil];
-	[fm removeFileAtPath:path2 handler:nil];
-	
-	return [diffOutput autorelease];
+    }
+    else
+    {
+        
+        NSMutableData * diffData = [NSMutableData data];
+        NSData *inData = nil;
+        while ((inData = [readHandle availableData]) && [inData length])
+            [diffData appendData:inData];
+        NSString * diffOutput = [[NSString alloc] initWithData:diffData encoding:NSUTF8StringEncoding];
+                
+        // Delete temp files
+        NSFileManager * fm = [NSFileManager defaultManager];
+        [fm removeFileAtPath:path1 handler:nil];
+        [fm removeFileAtPath:path2 handler:nil];
+        
+        [diffTask release];
+        return [diffOutput autorelease];
+    }
 }
 
 //! creates a string that highlights the differences between @a origString and @a newString.
