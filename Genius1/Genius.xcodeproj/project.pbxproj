@@ -703,7 +703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# check for and try to clean up leftovers at /Volumes/Genius\nif test -e /Volumes/${PROJECT_NAME}\nthen\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}\n\tthen\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius\n\t\tthen\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# create derived files dir\nif ! mkdir -p ${DERIVED_FILE_DIR}\nthen\n\techo \"error: Can't create derived files dir: ${DERIVED_FILE_DIR}\" 1>&2\n\texit -1;\nfi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/dmg.DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0";
+			shellScript = "# check for and try to clean up leftovers at /Volumes/Genius\nif test -e /Volumes/${PROJECT_NAME}\nthen\n\tif ! hdiutil detach /Volumes/${PROJECT_NAME}\n\tthen\n\t\techo \"error: Can't unmount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\t\tif ! hdiutil info | grep -q /Volumes/Genius\n\t\tthen\n\t\t\techo \"error: Please move /Volumes/${PROJECT_NAME} elsewhere.  It doesn't seem to be a mounted image.\" 1>&2\n\t\telse\n\t\t\techo \"error: Please unmount /Volumes/${PROJECT_NAME} yourself.  The volume is busy.\" 1>&2\n\t\tfi\n\t\texit -1;\n\tfi\nfi\n\n# create derived files dir\nif ! mkdir -p ${DERIVED_FILE_DIR}\nthen\n\techo \"error: Can't create derived files dir: ${DERIVED_FILE_DIR}\" 1>&2\n\texit -1;\n fi\n\n# Create new empty image\nif ! hdiutil create -ov -size 5m -fs HFS+ -type UDIF -volname ${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't create dmg ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\" 1>&2\n\texit -1;\nfi\n\n# attach new empty image\nif ! hdiutil attach -mountpoint /Volumes/${PROJECT_NAME} ${DERIVED_FILE_DIR}/${PROJECT_NAME}.dmg\nthen\n\techo \"error: Can't mount volume /Volumes/${PROJECT_NAME}\" 1>&2\n\texit -1;\nfi\n\n# Populate the new empty image\n# create the background image directory and copy in the background image\nmkdir /Volumes/${PROJECT_NAME}/.background\ncp ${PROJECT_DIR}/background.png /Volumes/${PROJECT_NAME}/.background/background.png\n\n# include a link to the applications directory\nln -s /Applications /Volumes/${PROJECT_NAME}/Applications\n\n# copy in the layout file which positions the items in the icon view\ncp ${PROJECT_DIR}/dmg.DS_Store /Volumes/${PROJECT_NAME}/.DS_Store\n\nexit 0\n";
 			showEnvVarsInLog = 0;
 		};
 		83D9C9770CD8AC7D003B422F /* ShellScript */ = {
@@ -883,6 +883,7 @@
 		23D0AFE50AA1C7F50069E6D3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -931,6 +932,7 @@
 		23D0AFE60AA1C7F50069E6D3 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
@@ -1184,6 +1186,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1199,6 +1202,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = DiskImage;
