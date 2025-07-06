@@ -71,19 +71,22 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Study", nil);
             [toolbarItem setLabel:label];
-
-            NSImage * image = [NSImage imageNamed:@"play"];
-            [toolbarItem setImage:image];
+            if (@available(macOS 11.0, *)) {
+                toolbarItem.image = [NSImage imageWithSystemSymbolName:@"play.fill"
+                                                  accessibilityDescription:NSLocalizedString(@"Study", nil)];
+            } else {
+                toolbarItem.image = [NSImage imageNamed:NSImageNameTouchBarPlayTemplate];
+            }
             
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(quizAutoPick:)];
         }
         else if ([itemIdentifier isEqual:GeniusToolbarLearnReviewSliderItemIdentifier])
         {
-            //NSString * label = NSLocalizedString(@"Auto-Pick", nil);
-            //[toolbarItem setLabel:label];
+            NSString * label = NSLocalizedString(@"Auto-Pick", nil);
+            [toolbarItem setLabel:label];
 
-			NSView * itemView = [learnReviewSlider superview];
+            NSView * itemView = [learnReviewSlider superview];
             [toolbarItem setView:itemView];
             [toolbarItem setMinSize:NSMakeSize([itemView frame].size.width, [itemView frame].size.height)];
         }
@@ -91,9 +94,12 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Info", nil);
             [toolbarItem setLabel:label];
-
-            NSImage * image = [NSImage imageNamed:@"Inspector"];
-            [toolbarItem setImage:image];
+            if (@available(macOS 11.0, *)) {
+                toolbarItem.image = [NSImage imageWithSystemSymbolName:@"info.circle"
+                                                  accessibilityDescription:NSLocalizedString(@"Info", nil)];
+            } else {
+                toolbarItem.image = [NSImage imageNamed:NSImageNameInfo];
+            }
             
             [toolbarItem setTarget:infoDrawer];
             [toolbarItem setAction:@selector(toggle:)];
@@ -102,9 +108,12 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Notes", nil);
             [toolbarItem setLabel:label];
-            
-            NSImage * image = [NSImage imageNamed:@"Information"];
-            [toolbarItem setImage:image];
+            if (@available(macOS 11.0, *)) {
+                toolbarItem.image = [NSImage imageWithSystemSymbolName:@"note.text"
+                                                  accessibilityDescription:NSLocalizedString(@"Notes", nil)];
+            } else {
+                toolbarItem.image = [NSImage imageNamed:NSImageNameBookmarksTemplate];
+            }
     
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(showNotes:)];

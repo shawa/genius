@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment version="150000" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GeniusWelcomePanel">
+            <connections>
+                <outlet property="dontRemindSwitch" destination="51" id="55"/>
+                <outlet property="window" destination="48" id="57"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="48" userLabel="Panel" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="271" y="347" width="528" height="301"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <view key="contentView" autoresizesSubviews="NO" id="47">
+                <rect key="frame" x="1" y="1" width="528" height="301"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="50">
+                        <rect key="frame" x="108" y="20" width="400" height="134"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <clipView key="contentView" id="uOD-QM-iUJ">
+                            <rect key="frame" x="1" y="1" width="398" height="132"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" quoteSubstitution="YES" dashSubstitution="YES" textReplacement="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="69">
+                                    <rect key="frame" x="0.0" y="0.0" width="398" height="481"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="398" height="132"/>
+                                    <size key="maxSize" width="627" height="10000000"/>
+                                    <attributedString key="textStorage">
+                                        <fragment>
+                                            <string key="content">The human brain produces four types of brain waves or electrical rhythms: alpha, beta, theta, and delta. Theta and delta are generally associated with sleep.
+
+Alpha (slower) is the major rhythm seen in relaxed adults. It is the state associated with daydreaming and meditation; alpha is characterized by sensation instead of thinking. One is free of tensions and anxieties, unconcerned with the body, and alert to new stimuli. </string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">Research has found alpha to be the mental state that is most conducive to learning.
+
+</string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">Beta (faster) is the dominant rhythm in normal adults who are alert or anxious or who have their eyes open. It occurs during everyday modern life when we are dealing with the outside world, involved in thinking or calculating, or otherwise in stressful situations.
+
+
+</string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">EXERCISE
+</string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">
+To put yourself in the alpha state, move away from the computer. Close your eyes and listen to some relaxing music. Or try the following technique:
+
+</string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">Spread your arms as wide as you can. Wiggle your fingers and move your arms until you can see your fingers wiggling in your peripheral vision. </string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="29" headIndent="29" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Hold your range of vision like that.">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="29" headIndent="29" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content"> You can drop your arms, but keep your head up. Relax.
+
+Don’t look at anything specific, don’t get distracted by motion. If you do, let it pass, then return to wide angle vision. Just try to capture the entire scene; you’ll start to recognize objects without looking at them. Avoid thinking; keep your mind clear. Breathe. Feel yourself slow down. Imagine yourself as a camera…
+</string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="29" headIndent="29" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment>
+                                            <string key="content">
+After a few minutes, you should feel calm and detached from the world. Now you’re ready to begin.</string>
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="11" name="LucidaGrande"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28.25">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56.650001525878906">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="85">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="113.30000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="141.60000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="170.05000305175781">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="198.35000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="226.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="255.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="283.45001220703125">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="311.75">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="340.10000610351562">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="70">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="71">
+                            <rect key="frame" x="383" y="1" width="16" height="132"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <button imageHugsTitle="YES" id="51">
+                        <rect key="frame" x="106" y="175" width="197" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="check" title="Don’t remind me again" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="64">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" id="52">
+                        <rect key="frame" x="416" y="166" width="98" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="65">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="continue:" target="-2" id="56"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" id="53">
+                        <rect key="frame" x="105" y="264" width="406" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Before you begin studying, take a moment to breathe." id="66">
+                            <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="54">
+                        <rect key="frame" x="105" y="214" width="406" height="42"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="67">
+                            <font key="font" metaFont="smallSystem"/>
+                            <string key="title">You will be most effective at learning when you’re not distracted by thoughts or tensions. Just as an athlete warms up before physical activity, it’s important to stop and prepare your mind to absorb new information.</string>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <imageView id="62">
+                        <rect key="frame" x="24" y="217" width="64" height="64"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="68"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="61"/>
+            </connections>
+        </window>
+    </objects>
+    <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
+    </resources>
+</document>
