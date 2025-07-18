@@ -89,7 +89,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Info", nil);
             [toolbarItem setLabel:label];
-            toolbarItem.image = [NSImage imageNamed:@"information-retina"];
+            toolbarItem.image = [NSImage imageNamed:@"inspector-retina"];
             
             [toolbarItem setTarget:infoDrawer];
             [toolbarItem setAction:@selector(toggle:)];
@@ -98,7 +98,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Notes", nil);
             [toolbarItem setLabel:label];
-            toolbarItem.image = [NSImage imageNamed:@"inspector-retina"];
+            toolbarItem.image = [NSImage imageNamed:@"information-retina"];
     
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(showNotes:)];

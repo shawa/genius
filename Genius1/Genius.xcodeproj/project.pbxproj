@@ -1068,7 +1068,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
-				SVNREV = 228;
+				SVNREV = 0;
 			};
 			name = Deployment;
 		};
