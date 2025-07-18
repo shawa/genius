@@ -861,12 +861,30 @@ static NSArray *columnBindings;
             score = [[pair associationBA] score];
 
         NSImage * image = nil;
-        if (score == -1)
-            image = [NSImage imageNamed:@"status-red"];
-        else if (score < 5)
-            image = [NSImage imageNamed:@"status-yellow"];
-        else
-            image = [NSImage imageNamed:@"status-green"];
+        if (score == -1) {
+            if (@available(macOS 11.0, *)) {
+                image = [NSImage imageWithSystemSymbolName:@"circle.fill" accessibilityDescription:nil];
+                image = [image imageWithTintColor:[NSColor systemRedColor]];
+            } else {
+                image = [NSImage imageNamed:@"status-red"];
+            }
+        }
+        else if (score < 5) {
+            if (@available(macOS 11.0, *)) {
+                image = [NSImage imageWithSystemSymbolName:@"circle.fill" accessibilityDescription:nil];
+                image = [image imageWithTintColor:[NSColor systemYellowColor]];
+            } else {
+                image = [NSImage imageNamed:@"status-yellow"];
+            }
+        }
+        else {
+            if (@available(macOS 11.0, *)) {
+                image = [NSImage imageWithSystemSymbolName:@"circle.fill" accessibilityDescription:nil];
+                image = [image imageWithTintColor:[NSColor systemGreenColor]];
+            } else {
+                image = [NSImage imageNamed:@"status-green"];
+            }
+        }
         [aCell setImage:image];
     }
 }

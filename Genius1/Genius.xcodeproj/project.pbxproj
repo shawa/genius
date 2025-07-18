@@ -89,6 +89,9 @@
 		83F9D61D0D5277C0004C531D /* Swedish Verbs.genius in Copy Samples */ = {isa = PBXBuildFile; fileRef = 83F9D6190D5277C0004C531D /* Swedish Verbs.genius */; };
 		83F9D61E0D5277C0004C531D /* US State Capitals.genius in Copy Samples */ = {isa = PBXBuildFile; fileRef = 83F9D61A0D5277C0004C531D /* US State Capitals.genius */; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		F9792CD42E2AF87A00FFEA19 /* play-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = F9792CD32E2AF87A00FFEA19 /* play-retina.png */; };
+		F9792CD62E2AF8AE00FFEA19 /* information-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = F9792CD52E2AF8AE00FFEA19 /* information-retina.png */; };
+		F9792CD82E2AF8CE00FFEA19 /* inspector-retina.png in Resources */ = {isa = PBXBuildFile; fileRef = F9792CD72E2AF8CE00FFEA19 /* inspector-retina.png */; };
 		F99EEEB72E1B0B0700C9FA65 /* GeniusDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99EEEA92E1B0B0700C9FA65 /* GeniusDocument.xib */; };
 		F99EEEB82E1B0B0700C9FA65 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99EEEAC2E1B0B0700C9FA65 /* Preferences.xib */; };
 		F99EEEB92E1B0B0700C9FA65 /* Help.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99EEEAA2E1B0B0700C9FA65 /* Help.xib */; };
@@ -244,6 +247,9 @@
 		83F9D6190D5277C0004C531D /* Swedish Verbs.genius */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Swedish Verbs.genius"; sourceTree = "<group>"; };
 		83F9D61A0D5277C0004C531D /* US State Capitals.genius */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "US State Capitals.genius"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Genius.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9792CD32E2AF87A00FFEA19 /* play-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-retina.png"; sourceTree = "<group>"; };
+		F9792CD52E2AF8AE00FFEA19 /* information-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "information-retina.png"; sourceTree = "<group>"; };
+		F9792CD72E2AF8CE00FFEA19 /* inspector-retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inspector-retina.png"; sourceTree = "<group>"; };
 		F99EEEB02E1B0B0700C9FA65 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WelcomePanel.xib; sourceTree = "<group>"; };
 		F99EEEB12E1B0B0700C9FA65 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Help.xib; sourceTree = "<group>"; };
 		F99EEEB22E1B0B0700C9FA65 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PreQuiz.xib; sourceTree = "<group>"; };
@@ -360,6 +366,7 @@
 		83F9D36B0D525E12004C531D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F9792CCC2E2AF5A000FFEA19 /* Retina Images */,
 				F99EEEA92E1B0B0700C9FA65 /* GeniusDocument.xib */,
 				F99EEEAA2E1B0B0700C9FA65 /* Help.xib */,
 				F99EEEAB2E1B0B0700C9FA65 /* MainMenu.xib */,
@@ -505,6 +512,16 @@
 			name = "User Info";
 			sourceTree = "<group>";
 		};
+		F9792CCC2E2AF5A000FFEA19 /* Retina Images */ = {
+			isa = PBXGroup;
+			children = (
+				F9792CD72E2AF8CE00FFEA19 /* inspector-retina.png */,
+				F9792CD32E2AF87A00FFEA19 /* play-retina.png */,
+				F9792CD52E2AF8AE00FFEA19 /* information-retina.png */,
+			);
+			path = "Retina Images";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -644,6 +661,8 @@
 				F99EEEB92E1B0B0700C9FA65 /* Help.xib in Resources */,
 				F99EEEBA2E1B0B0700C9FA65 /* Quiz.xib in Resources */,
 				F99EEEBB2E1B0B0700C9FA65 /* PreQuiz.xib in Resources */,
+				F9792CD42E2AF87A00FFEA19 /* play-retina.png in Resources */,
+				F9792CD62E2AF8AE00FFEA19 /* information-retina.png in Resources */,
 				F99EEEBC2E1B0B0700C9FA65 /* MainMenu.xib in Resources */,
 				F99EEEBD2E1B0B0700C9FA65 /* WelcomePanel.xib in Resources */,
 				83F9D5000D5266B9004C531D /* Add_Pressed.tiff in Resources */,
@@ -653,6 +672,7 @@
 				83F9D5040D5266B9004C531D /* status-green.tiff in Resources */,
 				83F9D5050D5266B9004C531D /* status-red.tiff in Resources */,
 				83F9D5060D5266B9004C531D /* status-yellow.tiff in Resources */,
+				F9792CD82E2AF8CE00FFEA19 /* inspector-retina.png in Resources */,
 				83F9D50A0D5266F5004C531D /* Genius.icns in Resources */,
 				83F9D5790D527441004C531D /* play.tiff in Resources */,
 				83784CAF0D527D1900720968 /* Storage Files.icns in Resources */,

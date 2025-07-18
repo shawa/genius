@@ -71,12 +71,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Study", nil);
             [toolbarItem setLabel:label];
-            if (@available(macOS 11.0, *)) {
-                toolbarItem.image = [NSImage imageWithSystemSymbolName:@"play.fill"
-                                                  accessibilityDescription:NSLocalizedString(@"Study", nil)];
-            } else {
-                toolbarItem.image = [NSImage imageNamed:NSImageNameTouchBarPlayTemplate];
-            }
+            toolbarItem.image = [NSImage imageNamed:@"play-retina"];
             
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(quizAutoPick:)];
@@ -94,12 +89,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Info", nil);
             [toolbarItem setLabel:label];
-            if (@available(macOS 11.0, *)) {
-                toolbarItem.image = [NSImage imageWithSystemSymbolName:@"info.circle"
-                                                  accessibilityDescription:NSLocalizedString(@"Info", nil)];
-            } else {
-                toolbarItem.image = [NSImage imageNamed:NSImageNameInfo];
-            }
+            toolbarItem.image = [NSImage imageNamed:@"information-retina"];
             
             [toolbarItem setTarget:infoDrawer];
             [toolbarItem setAction:@selector(toggle:)];
@@ -108,12 +98,7 @@ NSString * GeniusToolbarSearchItemIdentifier = @"Search";
         {
             NSString * label = NSLocalizedString(@"Notes", nil);
             [toolbarItem setLabel:label];
-            if (@available(macOS 11.0, *)) {
-                toolbarItem.image = [NSImage imageWithSystemSymbolName:@"note.text"
-                                                  accessibilityDescription:NSLocalizedString(@"Notes", nil)];
-            } else {
-                toolbarItem.image = [NSImage imageNamed:NSImageNameBookmarksTemplate];
-            }
+            toolbarItem.image = [NSImage imageNamed:@"inspector-retina"];
     
             [toolbarItem setTarget:self];
             [toolbarItem setAction:@selector(showNotes:)];
